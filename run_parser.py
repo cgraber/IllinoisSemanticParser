@@ -55,26 +55,32 @@ def data2buckets(data):
             raise Exception("BUCKETS NOT LARGE ENOUGH: (%d, %d)"%(len(entry[0]), len(entry[1])))
     return bucket_data
 
+def find_bucket(data):
+    """Find the smallest bucket holding all of the given data"""
+    for i, (source_size, target_size) in enumerate(_buckets):
+        works = True
+        for entry in data:
+            if len(entry[0]) >= source_size and len(entry[1]) >= target_size:
+                works = False
+                break
+        if works:
+            return i
+    raise Exception("NO BUCKET COULD HOLD ALL OF THE DATA")
 
-def create_model(session, conf, is_training):
+def create_model(session, conf):
     """Create model and initialize or load parameters in session."""
-    model = parser_model.ParseModel(conf, is_training)
-    ckpt = tf.train.get_checkpoint_state(os.path.join(FLAGS.train_dir, conf.get_dir()))
-    if ckpt and tf.gfile.Exists(ckpt.model_checkpoint_apth):
-        print("Reading model parameters from %s" % ckpt.model_checkpoint_path)
-        model.saver.restore(session, ckpt.model_checkpoint_path)
-    else:
-        print("Created model with fresh parameters.")
-        session.run(tf.initialize_all_variables())
+    model = parser_model.ParseModel(conf)
+    print("Created model with fresh parameters.")
+    session.run(tf.initialize_all_variables())
     return model
 
-def train(sess, train_data, conf):
+def train(sess, train_data, validation_data, conf, num_steps = None):
     print("Preparing model...")
-    model = create_model(sess, conf, True)
-    
+    model = create_model(sess, conf, True)    
     train_buckets = read_data(train_data)
     train_bucket_sizes = [len(train_buckets[b]) for b in xrange(len(_buckets))]
     train_total_size = float(sum(train_bucket_sizes))
+    checkpoint_path = os.path.join(FLAGS.train_dir, conf.get_dir(), "parse.ckpt")
 
     # A bucket scale is a list of increasing numbers from 0 to 1 that we'll use
     # to select a bucket. Length of [scale[i], scale[i+1]] is proportional to
@@ -86,7 +92,9 @@ def train(sess, train_data, conf):
     step_time, loss = 0.0, 0.0
     current_step = 0
     previous_losses = []
-    while True:
+    best_validation_loss = float("inf")
+    best_validation_step = 0
+    while not num_steps or current_step < num_steps:
         # Choose a bucket according to data distribution. We pick a random number
         # in [0, 1] and use the corresponding interval in train_buckets_scale.
         random_number_01 = np.random.random_sample()
@@ -96,7 +104,7 @@ def train(sess, train_data, conf):
         # Get a batch and make a step.
         start_time = time.time()
         encoder_inputs, decoder_inputs, target_weights = model.get_batch(
-            train_buckets, bucket_id)
+            train_buckets, bucket_id, False)
         _, step_loss, _ = model.step(sess, encoder_inputs, decoder_inputs,
                                      target_weights, bucket_id, False)
         step_time += (time.time() - start_time) / FLAGS.steps_per_checkpoint
@@ -105,69 +113,103 @@ def train(sess, train_data, conf):
 
         # Once in a while, we save checkpoint, print statistics, and run evals
         if current_step % FLAGS.steps_per_checkpoint == 0:
-            # Print statistics for the previous epoch
-            print("global step %s learning rate %.4f step-time %.2f training loss %.2f" %
-                (model.global_step.eval(), model.learning_rate.eval(),
-                 step_time, loss))
 
-            # Check early stopping condition
-            _, loss, _ = model.step(sess, encoder_inputs, decoder_inputs,
-
-
+            if not num_steps:
+                # Check early stopping condition
+                validation_loss, acc = test(sess, validation_data, model)
+                print("global step %s learning rate %.4f step-time %.2f validation loss %.2f validation acc %.2f" %
+                    (model.global_step.eval(), model.learning_rate.eval(),
+                     step_time, validation_loss, acc))
+                if validation_loss < best_validation_loss:
+                    best_validation_loss = validation_loss
+                    best_validation_step = current_step
+                    model.saver.save(sess, checkpoint_path, global_step=model.global_step)
+                if current_step - best_validation_step >= FLAGS.early_stopping_patience:
+                    print("Early stopping triggered. Restoring previous model")
+                    model.saver.restore(session, checkpoint_path)
+                    return model, current_step
             
             # Decrease learning rate if no improvement was seen over last 3 times.
             if len(previous_losses) > 2 and loss > max(previous_losses[-3:]):
                 sess.run(model.learning_rate_decay_op)
             previous_losses.append(loss)
             # Save checkpoint and zero timer and loss
-            checkpoint_path = os.path.join(FLAGS.train_dir, conf.get_dir(), "parse.ckpt")
-            model.saver.save(sess, checkpoint_path, global_step=model.global_step)
             step_time, loss = 0.0, 0.0
             sys.stdout.flush()
+    return model, num_steps
 
 def test(sess, test_data, model):
-    for entry in test_data:
-        bucket_id = min([b for b in xrange(len(_buckets))
-                         if _buckets[b][0] > len(entry[0])])
-        # Get a 1-element batch to feed the sentence to the model.
-        encoder_inputs, decoder_inputs, target_weights = model.get_batch(
-            {bucket_id: [(entry[0], [])]}, bucket_id)
-        _, _, output_logits = model.step(sess, encoder_inputs, decoder_inputs,
-                                         target_weights, bucket_id, True)
-        outputs = [int(np.argmax(logit, axis=1)) for logit in output_logits]
-        if data_utils.EOS_ID in outputs:
-            outputs = outputs[:outputs.index(data.LOGIC_EOS_ID)]
-        #TODO: FINISH!
+    test_bucket = find_bucket(test_data)
+    encoder_inputs, decoder_inputs, target_weights = model.get_batch(
+            test_data, test_bucket, True)
+    _, loss, output_logits = model.step(sess, encoder_inputs, decoder_inputs,
+                                  target_weights, test_bucket, True)
+    temp_outputs = [[int(np.argmax(logit, axis=1)) for logit in output_logit] for output_logit in output_logits]
+
+    #Reshape outputs
+    outputs = [[]]*len(test_data)
+    for i in xrange(len(temp_outputs)):
+        for j in xrange(len(temp_outputs[i])):
+            outputs[j].append(temp_outputs[i][j])
+
+    for i in xrange(len(outputs)):
+        if data_utils.EOS_ID in outputs[i]:
+            outputs[i] = outputs[i][:outputs[i].index(data.LOGIC_EOS_ID)]
+    correct = 0.0
+    for i in xrange(len(test_data)):
+        if test_data[i][1:] == outputs[i]: #TODO: make sure this is correct
+            correct += 1.0
+    return loss, correct/len(data)
+
 
 def cross_validate(splits, conf):
     performance = 0
     for i in xrange(len(splits)):
+        print("===================Beginning split %d========================"%i)
         conf.fold = i
         train_data = sum(splits[:i] + splits[i+1:], [])
-        tune_data = splits[i]
+        validation_data = splits[i]
         with tf.Session() as sess:
-            model = train(sess, train_data, conf)
-            performance += test(sess, tune_data, conf, model)
+            model,_ = train(sess, train_data, validation_data, conf)
+            loss, acc = test(sess, validation_data, conf, model)
+            performance += loss
+        tf.reset_default_graph()
     return performance/len(splits)
 
-def parameter_tuning(splits, source_vocab_size, target_vocab_size):
-    best_result = None
+def parameter_tuning(folds, source_vocab_size, target_vocab_size):
+    best_loss = None
     best_config = None
     for conf in config.config_beam_search(source_vocab_size, target_vocab_size):
-        result = cross_validate(splits, conf)
-        if not best_result or result > best_result: #TODO: Make sure this is correct!
-            best_result = result
+        print("+++++++++++++++++++++++Beginning cross-validation with dropout_rate = %0.1f, vector_size=%d++++++++++++++++++"%
+               (conf.dropout_rate, conf.layer_size))
+        loss, acc = cross_validate(folds, conf)
+        if not best_loss or loss < best_loss:
+            best_loss = loss
             best_config = conf
     best_config.fold = None
-    return train(sum(splits, []), best_config)
+    return best_config
+
+def main(_):
+    folds, test_data, (source_vocab_size, target_vocab_size) = load_data()
+    train_data = sum(folds[:-1],[])
+    validation_data = folds[-1]
+    conf = parameter_tuning(folds, source_vocab_size, target_vocab_size)
+
+    #First, train with held-out data to find number of iterations
+    with tf.Session() as sess:
+        model = create_model(sess, conf)
+        model, num_steps = train(sess, train_data, validation_data, conf)
+
+    #Now train on full data set
+    tf.reset_default_graph()
+    train_data += validation_data
+    with tf.Session() as sess:
+        model = create_model(sess, conf)
+        model, _ = train(sess, train_data, None, conf, num_steps)
+        loss, acc = test(sess, test_data, model)
+        print("FINAL RESULTS:")
+        print("  loss = %0.4f"%loss)
+        print("  acc  = %0.4f"%acc)
 
 if __name__ == "__main__":
-    
-    """
-    init_op = tf.initialize_all_variables()
-    with tf.Session() as sess:
-        sess.run(init_op)
-        
-        model = parameter_tuning(splits, vocab_size[0], vocab_size[1])
-        result = test(test_data, model)
-    """
+    tf.app.run()
