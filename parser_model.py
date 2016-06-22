@@ -1,6 +1,7 @@
 import numpy as np
 import tensorflow as tf
-
+import data_utils
+import random
 
 class ParseModel(object):
 
@@ -12,19 +13,20 @@ class ParseModel(object):
 
         self.source_vocab_size = config.source_vocab_size
         self.target_vocab_size = config.target_vocab_size
-        self.buckets = buckets
+        self.buckets = config.buckets
         self.batch_size = config.batch_size
-        self.learning_rate = tf.Variable(float(learning_rate), trainable=False)
+        self.learning_rate = tf.Variable(float(config.learning_rate), trainable=False)
         self.is_test = tf.placeholder(tf.bool)
         self.learning_rate_decay_op = self.learning_rate.assign(
-            self.learning_rate * learning_rate_decay_factor)
+            self.learning_rate * config.learning_rate_decay_factor)
         self.global_step = tf.Variable(0, trainable=False)
         self.keep_prob = 1 - config.dropout_rate
         self.keep_prob_input= tf.placeholder(tf.float32) #For dropout control
 
         # Create LSTM cell
-        single_cell = tf.nn.rnn_cell.LSTMCell(config.layer_size, initializer=tf.random_uniform_initializer(minval=-1*config.initialize_width,maxval=config.initialize_width)
-        single_cell = tf.nn.rnn_cell.DropoutWrapper(config.single_cell, output_keep_prob=self.keep_prob_input)
+        print("\tCreating Cell")
+        single_cell = tf.nn.rnn_cell.LSTMCell(config.layer_size, initializer=tf.random_uniform_initializer(minval=-1*config.initialize_width,maxval=config.initialize_width))
+        single_cell = tf.nn.rnn_cell.DropoutWrapper(single_cell, output_keep_prob=self.keep_prob_input)
         cell = single_cell
         if config.num_layers > 1:
             cell = tf.nn.rnn_cell.MultiRNNCell([single_cell] * config.num_layers)
@@ -35,17 +37,18 @@ class ParseModel(object):
                 encoder_inputs, decoder_inputs, cell,
                 num_encoder_symbols = self.source_vocab_size,
                 num_decoder_symbols = self.target_vocab_size,
-                embedding_size = config.param_size,
+                embedding_size = config.layer_size,
                 feed_previous=self.is_test)
 
         # Feeds for inputs
         self.encoder_inputs = []
         self.decoder_inputs = []
         self.target_weights = []
-        for i in xrange(buckets[-1][0]):
+        print("\tCreating input feeds")
+        for i in xrange(self.buckets[-1][0]):
             self.encoder_inputs.append(tf.placeholder(tf.int32, shape=[None],
                                                       name="encoder{0}".format(i)))
-        for i in xrange(buckets[-1][1] + 1):
+        for i in xrange(self.buckets[-1][1] + 1):
             self.decoder_inputs.append(tf.placeholder(tf.int32, shape=[None],
                                                       name="decoder{0}".format(i)))
             self.target_weights.append(tf.placeholder(tf.float32, shape=[None],
@@ -58,14 +61,14 @@ class ParseModel(object):
 
         self.outputs, self.losses = tf.nn.seq2seq.model_with_buckets(
             self.encoder_inputs, self.decoder_inputs, targets,
-            self.target_weights, buckets, lambda x, y: seq2seq_f(x, y),
-            softmax_loss_function=softmax_loss_function)
+            self.target_weights, self.buckets, lambda x, y: seq2seq_f(x, y))
 
         params = tf.trainable_variables()
         self.gradient_norms = []
         self.updates = []
-        opt = tf.train.RMSPropOptimizer(self.learning_rate) #TODO: params?
-        for b in xrange(len(buckets)):
+        opt = tf.train.AdagradOptimizer(self.learning_rate) #TODO: Other options?
+        print("\tCreating gradients")
+        for b in xrange(len(self.buckets)):
             gradients = tf.gradients(self.losses[b], params)
             clipped_gradients, norm = tf.clip_by_global_norm(gradients,
                                                              config.max_gradient)
@@ -100,7 +103,7 @@ class ParseModel(object):
             input_feed[self.target_weights[l].name] = target_weights[l]
 
         last_target = self.decoder_inputs[decoder_size].name
-        input_feed[last_target] = np.zeros([self.batch_size], dtype=np.int32)
+        input_feed[last_target] = np.zeros([len(decoder_inputs[0])], dtype=np.int32)
         input_feed[self.is_test] = is_test
 
         if is_test:
@@ -108,19 +111,19 @@ class ParseModel(object):
             for l in xrange(decoder_size):  # Output logits
                 output_feed.append(self.outputs[bucket_id][l])
             input_feed[self.keep_prob_input] = 1.0
+
         else: 
             output_feed = [self.updates[bucket_id],  #Update Op that does RMSProp
                            self.gradient_norms[bucket_id],   # Gradient norm
                            self.losses[bucket_id]]   #Loss for this batch
             input_feed[self.keep_prob_input] = self.keep_prob
-
         outputs = session.run(output_feed, input_feed)
         if is_test:
             return None, outputs[0], outputs[1:] #No gradient norm, loss, outputs
         else:
             return outputs[1], outputs[2], None  # Gradient norm, loss, no outputs
 
-    def get_batch(self, data, bucket_id, is_test, batch_size=self.batch_size):
+    def get_batch(self, data, bucket_id, is_test):
         """ Gets batch, formats it in correct way.
 
         If is_test=True, data is assumed to be a 1D list of (input,output) pairs.
@@ -134,6 +137,7 @@ class ParseModel(object):
             batch_size = len(data)
             batch = data
         else:
+            batch_size = self.batch_size
             batch = []
             for _ in xrange(batch_size):
                 batch.append(random.choice(data[bucket_id]))
@@ -142,10 +146,10 @@ class ParseModel(object):
         for encoder_input, decoder_input in batch:
 
             # Encoder inputs are padded and then reversed
-            encoder_pad = [data.PAD_ID] * (encoder_size - len(encoder_input))
+            encoder_pad = [data_utils.PAD_ID] * (encoder_size - len(encoder_input))
             encoder_inputs.append(list(reversed(encoder_input + encoder_pad)))
 
-            decoder_pad = [data.PAD_ID] * (decoder_size - len(decoder_input))
+            decoder_pad = [data_utils.PAD_ID] * (decoder_size - len(decoder_input))
             decoder_inputs.append(decoder_input + decoder_pad)
 
         # Now we create batch-major vectors from the data selected above
@@ -155,7 +159,7 @@ class ParseModel(object):
         for length_idx in xrange(encoder_size):
             batch_encoder_inputs.append(
                 np.array([encoder_inputs[batch_idx][length_idx]
-                        for batch_idx in xrange(batch_size)], dype=np.int32))
+                        for batch_idx in xrange(batch_size)], dtype=np.int32))
 
         # Batch decoder inputs are re-indexed decoder inputs. We also create weights!
         for length_idx in xrange(decoder_size):
@@ -170,7 +174,7 @@ class ParseModel(object):
                 # The corresponding target is decoder_input shifted by 1 forward.
                 if length_idx < decoder_size - 1:
                     target = decoder_inputs[batch_idx][length_idx+1]
-                if length_idx == decoder_size - 1 or target == data.PAD_ID:
+                if length_idx == decoder_size - 1 or target == data_utils.PAD_ID:
                     batch_weight[batch_idx] = 0.0
             batch_weights.append(batch_weight)
         return batch_encoder_inputs, batch_decoder_inputs, batch_weights

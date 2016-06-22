@@ -7,23 +7,30 @@ vector_beam = [150, 200, 250]
 class Config(object):
 
 
-    def __init__(self, source_vocab_size, target_vocab_size, dropout, param, fold=None):
+    def __init__(self, source_vocab_size, target_vocab_size, num_layers, dropout, layer_size, batch_size, 
+                 buckets, learning_rate, learning_rate_decay_factor, fold=None):
         self.max_gradient = 5
-        self.batch_size = 20
+        self.batch_size = batch_size
         self.initialize_width = 0.08
         self.dropout_rate = dropout
-        self.layer_size = param
+        self.layer_size = layer_size
         self.source_vocab_size = source_vocab_size
         self.target_vocab_size = target_vocab_size
-        self.directory = "dropout_%d_vector_%d"
+        self.num_layers = num_layers
+        self.directory = "dropout_%d_vector_%d"%(dropout, layer_size)
+        self.buckets = buckets
+        self.learning_rate = learning_rate
+        self.learning_rate_decay_factor = learning_rate_decay_factor
         self.fold = fold
 
     def get_dir(self):
         if self.fold:
-            return self.directory + "_%d"%self.fold
+            return self.directory + "_%d/"%self.fold
         else:
-            return self.directory
+            return self.directory+"/"
 
-def config_beam_search(source_vocab_size, target_vocab_size):
-    for dropout, param in itertools.product(dropout_beam, vector_beam):
-        yield Config(dropout, param)
+def config_beam_search(source_vocab_size, target_vocab_size, num_layers, batch_size, buckets, 
+                       learning_rate, learning_rate_decay_factor):
+    for dropout, layer_size in itertools.product(dropout_beam, vector_beam):
+        yield Config(source_vocab_size, target_vocab_size, num_layers, dropout, layer_size, batch_size, buckets, 
+                     learning_rate, learning_rate_decay_factor)

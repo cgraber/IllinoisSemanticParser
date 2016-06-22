@@ -4,18 +4,19 @@ from __future__ import print_function
 
 import numpy as np
 import tensorflow as tf
-import config, data, parser_model
+import os, sys, time, random
+import config, data_utils, parser_model
 
-tf.app.flags.DEFINE_float("learning_rate", 0.5, "Learning rate.")
+tf.app.flags.DEFINE_float("learning_rate", 0.1, "Learning rate.")
 tf.app.flags.DEFINE_float("learning_rate_decay_factor", 0.99,
                           "Learning rate decays by this much.")
 tf.app.flags.DEFINE_float("max_gradient_norm", 5.0,
                           "Clip gradients to this norm.")
 tf.app.flags.DEFINE_integer("batch_size", 20,
                             "Batch size to use during training.")
-tf.app.flags.DEFINE_integer("num_layers", 3, "Number of layers in the model.")
+tf.app.flags.DEFINE_integer("num_layers", 1, "Number of layers in the model.")
 tf.app.flags.DEFINE_string("data_dir", "data/Geo", "Data directory")
-tf.app.flags.DEFINE_string("train_dir", "/tmp", "Training directory.")
+tf.app.flags.DEFINE_string("train_dir", "./tmp", "Training directory.")
 tf.app.flags.DEFINE_integer("max_train_data_size", 0,
                             "Limit on the size of training data (0: no limit).")
 tf.app.flags.DEFINE_integer("steps_per_checkpoint", 20,
@@ -34,7 +35,7 @@ FLAGS = tf.app.flags.FLAGS
 _buckets = [(10,15), (15,20), (20,25), (40,70)] #TODO: what buckets make sense?
 
 def load_data():
-    train_data, test_data, vocab_size = data.load_raw_text(FLAGS.data_dir)
+    train_data, test_data, vocab_size = data_utils.load_raw_text(FLAGS.data_dir)
     folds = []
     fold_size = int(len(train_data)/FLAGS.num_folds)
     for i in xrange(FLAGS.num_folds - 1):
@@ -76,11 +77,14 @@ def create_model(session, conf):
 
 def train(sess, train_data, validation_data, conf, num_steps = None):
     print("Preparing model...")
-    model = create_model(sess, conf, True)    
-    train_buckets = read_data(train_data)
+    model = create_model(sess, conf)    
+    train_buckets = data2buckets(train_data)
     train_bucket_sizes = [len(train_buckets[b]) for b in xrange(len(_buckets))]
     train_total_size = float(sum(train_bucket_sizes))
-    checkpoint_path = os.path.join(FLAGS.train_dir, conf.get_dir(), "parse.ckpt")
+    checkpoint_dir = os.path.join(FLAGS.train_dir, conf.get_dir())
+    checkpoint_path = os.path.join(checkpoint_dir, "parse.ckpt")
+    if not os.path.exists(checkpoint_dir):
+        os.makedirs(checkpoint_dir)
 
     # A bucket scale is a list of increasing numbers from 0 to 1 that we'll use
     # to select a bucket. Length of [scale[i], scale[i+1]] is proportional to
@@ -94,6 +98,8 @@ def train(sess, train_data, validation_data, conf, num_steps = None):
     previous_losses = []
     best_validation_loss = float("inf")
     best_validation_step = 0
+    print("Starting training")
+    sys.stdout.flush()
     while not num_steps or current_step < num_steps:
         # Choose a bucket according to data distribution. We pick a random number
         # in [0, 1] and use the corresponding interval in train_buckets_scale.
@@ -105,7 +111,7 @@ def train(sess, train_data, validation_data, conf, num_steps = None):
         start_time = time.time()
         encoder_inputs, decoder_inputs, target_weights = model.get_batch(
             train_buckets, bucket_id, False)
-        _, step_loss, _ = model.step(sess, encoder_inputs, decoder_inputs,
+        _, step_loss, step_outputs = model.step(sess, encoder_inputs, decoder_inputs,
                                      target_weights, bucket_id, False)
         step_time += (time.time() - start_time) / FLAGS.steps_per_checkpoint
         loss += step_loss / FLAGS.steps_per_checkpoint
@@ -116,22 +122,25 @@ def train(sess, train_data, validation_data, conf, num_steps = None):
 
             if not num_steps:
                 # Check early stopping condition
-                validation_loss, acc = test(sess, validation_data, model)
-                print("global step %s learning rate %.4f step-time %.2f validation loss %.2f validation acc %.2f" %
+                validation_loss, validation_acc = test(sess, validation_data, model)
+                print("global step %s learning rate %.4f step-time %.2f training loss %.2f" %
                     (model.global_step.eval(), model.learning_rate.eval(),
-                     step_time, validation_loss, acc))
+                     step_time, step_loss))
+                print("               validation loss %.2f validaiton acc %.2f"%(validation_loss, validation_acc))
                 if validation_loss < best_validation_loss:
                     best_validation_loss = validation_loss
                     best_validation_step = current_step
                     model.saver.save(sess, checkpoint_path, global_step=model.global_step)
                 if current_step - best_validation_step >= FLAGS.early_stopping_patience:
                     print("Early stopping triggered. Restoring previous model")
-                    model.saver.restore(session, checkpoint_path)
+                    ckpt = tf.train.get_checkpoint_state(checkpoint_dir)
+                    model.saver.restore(sess, ckpt.model_checkpoint_path)
                     return model, current_step
-            
+            else:
+                print("\tIteration %d of %d"%(current_step, num_steps))
             # Decrease learning rate if no improvement was seen over last 3 times.
-            if len(previous_losses) > 2 and loss > max(previous_losses[-3:]):
-                sess.run(model.learning_rate_decay_op)
+            #if len(previous_losses) > 2 and loss > max(previous_losses[-3:]):
+            #    sess.run(model.learning_rate_decay_op)
             previous_losses.append(loss)
             # Save checkpoint and zero timer and loss
             step_time, loss = 0.0, 0.0
@@ -144,7 +153,10 @@ def test(sess, test_data, model):
             test_data, test_bucket, True)
     _, loss, output_logits = model.step(sess, encoder_inputs, decoder_inputs,
                                   target_weights, test_bucket, True)
-    temp_outputs = [[int(np.argmax(logit, axis=1)) for logit in output_logit] for output_logit in output_logits]
+    return loss, evaluate_logits(output_logits, test_data)
+
+def evaluate_logits(output_logits, test_data):
+    temp_outputs = [[int(np.argmax(logit)) for logit in output_logit] for output_logit in output_logits]
 
     #Reshape outputs
     outputs = [[]]*len(test_data)
@@ -153,13 +165,13 @@ def test(sess, test_data, model):
             outputs[j].append(temp_outputs[i][j])
 
     for i in xrange(len(outputs)):
-        if data_utils.EOS_ID in outputs[i]:
-            outputs[i] = outputs[i][:outputs[i].index(data.LOGIC_EOS_ID)]
+        if data_utils.LOGIC_EOS_ID in outputs[i]:
+            outputs[i] = outputs[i][:outputs[i].index(data_utils.LOGIC_EOS_ID)]
     correct = 0.0
     for i in xrange(len(test_data)):
         if test_data[i][1:] == outputs[i]: #TODO: make sure this is correct
             correct += 1.0
-    return loss, correct/len(data)
+    return correct/len(test_data)
 
 
 def cross_validate(splits, conf):
@@ -171,7 +183,7 @@ def cross_validate(splits, conf):
         validation_data = splits[i]
         with tf.Session() as sess:
             model,_ = train(sess, train_data, validation_data, conf)
-            loss, acc = test(sess, validation_data, conf, model)
+            loss, acc = test(sess, validation_data, model)
             performance += loss
         tf.reset_default_graph()
     return performance/len(splits)
@@ -179,10 +191,10 @@ def cross_validate(splits, conf):
 def parameter_tuning(folds, source_vocab_size, target_vocab_size):
     best_loss = None
     best_config = None
-    for conf in config.config_beam_search(source_vocab_size, target_vocab_size):
+    for conf in config.config_beam_search(source_vocab_size, target_vocab_size, FLAGS.num_layers, FLAGS.batch_size, _buckets, FLAGS.learning_rate, FLAGS.learning_rate_decay_factor):
         print("+++++++++++++++++++++++Beginning cross-validation with dropout_rate = %0.1f, vector_size=%d++++++++++++++++++"%
                (conf.dropout_rate, conf.layer_size))
-        loss, acc = cross_validate(folds, conf)
+        loss = cross_validate(folds, conf)
         if not best_loss or loss < best_loss:
             best_loss = loss
             best_config = conf

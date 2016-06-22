@@ -1,9 +1,11 @@
 import os, collections
+from nltk.stem.snowball import SnowballStemmer
 
 PAD = "<PAD>"
 PAD_ID = 0
 EOS = "</s>"
 LOGIC_EOS_ID = None
+stemmer = SnowballStemmer("english")
 
 def _read_words(filename):
     with open(filename, "r") as fin:
@@ -11,7 +13,11 @@ def _read_words(filename):
     for i in xrange(len(result)):
         result[i][0] = result[i][0].split()
         result[i][1] = result[i][1].split()
-    #TODO: preprocess data
+    
+    # Preprocessing steps
+    for i in xrange(len(result)):
+        for j in xrange(len(result[i][0])):
+            result[i][0][j] = stemmer.stem(result[i][0][j])
     return result
 
 def _build_vocab(train_path, test_path, logic_tokens_path):
@@ -23,7 +29,7 @@ def _build_vocab(train_path, test_path, logic_tokens_path):
 
     logic_tokens = sum([[token for token in entry[1]] for entry in data], [])
     logic_counter = collections.Counter(logic_tokens)
-    logic_to_id = {word:ind+len(words_to_id) for ind,word in enumerate(logic_counter.keys())}
+    logic_to_id = {word:ind+1 for ind,word in enumerate(logic_counter.keys())}
     logic_to_id[PAD] = PAD_ID
     LOGIC_EOS_ID = logic_to_id[EOS]
     return words_to_id,logic_to_id
