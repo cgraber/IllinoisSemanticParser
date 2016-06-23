@@ -19,9 +19,9 @@ tf.app.flags.DEFINE_string("data_dir", "data/Geo", "Data directory")
 tf.app.flags.DEFINE_string("train_dir", "./tmp", "Training directory.")
 tf.app.flags.DEFINE_integer("max_train_data_size", 0,
                             "Limit on the size of training data (0: no limit).")
-tf.app.flags.DEFINE_integer("steps_per_checkpoint", 20,
+tf.app.flags.DEFINE_integer("steps_per_checkpoint", 200,
                              "How many training steps to do per checkpoint.")
-tf.app.flags.DEFINE_integer("early_stopping_patience", 200,
+tf.app.flags.DEFINE_integer("early_stopping_patience", 2000,
                             "How many rounds to wait until early stopping enforced")
 tf.app.flags.DEFINE_boolean("decode", False,
                             "Set to True for interactive decoding.")
@@ -91,7 +91,7 @@ def train(sess, train_data, validation_data, conf, num_steps = None):
     # the size of i-th training bucket, as used later.
     train_buckets_scale = [sum(train_bucket_sizes[:i + 1]) / train_total_size
                            for i in xrange(len(train_bucket_sizes))]
-
+    print(train_buckets_scale)
     # The training loop.
     step_time, loss = 0.0, 0.0
     current_step = 0
@@ -109,7 +109,7 @@ def train(sess, train_data, validation_data, conf, num_steps = None):
 
         # Get a batch and make a step.
         start_time = time.time()
-        encoder_inputs, decoder_inputs, target_weights = model.get_batch(
+        entries, encoder_inputs, decoder_inputs, target_weights = model.get_batch(
             train_buckets, bucket_id, False)
         _, step_loss, step_outputs = model.step(sess, encoder_inputs, decoder_inputs,
                                      target_weights, bucket_id, False)
@@ -122,7 +122,12 @@ def train(sess, train_data, validation_data, conf, num_steps = None):
 
             if not num_steps:
                 # Check early stopping condition
+                print("LAST BATCH:")
+                temp_loss, temp_acc = test(sess, entries, model)
+                print("VALIDATION:")
                 validation_loss, validation_acc = test(sess, validation_data, model)
+
+                print("TEST: PREV LOSS=%.2f, NEW LOSS=%.2f, acc=%.2f"%(step_loss, temp_loss, temp_acc))
                 print("global step %s learning rate %.4f step-time %.2f training loss %.2f" %
                     (model.global_step.eval(), model.learning_rate.eval(),
                      step_time, step_loss))
@@ -149,7 +154,7 @@ def train(sess, train_data, validation_data, conf, num_steps = None):
 
 def test(sess, test_data, model):
     test_bucket = find_bucket(test_data)
-    encoder_inputs, decoder_inputs, target_weights = model.get_batch(
+    _, encoder_inputs, decoder_inputs, target_weights = model.get_batch(
             test_data, test_bucket, True)
     _, loss, output_logits = model.step(sess, encoder_inputs, decoder_inputs,
                                   target_weights, test_bucket, True)
@@ -159,17 +164,19 @@ def evaluate_logits(output_logits, test_data):
     temp_outputs = [[int(np.argmax(logit)) for logit in output_logit] for output_logit in output_logits]
 
     #Reshape outputs
-    outputs = [[]]*len(test_data)
-    for i in xrange(len(temp_outputs)):
-        for j in xrange(len(temp_outputs[i])):
-            outputs[j].append(temp_outputs[i][j])
-
+    outputs = np.array(temp_outputs).T.tolist()
+  
     for i in xrange(len(outputs)):
         if data_utils.LOGIC_EOS_ID in outputs[i]:
             outputs[i] = outputs[i][:outputs[i].index(data_utils.LOGIC_EOS_ID)]
+    
+    print("CORRECT OUTPUTS:")
+    print(data_utils.ids_to_logics(test_data[0][1][1:-1]))
+    print("GIVEN OUTPUTS")
+    print(data_utils.ids_to_logics(outputs[0]))
     correct = 0.0
     for i in xrange(len(test_data)):
-        if test_data[i][1:] == outputs[i]: #TODO: make sure this is correct
+        if test_data[i][1][1:-1] == outputs[i]: #TODO: make sure this is correct
             correct += 1.0
     return correct/len(test_data)
 

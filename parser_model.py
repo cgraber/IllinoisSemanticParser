@@ -17,8 +17,8 @@ class ParseModel(object):
         self.batch_size = config.batch_size
         self.learning_rate = tf.Variable(float(config.learning_rate), trainable=False)
         self.is_test = tf.placeholder(tf.bool)
-        self.learning_rate_decay_op = self.learning_rate.assign(
-            self.learning_rate * config.learning_rate_decay_factor)
+        #self.learning_rate_decay_op = self.learning_rate.assign(
+        #    self.learning_rate * config.learning_rate_decay_factor)
         self.global_step = tf.Variable(0, trainable=False)
         self.keep_prob = 1 - config.dropout_rate
         self.keep_prob_input= tf.placeholder(tf.float32) #For dropout control
@@ -177,4 +177,4 @@ class ParseModel(object):
                 if length_idx == decoder_size - 1 or target == data_utils.PAD_ID:
                     batch_weight[batch_idx] = 0.0
             batch_weights.append(batch_weight)
-        return batch_encoder_inputs, batch_decoder_inputs, batch_weights
+        return batch, batch_encoder_inputs, batch_decoder_inputs, batch_weights

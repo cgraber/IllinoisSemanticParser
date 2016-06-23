@@ -6,6 +6,7 @@ PAD_ID = 0
 EOS = "</s>"
 LOGIC_EOS_ID = None
 stemmer = SnowballStemmer("english")
+id_to_logic = None
 
 def _read_words(filename):
     with open(filename, "r") as fin:
@@ -31,6 +32,10 @@ def _build_vocab(train_path, test_path, logic_tokens_path):
     logic_counter = collections.Counter(logic_tokens)
     logic_to_id = {word:ind+1 for ind,word in enumerate(logic_counter.keys())}
     logic_to_id[PAD] = PAD_ID
+    global id_to_logic, LOGIC_EOS_ID
+    id_to_logic = [None]*len(logic_to_id)
+    for key in logic_to_id:
+        id_to_logic[logic_to_id[key]] = key
     LOGIC_EOS_ID = logic_to_id[EOS]
     return words_to_id,logic_to_id
     
@@ -59,6 +64,10 @@ def load_raw_text(path):
     test_data = _file_to_ids(test_path, word_to_id)
     vocab_size = (len(word_to_id[0]), len(word_to_id[1]))
     return train_data, test_data, vocab_size
+
+def ids_to_logics(id_list):
+    global id_to_logic
+    return map(lambda x: id_to_logic[x], id_list)
 
 if __name__=="__main__":
     train, test, vocab = load_raw_text("./data/Geo/")
