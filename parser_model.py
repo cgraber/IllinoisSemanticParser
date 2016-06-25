@@ -169,7 +169,7 @@ class ParseModel(object):
 
             # Create target_weights to be 0 for targets that are padding
             batch_weight = np.ones(batch_size, dtype=np.float32)
-            for batch_idx in xrange(self.batch_size):
+            for batch_idx in xrange(batch_size):
                 # We set weight to 0 if the corresponding target is a PAD symbol.
                 # The corresponding target is decoder_input shifted by 1 forward.
                 if length_idx < decoder_size - 1:

@@ -7,7 +7,7 @@ import tensorflow as tf
 import os, sys, time, random
 import config, data_utils, parser_model
 
-tf.app.flags.DEFINE_float("learning_rate", 0.1, "Learning rate.")
+tf.app.flags.DEFINE_float("learning_rate", 0.5, "Learning rate.")
 tf.app.flags.DEFINE_float("learning_rate_decay_factor", 0.99,
                           "Learning rate decays by this much.")
 tf.app.flags.DEFINE_float("max_gradient_norm", 5.0,
@@ -97,6 +97,7 @@ def train(sess, train_data, validation_data, conf, num_steps = None):
     current_step = 0
     previous_losses = []
     best_validation_loss = float("inf")
+    best_validation_acc = 0.0
     best_validation_step = 0
     print("Starting training")
     sys.stdout.flush()
@@ -122,9 +123,9 @@ def train(sess, train_data, validation_data, conf, num_steps = None):
 
             if not num_steps:
                 # Check early stopping condition
-                print("LAST BATCH:")
+                #print("LAST BATCH:")
                 temp_loss, temp_acc = test(sess, entries, model)
-                print("VALIDATION:")
+                #print("VALIDATION:")
                 validation_loss, validation_acc = test(sess, validation_data, model)
 
                 print("TEST: PREV LOSS=%.2f, NEW LOSS=%.2f, acc=%.2f"%(step_loss, temp_loss, temp_acc))
@@ -132,9 +133,10 @@ def train(sess, train_data, validation_data, conf, num_steps = None):
                     (model.global_step.eval(), model.learning_rate.eval(),
                      step_time, step_loss))
                 print("               validation loss %.2f validaiton acc %.2f"%(validation_loss, validation_acc))
-                if validation_loss < best_validation_loss:
+                if validation_acc > best_validation_acc or (validation_acc == best_validation_acc and validation_loss < best_validation_loss):
                     best_validation_loss = validation_loss
                     best_validation_step = current_step
+                    best_validation_acc = validation_acc
                     model.saver.save(sess, checkpoint_path, global_step=model.global_step)
                 if current_step - best_validation_step >= FLAGS.early_stopping_patience:
                     print("Early stopping triggered. Restoring previous model")
@@ -170,10 +172,10 @@ def evaluate_logits(output_logits, test_data):
         if data_utils.LOGIC_EOS_ID in outputs[i]:
             outputs[i] = outputs[i][:outputs[i].index(data_utils.LOGIC_EOS_ID)]
     
-    print("CORRECT OUTPUTS:")
-    print(data_utils.ids_to_logics(test_data[0][1][1:-1]))
-    print("GIVEN OUTPUTS")
-    print(data_utils.ids_to_logics(outputs[0]))
+    #print("CORRECT OUTPUTS:")
+    #print(data_utils.ids_to_logics(test_data[0][1][1:-1]))
+    #print("GIVEN OUTPUTS")
+    #print(data_utils.ids_to_logics(outputs[0]))
     correct = 0.0
     for i in xrange(len(test_data)):
         if test_data[i][1][1:-1] == outputs[i]: #TODO: make sure this is correct
