@@ -1,7 +1,8 @@
-iters = 300
+TRAIN_SIZE = 500
+TEST_SIZE = 200
 maxNumShapes = 3
 
-import random
+import random, sys
 from random import randint, shuffle
 
 COMMANDS = ["Create", "Construct", "Build", "Form"]
@@ -487,12 +488,20 @@ class CompositeShape(object):
         else:
             self.description += "a structure consisting of "
             self.description += self.shapes[0].description + ", "
-            for i in xrange(len(self.shapes)-2):
-                #TODO: need intelligent resolution of its vs. more specific
-                self.description += self.shapes[i+1].description + " to its %s where "%DIRECTIONS[self.relations[i].direction]
-                self.description += self.relations[i].description + ", "
-            self.description += "and "
-            self.description += self.shapes[-1].description + " to its %s where "%DIRECTIONS[self.relations[-1].direction]
+            counts = {}
+            for i in xrange(len(self.shapes)-1):
+                if i == len(self.shapes)-2:
+                    self.description += "and "
+                if i == 0:
+                    self.description += self.shapes[i+1].description + " to its %s where "%DIRECTIONS[self.relations[i].direction]
+                else:
+                    if self.shapes[i-1].ind == 0:
+                        name = "the %s"%self.shapes[i-1].name
+                    else:
+                        name = "the %s %s"%(ORDINALS[self.shapes[i-1].ind], self.shapes[i-1].name)
+                    self.description += self.shapes[i+1].description + " to the %s of %s where "%(DIRECTIONS[self.relations[i].direction], name)
+                if i < len(self.shapes) - 2:
+                    self.description += self.relations[i].description + ", "
             self.description += self.relations[-1].description + "."
         return self.description
 
@@ -522,9 +531,10 @@ class Row(Shape):
     LEFT_CHOICES = ["the left end of %s", "%s's left end"]
     RIGHT_CHOICES = ["the right end of %s", "%s's right end"]
     def __init__(self, length):
-        description = "a %s %s"%(random.choice(Row.DESCRIPTIONS), random.choice(Row.COMPOSITIONS)%length)
+        name = random.choice(Row.DESCRIPTIONS)
+        description = "a %s %s"%(name, random.choice(Row.COMPOSITIONS)%length)
         #                   name, width, height, description
-        Shape.__init__(self, "row", length, 1, description)
+        Shape.__init__(self, name, length, 1, description)
         self.logic = ['row(%s)'%self.var, 'width(%s, %d)'%(self.var, length)]
 
     def getLowerLeftDescription(self):
@@ -543,9 +553,10 @@ class Col(Shape):
     TOP_CHOICES = ["the top end of %s", "%s's top end"]
     BOTTOM_CHOICES = ["the bottom end of %s", "%s's bottom end"]
     def __init__(self, height):
-        description = "a %s %s"%(random.choice(Col.DESCRIPTIONS), random.choice(Col.COMPOSITIONS)%height)
+        name = random.choice(Col.DESCRIPTIONS)
+        description = "a %s %s"%(name, random.choice(Col.COMPOSITIONS)%height)
         #                   name, width, height, description
-        Shape.__init__(self, "column", 1, height, description)
+        Shape.__init__(self, name, 1, height, description)
         self.logic = ['column(%s)'%self.var, 'height(%s, %d)'%(self.var, height)]
 
     def getLowerLeftDescription(self):
@@ -602,9 +613,13 @@ genShape = [randRow, randCol, randSquare, randRect]
 
 configs = []
 descriptions = []
-fout = open("data.txt", "w")
+if len(sys.argv) != 3:
+    print "Usage: python generate.py <train output name> <test output name>"
+    sys.exit(1)
 
-for i in xrange(iters):
+shapes = []
+descriptions = set()
+while len(shapes) < TRAIN_SIZE + TEST_SIZE:
     resetVars()
     numShapes = randint(1, maxNumShapes)
     composite = CompositeShape()
@@ -612,33 +627,15 @@ for i in xrange(iters):
         newShape = genShape[randint(0,3)]()
         direction = randint(0,3)
         composite.addShape(newShape, direction)
-    composite.write(fout)
-    fout.write("\n")
-fout.close()
-'''
-for i in xrange(2,6):
-    current = Row(i)
-    for description in current.descriptions:
-        descriptions.append((current, description))
-    current = Col(i)
-    for description in current.descriptions:
-        descriptions.append((current, description))
+    if composite.getDescription() not in descriptions:
+        descriptions.add(composite.getDescription())
+        shapes.append(composite)
 
-for i in xrange(2,5):
-    current = Square(i)
-    for description in current.descriptions:
-        descriptions.append((current, description))
-
-for i in xrange(2, 5):
-    for j in xrange(2, 5):
-        if i ==j:
-            continue
-        current = Rect(i,j)
-        for description in current.descriptions:
-            descriptions.append((current, description))
-fout = open("data.txt", "w")
-shuffle(descriptions)
-for description in descriptions:
-    description[0].write(fout)
-    fout.write(description[1]+"\n\n")
-'''
+with open(sys.argv[1], "w") as fout:
+    for shape in shapes[:TRAIN_SIZE]:
+        shape.write(fout)
+        fout.write("\n")
+with open(sys.argv[2], "w") as fout:
+    for shape in shapes[TRAIN_SIZE:]:
+        shape.write(fout)
+        fout.write("\n")
