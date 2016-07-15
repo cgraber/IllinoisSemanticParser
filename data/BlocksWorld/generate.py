@@ -509,6 +509,7 @@ class CompositeShape(object):
         for row in xrange(len(result)):
             fout.write(" ".join(result[row]))
             fout.write("\n")
+        fout.write("===\n")
         fout.write(' ^ '.join(self.logic))
         fout.write("\n")
         fout.write(self.getDescription())
