@@ -25,6 +25,7 @@ with open(sys.argv[1], "r") as fin:
             formula.append("</s>")
         else:
             sent = word_tokenize(line.strip())
+            sent = [x.lower() for x in sent]
             sent.insert(0, "<s>")
             sent[-1] = "</s>" # Note that we replace the end-of-sentence full stop with this
             result.append((config, formula, sent))
