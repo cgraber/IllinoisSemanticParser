@@ -21,7 +21,7 @@ def _read_words(filename):
             result[i][0][j] = stemmer.stem(result[i][0][j])
     return result
 
-def _build_vocab(train_path, test_path, logic_tokens_path):
+def _build_vocab(train_path, test_path):
     data = _read_words(train_path) + _read_words(test_path)
     words = sum([[word for word in entry[0]] for entry in data], [])
     words_counter = collections.Counter(words)
@@ -57,9 +57,8 @@ def load_raw_text(path):
 
     train_path = os.path.join(path, "train.txt")
     test_path = os.path.join(path, "test.txt")
-    tokens_path = os.path.join(path, "tokens.txt")
 
-    word_to_id = _build_vocab(train_path, test_path, tokens_path)
+    word_to_id = _build_vocab(train_path, test_path)
     train_data = _file_to_ids(train_path, word_to_id)
     test_data = _file_to_ids(test_path, word_to_id)
     vocab_size = (len(word_to_id[0]), len(word_to_id[1]))
