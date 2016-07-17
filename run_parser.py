@@ -208,6 +208,8 @@ def parameter_tuning(folds, source_vocab_size, target_vocab_size):
             best_loss = loss
             best_config = conf
     best_config.fold = None
+    print("Best config:")
+    print("\tdropout: %.1f, param size: %d"%(best_config.dropout_size, best_config.layer_size))
     return best_config
 
 def main(_):
@@ -218,14 +220,12 @@ def main(_):
 
     #First, train with held-out data to find number of iterations
     with tf.Session() as sess:
-        model = create_model(sess, conf)
         model, num_steps = train(sess, train_data, validation_data, conf)
 
     #Now train on full data set
     tf.reset_default_graph()
     train_data += validation_data
     with tf.Session() as sess:
-        model = create_model(sess, conf)
         model, _ = train(sess, train_data, None, conf, num_steps)
         loss, acc = test(sess, test_data, model)
         print("FINAL RESULTS:")
