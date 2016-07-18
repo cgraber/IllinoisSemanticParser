@@ -4,35 +4,38 @@ from __future__ import print_function
 
 import numpy as np
 import tensorflow as tf
-import os, sys, time, random
+import os, sys, time, random, argparse
 import config, data_utils, parser_model
 
-tf.app.flags.DEFINE_float("learning_rate", 0.5, "Learning rate.")
-tf.app.flags.DEFINE_float("learning_rate_decay_factor", 0.99,
-                          "Learning rate decays by this much.")
-tf.app.flags.DEFINE_float("max_gradient_norm", 5.0,
-                          "Clip gradients to this norm.")
-tf.app.flags.DEFINE_integer("batch_size", 20,
-                            "Batch size to use during training.")
-tf.app.flags.DEFINE_integer("num_layers", 1, "Number of layers in the model.")
-tf.app.flags.DEFINE_string("data_dir", "data/Geo", "Data directory")
-tf.app.flags.DEFINE_string("train_dir", "./tmp", "Training directory.")
-tf.app.flags.DEFINE_integer("max_train_data_size", 0,
-                            "Limit on the size of training data (0: no limit).")
-tf.app.flags.DEFINE_integer("steps_per_checkpoint", 200,
-                             "How many training steps to do per checkpoint.")
-tf.app.flags.DEFINE_integer("early_stopping_patience", 2000,
-                            "How many rounds to wait until early stopping enforced")
-tf.app.flags.DEFINE_boolean("decode", False,
-                            "Set to True for interactive decoding.")
-tf.app.flags.DEFINE_boolean("self_test", False,
-                            "Run a self-test if this is set to True.")
-tf.app.flags.DEFINE_integer("num_folds", 10,
-                            "Number of folds for cross-validation")
+parser = argparse.ArgumentParser()
+parser.add_argument('-lr', '--learning_rate', type=float, default=0.5,
+                    help='Learning rate.')
+parser.add_argument('-lrdf', '--learning_rate_decay_factor', type=float, default=0.99,
+                    help='Learning rate decays by this much.')
+parser.add_argument('-mgn', '--max_gradient-norm', type=float, default=5.0,
+                    help='Clip gradients to this norm.')
+parser.add_argument('-b', '--batch_size', type=int, default=20,
+                    help='Batch size to use during training.')
+parser.add_argument('-nl', '--num_layers', type=int, default=1,
+                    help='Number of layers in the model.')
+parser.add_argument('-dd', '--data_dir', default="data/Geo",
+                    help='Data directory')
+parser.add_argument('-td', '--train_dir', default="./tmp",
+                    help='Training directory')
+parser.add_argument('-mtds', '--max_train_data_size', type=int, default=0,
+                    help='Limit on the size of training data (0: no limit).')
+parser.add_argument('-spc', '--steps_per_checkpoint', type=int, default=50,
+                    help='How many training steps to do per checkpoint.')
+parser.add_argument('-esp', '--early_stopping_patience', type=int, default=1000,
+                    help='How many rounds to wait until early stopping is enforced.')
+parser.add_argument('-nf', '--num_folds', type=int, default=10,
+                    help='Number of folds for cross-validation')
+FLAGS = parser.parse_args()
 
-FLAGS = tf.app.flags.FLAGS
+GEO_BUCKETS = [(10,15), (15,20), (20,25), (40,70)] 
+BLOCKS_BUCKETS = [(10,10),(20,20),(30,30),(40,70)]
 
-_buckets = [(10,15), (15,20), (20,25), (40,70)] #TODO: what buckets make sense?
+_buckets = BLOCKS_BUCKETS
 
 def load_data():
     train_data, test_data, vocab_size = data_utils.load_raw_text(FLAGS.data_dir)
