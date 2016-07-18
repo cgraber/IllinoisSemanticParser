@@ -33,7 +33,7 @@ parser.add_argument('-nf', '--num_folds', type=int, default=10,
 FLAGS = parser.parse_args()
 
 GEO_BUCKETS = [(10,15), (15,20), (20,25), (40,70)] 
-BLOCKS_BUCKETS = [(10,10),(20,20),(30,30),(40,70)]
+BLOCKS_BUCKETS = [(15,25),(50,100),(100,200)]
 
 _buckets = BLOCKS_BUCKETS
 
