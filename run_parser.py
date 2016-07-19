@@ -32,12 +32,17 @@ parser.add_argument('-nf', '--num_folds', type=int, default=10,
                     help='Number of folds for cross-validation')
 parser.add_argument('mode', choices=['train', 'test'],
                     help='Way to run the app')
+parser.add_argument('domain', choices=['geo', 'blocks'],
+                    help='The domain on which to run')
 FLAGS = parser.parse_args()
 
 GEO_BUCKETS = [(10,15), (15,20), (20,25), (40,70)] 
 BLOCKS_BUCKETS = [(15,25),(50,100),(100,200)]
 
-_buckets = GEO_BUCKETS
+if FLAGS.domain == 'geo':
+    _buckets = GEO_BUCKETS
+elif FLAGS.domain == 'blocks':
+    _buckets = BLOCKS_BUCKETS
 
 def load_data():
     train_data, test_data, vocab_size = data_utils.load_raw_text(FLAGS.data_dir)
