@@ -4,7 +4,7 @@ from __future__ import print_function
 
 import numpy as np
 import tensorflow as tf
-import os, sys, time, random, argparse
+import os, sys, time, random, argparse, pickle
 import config, data_utils, parser_model
 
 parser = argparse.ArgumentParser()
@@ -26,16 +26,18 @@ parser.add_argument('-mtds', '--max_train_data_size', type=int, default=0,
                     help='Limit on the size of training data (0: no limit).')
 parser.add_argument('-spc', '--steps_per_checkpoint', type=int, default=50,
                     help='How many training steps to do per checkpoint.')
-parser.add_argument('-esp', '--early_stopping_patience', type=int, default=1000,
+parser.add_argument('-esp', '--early_stopping_patience', type=int, default=500,
                     help='How many rounds to wait until early stopping is enforced.')
 parser.add_argument('-nf', '--num_folds', type=int, default=10,
                     help='Number of folds for cross-validation')
+parser.add_argument('mode', choices=['train', 'test'],
+                    help='Way to run the app')
 FLAGS = parser.parse_args()
 
 GEO_BUCKETS = [(10,15), (15,20), (20,25), (40,70)] 
 BLOCKS_BUCKETS = [(15,25),(50,100),(100,200)]
 
-_buckets = BLOCKS_BUCKETS
+_buckets = GEO_BUCKETS
 
 def load_data():
     train_data, test_data, vocab_size = data_utils.load_raw_text(FLAGS.data_dir)
@@ -157,15 +159,15 @@ def train(sess, train_data, validation_data, conf, num_steps = None):
             sys.stdout.flush()
     return model, num_steps
 
-def test(sess, test_data, model):
+def test(sess, test_data, model, dump_results=False):
     test_bucket = find_bucket(test_data)
     _, encoder_inputs, decoder_inputs, target_weights = model.get_batch(
             test_data, test_bucket, True)
     _, loss, output_logits = model.step(sess, encoder_inputs, decoder_inputs,
                                   target_weights, test_bucket, True)
-    return loss, evaluate_logits(output_logits, test_data)
+    return loss, evaluate_logits(output_logits, test_data, dump_results)
 
-def evaluate_logits(output_logits, test_data):
+def evaluate_logits(output_logits, test_data, dump_results=False):
     temp_outputs = [[int(np.argmax(logit)) for logit in output_logit] for output_logit in output_logits]
 
     #Reshape outputs
@@ -179,10 +181,16 @@ def evaluate_logits(output_logits, test_data):
     #print(data_utils.ids_to_logics(test_data[0][1][1:-1]))
     #print("GIVEN OUTPUTS")
     #print(data_utils.ids_to_logics(outputs[0]))
+    if dump_results:
+        print("==============TEST FAILURES====================")
     correct = 0.0
     for i in xrange(len(test_data)):
         if test_data[i][1][1:-1] == outputs[i]: #TODO: make sure this is correct
             correct += 1.0
+        if dump_results:
+            print(' '.join(data_utils.ids_to_words(test_data[i][0])))
+            print("\tCorrect: "+''.join(data_utils.ids_to_logics(test_data[i][1][1:-1])))
+            print("\tFound:   "+''.join(data_utils.ids_to_logics(outputs[0])))
     return correct/len(test_data)
 
 
@@ -215,11 +223,12 @@ def parameter_tuning(folds, source_vocab_size, target_vocab_size):
     print("\tdropout: %.1f, param size: %d"%(best_config.dropout_size, best_config.layer_size))
     return best_config
 
-def main(_):
+def main_train():
     folds, test_data, (source_vocab_size, target_vocab_size) = load_data()
     train_data = sum(folds[:-1],[])
     validation_data = folds[-1]
-    conf = parameter_tuning(folds, source_vocab_size, target_vocab_size)
+    #conf = parameter_tuning(folds, source_vocab_size, target_vocab_size)
+    conf = list(config.config_beam_search(source_vocab_size, target_vocab_size, FLAGS.num_layers, FLAGS.batch_size, _buckets, FLAGS.learning_rate, FLAGS.learning_rate_decay_factor))[0]
 
     #First, train with held-out data to find number of iterations
     with tf.Session() as sess:
@@ -230,10 +239,36 @@ def main(_):
     train_data += validation_data
     with tf.Session() as sess:
         model, _ = train(sess, train_data, None, conf, num_steps)
+        model_path = os.path.join(FLAGS.train_dir, 'final_model')
+        model.saver.save(sess, model_path)
+        conf_out = open(os.path.join(FLAGS.train_dir, 'final_model.conf'), 'w')
+        pickle.dump(conf, conf_out)
+        conf_out.close()
         loss, acc = test(sess, test_data, model)
         print("FINAL RESULTS:")
         print("  loss = %0.4f"%loss)
         print("  acc  = %0.4f"%acc)
+
+def main_test():
+    _, test_data, (source_vocab_size, target_vocab_size) = load_data()
+    test_conf_path = os.path.join(FLAGS.train_dir, 'final_model.conf')
+    conf_in = open(test_conf_path, 'r')
+    conf = pickle.load(conf_in)
+    conf_in.close()
+    with tf.Session() as sess:
+        model = create_model(sess, conf)
+        model.saver.restore(sess, os.path.join(FLAGS.train_dir, 'final_model'))
+        loss, acc = test(sess, test_data, model, True)
+        print("FINAL RESULTS:")
+        print("  loss = %0.4f"%loss)
+        print("  acc  = %0.4f"%acc)
+
+
+def main(_):
+    if FLAGS.mode == "train":
+        main_train()
+    else:
+        main_test()
 
 if __name__ == "__main__":
     tf.app.run()
