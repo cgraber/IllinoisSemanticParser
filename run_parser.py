@@ -147,7 +147,7 @@ def train(sess, train_data, validation_data, conf, num_steps = None):
                     print("Early stopping triggered. Restoring previous model")
                     ckpt = tf.train.get_checkpoint_state(checkpoint_dir)
                     model.saver.restore(sess, ckpt.model_checkpoint_path)
-                    return model, current_step
+                    return model, best_validation_step
             else:
                 print("\tIteration %d of %d"%(current_step, num_steps))
             # Decrease learning rate if no improvement was seen over last 3 times.
@@ -227,8 +227,7 @@ def main_train():
     folds, test_data, (source_vocab_size, target_vocab_size) = load_data()
     train_data = sum(folds[:-1],[])
     validation_data = folds[-1]
-    #conf = parameter_tuning(folds, source_vocab_size, target_vocab_size)
-    conf = list(config.config_beam_search(source_vocab_size, target_vocab_size, FLAGS.num_layers, FLAGS.batch_size, _buckets, FLAGS.learning_rate, FLAGS.learning_rate_decay_factor))[0]
+    conf = parameter_tuning(folds, source_vocab_size, target_vocab_size)
 
     #First, train with held-out data to find number of iterations
     with tf.Session() as sess:
