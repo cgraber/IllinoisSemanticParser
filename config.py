@@ -19,6 +19,8 @@ class Config(object):
         self.num_layers = num_layers
         self.directory = "dropout_%d_vector_%d"%(dropout, layer_size)
         self.buckets = buckets
+        self.input_max_length = buckets[-1][0]
+        self.output_max_length = buckets[-1][1]
         self.learning_rate = learning_rate
         self.learning_rate_decay_factor = learning_rate_decay_factor
         self.fold = fold
