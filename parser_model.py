@@ -13,7 +13,6 @@ class ParseModel(object):
 
         self.source_vocab_size = config.source_vocab_size
         self.target_vocab_size = config.target_vocab_size
-        self.buckets = config.buckets
         self.batch_size = config.batch_size
         self.learning_rate = tf.Variable(float(config.learning_rate), trainable=False)
         self.is_test = tf.placeholder(tf.bool)
@@ -22,6 +21,8 @@ class ParseModel(object):
         self.global_step = tf.Variable(0, trainable=False)
         self.keep_prob = 1 - config.dropout_rate
         self.keep_prob_input= tf.placeholder(tf.float32) #For dropout control
+        self.encoder_size = config.input_max_length
+        self.decoder_size = config.output_max_length
 
         # Create LSTM cell
         print("\tCreating Cell")
@@ -31,24 +32,15 @@ class ParseModel(object):
         if config.num_layers > 1:
             cell = tf.nn.rnn_cell.MultiRNNCell([single_cell] * config.num_layers)
 
-        # Function to create sequence model
-        def seq2seq_f(encoder_inputs, decoder_inputs):
-            return tf.nn.seq2seq.embedding_attention_seq2seq(
-                encoder_inputs, decoder_inputs, cell,
-                num_encoder_symbols = self.source_vocab_size,
-                num_decoder_symbols = self.target_vocab_size,
-                embedding_size = config.layer_size,
-                feed_previous=self.is_test)
-
         # Feeds for inputs
         self.encoder_inputs = []
         self.decoder_inputs = []
         self.target_weights = []
         print("\tCreating input feeds")
-        for i in xrange(self.buckets[-1][0]):
+        for i in xrange(self.input_max_length):
             self.encoder_inputs.append(tf.placeholder(tf.int32, shape=[None],
                                                       name="encoder{0}".format(i)))
-        for i in xrange(self.buckets[-1][1] + 1):
+        for i in xrange(self.output_max_length + 1):
             self.decoder_inputs.append(tf.placeholder(tf.int32, shape=[None],
                                                       name="decoder{0}".format(i)))
             self.target_weights.append(tf.placeholder(tf.float32, shape=[None],
@@ -59,42 +51,35 @@ class ParseModel(object):
         targets = [self.decoder_inputs[i + 1]
                    for i in xrange(len(self.decoder_inputs) - 1)]
 
-        self.outputs, self.losses = tf.nn.seq2seq.model_with_buckets(
-            self.encoder_inputs, self.decoder_inputs, targets,
-            self.target_weights, self.buckets, lambda x, y: seq2seq_f(x, y))
+        #Unused arg is state of decoders at final time step
+        self.outputs, _  = tf.nn.seq2seq.embedding_attention_seq2seq(
+                encoder_inputs, decoder_inputs, cell,
+                num_encoder_symbols = self.source_vocab_size,
+                num_decoder_symbols = self.target_vocab_size,
+                embedding_size = config.layer_size,
+                feed_previous=self.is_test)
+
+        self.losses = binary_sequence_loss(
+            self.outputs, targets, self.target_weights,
+            self.batch_size, self.target_vocab_size)
 
         params = tf.trainable_variables()
         self.gradient_norms = []
         self.updates = []
         opt = tf.train.AdagradOptimizer(self.learning_rate) #TODO: Other options?
         print("\tCreating gradients")
-        for b in xrange(len(self.buckets)):
-            gradients = tf.gradients(self.losses[b], params)
-            clipped_gradients, norm = tf.clip_by_global_norm(gradients,
-                                                             config.max_gradient)
-            self.gradient_norms.append(norm)
-            self.updates.append(opt.apply_gradients(
-                zip(clipped_gradients, params), global_step=self.global_step))
+        gradients = tf.gradients(self.losses, params)
+        clipped_gradients, norm = tf.clip_by_global_norm(gradients,
+                                                         config.max_gradient)
+        self.gradient_norms.append(norm)
+        self.updates.append(opt.apply_gradients(
+            zip(clipped_gradients, params), global_step=self.global_step))
         self.saver = tf.train.Saver(tf.all_variables()) #TODO: need to figure out how this works w/hyperparameter tuning
 
-    def step(self, session, encoder_inputs, decoder_inputs, target_weights,
-             bucket_id, is_test):
+    def step(self, session, encoder_inputs, decoder_inputs, target_weights, is_test):
         """
         Run a step of the model feeding the given inputs
         """
-
-        # Check if the sizes match
-        encoder_size, decoder_size = self.buckets[bucket_id]
-        if len(encoder_inputs) != encoder_size:
-            raise ValueError("Encoder length must be equal to the one in bucket,"
-                             " %d != %d." % (len(encoder_inputs), encoder_size))
-        if len(decoder_inputs) != decoder_size:
-            raise ValueError("Decoder length must be equal to the one in bucket,"
-                             " %d != %d." % (len(decoder_inputs), decoder_size))
-        if len(target_weights) != decoder_size:
-            raise ValueError("Weights length must be equal to the one in bucket,"
-                             " %d != %d." % (len(target_weights), decoder_size))
-
         input_feed = {}
         for l in xrange(encoder_size):
             input_feed[self.encoder_inputs[l].name] = encoder_inputs[l]
@@ -107,15 +92,15 @@ class ParseModel(object):
         input_feed[self.is_test] = is_test
 
         if is_test:
-            output_feed = [self.losses[bucket_id]]   #Loss for this batch
+            output_feed = [self.losses]   #Loss for this batch
             for l in xrange(decoder_size):  # Output logits
-                output_feed.append(self.outputs[bucket_id][l])
+                output_feed.append(self.outputs[l])
             input_feed[self.keep_prob_input] = 1.0
 
         else: 
-            output_feed = [self.updates[bucket_id],  #Update Op that does RMSProp
-                           self.gradient_norms[bucket_id],   # Gradient norm
-                           self.losses[bucket_id]]   #Loss for this batch
+            output_feed = [self.updates,  #Update Op that does RMSProp
+                           self.gradient_norms,   # Gradient norm
+                           self.losses]   #Loss for this batch
             input_feed[self.keep_prob_input] = self.keep_prob
         outputs = session.run(output_feed, input_feed)
         if is_test:
@@ -123,14 +108,13 @@ class ParseModel(object):
         else:
             return outputs[1], outputs[2], None  # Gradient norm, loss, no outputs
 
-    def get_batch(self, data, bucket_id, is_test):
+    def get_batch(self, data, is_test):
         """ Gets batch, formats it in correct way.
 
         If is_test=True, data is assumed to be a 1D list of (input,output) pairs.
            All of this data is added to the final batch.
         Otherwise, the data is sampled from the specified bucket
         """
-        encoder_size, decoder_size = self.buckets[bucket_id]
         encoder_inputs, decoder_inputs = [], []
 
         if is_test:
@@ -140,7 +124,7 @@ class ParseModel(object):
             batch_size = self.batch_size
             batch = []
             for _ in xrange(batch_size):
-                batch.append(random.choice(data[bucket_id]))
+                batch.append(random.choice(data))
 
         # pad entries if needed, reverse encoder inputs
         for encoder_input, decoder_input in batch:
@@ -178,3 +162,72 @@ class ParseModel(object):
                     batch_weight[batch_idx] = 0.0
             batch_weights.append(batch_weight)
         return batch, batch_encoder_inputs, batch_decoder_inputs, batch_weights
+
+def binary_sequence_loss_per_example(logits, targets, weights,
+                         batch_size, num_target_labels,
+                         average_across_timesteps=True,
+                         softmax_loss_function=None, name=None):
+    """Binary loss (full explanation tbd)
+    
+    Args:
+      logits: List of 2D Tensors of shape [batch_size x num_decoder_symbols].
+      targets: List of 1D batch-sized int32 Tensors of the same length as logits.
+      weights: List of 1D batch-sized float-Tensors of the same length as logits.
+      average_across_timesteps: If set, divide the returned cost by the total
+        label weight.
+      softmax_loss_function: Function (inputs-batch, labels-batch) -> loss-batch
+        to be used instead of the standard softmax (the default if this is None).
+      name: Optional name for this operation, default: "binary_sequence_loss".
+
+    Returns:
+      1D batch-sized float Tensor: the loss for each sequence
+
+    Raises:
+      ValueError: If len(logits) is different from len(targets) or len(weights).
+    """
+    if len(targets) != len(logits) or len(weights) != len(logits):
+        raise ValueError("Lengths of logits, weights, and targets must be the same "
+                         "%d, %d, %d." % (len(logits), len(weights), len(targets)))
+    with ops.op_scope(logits + targets + weights, name,
+                      "binary_sequence_loss"):
+        loss_list = []
+        for logit, target, weight in zip(logits, targets, weights):
+            #Find best guess
+            max_ind = tf.argmax(logits, 1)
+
+            #Figure out if correct
+            is_correct = tf.equal(max_ind, targets)
+            is_correct = tf.to_int32(is_correct)
+            #Depending on whether or not we found the right answer, the loss is different.
+            #If correct, use the normal loss
+            is_correct_loss = nn_ops.sparse_softmax_cross_entropy_with_logits(logit, target)
+            is_correct_loss = tf.mul(tf.is_correct, is_correct_loss)
+            #Else, construct new labels where probability distributed evenly among all other classes
+            new_target = tf.one_hot(max_ind, num_target_labels, on_value=0, off_value = 1.0/(num_target_labels - 1), axis=-1, dtype=tf.float)
+            is_incorrect_loss = nn_ops.softmax_cross_entropy_with_logits(logit, new_target)
+            is_incorrect_loss = tf.mul(tf.sub(tf.constant(1), is_correct), is_incorrect_loss)
+
+            binary_loss = tf.add(is_correct_loss, is_incorrect_loss)
+            loss_list.append(binary_loss * weight)
+        loss = math_ops.add_n(loss_list)
+        if average_across_timesteps:
+            total_size = math_ops.add_n(weights)
+            total_size += 1e-12
+            log_perps /= total_size
+        return loss
+    return loss_list
+
+def binary_sequence_loss(logits, targets, weights,
+                         batch_size, num_target_labels,
+                         average_across_timesteps=True, average_across_batch=True,
+                         softmax_loss_function=None, name=None):
+    with ops.op_scope(logits + targets + weights, name, "sequence_loss"):
+        cost = math.ops_reduce_sum(binary_sequence_loss_by_example(
+            logits, targets, weights, batch_size, num_target_labels,
+            average_across_timesteps=average_across_timesteps,
+            softmax_loss_function=softmax_loss_function))
+        if average_across_batch:
+            batch_size = array_ops.shape(targets[0])[0]
+            return cost / math_ops.cast(batch_size, dtypes.float32)
+        else:
+            return cost
