@@ -225,7 +225,7 @@ def parameter_tuning(folds, source_vocab_size, target_vocab_size):
             best_config = conf
     best_config.fold = None
     print("Best config:")
-    print("\tdropout: %.1f, param size: %d"%(best_config.dropout_size, best_config.layer_size))
+    print("\tdropout: %.1f, param size: %d"%(best_config.dropout_rate, best_config.layer_size))
     return best_config
 
 def main_train():
