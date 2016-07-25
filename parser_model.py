@@ -3,6 +3,55 @@ import tensorflow as tf
 import data_utils
 import random
 
+
+class BaseParseModel(object):
+    def __init__(self, config):
+        self.source_vocab_size = config.source_vocab_size
+        self.target_vocab_size = config.target_vocab_size
+        self.buckets = config.buckets
+        self.batch_size = config.batch_size
+        self.learning_rate = tf.Variable(float(config.learning_rate), trainable=False)
+        self.is_test = tf.placeholder(tf.bool)
+        #self.learning_rate_decay_op = self.learning_rate.assign(
+        #    self.learning_rate * config.learning_rate_decay_factor)
+        self.global_step = tf.Variable(0, trainable=False)
+        self.keep_prob = 1 - config.dropout_rate
+        self.keep_prob_input = tf.placeholder(tf.float32) #For dropout control
+
+        def build_inference(self):
+            with tf.device('/cpu:0'):
+                print("\tCreating Cell")
+                single_cell = tf.nn.rnn_cell.LSTMCell(config.layer_size, initializer=tf.random_uniform_initializer(minval=-1*config.initialize_width,maxval=config.initialize_width))
+                single_cell = tf.nn.rnn_cell.DropoutWrapper(single_cell, output_keep_prob=self.keep_prob_input)
+                cell = single_cell
+                if config.num_layers > 1:
+                    cell = tf.nn.rnn_cell.MultiRNNCell([single_cell] * config.num_layers)
+
+                def seq2seq_f(encoder_inputs, decoder_inputs):
+                    return tf.nn.seq2seq.embedding_attention_seq2seq(
+                            encoder_inputs, decoder_inputs, cell,
+                            num_encoder_symbols = self.source_vocab_size,
+                            num_decoder_symbols = self.target_vocab_size,
+                            embedding_size = config.layer_size,
+                            feed_previous=self.is_test)
+
+            # Feeds for inputs
+            self.encoder_inputs = []
+            self.decoder_inputs = []
+            self.target_weights = []
+            print("\tCreating input feeds")
+            for i in xrange(self.buckets[-1][0]):
+                self.encoder_inputs.append(tf.placeholder(tf.int32, shape=[None],
+                                                          name="encoder{0}".format(i)))
+            for i in xrange(self.buckets[-1][1] + 1):
+                self.decoder_inputs.append(tf.placeholder(tf.int32, shape=[None],
+                                                          name="decoder{0}".format(i)))
+                self.target_weights.append(tf.placeholder(tf.float32, shape=[None],
+                                                          name="weight{0}".format(i)))
+
+        def create_loss(self, scope):
+            pass
+
 class ParseModel(object):
 
 
@@ -178,3 +227,32 @@ class ParseModel(object):
                     batch_weight[batch_idx] = 0.0
             batch_weights.append(batch_weight)
         return batch, batch_encoder_inputs, batch_decoder_inputs, batch_weights
+
+def MultiParseModel(BaseParseModel):
+    def __init__(self, config):
+        super(MultiParseModel,self).__init__(config)
+
+        opt = tf.train.AdagradOptimizer(self.learning_rate) #TODO: Other options?
+        tower_grads = []
+        for i in xrange(config.num_gpus):
+            with tf.device('/gpu:%d' % i):
+                with tf.name_scope('tower_%d' % i) as scope:
+                    # Calculate the loss for one tower of this model. This function
+                    # constructs the entire model but shares the variables across
+                    # all towers.
+                    loss = self.create_loss(scope)
+
+                    # Reuse variables for the next tower.
+                    tf.get_variable_scope().reuse_variables()
+
+                    grads = opt.compute_gradients(loss)
+                    clipped_gradients, norm = tf.clip_by_global_norm(grads,
+                                                             config.max_gradient)
+                    tower_grads.append(grads)
+
+        grads = average_gradients(tower_grads)
+        apply_gradient_op = opt.apply_gradients(grads, global_step=global_step)
+
+        saver = tf.train.Saver(tf.all_variables())
+
+
