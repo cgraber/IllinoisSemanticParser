@@ -42,27 +42,26 @@ class ParseModel(object):
         for i in xrange(self.encoder_size):
             self.encoder_inputs.append(tf.placeholder(tf.int32, shape=[None],
                                                       name="encoder{0}".format(i)))
-        for i in xrange(self.decoder_size + 1):
+        for i in xrange(self.decoder_size):
             self.decoder_inputs.append(tf.placeholder(tf.int64, shape=[None],
                                                       name="decoder{0}".format(i)))
-            self.target_weights.append(tf.placeholder(tf.float32, shape=[None],
-                                                      name="weight{0}".format(i)))
+            if i < self.decoder_size - 1:
+                self.target_weights.append(tf.placeholder(tf.float32, shape=[None],
+                                                          name="weight{0}".format(i)))
 
-        #TODO: our loss is different (negative log likelihood rather than negative cross entropy)
-        # might want to change in the future
         targets = [self.decoder_inputs[i + 1]
                    for i in xrange(len(self.decoder_inputs) - 1)]
 
         #Unused arg is state of decoders at final time step
         self.outputs, _  = tf.nn.seq2seq.embedding_attention_seq2seq(
-                self.encoder_inputs[:self.encoder_size], self.decoder_inputs[:self.decoder_size], cell,
+                self.encoder_inputs, self.decoder_inputs[:-1], cell,
                 num_encoder_symbols = self.source_vocab_size,
                 num_decoder_symbols = self.target_vocab_size,
                 embedding_size = config.layer_size,
                 feed_previous=self.is_test)
 
         self.loss = binary_sequence_loss(
-                self.outputs, targets[:self.decoder_size], self.target_weights[:self.decoder_size],
+                self.outputs, targets, self.target_weights,
             self.batch_size, self.target_vocab_size)
 
         params = tf.trainable_variables()
@@ -84,15 +83,12 @@ class ParseModel(object):
             input_feed[self.encoder_inputs[l].name] = encoder_inputs[l]
         for l in xrange(self.decoder_size):
             input_feed[self.decoder_inputs[l].name] = decoder_inputs[l]
-            input_feed[self.target_weights[l].name] = target_weights[l]
-
-        last_target = self.decoder_inputs[self.decoder_size].name
-        input_feed[last_target] = np.zeros([len(decoder_inputs[0])], dtype=np.int32)
+            if l < self.decoder_size - 1:
+                input_feed[self.target_weights[l].name] = target_weights[l]
         input_feed[self.is_test] = is_test
-
         if is_test:
             output_feed = [self.loss]   #Loss for this batch
-            for l in xrange(self.decoder_size):  # Output logits
+            for l in xrange(self.decoder_size - 1):  # Output logits
                 output_feed.append(self.outputs[l])
             input_feed[self.keep_prob_input] = 1.0
 
@@ -224,7 +220,6 @@ def binary_sequence_loss(logits, targets, weights,
             average_across_timesteps=average_across_timesteps,
             softmax_loss_function=softmax_loss_function))
         if average_across_batch:
-            batch_size = array_ops.shape(targets[0])[0]
             return cost / math_ops.cast(batch_size, tf.float32)
         else:
             return cost
