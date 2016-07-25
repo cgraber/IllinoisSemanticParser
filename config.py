@@ -17,7 +17,7 @@ class Config(object):
         self.source_vocab_size = source_vocab_size
         self.target_vocab_size = target_vocab_size
         self.num_layers = num_layers
-        self.directory = "dropout_%d_vector_%d"%(dropout, layer_size)
+        self.directory = "dropout_%.1f_vector_%d"%(dropout, layer_size)
         self.buckets = buckets
         self.learning_rate = learning_rate
         self.learning_rate_decay_factor = learning_rate_decay_factor
