@@ -17,6 +17,7 @@ class BaseParseModel(object):
         self.global_step = tf.Variable(0, trainable=False)
         self.keep_prob = 1 - config.dropout_rate
         self.keep_prob_input = tf.placeholder(tf.float32) #For dropout control
+        self.num_gpus = 1
 
         def build_inference(self):
             with tf.device('/cpu:0'):
@@ -49,8 +50,11 @@ class BaseParseModel(object):
                 self.target_weights.append(tf.placeholder(tf.float32, shape=[None],
                                                           name="weight{0}".format(i)))
 
-        def create_loss(self, scope):
-            pass
+        def build_loss(self, logits, targets, weights):
+            losses = tf.nn.seq2seq.sequence_loss(logits, targets, weights)
+            tf.add_to_collection('losses', losses)
+            
+
 
 class ParseModel(object):
 
@@ -254,5 +258,12 @@ def MultiParseModel(BaseParseModel):
         apply_gradient_op = opt.apply_gradients(grads, global_step=global_step)
 
         saver = tf.train.Saver(tf.all_variables())
+
+    def tower_loss(self, scope):
+        logits, targets, weights = self.build_inference()
+        _ = self.build_loss(logits, targets, weights)
+        losses = tf.get_collection('losses', scope)
+        total_loss = tf.add_n(losses, name='total_loss')
+        return total_loss
 
 
