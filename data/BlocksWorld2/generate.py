@@ -341,7 +341,7 @@ class CompositeShape(object):
                     oldEnumVal = old.getEnum(0, 0)
                     oldEnumLogic = "upper_left(%s, %s)"
                     newEnumVal = shape.getEnum(-1*offset, shape.width-1)
-                    oldEnumLogic = "right_side(%s, %s, "+str(-1*offset)+")"
+                    newEnumLogic = "right_side(%s, %s, "+str(-1*offset)+")"
                 else:
                     newEnumVal = shape.getEnum(shape.height - 1, shape.width - 1)
                     newEnumLogic = "lower_right(%s, %s)"
@@ -405,9 +405,9 @@ class CompositeShape(object):
                 newBlockVar = getVar()
                 oldBlockVar = getVar()
                 self.logic += ["block(%s)"%newBlockVar, "location(%s)"%newSpaceVar]
-                self.logic += ["block-location(%s, %s)"%(newBlockVar, newSpaceVar), "enum(%s, %s, %d)"%(shape.var, newBlockVar, newEnumVal)]
+                self.logic += ["block-location(%s, %s)"%(newBlockVar, newSpaceVar), newEnumLogic%(shape.var, newBlockVar)]
                 self.logic += ["block(%s)"%oldBlockVar, "location(%s)"%oldSpaceVar]
-                self.logic += ["block-location(%s, %s)"%(oldBlockVar, oldSpaceVar), "enum(%s, %s, %d)"%(old.var, oldBlockVar, oldEnumVal)]
+                self.logic += ["block-location(%s, %s)"%(oldBlockVar, oldSpaceVar), oldEnumLogic%(old.var, oldBlockVar)]
                 self.logic.append("spatial-rel(east, 0, %s, %s)"%(oldSpaceVar, newSpaceVar))
             elif direction == TOP:
                 old = self.shapesOnSides[TOP]
@@ -430,21 +430,33 @@ class CompositeShape(object):
                 # Additional Logic
                 if offset >= 0:
                     newEnumVal = shape.getEnum(shape.height - 1, 0)
+                    newEnumLogic = "lower_left(%s, %s)"
                     oldEnumVal = old.getEnum(0, offset)
+                    if offset == 0:
+                        oldEnumLogic = "upper_left(%s, %s)"
+                    else:
+                        oldEnumLogic = "top_side(%s, %s, "+str(offset)+")"
                 elif shape.right > old.right:
                     oldEnumVal = old.getEnum(0, 0)
+                    oldEnumLogic = "upper_left(%s, %s)"
                     newEnumVal = shape.getEnum(shape.height-1, -1*offset)
+                    newEnumLogic = "bottom_side(%s, %s, "+str(-1*offset)+")"
                 else:
                     newEnumVal = shape.getEnum(shape.height - 1, shape.width - 1)
+                    newEnumLogic = "lower_right(%s, %s)"
                     oldEnumVal = old.getEnum(0, shape.right - old.left)
+                    if old.right == shape.right:
+                        oldEnumLogic = "upper_right(%s, %s)"
+                    else:
+                        oldEnumLogic = "top_side(%s, %s, "+str(shape.right - old.left)+")"
                 newSpaceVar = getSpaceVar()
                 oldSpaceVar = getSpaceVar()
                 newBlockVar = getVar()
                 oldBlockVar = getVar()
                 self.logic += ["block(%s)"%newBlockVar, "location(%s)"%newSpaceVar]
-                self.logic += ["block-location(%s, %s)"%(newBlockVar, newSpaceVar), "enum(%s, %s, %d)"%(shape.var, newBlockVar, newEnumVal)]
+                self.logic += ["block-location(%s, %s)"%(newBlockVar, newSpaceVar), newEnumLogic%(shape.var, newBlockVar)]
                 self.logic += ["block(%s)"%oldBlockVar, "location(%s)"%oldSpaceVar]
-                self.logic += ["block-location(%s, %s)"%(oldBlockVar, oldSpaceVar), "enum(%s, %s, %d)"%(old.var, oldBlockVar, oldEnumVal)]
+                self.logic += ["block-location(%s, %s)"%(oldBlockVar, oldSpaceVar), oldEnumLogic%(old.var, oldBlockVar)]
                 self.logic.append("spatial-rel(north, 0, %s, %s)"%(oldSpaceVar, newSpaceVar))
             elif direction == BOTTOM:
                 old = self.shapesOnSides[BOTTOM]
@@ -467,21 +479,33 @@ class CompositeShape(object):
                 # Additional Logic
                 if offset >= 0:
                     newEnumVal = shape.getEnum(0, 0)
+                    newEnumLogic = "upper_left(%s, %s)"
                     oldEnumVal = old.getEnum(old.height - 1, offset)
+                    if offset == 0:
+                        oldEnumLogic = "lower_left(%s, %s)"
+                    else:
+                        oldEnumLogic = "bottom_side(%s, %s, "+str(offset)+")"
                 elif shape.right > old.right:
                     oldEnumVal = old.getEnum(old.height-1, 0)
+                    oldEnumLogic = "lower_left(%s, %s)"
                     newEnumVal = shape.getEnum(0, -1*offset)
+                    newEnumLogic = "top_side(%s, %s, "+str(-1*offset)+")"
                 else:
                     newEnumVal = shape.getEnum(0, shape.width - 1)
+                    newEnumLogic = "upper_right(%s, %s)"
                     oldEnumVal = old.getEnum(old.height - 1, shape.right - old.left)
+                    if old.right == shape.right:
+                        oldEnumLogic = "lower_right(%s, %s)"
+                    else:
+                        oldEnumLogic = "bottom_side(%s, %s, "+str(shape.right - old.left)+")"
                 newSpaceVar = getSpaceVar()
                 oldSpaceVar = getSpaceVar()
                 newBlockVar = getVar()
                 oldBlockVar = getVar()
                 self.logic += ["block(%s)"%newBlockVar, "location(%s)"%newSpaceVar]
-                self.logic += ["block-location(%s, %s)"%(newBlockVar, newSpaceVar), "enum(%s, %s, %d)"%(shape.var, newBlockVar, newEnumVal)]
+                self.logic += ["block-location(%s, %s)"%(newBlockVar, newSpaceVar), newEnumLogic%(shape.var, newBlockVar)]
                 self.logic += ["block(%s)"%oldBlockVar, "location(%s)"%oldSpaceVar]
-                self.logic += ["block-location(%s, %s)"%(oldBlockVar, oldSpaceVar), "enum(%s, %s, %d)"%(old.var, oldBlockVar, oldEnumVal)]
+                self.logic += ["block-location(%s, %s)"%(oldBlockVar, oldSpaceVar), oldEnumLogic%(old.var, oldBlockVar)]
                 self.logic.append("spatial-rel(south, 0, %s, %s)"%(oldSpaceVar, newSpaceVar))
     def normalize(self):
         xShift = -1 * self.minX
