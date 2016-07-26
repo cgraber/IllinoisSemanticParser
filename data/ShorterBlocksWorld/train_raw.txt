@@ -1,0 +1,6223 @@
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+===
+column(a) ^ height(a, 18)
+Form a column using 18 blocks.
+
+X X X X X X X X X X X X X X X
+===
+row(a) ^ width(a, 15)
+Build a horizontal line of size 15.
+
+X X X X X X X X X X X X
+X X X X X X X X X X X X
+X X X X X X X X X X X X
+X X X X X X X X X X X X
+X X X X X X X X X X X X
+X X X X X X X X X X X X
+X X X X X X X X X X X X
+X X X X X X X X X X X X
+X X X X X X X X X X X X
+X X X X X X X X X X X X
+X X X X X X X X X X X X
+X X X X X X X X X X X X
+===
+square(a) ^ size(a, 12)
+Construct a 12 block by 12 block square.
+
+X X X X X X X X X X X
+===
+row(a) ^ width(a, 11)
+Build a row of size 11.
+
+X X X
+===
+row(a) ^ width(a, 3)
+Build a row with 3 blocks.
+
+X X X X X X X
+===
+row(a) ^ width(a, 7)
+Build a row using 7 blocks.
+
+X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X
+===
+square(a) ^ size(a, 17)
+Form a square with sides of block length 17.
+
+X X X
+===
+row(a) ^ width(a, 3)
+Construct a row of size 3.
+
+X X X X X X X X X X X X X X X X
+===
+row(a) ^ width(a, 16)
+Build a horizontal line of size 16.
+
+X
+X
+===
+column(a) ^ height(a, 2)
+Build a column of height 2.
+
+X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X
+===
+rectangle(a) ^ height(a, 18) ^ width(a, 14)
+Form a rectangle with a width of 14 blocks and a height of 18 blocks.
+
+X X X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X X X
+===
+rectangle(a) ^ height(a, 19) ^ width(a, 20)
+Build a 20 by 19 rectangle.
+
+X X X X X X X X X X X X X
+X X X X X X X X X X X X X
+X X X X X X X X X X X X X
+X X X X X X X X X X X X X
+X X X X X X X X X X X X X
+X X X X X X X X X X X X X
+X X X X X X X X X X X X X
+X X X X X X X X X X X X X
+X X X X X X X X X X X X X
+X X X X X X X X X X X X X
+X X X X X X X X X X X X X
+X X X X X X X X X X X X X
+X X X X X X X X X X X X X
+X X X X X X X X X X X X X
+===
+rectangle(a) ^ height(a, 14) ^ width(a, 13)
+Build a rectangle that is 14 blocks tall and 13 blocks wide.
+
+X X X X X X
+X X X X X X
+X X X X X X
+X X X X X X
+X X X X X X
+X X X X X X
+===
+square(a) ^ size(a, 6)
+Create a 6 block by 6 block square.
+
+X
+X
+X
+===
+column(a) ^ height(a, 3)
+Create a column of height 3.
+
+X X
+X X
+X X
+X X
+X X
+X X
+X X
+X X
+X X
+===
+rectangle(a) ^ height(a, 9) ^ width(a, 2)
+Construct a 2 by 9 rectangle.
+
+X X X X X X
+X X X X X X
+X X X X X X
+===
+rectangle(a) ^ height(a, 3) ^ width(a, 6)
+Build a rectangle that is 3 blocks tall and 6 blocks wide.
+
+X X X X X X X X X
+X X X X X X X X X
+X X X X X X X X X
+X X X X X X X X X
+X X X X X X X X X
+X X X X X X X X X
+X X X X X X X X X
+X X X X X X X X X
+X X X X X X X X X
+===
+square(a) ^ size(a, 9)
+Create a square with sides of block length 9.
+
+X X X
+===
+row(a) ^ width(a, 3)
+Build a horizontal line using 3 blocks.
+
+X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X
+===
+rectangle(a) ^ height(a, 15) ^ width(a, 14)
+Construct a rectangle with a width of 14 blocks and a height of 15 blocks.
+
+X X X X X X X X X X X X
+===
+row(a) ^ width(a, 12)
+Form a row using 12 blocks.
+
+X X X X X X X X X X X
+X X X X X X X X X X X
+X X X X X X X X X X X
+X X X X X X X X X X X
+X X X X X X X X X X X
+X X X X X X X X X X X
+X X X X X X X X X X X
+X X X X X X X X X X X
+X X X X X X X X X X X
+X X X X X X X X X X X
+X X X X X X X X X X X
+===
+square(a) ^ size(a, 11)
+Form a 11 block by 11 block square.
+
+X X X X X X X X X X X
+===
+row(a) ^ width(a, 11)
+Build a row of length 11.
+
+X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X
+===
+rectangle(a) ^ height(a, 14) ^ width(a, 16)
+Form a rectangle with a height of 14 blocks and a width of 16 blocks.
+
+X X X X X X X X X X X X X X X X X X X
+===
+row(a) ^ width(a, 19)
+Form a horizontal line using 19 blocks.
+
+X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X
+===
+rectangle(a) ^ height(a, 6) ^ width(a, 16)
+Form a rectangle with a width of 16 blocks and a height of 6 blocks.
+
+X X X X X X
+===
+row(a) ^ width(a, 6)
+Build a row of length 6.
+
+X X X X X X
+X X X X X X
+X X X X X X
+X X X X X X
+X X X X X X
+X X X X X X
+X X X X X X
+X X X X X X
+X X X X X X
+X X X X X X
+X X X X X X
+X X X X X X
+===
+rectangle(a) ^ height(a, 12) ^ width(a, 6)
+Form a rectangle that is 6 blocks wide and 12 blocks tall.
+
+X X
+X X
+===
+square(a) ^ size(a, 2)
+Create a 2 by 2 square.
+
+X X X X X X X X X X X
+===
+row(a) ^ width(a, 11)
+Create a row of size 11.
+
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+===
+column(a) ^ height(a, 14)
+Construct a vertical line of height 14.
+
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+===
+column(a) ^ height(a, 14)
+Create a vertical line with 14 blocks.
+
+X X
+X X
+===
+square(a) ^ size(a, 2)
+Form a 2 block by 2 block square.
+
+X X
+X X
+X X
+X X
+X X
+X X
+X X
+X X
+X X
+X X
+X X
+X X
+X X
+X X
+X X
+X X
+X X
+X X
+X X
+===
+rectangle(a) ^ height(a, 19) ^ width(a, 2)
+Form a 2 by 19 rectangle.
+
+X
+X
+X
+X
+X
+===
+column(a) ^ height(a, 5)
+Create a column of size 5.
+
+X X X X X X X X X X X X X
+X X X X X X X X X X X X X
+X X X X X X X X X X X X X
+===
+rectangle(a) ^ height(a, 3) ^ width(a, 13)
+Create a rectangle with a width of 13 blocks and a height of 3 blocks.
+
+X
+X
+X
+===
+column(a) ^ height(a, 3)
+Build a vertical line with 3 blocks.
+
+X X X X X X X X X X X
+X X X X X X X X X X X
+X X X X X X X X X X X
+X X X X X X X X X X X
+X X X X X X X X X X X
+X X X X X X X X X X X
+X X X X X X X X X X X
+X X X X X X X X X X X
+X X X X X X X X X X X
+X X X X X X X X X X X
+X X X X X X X X X X X
+X X X X X X X X X X X
+X X X X X X X X X X X
+X X X X X X X X X X X
+X X X X X X X X X X X
+X X X X X X X X X X X
+X X X X X X X X X X X
+X X X X X X X X X X X
+X X X X X X X X X X X
+X X X X X X X X X X X
+===
+rectangle(a) ^ height(a, 20) ^ width(a, 11)
+Build a rectangle that is 11 blocks wide and 20 blocks tall.
+
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+===
+column(a) ^ height(a, 17)
+Form a vertical line of height 17.
+
+X X X
+===
+row(a) ^ width(a, 3)
+Create a row of size 3.
+
+X X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X X
+===
+square(a) ^ size(a, 19)
+Build a 19 block by 19 block square.
+
+X X X X X X X X X X
+X X X X X X X X X X
+X X X X X X X X X X
+X X X X X X X X X X
+X X X X X X X X X X
+X X X X X X X X X X
+X X X X X X X X X X
+X X X X X X X X X X
+X X X X X X X X X X
+X X X X X X X X X X
+===
+square(a) ^ size(a, 10)
+Construct a 10 block by 10 block square.
+
+X X X
+X X X
+X X X
+===
+square(a) ^ size(a, 3)
+Form a 3 by 3 square.
+
+X X X
+===
+row(a) ^ width(a, 3)
+Form a row using 3 blocks.
+
+X X X X X X X X X X X X X X X X X X X
+===
+row(a) ^ width(a, 19)
+Build a horizontal line using 19 blocks.
+
+X X X X X X X X X X X X
+X X X X X X X X X X X X
+X X X X X X X X X X X X
+X X X X X X X X X X X X
+X X X X X X X X X X X X
+X X X X X X X X X X X X
+X X X X X X X X X X X X
+X X X X X X X X X X X X
+X X X X X X X X X X X X
+X X X X X X X X X X X X
+X X X X X X X X X X X X
+X X X X X X X X X X X X
+===
+square(a) ^ size(a, 12)
+Build a square with sides of block length 12.
+
+X X X X X
+X X X X X
+X X X X X
+X X X X X
+X X X X X
+===
+square(a) ^ size(a, 5)
+Build a square with sides of block length 5.
+
+X X X
+X X X
+X X X
+===
+square(a) ^ size(a, 3)
+Form a square with sides of block length 3.
+
+X X X X X
+X X X X X
+X X X X X
+X X X X X
+===
+rectangle(a) ^ height(a, 4) ^ width(a, 5)
+Construct a 5 by 4 rectangle.
+
+X X X X X X X X X
+X X X X X X X X X
+X X X X X X X X X
+X X X X X X X X X
+X X X X X X X X X
+X X X X X X X X X
+X X X X X X X X X
+X X X X X X X X X
+X X X X X X X X X
+===
+square(a) ^ size(a, 9)
+Build a square with sides of block length 9.
+
+X X X X X X
+===
+row(a) ^ width(a, 6)
+Form a horizontal line using 6 blocks.
+
+X X X X X X X X X X X
+X X X X X X X X X X X
+X X X X X X X X X X X
+X X X X X X X X X X X
+X X X X X X X X X X X
+X X X X X X X X X X X
+X X X X X X X X X X X
+X X X X X X X X X X X
+X X X X X X X X X X X
+X X X X X X X X X X X
+X X X X X X X X X X X
+X X X X X X X X X X X
+X X X X X X X X X X X
+===
+rectangle(a) ^ height(a, 13) ^ width(a, 11)
+Form a rectangle with a height of 13 blocks and a width of 11 blocks.
+
+X X X X X X X X X X X X X
+X X X X X X X X X X X X X
+X X X X X X X X X X X X X
+X X X X X X X X X X X X X
+X X X X X X X X X X X X X
+===
+rectangle(a) ^ height(a, 5) ^ width(a, 13)
+Create a rectangle that is 5 blocks tall and 13 blocks wide.
+
+X X X X X X
+X X X X X X
+X X X X X X
+X X X X X X
+X X X X X X
+X X X X X X
+===
+square(a) ^ size(a, 6)
+Build a 6 by 6 square.
+
+X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X
+===
+rectangle(a) ^ height(a, 6) ^ width(a, 16)
+Form a rectangle that is 6 blocks tall and 16 blocks wide.
+
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+===
+column(a) ^ height(a, 15)
+Build a vertical line using 15 blocks.
+
+X X X X X X X
+X X X X X X X
+X X X X X X X
+X X X X X X X
+X X X X X X X
+X X X X X X X
+X X X X X X X
+===
+square(a) ^ size(a, 7)
+Create a 7 by 7 square.
+
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+===
+column(a) ^ height(a, 13)
+Create a vertical line using 13 blocks.
+
+X X X X X X
+X X X X X X
+X X X X X X
+X X X X X X
+X X X X X X
+X X X X X X
+X X X X X X
+X X X X X X
+X X X X X X
+===
+rectangle(a) ^ height(a, 9) ^ width(a, 6)
+Construct a rectangle with a width of 6 blocks and a height of 9 blocks.
+
+X
+X
+X
+X
+X
+X
+X
+X
+===
+column(a) ^ height(a, 8)
+Form a column of height 8.
+
+X X X X X
+X X X X X
+X X X X X
+===
+rectangle(a) ^ height(a, 3) ^ width(a, 5)
+Create a rectangle that is 5 blocks wide and 3 blocks tall.
+
+X X X X X X X
+===
+row(a) ^ width(a, 7)
+Build a horizontal line with 7 blocks.
+
+X X X X X X X X X X X X X X X
+===
+row(a) ^ width(a, 15)
+Construct a horizontal line of size 15.
+
+X X X X X X
+X X X X X X
+X X X X X X
+X X X X X X
+X X X X X X
+X X X X X X
+X X X X X X
+X X X X X X
+X X X X X X
+X X X X X X
+===
+rectangle(a) ^ height(a, 10) ^ width(a, 6)
+Create a rectangle that is 10 blocks tall and 6 blocks wide.
+
+X X X X X X X X X X X X X X
+===
+row(a) ^ width(a, 14)
+Create a row of length 14.
+
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+===
+column(a) ^ height(a, 17)
+Create a column with 17 blocks.
+
+X X X X X X X X X X X X X X X X X X
+===
+row(a) ^ width(a, 18)
+Build a row of length 18.
+
+X X X
+X X X
+X X X
+===
+square(a) ^ size(a, 3)
+Build a square with sides of block length 3.
+
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+===
+column(a) ^ height(a, 12)
+Build a column of height 12.
+
+X X X X X X
+X X X X X X
+X X X X X X
+X X X X X X
+X X X X X X
+X X X X X X
+===
+square(a) ^ size(a, 6)
+Construct a square with sides of block length 6.
+
+X X X X X X X X X X X X X X X X X X
+===
+row(a) ^ width(a, 18)
+Construct a row of length 18.
+
+X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X
+===
+square(a) ^ size(a, 18)
+Create a square with sides of block length 18.
+
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+===
+column(a) ^ height(a, 10)
+Build a vertical line of height 10.
+
+X X X X X X X X X X X X X X X X X X X X
+===
+row(a) ^ width(a, 20)
+Form a row of size 20.
+
+X
+X
+X
+===
+column(a) ^ height(a, 3)
+Build a vertical line using 3 blocks.
+
+X X X X X X X X
+X X X X X X X X
+X X X X X X X X
+X X X X X X X X
+X X X X X X X X
+X X X X X X X X
+X X X X X X X X
+X X X X X X X X
+===
+square(a) ^ size(a, 8)
+Build a 8 by 8 square.
+
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+===
+column(a) ^ height(a, 14)
+Create a vertical line using 14 blocks.
+
+X X X
+X X X
+X X X
+===
+square(a) ^ size(a, 3)
+Build a 3 by 3 square.
+
+X X X X X X X X X X X X X X X X
+===
+row(a) ^ width(a, 16)
+Create a row of size 16.
+
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+===
+column(a) ^ height(a, 14)
+Form a vertical line using 14 blocks.
+
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+===
+column(a) ^ height(a, 11)
+Build a vertical line with 11 blocks.
+
+X X X X X X X X X X X X X X X X X X
+===
+row(a) ^ width(a, 18)
+Build a horizontal line of size 18.
+
+X X X X
+X X X X
+X X X X
+X X X X
+X X X X
+X X X X
+===
+rectangle(a) ^ height(a, 6) ^ width(a, 4)
+Form a rectangle with a height of 6 blocks and a width of 4 blocks.
+
+X X X X X X X X X X X X X
+===
+row(a) ^ width(a, 13)
+Construct a row of length 13.
+
+X X X X X X X X X X X X X X X X
+===
+row(a) ^ width(a, 16)
+Create a row of length 16.
+
+X X X X X X X
+X X X X X X X
+X X X X X X X
+X X X X X X X
+X X X X X X X
+X X X X X X X
+X X X X X X X
+===
+square(a) ^ size(a, 7)
+Build a 7 block by 7 block square.
+
+X X
+===
+row(a) ^ width(a, 2)
+Build a horizontal line using 2 blocks.
+
+X X X X X X X X X X X X
+X X X X X X X X X X X X
+X X X X X X X X X X X X
+X X X X X X X X X X X X
+X X X X X X X X X X X X
+X X X X X X X X X X X X
+X X X X X X X X X X X X
+X X X X X X X X X X X X
+X X X X X X X X X X X X
+X X X X X X X X X X X X
+X X X X X X X X X X X X
+X X X X X X X X X X X X
+X X X X X X X X X X X X
+X X X X X X X X X X X X
+X X X X X X X X X X X X
+===
+rectangle(a) ^ height(a, 15) ^ width(a, 12)
+Construct a rectangle that is 15 blocks tall and 12 blocks wide.
+
+X X X X X X X X X
+X X X X X X X X X
+X X X X X X X X X
+X X X X X X X X X
+X X X X X X X X X
+X X X X X X X X X
+X X X X X X X X X
+X X X X X X X X X
+X X X X X X X X X
+===
+square(a) ^ size(a, 9)
+Form a 9 by 9 square.
+
+X X X X X X X X X
+X X X X X X X X X
+X X X X X X X X X
+X X X X X X X X X
+===
+rectangle(a) ^ height(a, 4) ^ width(a, 9)
+Construct a 9 by 4 rectangle.
+
+X
+X
+===
+column(a) ^ height(a, 2)
+Form a column with 2 blocks.
+
+X X X X X X X X X X X X X
+X X X X X X X X X X X X X
+X X X X X X X X X X X X X
+X X X X X X X X X X X X X
+X X X X X X X X X X X X X
+X X X X X X X X X X X X X
+X X X X X X X X X X X X X
+X X X X X X X X X X X X X
+X X X X X X X X X X X X X
+X X X X X X X X X X X X X
+X X X X X X X X X X X X X
+X X X X X X X X X X X X X
+X X X X X X X X X X X X X
+===
+square(a) ^ size(a, 13)
+Construct a 13 by 13 square.
+
+X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X
+===
+rectangle(a) ^ height(a, 7) ^ width(a, 18)
+Form a rectangle that is 7 blocks tall and 18 blocks wide.
+
+X X X X X X X X X X X X X X X X
+===
+row(a) ^ width(a, 16)
+Construct a row of length 16.
+
+X X X X X X X X X
+X X X X X X X X X
+X X X X X X X X X
+X X X X X X X X X
+X X X X X X X X X
+X X X X X X X X X
+X X X X X X X X X
+X X X X X X X X X
+X X X X X X X X X
+X X X X X X X X X
+X X X X X X X X X
+X X X X X X X X X
+X X X X X X X X X
+X X X X X X X X X
+X X X X X X X X X
+X X X X X X X X X
+X X X X X X X X X
+X X X X X X X X X
+===
+rectangle(a) ^ height(a, 18) ^ width(a, 9)
+Form a rectangle with a height of 18 blocks and a width of 9 blocks.
+
+X X X X X X X X X X X X X X X
+===
+row(a) ^ width(a, 15)
+Form a row of size 15.
+
+X X X X X X X X X X
+===
+row(a) ^ width(a, 10)
+Create a horizontal line of size 10.
+
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+===
+column(a) ^ height(a, 19)
+Create a vertical line of size 19.
+
+X X X X X
+===
+row(a) ^ width(a, 5)
+Build a horizontal line with 5 blocks.
+
+X X X X X
+===
+row(a) ^ width(a, 5)
+Construct a horizontal line with 5 blocks.
+
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+===
+column(a) ^ height(a, 11)
+Create a column with 11 blocks.
+
+X X X X X X X X X X
+X X X X X X X X X X
+X X X X X X X X X X
+X X X X X X X X X X
+X X X X X X X X X X
+X X X X X X X X X X
+X X X X X X X X X X
+===
+rectangle(a) ^ height(a, 7) ^ width(a, 10)
+Construct a rectangle with a width of 10 blocks and a height of 7 blocks.
+
+X X X X X
+X X X X X
+X X X X X
+X X X X X
+X X X X X
+===
+square(a) ^ size(a, 5)
+Construct a 5 block by 5 block square.
+
+X
+X
+X
+X
+X
+X
+X
+X
+X
+===
+column(a) ^ height(a, 9)
+Create a vertical line of size 9.
+
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+===
+column(a) ^ height(a, 20)
+Form a column with 20 blocks.
+
+X
+X
+X
+X
+X
+X
+X
+===
+column(a) ^ height(a, 7)
+Form a vertical line with 7 blocks.
+
+X X X X X X X X X X X X X X X X X X X X
+===
+row(a) ^ width(a, 20)
+Form a horizontal line with 20 blocks.
+
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+===
+column(a) ^ height(a, 13)
+Form a vertical line with 13 blocks.
+
+X X X X X X X X
+X X X X X X X X
+X X X X X X X X
+X X X X X X X X
+X X X X X X X X
+X X X X X X X X
+X X X X X X X X
+X X X X X X X X
+X X X X X X X X
+X X X X X X X X
+X X X X X X X X
+X X X X X X X X
+X X X X X X X X
+X X X X X X X X
+X X X X X X X X
+X X X X X X X X
+X X X X X X X X
+X X X X X X X X
+X X X X X X X X
+X X X X X X X X
+===
+rectangle(a) ^ height(a, 20) ^ width(a, 8)
+Create a 8 by 20 rectangle.
+
+X X X X X X X X X
+X X X X X X X X X
+X X X X X X X X X
+X X X X X X X X X
+X X X X X X X X X
+X X X X X X X X X
+X X X X X X X X X
+X X X X X X X X X
+X X X X X X X X X
+X X X X X X X X X
+X X X X X X X X X
+X X X X X X X X X
+X X X X X X X X X
+===
+rectangle(a) ^ height(a, 13) ^ width(a, 9)
+Form a rectangle with a height of 13 blocks and a width of 9 blocks.
+
+X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X
+===
+rectangle(a) ^ height(a, 11) ^ width(a, 18)
+Create a rectangle that is 18 blocks wide and 11 blocks tall.
+
+X X X X X X X X X X X X X
+X X X X X X X X X X X X X
+X X X X X X X X X X X X X
+X X X X X X X X X X X X X
+X X X X X X X X X X X X X
+X X X X X X X X X X X X X
+X X X X X X X X X X X X X
+X X X X X X X X X X X X X
+X X X X X X X X X X X X X
+X X X X X X X X X X X X X
+X X X X X X X X X X X X X
+X X X X X X X X X X X X X
+X X X X X X X X X X X X X
+===
+square(a) ^ size(a, 13)
+Construct a 13 block by 13 block square.
+
+X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X
+===
+rectangle(a) ^ height(a, 4) ^ width(a, 16)
+Form a rectangle that is 16 blocks wide and 4 blocks tall.
+
+X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X
+===
+rectangle(a) ^ height(a, 5) ^ width(a, 15)
+Build a rectangle that is 5 blocks tall and 15 blocks wide.
+
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+===
+column(a) ^ height(a, 17)
+Create a column of size 17.
+
+X X X X
+===
+row(a) ^ width(a, 4)
+Create a horizontal line of length 4.
+
+X X
+X X
+X X
+X X
+===
+rectangle(a) ^ height(a, 4) ^ width(a, 2)
+Build a rectangle that is 2 blocks wide and 4 blocks tall.
+
+X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X
+===
+rectangle(a) ^ height(a, 13) ^ width(a, 14)
+Construct a rectangle with a height of 13 blocks and a width of 14 blocks.
+
+X
+X
+X
+X
+X
+X
+X
+X
+===
+column(a) ^ height(a, 8)
+Build a column of size 8.
+
+X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X
+===
+square(a) ^ size(a, 14)
+Form a 14 block by 14 block square.
+
+X X X X X X X X X X X X X X X
+===
+row(a) ^ width(a, 15)
+Form a horizontal line using 15 blocks.
+
+X X X X X X X X X X X X X X X X
+===
+row(a) ^ width(a, 16)
+Form a row of length 16.
+
+X X X X X
+X X X X X
+X X X X X
+X X X X X
+X X X X X
+X X X X X
+===
+rectangle(a) ^ height(a, 6) ^ width(a, 5)
+Construct a rectangle with a width of 5 blocks and a height of 6 blocks.
+
+X X X X X X
+===
+row(a) ^ width(a, 6)
+Build a horizontal line with 6 blocks.
+
+X
+X
+X
+X
+X
+===
+column(a) ^ height(a, 5)
+Create a vertical line using 5 blocks.
+
+X X X X X X X X X X X X X X X X X X
+===
+row(a) ^ width(a, 18)
+Form a horizontal line of length 18.
+
+X
+X
+X
+X
+X
+===
+column(a) ^ height(a, 5)
+Form a column using 5 blocks.
+
+X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X
+===
+rectangle(a) ^ height(a, 17) ^ width(a, 18)
+Form a rectangle that is 18 blocks wide and 17 blocks tall.
+
+X X X X X X X X X X X X X
+===
+row(a) ^ width(a, 13)
+Build a horizontal line of length 13.
+
+X X X X X X X X X X X X X X X X X X X
+===
+row(a) ^ width(a, 19)
+Form a horizontal line of length 19.
+
+X X X
+===
+row(a) ^ width(a, 3)
+Create a horizontal line of length 3.
+
+X X X
+X X X
+X X X
+X X X
+X X X
+X X X
+X X X
+X X X
+X X X
+X X X
+X X X
+X X X
+X X X
+X X X
+===
+rectangle(a) ^ height(a, 14) ^ width(a, 3)
+Create a rectangle that is 3 blocks wide and 14 blocks tall.
+
+X X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X X
+===
+rectangle(a) ^ height(a, 16) ^ width(a, 19)
+Form a rectangle with a width of 19 blocks and a height of 16 blocks.
+
+X X X X X X X
+===
+row(a) ^ width(a, 7)
+Form a row of length 7.
+
+X X X X X X X X X X X X X
+===
+row(a) ^ width(a, 13)
+Form a horizontal line of size 13.
+
+X X X X X X
+X X X X X X
+X X X X X X
+X X X X X X
+X X X X X X
+X X X X X X
+===
+square(a) ^ size(a, 6)
+Form a square with sides of block length 6.
+
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+===
+column(a) ^ height(a, 19)
+Create a vertical line using 19 blocks.
+
+X X X X X X X X X X X
+X X X X X X X X X X X
+X X X X X X X X X X X
+X X X X X X X X X X X
+X X X X X X X X X X X
+X X X X X X X X X X X
+X X X X X X X X X X X
+X X X X X X X X X X X
+X X X X X X X X X X X
+X X X X X X X X X X X
+X X X X X X X X X X X
+X X X X X X X X X X X
+X X X X X X X X X X X
+X X X X X X X X X X X
+X X X X X X X X X X X
+X X X X X X X X X X X
+X X X X X X X X X X X
+X X X X X X X X X X X
+===
+rectangle(a) ^ height(a, 18) ^ width(a, 11)
+Form a rectangle that is 11 blocks wide and 18 blocks tall.
+
+X X X X X X X X X X X X X X X X
+===
+row(a) ^ width(a, 16)
+Create a horizontal line using 16 blocks.
+
+X X X X X X X X X X X X X X X X
+===
+row(a) ^ width(a, 16)
+Form a row of size 16.
+
+X X X X X X X X X
+X X X X X X X X X
+X X X X X X X X X
+X X X X X X X X X
+X X X X X X X X X
+X X X X X X X X X
+X X X X X X X X X
+===
+rectangle(a) ^ height(a, 7) ^ width(a, 9)
+Create a rectangle that is 9 blocks wide and 7 blocks tall.
+
+X X X X X X X X X X
+===
+row(a) ^ width(a, 10)
+Create a row with 10 blocks.
+
+X
+X
+X
+X
+X
+X
+X
+===
+column(a) ^ height(a, 7)
+Form a vertical line using 7 blocks.
+
+X X X X X X X X X X X X X
+===
+row(a) ^ width(a, 13)
+Create a row with 13 blocks.
+
+X X X X X X X X X X X X
+===
+row(a) ^ width(a, 12)
+Form a horizontal line using 12 blocks.
+
+X X X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X X X
+===
+square(a) ^ size(a, 20)
+Construct a 20 block by 20 block square.
+
+X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X
+===
+square(a) ^ size(a, 14)
+Build a square with sides of block length 14.
+
+X X X X X X X X X X X X X X X X X X X
+===
+row(a) ^ width(a, 19)
+Build a horizontal line of length 19.
+
+X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X
+===
+rectangle(a) ^ height(a, 5) ^ width(a, 16)
+Create a rectangle with a width of 16 blocks and a height of 5 blocks.
+
+X
+X
+X
+X
+X
+X
+===
+column(a) ^ height(a, 6)
+Create a vertical line with 6 blocks.
+
+X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X
+===
+rectangle(a) ^ height(a, 13) ^ width(a, 15)
+Form a 15 by 13 rectangle.
+
+X
+X
+X
+X
+X
+X
+X
+X
+===
+column(a) ^ height(a, 8)
+Build a vertical line with 8 blocks.
+
+X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X
+===
+square(a) ^ size(a, 17)
+Form a 17 block by 17 block square.
+
+X X X X X X X X X X X X X X X X X
+===
+row(a) ^ width(a, 17)
+Construct a row using 17 blocks.
+
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+===
+column(a) ^ height(a, 17)
+Form a column using 17 blocks.
+
+X X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X X
+===
+rectangle(a) ^ height(a, 10) ^ width(a, 19)
+Form a rectangle with a height of 10 blocks and a width of 19 blocks.
+
+X X
+X X
+X X
+X X
+X X
+X X
+X X
+X X
+X X
+X X
+===
+rectangle(a) ^ height(a, 10) ^ width(a, 2)
+Build a rectangle with a width of 2 blocks and a height of 10 blocks.
+
+X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X
+===
+rectangle(a) ^ height(a, 19) ^ width(a, 15)
+Create a 15 by 19 rectangle.
+
+X
+X
+X
+X
+X
+X
+X
+===
+column(a) ^ height(a, 7)
+Create a vertical line with 7 blocks.
+
+X X X X X X X X X X X X X
+===
+row(a) ^ width(a, 13)
+Construct a row using 13 blocks.
+
+X X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X X
+===
+square(a) ^ size(a, 19)
+Create a square with sides of block length 19.
+
+X X X
+===
+row(a) ^ width(a, 3)
+Create a horizontal line of size 3.
+
+X X X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X X X
+===
+square(a) ^ size(a, 20)
+Form a 20 by 20 square.
+
+X X X X X
+X X X X X
+X X X X X
+X X X X X
+X X X X X
+===
+square(a) ^ size(a, 5)
+Create a 5 by 5 square.
+
+X X X X X X
+===
+row(a) ^ width(a, 6)
+Construct a row of size 6.
+
+X X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X X
+===
+square(a) ^ size(a, 19)
+Form a square with sides of block length 19.
+
+X X X X X X X X X X X
+===
+row(a) ^ width(a, 11)
+Build a horizontal line of length 11.
+
+X X X X X X X X X X X
+X X X X X X X X X X X
+X X X X X X X X X X X
+X X X X X X X X X X X
+X X X X X X X X X X X
+X X X X X X X X X X X
+X X X X X X X X X X X
+X X X X X X X X X X X
+X X X X X X X X X X X
+===
+rectangle(a) ^ height(a, 9) ^ width(a, 11)
+Create a rectangle that is 11 blocks wide and 9 blocks tall.
+
+X X X X X X X X X X X X X X X
+===
+row(a) ^ width(a, 15)
+Form a horizontal line with 15 blocks.
+
+X
+X
+X
+X
+===
+column(a) ^ height(a, 4)
+Create a column with 4 blocks.
+
+X X X X X X X X X X X X X
+===
+row(a) ^ width(a, 13)
+Form a horizontal line with 13 blocks.
+
+X X X X X X X X X X X X X X
+===
+row(a) ^ width(a, 14)
+Form a row using 14 blocks.
+
+X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X
+===
+square(a) ^ size(a, 14)
+Create a square with sides of block length 14.
+
+X X X X X X X X X X X X X
+===
+row(a) ^ width(a, 13)
+Create a horizontal line with 13 blocks.
+
+X X X X X X X X X X
+X X X X X X X X X X
+X X X X X X X X X X
+X X X X X X X X X X
+X X X X X X X X X X
+X X X X X X X X X X
+X X X X X X X X X X
+X X X X X X X X X X
+X X X X X X X X X X
+X X X X X X X X X X
+X X X X X X X X X X
+X X X X X X X X X X
+X X X X X X X X X X
+X X X X X X X X X X
+X X X X X X X X X X
+X X X X X X X X X X
+===
+rectangle(a) ^ height(a, 16) ^ width(a, 10)
+Create a rectangle with a height of 16 blocks and a width of 10 blocks.
+
+X X X X
+===
+row(a) ^ width(a, 4)
+Form a row of length 4.
+
+X X X X X
+===
+row(a) ^ width(a, 5)
+Construct a row with 5 blocks.
+
+X X X X X X X X X X
+X X X X X X X X X X
+X X X X X X X X X X
+X X X X X X X X X X
+X X X X X X X X X X
+X X X X X X X X X X
+X X X X X X X X X X
+X X X X X X X X X X
+X X X X X X X X X X
+X X X X X X X X X X
+===
+square(a) ^ size(a, 10)
+Build a square with sides of block length 10.
+
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+===
+column(a) ^ height(a, 15)
+Construct a vertical line of height 15.
+
+X X X X X X X X X X X X X X X X X
+===
+row(a) ^ width(a, 17)
+Form a horizontal line of size 17.
+
+X X X X X X X X X X X
+===
+row(a) ^ width(a, 11)
+Create a row using 11 blocks.
+
+X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X
+===
+square(a) ^ size(a, 16)
+Form a 16 block by 16 block square.
+
+X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X
+===
+square(a) ^ size(a, 15)
+Construct a 15 block by 15 block square.
+
+X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X
+===
+rectangle(a) ^ height(a, 18) ^ width(a, 17)
+Form a 17 by 18 rectangle.
+
+X X X X X X X X X X X X X X X
+===
+row(a) ^ width(a, 15)
+Build a row with 15 blocks.
+
+X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X
+===
+rectangle(a) ^ height(a, 8) ^ width(a, 15)
+Create a 15 by 8 rectangle.
+
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+===
+column(a) ^ height(a, 10)
+Build a vertical line using 10 blocks.
+
+X X X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X X X
+===
+square(a) ^ size(a, 20)
+Build a square with sides of block length 20.
+
+X X X X X X X X
+X X X X X X X X
+X X X X X X X X
+X X X X X X X X
+X X X X X X X X
+X X X X X X X X
+X X X X X X X X
+X X X X X X X X
+===
+square(a) ^ size(a, 8)
+Create a square with sides of block length 8.
+
+X
+X
+===
+column(a) ^ height(a, 2)
+Construct a column of height 2.
+
+X X X X X X X X X X X X X
+===
+row(a) ^ width(a, 13)
+Build a row using 13 blocks.
+
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+===
+column(a) ^ height(a, 19)
+Construct a column of height 19.
+
+X X X X X X X X X X X X X X X X
+===
+row(a) ^ width(a, 16)
+Construct a horizontal line of length 16.
+
+X X X X
+===
+row(a) ^ width(a, 4)
+Build a horizontal line using 4 blocks.
+
+X X X X X X X X X X
+===
+row(a) ^ width(a, 10)
+Construct a horizontal line using 10 blocks.
+
+X X X X X X X X
+X X X X X X X X
+X X X X X X X X
+X X X X X X X X
+X X X X X X X X
+X X X X X X X X
+X X X X X X X X
+X X X X X X X X
+===
+square(a) ^ size(a, 8)
+Form a 8 block by 8 block square.
+
+X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X
+===
+rectangle(a) ^ height(a, 16) ^ width(a, 17)
+Build a rectangle with a width of 17 blocks and a height of 16 blocks.
+
+X X X X X X X X X X X
+===
+row(a) ^ width(a, 11)
+Construct a horizontal line of length 11.
+
+X X X X X X X X X
+X X X X X X X X X
+X X X X X X X X X
+X X X X X X X X X
+X X X X X X X X X
+X X X X X X X X X
+X X X X X X X X X
+X X X X X X X X X
+X X X X X X X X X
+===
+square(a) ^ size(a, 9)
+Form a 9 block by 9 block square.
+
+X X X
+X X X
+X X X
+X X X
+X X X
+X X X
+X X X
+X X X
+X X X
+X X X
+X X X
+X X X
+X X X
+X X X
+X X X
+X X X
+X X X
+X X X
+===
+rectangle(a) ^ height(a, 18) ^ width(a, 3)
+Construct a rectangle with a height of 18 blocks and a width of 3 blocks.
+
+X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X
+===
+rectangle(a) ^ height(a, 12) ^ width(a, 18)
+Build a 18 by 12 rectangle.
+
+X
+X
+X
+X
+===
+column(a) ^ height(a, 4)
+Create a column of height 4.
+
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+===
+column(a) ^ height(a, 10)
+Create a column of size 10.
+
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+===
+column(a) ^ height(a, 12)
+Form a vertical line with 12 blocks.
+
+X X X X X X X X X X X X
+X X X X X X X X X X X X
+X X X X X X X X X X X X
+X X X X X X X X X X X X
+X X X X X X X X X X X X
+X X X X X X X X X X X X
+X X X X X X X X X X X X
+X X X X X X X X X X X X
+X X X X X X X X X X X X
+X X X X X X X X X X X X
+X X X X X X X X X X X X
+X X X X X X X X X X X X
+===
+square(a) ^ size(a, 12)
+Build a 12 block by 12 block square.
+
+X X X X X X X X X
+X X X X X X X X X
+X X X X X X X X X
+X X X X X X X X X
+X X X X X X X X X
+X X X X X X X X X
+X X X X X X X X X
+X X X X X X X X X
+X X X X X X X X X
+X X X X X X X X X
+X X X X X X X X X
+===
+rectangle(a) ^ height(a, 11) ^ width(a, 9)
+Create a rectangle that is 9 blocks wide and 11 blocks tall.
+
+X X X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X X X
+===
+square(a) ^ size(a, 20)
+Construct a square with sides of block length 20.
+
+X X X X X X X X X
+X X X X X X X X X
+X X X X X X X X X
+X X X X X X X X X
+X X X X X X X X X
+X X X X X X X X X
+X X X X X X X X X
+X X X X X X X X X
+X X X X X X X X X
+X X X X X X X X X
+X X X X X X X X X
+X X X X X X X X X
+X X X X X X X X X
+X X X X X X X X X
+X X X X X X X X X
+X X X X X X X X X
+X X X X X X X X X
+X X X X X X X X X
+X X X X X X X X X
+X X X X X X X X X
+===
+rectangle(a) ^ height(a, 20) ^ width(a, 9)
+Form a rectangle with a height of 20 blocks and a width of 9 blocks.
+
+X X X X X X X X X X X X X X X
+===
+row(a) ^ width(a, 15)
+Create a horizontal line with 15 blocks.
+
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+===
+column(a) ^ height(a, 16)
+Form a column with 16 blocks.
+
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+===
+column(a) ^ height(a, 11)
+Build a column using 11 blocks.
+
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+===
+column(a) ^ height(a, 17)
+Create a vertical line of height 17.
+
+X X X X X
+X X X X X
+X X X X X
+X X X X X
+X X X X X
+===
+square(a) ^ size(a, 5)
+Form a 5 by 5 square.
+
+X X X X X X X X X X X X X X X X X X X X
+===
+row(a) ^ width(a, 20)
+Form a horizontal line of size 20.
+
+X X X X X X X X X X X X
+X X X X X X X X X X X X
+X X X X X X X X X X X X
+X X X X X X X X X X X X
+X X X X X X X X X X X X
+X X X X X X X X X X X X
+X X X X X X X X X X X X
+X X X X X X X X X X X X
+X X X X X X X X X X X X
+X X X X X X X X X X X X
+X X X X X X X X X X X X
+X X X X X X X X X X X X
+===
+square(a) ^ size(a, 12)
+Create a square with sides of block length 12.
+
+X
+X
+X
+X
+X
+X
+===
+column(a) ^ height(a, 6)
+Form a vertical line with 6 blocks.
+
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+===
+column(a) ^ height(a, 17)
+Build a column of size 17.
+
+X X X X X X X X X X X X
+===
+row(a) ^ width(a, 12)
+Build a horizontal line using 12 blocks.
+
+X X X X
+X X X X
+X X X X
+X X X X
+===
+square(a) ^ size(a, 4)
+Form a 4 by 4 square.
+
+X X X X X X X X X
+X X X X X X X X X
+X X X X X X X X X
+X X X X X X X X X
+X X X X X X X X X
+X X X X X X X X X
+X X X X X X X X X
+X X X X X X X X X
+X X X X X X X X X
+===
+square(a) ^ size(a, 9)
+Create a 9 by 9 square.
+
+X X X X X X X X X X X
+X X X X X X X X X X X
+X X X X X X X X X X X
+X X X X X X X X X X X
+X X X X X X X X X X X
+X X X X X X X X X X X
+===
+rectangle(a) ^ height(a, 6) ^ width(a, 11)
+Construct a rectangle that is 6 blocks tall and 11 blocks wide.
+
+X X X X X X X X X X X X
+X X X X X X X X X X X X
+X X X X X X X X X X X X
+X X X X X X X X X X X X
+X X X X X X X X X X X X
+X X X X X X X X X X X X
+X X X X X X X X X X X X
+X X X X X X X X X X X X
+X X X X X X X X X X X X
+X X X X X X X X X X X X
+X X X X X X X X X X X X
+X X X X X X X X X X X X
+===
+square(a) ^ size(a, 12)
+Construct a 12 by 12 square.
+
+X X X X X X X X X X
+X X X X X X X X X X
+X X X X X X X X X X
+X X X X X X X X X X
+X X X X X X X X X X
+X X X X X X X X X X
+X X X X X X X X X X
+X X X X X X X X X X
+X X X X X X X X X X
+X X X X X X X X X X
+X X X X X X X X X X
+X X X X X X X X X X
+X X X X X X X X X X
+X X X X X X X X X X
+===
+rectangle(a) ^ height(a, 14) ^ width(a, 10)
+Form a rectangle that is 14 blocks tall and 10 blocks wide.
+
+X X X X X X X X X X X X X X X X X X X X
+===
+row(a) ^ width(a, 20)
+Construct a horizontal line of size 20.
+
+X X X X
+X X X X
+X X X X
+X X X X
+===
+square(a) ^ size(a, 4)
+Build a 4 by 4 square.
+
+X
+X
+===
+column(a) ^ height(a, 2)
+Create a column with 2 blocks.
+
+X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X
+===
+square(a) ^ size(a, 16)
+Construct a 16 block by 16 block square.
+
+X
+X
+X
+X
+X
+X
+X
+X
+X
+===
+column(a) ^ height(a, 9)
+Build a column using 9 blocks.
+
+X X X X X X X
+===
+row(a) ^ width(a, 7)
+Build a horizontal line of size 7.
+
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+===
+column(a) ^ height(a, 19)
+Form a column with 19 blocks.
+
+X X X X X X
+===
+row(a) ^ width(a, 6)
+Build a horizontal line using 6 blocks.
+
+X
+X
+X
+X
+X
+X
+X
+X
+X
+===
+column(a) ^ height(a, 9)
+Build a column of height 9.
+
+X X X X X X X X
+X X X X X X X X
+X X X X X X X X
+X X X X X X X X
+X X X X X X X X
+X X X X X X X X
+X X X X X X X X
+X X X X X X X X
+===
+square(a) ^ size(a, 8)
+Create a 8 by 8 square.
+
+X X X X X X X X
+X X X X X X X X
+X X X X X X X X
+X X X X X X X X
+===
+rectangle(a) ^ height(a, 4) ^ width(a, 8)
+Form a rectangle with a width of 8 blocks and a height of 4 blocks.
+
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+===
+column(a) ^ height(a, 12)
+Construct a column of height 12.
+
+X X X X X X X X X X X X X X X X X X
+===
+row(a) ^ width(a, 18)
+Construct a row using 18 blocks.
+
+X
+X
+X
+X
+X
+X
+X
+X
+X
+===
+column(a) ^ height(a, 9)
+Form a vertical line with 9 blocks.
+
+X X X X
+===
+row(a) ^ width(a, 4)
+Form a horizontal line of length 4.
+
+X X
+===
+row(a) ^ width(a, 2)
+Create a horizontal line with 2 blocks.
+
+X
+X
+X
+X
+X
+X
+X
+X
+X
+===
+column(a) ^ height(a, 9)
+Form a column using 9 blocks.
+
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+===
+column(a) ^ height(a, 17)
+Form a column with 17 blocks.
+
+X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X
+===
+square(a) ^ size(a, 15)
+Form a 15 block by 15 block square.
+
+X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X
+===
+square(a) ^ size(a, 18)
+Construct a 18 block by 18 block square.
+
+X
+X
+X
+X
+X
+X
+X
+===
+column(a) ^ height(a, 7)
+Create a vertical line of height 7.
+
+X
+X
+X
+X
+X
+X
+X
+===
+column(a) ^ height(a, 7)
+Construct a vertical line with 7 blocks.
+
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+===
+column(a) ^ height(a, 20)
+Create a vertical line with 20 blocks.
+
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+===
+column(a) ^ height(a, 15)
+Form a column using 15 blocks.
+
+X X X X X X X X X
+X X X X X X X X X
+X X X X X X X X X
+X X X X X X X X X
+X X X X X X X X X
+X X X X X X X X X
+X X X X X X X X X
+X X X X X X X X X
+X X X X X X X X X
+===
+square(a) ^ size(a, 9)
+Construct a square with sides of block length 9.
+
+X
+X
+===
+column(a) ^ height(a, 2)
+Construct a vertical line of size 2.
+
+X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X
+===
+rectangle(a) ^ height(a, 2) ^ width(a, 15)
+Create a 15 by 2 rectangle.
+
+X
+X
+===
+column(a) ^ height(a, 2)
+Construct a column with 2 blocks.
+
+X X X X X X X X X X
+X X X X X X X X X X
+X X X X X X X X X X
+X X X X X X X X X X
+X X X X X X X X X X
+===
+rectangle(a) ^ height(a, 5) ^ width(a, 10)
+Build a rectangle with a height of 5 blocks and a width of 10 blocks.
+
+X X X X X
+===
+row(a) ^ width(a, 5)
+Create a horizontal line of size 5.
+
+X X X X X X X X
+===
+row(a) ^ width(a, 8)
+Build a horizontal line using 8 blocks.
+
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+===
+column(a) ^ height(a, 16)
+Form a column of height 16.
+
+X X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X X
+===
+square(a) ^ size(a, 19)
+Construct a 19 by 19 square.
+
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+===
+column(a) ^ height(a, 18)
+Construct a column with 18 blocks.
+
+X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X
+===
+rectangle(a) ^ height(a, 11) ^ width(a, 17)
+Create a rectangle with a width of 17 blocks and a height of 11 blocks.
+
+X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X
+===
+rectangle(a) ^ height(a, 9) ^ width(a, 16)
+Create a rectangle that is 9 blocks tall and 16 blocks wide.
+
+X X X
+X X X
+X X X
+X X X
+X X X
+X X X
+===
+rectangle(a) ^ height(a, 6) ^ width(a, 3)
+Create a 3 by 6 rectangle.
+
+X X X X X X X X X X X X X
+X X X X X X X X X X X X X
+X X X X X X X X X X X X X
+X X X X X X X X X X X X X
+X X X X X X X X X X X X X
+X X X X X X X X X X X X X
+X X X X X X X X X X X X X
+X X X X X X X X X X X X X
+X X X X X X X X X X X X X
+X X X X X X X X X X X X X
+X X X X X X X X X X X X X
+X X X X X X X X X X X X X
+X X X X X X X X X X X X X
+===
+square(a) ^ size(a, 13)
+Form a square with sides of block length 13.
+
+X X X X X X X X
+===
+row(a) ^ width(a, 8)
+Build a row using 8 blocks.
+
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+===
+column(a) ^ height(a, 16)
+Create a column of height 16.
+
+X X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X X
+===
+rectangle(a) ^ height(a, 5) ^ width(a, 19)
+Form a rectangle with a height of 5 blocks and a width of 19 blocks.
+
+X X X X X X
+===
+row(a) ^ width(a, 6)
+Build a horizontal line of length 6.
+
+X X X X X X X X X
+X X X X X X X X X
+X X X X X X X X X
+X X X X X X X X X
+X X X X X X X X X
+X X X X X X X X X
+X X X X X X X X X
+X X X X X X X X X
+X X X X X X X X X
+X X X X X X X X X
+X X X X X X X X X
+===
+rectangle(a) ^ height(a, 11) ^ width(a, 9)
+Construct a 9 by 11 rectangle.
+
+X X X X X X X X X X X X X
+X X X X X X X X X X X X X
+X X X X X X X X X X X X X
+X X X X X X X X X X X X X
+X X X X X X X X X X X X X
+X X X X X X X X X X X X X
+X X X X X X X X X X X X X
+===
+rectangle(a) ^ height(a, 7) ^ width(a, 13)
+Create a rectangle with a width of 13 blocks and a height of 7 blocks.
+
+X X X X X X X X X X X X
+===
+row(a) ^ width(a, 12)
+Build a horizontal line of length 12.
+
+X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X
+===
+square(a) ^ size(a, 15)
+Build a 15 block by 15 block square.
+
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+===
+column(a) ^ height(a, 11)
+Construct a vertical line with 11 blocks.
+
+X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X
+===
+square(a) ^ size(a, 17)
+Form a 17 by 17 square.
+
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+===
+column(a) ^ height(a, 11)
+Construct a column using 11 blocks.
+
+X X X X X X X X X X
+X X X X X X X X X X
+X X X X X X X X X X
+X X X X X X X X X X
+X X X X X X X X X X
+X X X X X X X X X X
+X X X X X X X X X X
+X X X X X X X X X X
+X X X X X X X X X X
+X X X X X X X X X X
+===
+square(a) ^ size(a, 10)
+Create a square with sides of block length 10.
+
+X X X X X X X X X X X X
+X X X X X X X X X X X X
+X X X X X X X X X X X X
+X X X X X X X X X X X X
+X X X X X X X X X X X X
+X X X X X X X X X X X X
+X X X X X X X X X X X X
+X X X X X X X X X X X X
+X X X X X X X X X X X X
+X X X X X X X X X X X X
+X X X X X X X X X X X X
+X X X X X X X X X X X X
+===
+square(a) ^ size(a, 12)
+Form a 12 by 12 square.
+
+X X X X X X X X X X X X X X X X
+===
+row(a) ^ width(a, 16)
+Build a horizontal line using 16 blocks.
+
+X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X
+===
+rectangle(a) ^ height(a, 12) ^ width(a, 17)
+Form a rectangle that is 17 blocks wide and 12 blocks tall.
+
+X
+X
+X
+X
+X
+X
+X
+===
+column(a) ^ height(a, 7)
+Build a vertical line of height 7.
+
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+===
+column(a) ^ height(a, 12)
+Form a vertical line of size 12.
+
+X X X X X X X X X X X X X X X X X
+===
+row(a) ^ width(a, 17)
+Form a row of size 17.
+
+X X X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X X X
+===
+rectangle(a) ^ height(a, 14) ^ width(a, 20)
+Form a rectangle that is 20 blocks wide and 14 blocks tall.
+
+X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X
+===
+square(a) ^ size(a, 16)
+Build a square with sides of block length 16.
+
+X X X X X X
+===
+row(a) ^ width(a, 6)
+Create a row of size 6.
+
+X
+X
+===
+column(a) ^ height(a, 2)
+Construct a vertical line of height 2.
+
+X X X X
+X X X X
+X X X X
+X X X X
+X X X X
+===
+rectangle(a) ^ height(a, 5) ^ width(a, 4)
+Create a rectangle that is 5 blocks tall and 4 blocks wide.
+
+X X X X X X X X X X X X X
+X X X X X X X X X X X X X
+===
+rectangle(a) ^ height(a, 2) ^ width(a, 13)
+Construct a rectangle with a height of 2 blocks and a width of 13 blocks.
+
+X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X
+===
+square(a) ^ size(a, 17)
+Build a square with sides of block length 17.
+
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+===
+column(a) ^ height(a, 10)
+Form a vertical line of size 10.
+
+X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X
+===
+square(a) ^ size(a, 15)
+Form a 15 by 15 square.
+
+X X X
+===
+row(a) ^ width(a, 3)
+Form a horizontal line of length 3.
+
+X X X X X X X X X X X X X
+X X X X X X X X X X X X X
+X X X X X X X X X X X X X
+X X X X X X X X X X X X X
+X X X X X X X X X X X X X
+X X X X X X X X X X X X X
+X X X X X X X X X X X X X
+X X X X X X X X X X X X X
+===
+rectangle(a) ^ height(a, 8) ^ width(a, 13)
+Form a rectangle that is 8 blocks tall and 13 blocks wide.
+
+X X X X X X X X X X X X X X X X X X X X
+===
+row(a) ^ width(a, 20)
+Form a row of length 20.
+
+X X X X X X X X X
+X X X X X X X X X
+X X X X X X X X X
+X X X X X X X X X
+X X X X X X X X X
+X X X X X X X X X
+X X X X X X X X X
+X X X X X X X X X
+X X X X X X X X X
+X X X X X X X X X
+X X X X X X X X X
+===
+rectangle(a) ^ height(a, 11) ^ width(a, 9)
+Create a rectangle with a width of 9 blocks and a height of 11 blocks.
+
+X X X X X X X X X X X X
+X X X X X X X X X X X X
+X X X X X X X X X X X X
+X X X X X X X X X X X X
+X X X X X X X X X X X X
+X X X X X X X X X X X X
+X X X X X X X X X X X X
+X X X X X X X X X X X X
+X X X X X X X X X X X X
+X X X X X X X X X X X X
+X X X X X X X X X X X X
+X X X X X X X X X X X X
+X X X X X X X X X X X X
+X X X X X X X X X X X X
+X X X X X X X X X X X X
+X X X X X X X X X X X X
+X X X X X X X X X X X X
+X X X X X X X X X X X X
+===
+rectangle(a) ^ height(a, 18) ^ width(a, 12)
+Build a rectangle with a height of 18 blocks and a width of 12 blocks.
+
+X X X X X X X X X X
+===
+row(a) ^ width(a, 10)
+Create a horizontal line using 10 blocks.
+
+X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X
+===
+rectangle(a) ^ height(a, 10) ^ width(a, 18)
+Form a rectangle with a width of 18 blocks and a height of 10 blocks.
+
+X X X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X X X
+===
+rectangle(a) ^ height(a, 3) ^ width(a, 20)
+Construct a 20 by 3 rectangle.
+
+X X X X X X X X X X X X
+X X X X X X X X X X X X
+===
+rectangle(a) ^ height(a, 2) ^ width(a, 12)
+Build a 12 by 2 rectangle.
+
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+===
+column(a) ^ height(a, 20)
+Create a vertical line using 20 blocks.
+
+X
+X
+X
+X
+X
+X
+X
+===
+column(a) ^ height(a, 7)
+Construct a column of size 7.
+
+X
+X
+X
+X
+X
+===
+column(a) ^ height(a, 5)
+Build a column with 5 blocks.
+
+X X X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X X X
+===
+rectangle(a) ^ height(a, 17) ^ width(a, 20)
+Construct a rectangle that is 17 blocks tall and 20 blocks wide.
+
+X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X
+===
+square(a) ^ size(a, 16)
+Create a 16 block by 16 block square.
+
+X X X X X X X X
+X X X X X X X X
+X X X X X X X X
+X X X X X X X X
+X X X X X X X X
+X X X X X X X X
+X X X X X X X X
+X X X X X X X X
+X X X X X X X X
+X X X X X X X X
+X X X X X X X X
+X X X X X X X X
+X X X X X X X X
+X X X X X X X X
+X X X X X X X X
+===
+rectangle(a) ^ height(a, 15) ^ width(a, 8)
+Form a rectangle with a width of 8 blocks and a height of 15 blocks.
+
+X
+X
+X
+X
+===
+column(a) ^ height(a, 4)
+Build a vertical line using 4 blocks.
+
+X X X X X X X X X X X X
+===
+row(a) ^ width(a, 12)
+Create a horizontal line of length 12.
+
+X X X X X X X X X X X X X X X X X X
+===
+row(a) ^ width(a, 18)
+Form a row of length 18.
+
+X X X X X X X X X
+X X X X X X X X X
+X X X X X X X X X
+X X X X X X X X X
+X X X X X X X X X
+===
+rectangle(a) ^ height(a, 5) ^ width(a, 9)
+Create a rectangle with a width of 9 blocks and a height of 5 blocks.
+
+X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X
+===
+rectangle(a) ^ height(a, 19) ^ width(a, 16)
+Build a rectangle that is 16 blocks wide and 19 blocks tall.
+
+X
+X
+X
+X
+X
+X
+===
+column(a) ^ height(a, 6)
+Build a column using 6 blocks.
+
+X
+X
+X
+X
+X
+X
+X
+X
+X
+===
+column(a) ^ height(a, 9)
+Form a vertical line using 9 blocks.
+
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+===
+column(a) ^ height(a, 18)
+Form a vertical line with 18 blocks.
+
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+===
+column(a) ^ height(a, 20)
+Form a column of size 20.
+
+X X X X X X X X X X X X X
+===
+row(a) ^ width(a, 13)
+Construct a horizontal line of length 13.
+
+X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X
+===
+square(a) ^ size(a, 18)
+Form a 18 by 18 square.
+
+X X X X X X X
+X X X X X X X
+X X X X X X X
+X X X X X X X
+X X X X X X X
+X X X X X X X
+X X X X X X X
+X X X X X X X
+X X X X X X X
+X X X X X X X
+===
+rectangle(a) ^ height(a, 10) ^ width(a, 7)
+Create a rectangle that is 7 blocks wide and 10 blocks tall.
+
+X X X X X X X X X X
+X X X X X X X X X X
+X X X X X X X X X X
+X X X X X X X X X X
+X X X X X X X X X X
+X X X X X X X X X X
+X X X X X X X X X X
+X X X X X X X X X X
+X X X X X X X X X X
+X X X X X X X X X X
+X X X X X X X X X X
+X X X X X X X X X X
+X X X X X X X X X X
+X X X X X X X X X X
+X X X X X X X X X X
+===
+rectangle(a) ^ height(a, 15) ^ width(a, 10)
+Construct a 10 by 15 rectangle.
+
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+===
+column(a) ^ height(a, 13)
+Construct a vertical line using 13 blocks.
+
+X X X X
+X X X X
+X X X X
+X X X X
+===
+square(a) ^ size(a, 4)
+Build a 4 block by 4 block square.
+
+X
+X
+X
+X
+X
+X
+===
+column(a) ^ height(a, 6)
+Construct a vertical line of size 6.
+
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+===
+column(a) ^ height(a, 14)
+Form a vertical line of height 14.
+
+X X X X X X X X X X X X X
+X X X X X X X X X X X X X
+X X X X X X X X X X X X X
+X X X X X X X X X X X X X
+X X X X X X X X X X X X X
+X X X X X X X X X X X X X
+X X X X X X X X X X X X X
+X X X X X X X X X X X X X
+X X X X X X X X X X X X X
+X X X X X X X X X X X X X
+X X X X X X X X X X X X X
+X X X X X X X X X X X X X
+X X X X X X X X X X X X X
+===
+square(a) ^ size(a, 13)
+Construct a square with sides of block length 13.
+
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+===
+column(a) ^ height(a, 13)
+Construct a column using 13 blocks.
+
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+===
+column(a) ^ height(a, 17)
+Create a column of height 17.
+
+X X X X X X X X X X X X X X X
+===
+row(a) ^ width(a, 15)
+Create a row of size 15.
+
+X X X
+X X X
+X X X
+X X X
+X X X
+X X X
+X X X
+X X X
+X X X
+X X X
+X X X
+X X X
+X X X
+X X X
+X X X
+X X X
+===
+rectangle(a) ^ height(a, 16) ^ width(a, 3)
+Create a rectangle with a height of 16 blocks and a width of 3 blocks.
+
+X X X X X X X X
+X X X X X X X X
+X X X X X X X X
+X X X X X X X X
+X X X X X X X X
+X X X X X X X X
+X X X X X X X X
+X X X X X X X X
+X X X X X X X X
+X X X X X X X X
+X X X X X X X X
+X X X X X X X X
+X X X X X X X X
+X X X X X X X X
+X X X X X X X X
+X X X X X X X X
+X X X X X X X X
+X X X X X X X X
+X X X X X X X X
+===
+rectangle(a) ^ height(a, 19) ^ width(a, 8)
+Create a rectangle with a height of 19 blocks and a width of 8 blocks.
+
+X X X X
+X X X X
+X X X X
+X X X X
+X X X X
+X X X X
+X X X X
+X X X X
+X X X X
+X X X X
+===
+rectangle(a) ^ height(a, 10) ^ width(a, 4)
+Form a rectangle with a height of 10 blocks and a width of 4 blocks.
+
+X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X
+===
+rectangle(a) ^ height(a, 16) ^ width(a, 14)
+Form a rectangle that is 16 blocks tall and 14 blocks wide.
+
+X X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X X
+===
+square(a) ^ size(a, 19)
+Create a 19 by 19 square.
+
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+===
+column(a) ^ height(a, 10)
+Form a vertical line with 10 blocks.
+
+X X X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X X X
+===
+square(a) ^ size(a, 20)
+Construct a 20 by 20 square.
+
+X X X X X X X X X X X X X
+X X X X X X X X X X X X X
+X X X X X X X X X X X X X
+X X X X X X X X X X X X X
+X X X X X X X X X X X X X
+X X X X X X X X X X X X X
+X X X X X X X X X X X X X
+X X X X X X X X X X X X X
+X X X X X X X X X X X X X
+X X X X X X X X X X X X X
+X X X X X X X X X X X X X
+X X X X X X X X X X X X X
+X X X X X X X X X X X X X
+===
+square(a) ^ size(a, 13)
+Create a 13 block by 13 block square.
+
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+===
+column(a) ^ height(a, 17)
+Build a vertical line of size 17.
+
+X X X X
+X X X X
+X X X X
+X X X X
+===
+square(a) ^ size(a, 4)
+Create a square with sides of block length 4.
+
+X X X X X X
+===
+row(a) ^ width(a, 6)
+Form a row using 6 blocks.
+
+X X X X X
+===
+row(a) ^ width(a, 5)
+Create a row using 5 blocks.
+
+X
+X
+X
+X
+===
+column(a) ^ height(a, 4)
+Build a column using 4 blocks.
+
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+===
+column(a) ^ height(a, 18)
+Form a vertical line using 18 blocks.
+
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+===
+column(a) ^ height(a, 16)
+Construct a column using 16 blocks.
+
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+===
+column(a) ^ height(a, 10)
+Construct a vertical line of height 10.
+
+X X X X X X X X X X X X X X X
+===
+row(a) ^ width(a, 15)
+Create a horizontal line of size 15.
+
+X X X X
+===
+row(a) ^ width(a, 4)
+Create a horizontal line using 4 blocks.
+
+X X X X X X X X X X
+X X X X X X X X X X
+X X X X X X X X X X
+X X X X X X X X X X
+X X X X X X X X X X
+X X X X X X X X X X
+X X X X X X X X X X
+X X X X X X X X X X
+X X X X X X X X X X
+X X X X X X X X X X
+===
+square(a) ^ size(a, 10)
+Build a 10 block by 10 block square.
+
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+===
+column(a) ^ height(a, 20)
+Construct a column of height 20.
+
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+===
+column(a) ^ height(a, 19)
+Form a column of size 19.
+
+X
+X
+X
+===
+column(a) ^ height(a, 3)
+Build a column of size 3.
+
+X
+X
+X
+===
+column(a) ^ height(a, 3)
+Construct a column using 3 blocks.
+
+X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X
+===
+rectangle(a) ^ height(a, 5) ^ width(a, 17)
+Construct a rectangle that is 5 blocks tall and 17 blocks wide.
+
+X X X X X X X X X X X
+===
+row(a) ^ width(a, 11)
+Construct a row with 11 blocks.
+
+X X X X X X X X X
+X X X X X X X X X
+===
+rectangle(a) ^ height(a, 2) ^ width(a, 9)
+Create a rectangle that is 2 blocks tall and 9 blocks wide.
+
+X
+X
+X
+X
+X
+===
+column(a) ^ height(a, 5)
+Create a column with 5 blocks.
+
+X X X X X X X X X
+X X X X X X X X X
+X X X X X X X X X
+X X X X X X X X X
+X X X X X X X X X
+X X X X X X X X X
+X X X X X X X X X
+X X X X X X X X X
+X X X X X X X X X
+X X X X X X X X X
+===
+rectangle(a) ^ height(a, 10) ^ width(a, 9)
+Build a 9 by 10 rectangle.
+
+X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X
+===
+square(a) ^ size(a, 14)
+Form a 14 by 14 square.
+
+X X X
+X X X
+X X X
+X X X
+X X X
+X X X
+X X X
+X X X
+===
+rectangle(a) ^ height(a, 8) ^ width(a, 3)
+Construct a rectangle that is 3 blocks wide and 8 blocks tall.
+
+X X X
+X X X
+X X X
+===
+square(a) ^ size(a, 3)
+Form a 3 block by 3 block square.
+
+X X X X X X X X X X X X X
+X X X X X X X X X X X X X
+X X X X X X X X X X X X X
+X X X X X X X X X X X X X
+X X X X X X X X X X X X X
+X X X X X X X X X X X X X
+X X X X X X X X X X X X X
+X X X X X X X X X X X X X
+X X X X X X X X X X X X X
+X X X X X X X X X X X X X
+X X X X X X X X X X X X X
+X X X X X X X X X X X X X
+X X X X X X X X X X X X X
+===
+square(a) ^ size(a, 13)
+Create a 13 by 13 square.
+
+X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X
+===
+square(a) ^ size(a, 15)
+Create a 15 by 15 square.
+
+X X X X X X X X X X X X X
+X X X X X X X X X X X X X
+X X X X X X X X X X X X X
+X X X X X X X X X X X X X
+X X X X X X X X X X X X X
+X X X X X X X X X X X X X
+X X X X X X X X X X X X X
+X X X X X X X X X X X X X
+X X X X X X X X X X X X X
+X X X X X X X X X X X X X
+X X X X X X X X X X X X X
+X X X X X X X X X X X X X
+X X X X X X X X X X X X X
+X X X X X X X X X X X X X
+X X X X X X X X X X X X X
+X X X X X X X X X X X X X
+X X X X X X X X X X X X X
+===
+rectangle(a) ^ height(a, 17) ^ width(a, 13)
+Create a rectangle that is 13 blocks wide and 17 blocks tall.
+
+X X X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X X X
+===
+rectangle(a) ^ height(a, 5) ^ width(a, 20)
+Create a rectangle with a width of 20 blocks and a height of 5 blocks.
+
+X X X X X
+X X X X X
+X X X X X
+X X X X X
+X X X X X
+X X X X X
+X X X X X
+X X X X X
+X X X X X
+X X X X X
+X X X X X
+===
+rectangle(a) ^ height(a, 11) ^ width(a, 5)
+Build a rectangle with a height of 11 blocks and a width of 5 blocks.
+
+X X X X X X X X X
+X X X X X X X X X
+X X X X X X X X X
+X X X X X X X X X
+X X X X X X X X X
+X X X X X X X X X
+X X X X X X X X X
+X X X X X X X X X
+X X X X X X X X X
+===
+square(a) ^ size(a, 9)
+Build a 9 by 9 square.
+
+X X X
+X X X
+X X X
+X X X
+X X X
+===
+rectangle(a) ^ height(a, 5) ^ width(a, 3)
+Build a rectangle with a width of 3 blocks and a height of 5 blocks.
+
+X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X
+===
+rectangle(a) ^ height(a, 3) ^ width(a, 16)
+Build a rectangle with a width of 16 blocks and a height of 3 blocks.
+
+X X X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X X X
+===
+rectangle(a) ^ height(a, 3) ^ width(a, 20)
+Create a rectangle with a height of 3 blocks and a width of 20 blocks.
+
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+===
+column(a) ^ height(a, 15)
+Form a vertical line of size 15.
+
+X
+X
+X
+X
+X
+X
+X
+===
+column(a) ^ height(a, 7)
+Construct a column using 7 blocks.
+
+X X X X X X X
+X X X X X X X
+X X X X X X X
+X X X X X X X
+X X X X X X X
+===
+rectangle(a) ^ height(a, 5) ^ width(a, 7)
+Build a 7 by 5 rectangle.
+
+X X X X X X X X X X X
+===
+row(a) ^ width(a, 11)
+Construct a row of length 11.
+
+X X X X X X X X X X X X
+X X X X X X X X X X X X
+X X X X X X X X X X X X
+X X X X X X X X X X X X
+X X X X X X X X X X X X
+X X X X X X X X X X X X
+X X X X X X X X X X X X
+X X X X X X X X X X X X
+X X X X X X X X X X X X
+X X X X X X X X X X X X
+X X X X X X X X X X X X
+===
+rectangle(a) ^ height(a, 11) ^ width(a, 12)
+Form a rectangle with a width of 12 blocks and a height of 11 blocks.
+
+X X X X X X X X X X X
+X X X X X X X X X X X
+X X X X X X X X X X X
+X X X X X X X X X X X
+X X X X X X X X X X X
+X X X X X X X X X X X
+X X X X X X X X X X X
+X X X X X X X X X X X
+X X X X X X X X X X X
+X X X X X X X X X X X
+X X X X X X X X X X X
+X X X X X X X X X X X
+X X X X X X X X X X X
+X X X X X X X X X X X
+X X X X X X X X X X X
+X X X X X X X X X X X
+X X X X X X X X X X X
+===
+rectangle(a) ^ height(a, 17) ^ width(a, 11)
+Form a 11 by 17 rectangle.
+
+X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X
+===
+square(a) ^ size(a, 17)
+Create a 17 block by 17 block square.
+
+X
+X
+X
+X
+===
+column(a) ^ height(a, 4)
+Form a column of size 4.
+
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+===
+column(a) ^ height(a, 11)
+Construct a vertical line of height 11.
+
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+===
+column(a) ^ height(a, 18)
+Form a column of size 18.
+
+X X X X X X X
+X X X X X X X
+X X X X X X X
+X X X X X X X
+X X X X X X X
+X X X X X X X
+X X X X X X X
+===
+square(a) ^ size(a, 7)
+Construct a 7 block by 7 block square.
+
+X X
+X X
+===
+square(a) ^ size(a, 2)
+Build a 2 by 2 square.
+
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+===
+column(a) ^ height(a, 14)
+Build a column with 14 blocks.
+
+X X X X
+X X X X
+X X X X
+X X X X
+X X X X
+X X X X
+X X X X
+X X X X
+X X X X
+===
+rectangle(a) ^ height(a, 9) ^ width(a, 4)
+Form a rectangle that is 4 blocks wide and 9 blocks tall.
+
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+===
+column(a) ^ height(a, 19)
+Form a vertical line with 19 blocks.
+
+X X X X X X X X X X X X X X
+===
+row(a) ^ width(a, 14)
+Create a horizontal line using 14 blocks.
+
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+===
+column(a) ^ height(a, 11)
+Build a column with 11 blocks.
+
+X
+X
+X
+X
+X
+===
+column(a) ^ height(a, 5)
+Construct a vertical line with 5 blocks.
+
+X X X
+X X X
+X X X
+===
+square(a) ^ size(a, 3)
+Construct a 3 by 3 square.
+
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+===
+column(a) ^ height(a, 17)
+Form a column of size 17.
+
+X X X X X X X X X X X X
+X X X X X X X X X X X X
+X X X X X X X X X X X X
+X X X X X X X X X X X X
+X X X X X X X X X X X X
+X X X X X X X X X X X X
+===
+rectangle(a) ^ height(a, 6) ^ width(a, 12)
+Create a rectangle that is 12 blocks wide and 6 blocks tall.
+
+X X X X X X X
+X X X X X X X
+X X X X X X X
+X X X X X X X
+X X X X X X X
+X X X X X X X
+X X X X X X X
+X X X X X X X
+===
+rectangle(a) ^ height(a, 8) ^ width(a, 7)
+Construct a rectangle with a height of 8 blocks and a width of 7 blocks.
+
+X X X X X X X X X X
+X X X X X X X X X X
+X X X X X X X X X X
+X X X X X X X X X X
+X X X X X X X X X X
+X X X X X X X X X X
+X X X X X X X X X X
+X X X X X X X X X X
+X X X X X X X X X X
+X X X X X X X X X X
+X X X X X X X X X X
+===
+rectangle(a) ^ height(a, 11) ^ width(a, 10)
+Form a 10 by 11 rectangle.
+
+X X X X X X X X X X
+X X X X X X X X X X
+X X X X X X X X X X
+X X X X X X X X X X
+X X X X X X X X X X
+X X X X X X X X X X
+X X X X X X X X X X
+X X X X X X X X X X
+X X X X X X X X X X
+X X X X X X X X X X
+X X X X X X X X X X
+X X X X X X X X X X
+X X X X X X X X X X
+X X X X X X X X X X
+X X X X X X X X X X
+X X X X X X X X X X
+X X X X X X X X X X
+X X X X X X X X X X
+===
+rectangle(a) ^ height(a, 18) ^ width(a, 10)
+Create a rectangle that is 18 blocks tall and 10 blocks wide.
+
+X X X X X X X X X X X
+X X X X X X X X X X X
+X X X X X X X X X X X
+X X X X X X X X X X X
+X X X X X X X X X X X
+X X X X X X X X X X X
+X X X X X X X X X X X
+X X X X X X X X X X X
+X X X X X X X X X X X
+X X X X X X X X X X X
+X X X X X X X X X X X
+===
+square(a) ^ size(a, 11)
+Form a square with sides of block length 11.
+
+X X X X X X X X X X X X
+===
+row(a) ^ width(a, 12)
+Create a row of length 12.
+
+X X X X X X X
+X X X X X X X
+X X X X X X X
+X X X X X X X
+X X X X X X X
+X X X X X X X
+===
+rectangle(a) ^ height(a, 6) ^ width(a, 7)
+Construct a rectangle with a width of 7 blocks and a height of 6 blocks.
+
+X X X X X X X X X X X X
+===
+row(a) ^ width(a, 12)
+Form a horizontal line of size 12.
+
+X X X X X X X X X X X X X X X X X
+===
+row(a) ^ width(a, 17)
+Create a row with 17 blocks.
+
+X X X X X X X X X
+===
+row(a) ^ width(a, 9)
+Build a horizontal line using 9 blocks.
+
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+===
+column(a) ^ height(a, 14)
+Create a column of size 14.
+
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+===
+column(a) ^ height(a, 16)
+Create a column with 16 blocks.
+
+X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X
+===
+square(a) ^ size(a, 14)
+Construct a 14 block by 14 block square.
+
+X X X X X X X X X X X X X X X X X X X
+===
+row(a) ^ width(a, 19)
+Create a row using 19 blocks.
+
+X X X
+X X X
+X X X
+X X X
+X X X
+X X X
+X X X
+X X X
+X X X
+X X X
+X X X
+X X X
+===
+rectangle(a) ^ height(a, 12) ^ width(a, 3)
+Form a rectangle with a width of 3 blocks and a height of 12 blocks.
+
+X X X X X
+X X X X X
+X X X X X
+X X X X X
+X X X X X
+X X X X X
+X X X X X
+X X X X X
+X X X X X
+X X X X X
+X X X X X
+X X X X X
+X X X X X
+X X X X X
+X X X X X
+===
+rectangle(a) ^ height(a, 15) ^ width(a, 5)
+Create a rectangle with a height of 15 blocks and a width of 5 blocks.
+
+X X X X X
+X X X X X
+X X X X X
+X X X X X
+X X X X X
+X X X X X
+X X X X X
+X X X X X
+X X X X X
+X X X X X
+X X X X X
+X X X X X
+X X X X X
+X X X X X
+X X X X X
+X X X X X
+===
+rectangle(a) ^ height(a, 16) ^ width(a, 5)
+Construct a rectangle that is 16 blocks tall and 5 blocks wide.
+
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+===
+column(a) ^ height(a, 16)
+Construct a vertical line of size 16.
+
+X X X X X X X X X
+X X X X X X X X X
+X X X X X X X X X
+X X X X X X X X X
+X X X X X X X X X
+X X X X X X X X X
+X X X X X X X X X
+X X X X X X X X X
+X X X X X X X X X
+===
+square(a) ^ size(a, 9)
+Form a square with sides of block length 9.
+
+X X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X X
+===
+square(a) ^ size(a, 19)
+Construct a 19 block by 19 block square.
+
+X
+X
+X
+X
+X
+X
+===
+column(a) ^ height(a, 6)
+Create a column of height 6.
+
+X X X X
+X X X X
+X X X X
+X X X X
+X X X X
+X X X X
+X X X X
+===
+rectangle(a) ^ height(a, 7) ^ width(a, 4)
+Create a rectangle that is 4 blocks wide and 7 blocks tall.
+
+X X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X X
+===
+rectangle(a) ^ height(a, 14) ^ width(a, 19)
+Build a 19 by 14 rectangle.
+
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+===
+column(a) ^ height(a, 17)
+Construct a vertical line with 17 blocks.
+
+X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X
+===
+rectangle(a) ^ height(a, 10) ^ width(a, 14)
+Build a 14 by 10 rectangle.
+
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+===
+column(a) ^ height(a, 10)
+Build a column with 10 blocks.
+
+X X X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X X X
+===
+rectangle(a) ^ height(a, 3) ^ width(a, 20)
+Build a rectangle with a width of 20 blocks and a height of 3 blocks.
+
+X X X X X X X X X X X X
+===
+row(a) ^ width(a, 12)
+Construct a row with 12 blocks.
+
+X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X
+===
+rectangle(a) ^ height(a, 10) ^ width(a, 14)
+Create a rectangle that is 10 blocks tall and 14 blocks wide.
+
+X X X X X X X X X X X X X X X X
+===
+row(a) ^ width(a, 16)
+Create a row with 16 blocks.
+
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+===
+column(a) ^ height(a, 10)
+Build a vertical line with 10 blocks.
+
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+===
+column(a) ^ height(a, 17)
+Create a vertical line using 17 blocks.
+
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+===
+column(a) ^ height(a, 16)
+Construct a column with 16 blocks.
+
+X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X
+===
+square(a) ^ size(a, 16)
+Form a 16 by 16 square.
+
+X
+X
+X
+X
+X
+===
+column(a) ^ height(a, 5)
+Construct a column of size 5.
+
+X X X X X X X X
+X X X X X X X X
+X X X X X X X X
+X X X X X X X X
+X X X X X X X X
+X X X X X X X X
+X X X X X X X X
+X X X X X X X X
+X X X X X X X X
+===
+rectangle(a) ^ height(a, 9) ^ width(a, 8)
+Build a rectangle that is 8 blocks wide and 9 blocks tall.
+
+X X X X
+X X X X
+X X X X
+X X X X
+X X X X
+X X X X
+X X X X
+X X X X
+X X X X
+X X X X
+X X X X
+===
+rectangle(a) ^ height(a, 11) ^ width(a, 4)
+Form a rectangle that is 11 blocks tall and 4 blocks wide.
+
+X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X
+===
+square(a) ^ size(a, 18)
+Create a 18 by 18 square.
+
+X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X
+===
+square(a) ^ size(a, 15)
+Form a square with sides of block length 15.
+
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+===
+column(a) ^ height(a, 19)
+Build a vertical line of size 19.
+
+X X X X X X X X X X X X X X
+===
+row(a) ^ width(a, 14)
+Form a row of size 14.
+
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+===
+column(a) ^ height(a, 12)
+Form a vertical line of height 12.
+
+X X X X X X X X X X
+X X X X X X X X X X
+X X X X X X X X X X
+X X X X X X X X X X
+X X X X X X X X X X
+X X X X X X X X X X
+X X X X X X X X X X
+X X X X X X X X X X
+X X X X X X X X X X
+X X X X X X X X X X
+===
+square(a) ^ size(a, 10)
+Form a square with sides of block length 10.
+
+X X X X X X X X X X X X X X
+===
+row(a) ^ width(a, 14)
+Form a row of length 14.
+
+X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X
+===
+square(a) ^ size(a, 18)
+Form a square with sides of block length 18.
+
+X X X X X X X X X
+X X X X X X X X X
+X X X X X X X X X
+X X X X X X X X X
+X X X X X X X X X
+X X X X X X X X X
+X X X X X X X X X
+X X X X X X X X X
+X X X X X X X X X
+X X X X X X X X X
+X X X X X X X X X
+X X X X X X X X X
+X X X X X X X X X
+X X X X X X X X X
+X X X X X X X X X
+X X X X X X X X X
+===
+rectangle(a) ^ height(a, 16) ^ width(a, 9)
+Build a rectangle that is 9 blocks wide and 16 blocks tall.
+
+X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X
+===
+rectangle(a) ^ height(a, 17) ^ width(a, 16)
+Create a rectangle with a width of 16 blocks and a height of 17 blocks.
+
+X X X X X X X X X X X X X X X X X
+===
+row(a) ^ width(a, 17)
+Build a row with 17 blocks.
+
+X X X X X X
+X X X X X X
+X X X X X X
+X X X X X X
+===
+rectangle(a) ^ height(a, 4) ^ width(a, 6)
+Form a rectangle that is 4 blocks tall and 6 blocks wide.
+
+X X X X X X X X X X X X X X X X X X X
+===
+row(a) ^ width(a, 19)
+Build a row using 19 blocks.
+
+X X X X X X X X X X X X
+X X X X X X X X X X X X
+X X X X X X X X X X X X
+X X X X X X X X X X X X
+X X X X X X X X X X X X
+X X X X X X X X X X X X
+X X X X X X X X X X X X
+X X X X X X X X X X X X
+X X X X X X X X X X X X
+X X X X X X X X X X X X
+X X X X X X X X X X X X
+X X X X X X X X X X X X
+===
+square(a) ^ size(a, 12)
+Form a 12 block by 12 block square.
+
+X X X X X X X X X
+===
+row(a) ^ width(a, 9)
+Build a row of length 9.
+
+X
+X
+X
+X
+===
+column(a) ^ height(a, 4)
+Build a column with 4 blocks.
+
+X X X X X X X X
+===
+row(a) ^ width(a, 8)
+Form a row with 8 blocks.
+
+X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X
+===
+rectangle(a) ^ height(a, 20) ^ width(a, 17)
+Form a 17 by 20 rectangle.
+
+X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X
+===
+square(a) ^ size(a, 15)
+Build a 15 by 15 square.
+
+X X
+===
+row(a) ^ width(a, 2)
+Create a row with 2 blocks.
+
+X X X X X X X X X X X X X X X X X
+===
+row(a) ^ width(a, 17)
+Form a row with 17 blocks.
+
+X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X
+===
+square(a) ^ size(a, 18)
+Build a 18 by 18 square.
+
+X X X X X X X
+===
+row(a) ^ width(a, 7)
+Build a row with 7 blocks.
+
+X
+X
+X
+X
+===
+column(a) ^ height(a, 4)
+Form a column of height 4.
+
+X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X
+===
+square(a) ^ size(a, 16)
+Build a 16 by 16 square.
+
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+===
+column(a) ^ height(a, 19)
+Create a column with 19 blocks.
+
+X X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X X
+===
+square(a) ^ size(a, 19)
+Form a 19 block by 19 block square.
+
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+===
+column(a) ^ height(a, 14)
+Build a column of height 14.
+
+X X X X X X
+===
+row(a) ^ width(a, 6)
+Form a row with 6 blocks.
+
+X X X X X X X X X X X
+===
+row(a) ^ width(a, 11)
+Build a row using 11 blocks.
+
+X
+X
+X
+===
+column(a) ^ height(a, 3)
+Construct a vertical line using 3 blocks.
+
+X X X X X X X X X X X X X X X
+===
+row(a) ^ width(a, 15)
+Build a row of length 15.
+
+X X X X X X X X X X X X X
+===
+row(a) ^ width(a, 13)
+Form a horizontal line using 13 blocks.
+
+X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X
+===
+rectangle(a) ^ height(a, 5) ^ width(a, 15)
+Create a rectangle with a height of 5 blocks and a width of 15 blocks.
+
+X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X
+===
+rectangle(a) ^ height(a, 11) ^ width(a, 18)
+Construct a rectangle with a width of 18 blocks and a height of 11 blocks.
+
+X X X X X X X X
+===
+row(a) ^ width(a, 8)
+Create a row with 8 blocks.
+
+X X X X X X X X X X X X X X X X X X X X
+===
+row(a) ^ width(a, 20)
+Construct a horizontal line of length 20.
+
+X X X X X X X
+X X X X X X X
+X X X X X X X
+X X X X X X X
+X X X X X X X
+X X X X X X X
+X X X X X X X
+X X X X X X X
+X X X X X X X
+X X X X X X X
+X X X X X X X
+X X X X X X X
+X X X X X X X
+X X X X X X X
+X X X X X X X
+X X X X X X X
+X X X X X X X
+X X X X X X X
+X X X X X X X
+===
+rectangle(a) ^ height(a, 19) ^ width(a, 7)
+Build a rectangle with a height of 19 blocks and a width of 7 blocks.
+
+X X X X X X X X X X
+===
+row(a) ^ width(a, 10)
+Build a horizontal line of length 10.
+
+X X X X X X X
+X X X X X X X
+X X X X X X X
+X X X X X X X
+X X X X X X X
+X X X X X X X
+===
+rectangle(a) ^ height(a, 6) ^ width(a, 7)
+Build a 7 by 6 rectangle.
+
+X X X X X X X X X X X X
+X X X X X X X X X X X X
+X X X X X X X X X X X X
+X X X X X X X X X X X X
+X X X X X X X X X X X X
+X X X X X X X X X X X X
+X X X X X X X X X X X X
+X X X X X X X X X X X X
+X X X X X X X X X X X X
+X X X X X X X X X X X X
+X X X X X X X X X X X X
+X X X X X X X X X X X X
+X X X X X X X X X X X X
+X X X X X X X X X X X X
+X X X X X X X X X X X X
+X X X X X X X X X X X X
+X X X X X X X X X X X X
+X X X X X X X X X X X X
+X X X X X X X X X X X X
+===
+rectangle(a) ^ height(a, 19) ^ width(a, 12)
+Construct a rectangle with a height of 19 blocks and a width of 12 blocks.
+
+X X X X X X X X X X X
+===
+row(a) ^ width(a, 11)
+Form a row with 11 blocks.
+
+X X X X X X X X X X X X
+X X X X X X X X X X X X
+X X X X X X X X X X X X
+X X X X X X X X X X X X
+===
+rectangle(a) ^ height(a, 4) ^ width(a, 12)
+Create a rectangle that is 4 blocks tall and 12 blocks wide.
+
+X X X X X X X X X X
+===
+row(a) ^ width(a, 10)
+Build a horizontal line with 10 blocks.
+
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+===
+column(a) ^ height(a, 15)
+Build a column with 15 blocks.
+
+X X X X X X X X X X
+X X X X X X X X X X
+X X X X X X X X X X
+X X X X X X X X X X
+X X X X X X X X X X
+X X X X X X X X X X
+X X X X X X X X X X
+X X X X X X X X X X
+X X X X X X X X X X
+X X X X X X X X X X
+===
+square(a) ^ size(a, 10)
+Form a 10 by 10 square.
+
+X X X X
+===
+row(a) ^ width(a, 4)
+Construct a row of size 4.
+
+X X X X X X X X X X X X X
+X X X X X X X X X X X X X
+X X X X X X X X X X X X X
+X X X X X X X X X X X X X
+X X X X X X X X X X X X X
+X X X X X X X X X X X X X
+X X X X X X X X X X X X X
+X X X X X X X X X X X X X
+X X X X X X X X X X X X X
+===
+rectangle(a) ^ height(a, 9) ^ width(a, 13)
+Form a rectangle that is 13 blocks wide and 9 blocks tall.
+
+X
+X
+X
+X
+X
+===
+column(a) ^ height(a, 5)
+Form a vertical line of height 5.
+
+X X X X X X X X X X X X X
+===
+row(a) ^ width(a, 13)
+Create a row using 13 blocks.
+
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+===
+column(a) ^ height(a, 13)
+Build a column with 13 blocks.
+
+X X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X X
+===
+rectangle(a) ^ height(a, 15) ^ width(a, 19)
+Form a rectangle with a width of 19 blocks and a height of 15 blocks.
+
+X X X
+===
+row(a) ^ width(a, 3)
+Construct a horizontal line of size 3.
+
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+===
+column(a) ^ height(a, 10)
+Build a column using 10 blocks.
+
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+===
+column(a) ^ height(a, 18)
+Build a vertical line with 18 blocks.
+
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+===
+column(a) ^ height(a, 20)
+Create a column of height 20.
+
+X X X X X X X X X X X X X X X
+===
+row(a) ^ width(a, 15)
+Construct a horizontal line of length 15.
+
+X X X X
+X X X X
+X X X X
+X X X X
+X X X X
+X X X X
+X X X X
+X X X X
+===
+rectangle(a) ^ height(a, 8) ^ width(a, 4)
+Create a rectangle with a width of 4 blocks and a height of 8 blocks.
+
+X X X
+===
+row(a) ^ width(a, 3)
+Create a row with 3 blocks.
+
+X X X X
+===
+row(a) ^ width(a, 4)
+Form a row using 4 blocks.
+
+X
+X
+X
+X
+X
+X
+X
+X
+X
+===
+column(a) ^ height(a, 9)
+Build a vertical line with 9 blocks.
+
+X X X X X X X X X X X X X
+===
+row(a) ^ width(a, 13)
+Construct a row of size 13.
+
+X X X X X X X X X X X X X X
+===
+row(a) ^ width(a, 14)
+Construct a horizontal line using 14 blocks.
+
+X
+X
+X
+X
+X
+X
+X
+X
+X
+===
+column(a) ^ height(a, 9)
+Create a column with 9 blocks.
+
+X X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X X
+===
+rectangle(a) ^ height(a, 17) ^ width(a, 19)
+Construct a rectangle with a height of 17 blocks and a width of 19 blocks.
+
+X
+X
+X
+X
+===
+column(a) ^ height(a, 4)
+Create a vertical line with 4 blocks.
+
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+===
+column(a) ^ height(a, 15)
+Create a column with 15 blocks.
+
+X X X
+===
+row(a) ^ width(a, 3)
+Construct a horizontal line of length 3.
+
+X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X
+===
+square(a) ^ size(a, 15)
+Build a square with sides of block length 15.
+
+X X X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X X X
+===
+rectangle(a) ^ height(a, 11) ^ width(a, 20)
+Form a rectangle that is 11 blocks tall and 20 blocks wide.
+
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+===
+column(a) ^ height(a, 20)
+Construct a column using 20 blocks.
+
+X X X X X X X X X X
+===
+row(a) ^ width(a, 10)
+Create a horizontal line with 10 blocks.
+
+X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X
+===
+rectangle(a) ^ height(a, 6) ^ width(a, 14)
+Form a rectangle with a height of 6 blocks and a width of 14 blocks.
+
+X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X
+===
+rectangle(a) ^ height(a, 17) ^ width(a, 18)
+Build a rectangle that is 18 blocks wide and 17 blocks tall.
+
+X X X X X X X X X X X
+X X X X X X X X X X X
+X X X X X X X X X X X
+X X X X X X X X X X X
+X X X X X X X X X X X
+X X X X X X X X X X X
+X X X X X X X X X X X
+===
+rectangle(a) ^ height(a, 7) ^ width(a, 11)
+Construct a rectangle with a height of 7 blocks and a width of 11 blocks.
+
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+===
+column(a) ^ height(a, 19)
+Construct a vertical line with 19 blocks.
+
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+===
+column(a) ^ height(a, 19)
+Build a vertical line using 19 blocks.
+
+X X X X X X X X X X X X X X X
+===
+row(a) ^ width(a, 15)
+Form a row with 15 blocks.
+
+X X X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X X X
+X X X X X X X X X X X X X X X X X X X X
+===
+rectangle(a) ^ height(a, 12) ^ width(a, 20)
+Form a 20 by 12 rectangle.
+

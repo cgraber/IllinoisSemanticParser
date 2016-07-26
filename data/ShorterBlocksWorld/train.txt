@@ -1,0 +1,500 @@
+<s> form a column using 18 blocks </s>===<s> column ( a ) ^ height ( a , 18 ) </s>
+<s> build a horizontal line of size 15 </s>===<s> row ( a ) ^ width ( a , 15 ) </s>
+<s> construct a 12 block by 12 block square </s>===<s> square ( a ) ^ size ( a , 12 ) </s>
+<s> build a row of size 11 </s>===<s> row ( a ) ^ width ( a , 11 ) </s>
+<s> build a row with 3 blocks </s>===<s> row ( a ) ^ width ( a , 3 ) </s>
+<s> build a row using 7 blocks </s>===<s> row ( a ) ^ width ( a , 7 ) </s>
+<s> form a square with sides of block length 17 </s>===<s> square ( a ) ^ size ( a , 17 ) </s>
+<s> construct a row of size 3 </s>===<s> row ( a ) ^ width ( a , 3 ) </s>
+<s> build a horizontal line of size 16 </s>===<s> row ( a ) ^ width ( a , 16 ) </s>
+<s> build a column of height 2 </s>===<s> column ( a ) ^ height ( a , 2 ) </s>
+<s> form a rectangle with a width of 14 blocks and a height of 18 blocks </s>===<s> rectangle ( a ) ^ height ( a , 18 ) ^ width ( a , 14 ) </s>
+<s> build a 20 by 19 rectangle </s>===<s> rectangle ( a ) ^ height ( a , 19 ) ^ width ( a , 20 ) </s>
+<s> build a rectangle that is 14 blocks tall and 13 blocks wide </s>===<s> rectangle ( a ) ^ height ( a , 14 ) ^ width ( a , 13 ) </s>
+<s> create a 6 block by 6 block square </s>===<s> square ( a ) ^ size ( a , 6 ) </s>
+<s> create a column of height 3 </s>===<s> column ( a ) ^ height ( a , 3 ) </s>
+<s> construct a 2 by 9 rectangle </s>===<s> rectangle ( a ) ^ height ( a , 9 ) ^ width ( a , 2 ) </s>
+<s> build a rectangle that is 3 blocks tall and 6 blocks wide </s>===<s> rectangle ( a ) ^ height ( a , 3 ) ^ width ( a , 6 ) </s>
+<s> create a square with sides of block length 9 </s>===<s> square ( a ) ^ size ( a , 9 ) </s>
+<s> build a horizontal line using 3 blocks </s>===<s> row ( a ) ^ width ( a , 3 ) </s>
+<s> construct a rectangle with a width of 14 blocks and a height of 15 blocks </s>===<s> rectangle ( a ) ^ height ( a , 15 ) ^ width ( a , 14 ) </s>
+<s> form a row using 12 blocks </s>===<s> row ( a ) ^ width ( a , 12 ) </s>
+<s> form a 11 block by 11 block square </s>===<s> square ( a ) ^ size ( a , 11 ) </s>
+<s> build a row of length 11 </s>===<s> row ( a ) ^ width ( a , 11 ) </s>
+<s> form a rectangle with a height of 14 blocks and a width of 16 blocks </s>===<s> rectangle ( a ) ^ height ( a , 14 ) ^ width ( a , 16 ) </s>
+<s> form a horizontal line using 19 blocks </s>===<s> row ( a ) ^ width ( a , 19 ) </s>
+<s> form a rectangle with a width of 16 blocks and a height of 6 blocks </s>===<s> rectangle ( a ) ^ height ( a , 6 ) ^ width ( a , 16 ) </s>
+<s> build a row of length 6 </s>===<s> row ( a ) ^ width ( a , 6 ) </s>
+<s> form a rectangle that is 6 blocks wide and 12 blocks tall </s>===<s> rectangle ( a ) ^ height ( a , 12 ) ^ width ( a , 6 ) </s>
+<s> create a 2 by 2 square </s>===<s> square ( a ) ^ size ( a , 2 ) </s>
+<s> create a row of size 11 </s>===<s> row ( a ) ^ width ( a , 11 ) </s>
+<s> construct a vertical line of height 14 </s>===<s> column ( a ) ^ height ( a , 14 ) </s>
+<s> create a vertical line with 14 blocks </s>===<s> column ( a ) ^ height ( a , 14 ) </s>
+<s> form a 2 block by 2 block square </s>===<s> square ( a ) ^ size ( a , 2 ) </s>
+<s> form a 2 by 19 rectangle </s>===<s> rectangle ( a ) ^ height ( a , 19 ) ^ width ( a , 2 ) </s>
+<s> create a column of size 5 </s>===<s> column ( a ) ^ height ( a , 5 ) </s>
+<s> create a rectangle with a width of 13 blocks and a height of 3 blocks </s>===<s> rectangle ( a ) ^ height ( a , 3 ) ^ width ( a , 13 ) </s>
+<s> build a vertical line with 3 blocks </s>===<s> column ( a ) ^ height ( a , 3 ) </s>
+<s> build a rectangle that is 11 blocks wide and 20 blocks tall </s>===<s> rectangle ( a ) ^ height ( a , 20 ) ^ width ( a , 11 ) </s>
+<s> form a vertical line of height 17 </s>===<s> column ( a ) ^ height ( a , 17 ) </s>
+<s> create a row of size 3 </s>===<s> row ( a ) ^ width ( a , 3 ) </s>
+<s> build a 19 block by 19 block square </s>===<s> square ( a ) ^ size ( a , 19 ) </s>
+<s> construct a 10 block by 10 block square </s>===<s> square ( a ) ^ size ( a , 10 ) </s>
+<s> form a 3 by 3 square </s>===<s> square ( a ) ^ size ( a , 3 ) </s>
+<s> form a row using 3 blocks </s>===<s> row ( a ) ^ width ( a , 3 ) </s>
+<s> build a horizontal line using 19 blocks </s>===<s> row ( a ) ^ width ( a , 19 ) </s>
+<s> build a square with sides of block length 12 </s>===<s> square ( a ) ^ size ( a , 12 ) </s>
+<s> build a square with sides of block length 5 </s>===<s> square ( a ) ^ size ( a , 5 ) </s>
+<s> form a square with sides of block length 3 </s>===<s> square ( a ) ^ size ( a , 3 ) </s>
+<s> construct a 5 by 4 rectangle </s>===<s> rectangle ( a ) ^ height ( a , 4 ) ^ width ( a , 5 ) </s>
+<s> build a square with sides of block length 9 </s>===<s> square ( a ) ^ size ( a , 9 ) </s>
+<s> form a horizontal line using 6 blocks </s>===<s> row ( a ) ^ width ( a , 6 ) </s>
+<s> form a rectangle with a height of 13 blocks and a width of 11 blocks </s>===<s> rectangle ( a ) ^ height ( a , 13 ) ^ width ( a , 11 ) </s>
+<s> create a rectangle that is 5 blocks tall and 13 blocks wide </s>===<s> rectangle ( a ) ^ height ( a , 5 ) ^ width ( a , 13 ) </s>
+<s> build a 6 by 6 square </s>===<s> square ( a ) ^ size ( a , 6 ) </s>
+<s> form a rectangle that is 6 blocks tall and 16 blocks wide </s>===<s> rectangle ( a ) ^ height ( a , 6 ) ^ width ( a , 16 ) </s>
+<s> build a vertical line using 15 blocks </s>===<s> column ( a ) ^ height ( a , 15 ) </s>
+<s> create a 7 by 7 square </s>===<s> square ( a ) ^ size ( a , 7 ) </s>
+<s> create a vertical line using 13 blocks </s>===<s> column ( a ) ^ height ( a , 13 ) </s>
+<s> construct a rectangle with a width of 6 blocks and a height of 9 blocks </s>===<s> rectangle ( a ) ^ height ( a , 9 ) ^ width ( a , 6 ) </s>
+<s> form a column of height 8 </s>===<s> column ( a ) ^ height ( a , 8 ) </s>
+<s> create a rectangle that is 5 blocks wide and 3 blocks tall </s>===<s> rectangle ( a ) ^ height ( a , 3 ) ^ width ( a , 5 ) </s>
+<s> build a horizontal line with 7 blocks </s>===<s> row ( a ) ^ width ( a , 7 ) </s>
+<s> construct a horizontal line of size 15 </s>===<s> row ( a ) ^ width ( a , 15 ) </s>
+<s> create a rectangle that is 10 blocks tall and 6 blocks wide </s>===<s> rectangle ( a ) ^ height ( a , 10 ) ^ width ( a , 6 ) </s>
+<s> create a row of length 14 </s>===<s> row ( a ) ^ width ( a , 14 ) </s>
+<s> create a column with 17 blocks </s>===<s> column ( a ) ^ height ( a , 17 ) </s>
+<s> build a row of length 18 </s>===<s> row ( a ) ^ width ( a , 18 ) </s>
+<s> build a square with sides of block length 3 </s>===<s> square ( a ) ^ size ( a , 3 ) </s>
+<s> build a column of height 12 </s>===<s> column ( a ) ^ height ( a , 12 ) </s>
+<s> construct a square with sides of block length 6 </s>===<s> square ( a ) ^ size ( a , 6 ) </s>
+<s> construct a row of length 18 </s>===<s> row ( a ) ^ width ( a , 18 ) </s>
+<s> create a square with sides of block length 18 </s>===<s> square ( a ) ^ size ( a , 18 ) </s>
+<s> build a vertical line of height 10 </s>===<s> column ( a ) ^ height ( a , 10 ) </s>
+<s> form a row of size 20 </s>===<s> row ( a ) ^ width ( a , 20 ) </s>
+<s> build a vertical line using 3 blocks </s>===<s> column ( a ) ^ height ( a , 3 ) </s>
+<s> build a 8 by 8 square </s>===<s> square ( a ) ^ size ( a , 8 ) </s>
+<s> create a vertical line using 14 blocks </s>===<s> column ( a ) ^ height ( a , 14 ) </s>
+<s> build a 3 by 3 square </s>===<s> square ( a ) ^ size ( a , 3 ) </s>
+<s> create a row of size 16 </s>===<s> row ( a ) ^ width ( a , 16 ) </s>
+<s> form a vertical line using 14 blocks </s>===<s> column ( a ) ^ height ( a , 14 ) </s>
+<s> build a vertical line with 11 blocks </s>===<s> column ( a ) ^ height ( a , 11 ) </s>
+<s> build a horizontal line of size 18 </s>===<s> row ( a ) ^ width ( a , 18 ) </s>
+<s> form a rectangle with a height of 6 blocks and a width of 4 blocks </s>===<s> rectangle ( a ) ^ height ( a , 6 ) ^ width ( a , 4 ) </s>
+<s> construct a row of length 13 </s>===<s> row ( a ) ^ width ( a , 13 ) </s>
+<s> create a row of length 16 </s>===<s> row ( a ) ^ width ( a , 16 ) </s>
+<s> build a 7 block by 7 block square </s>===<s> square ( a ) ^ size ( a , 7 ) </s>
+<s> build a horizontal line using 2 blocks </s>===<s> row ( a ) ^ width ( a , 2 ) </s>
+<s> construct a rectangle that is 15 blocks tall and 12 blocks wide </s>===<s> rectangle ( a ) ^ height ( a , 15 ) ^ width ( a , 12 ) </s>
+<s> form a 9 by 9 square </s>===<s> square ( a ) ^ size ( a , 9 ) </s>
+<s> construct a 9 by 4 rectangle </s>===<s> rectangle ( a ) ^ height ( a , 4 ) ^ width ( a , 9 ) </s>
+<s> form a column with 2 blocks </s>===<s> column ( a ) ^ height ( a , 2 ) </s>
+<s> construct a 13 by 13 square </s>===<s> square ( a ) ^ size ( a , 13 ) </s>
+<s> form a rectangle that is 7 blocks tall and 18 blocks wide </s>===<s> rectangle ( a ) ^ height ( a , 7 ) ^ width ( a , 18 ) </s>
+<s> construct a row of length 16 </s>===<s> row ( a ) ^ width ( a , 16 ) </s>
+<s> form a rectangle with a height of 18 blocks and a width of 9 blocks </s>===<s> rectangle ( a ) ^ height ( a , 18 ) ^ width ( a , 9 ) </s>
+<s> form a row of size 15 </s>===<s> row ( a ) ^ width ( a , 15 ) </s>
+<s> create a horizontal line of size 10 </s>===<s> row ( a ) ^ width ( a , 10 ) </s>
+<s> create a vertical line of size 19 </s>===<s> column ( a ) ^ height ( a , 19 ) </s>
+<s> build a horizontal line with 5 blocks </s>===<s> row ( a ) ^ width ( a , 5 ) </s>
+<s> construct a horizontal line with 5 blocks </s>===<s> row ( a ) ^ width ( a , 5 ) </s>
+<s> create a column with 11 blocks </s>===<s> column ( a ) ^ height ( a , 11 ) </s>
+<s> construct a rectangle with a width of 10 blocks and a height of 7 blocks </s>===<s> rectangle ( a ) ^ height ( a , 7 ) ^ width ( a , 10 ) </s>
+<s> construct a 5 block by 5 block square </s>===<s> square ( a ) ^ size ( a , 5 ) </s>
+<s> create a vertical line of size 9 </s>===<s> column ( a ) ^ height ( a , 9 ) </s>
+<s> form a column with 20 blocks </s>===<s> column ( a ) ^ height ( a , 20 ) </s>
+<s> form a vertical line with 7 blocks </s>===<s> column ( a ) ^ height ( a , 7 ) </s>
+<s> form a horizontal line with 20 blocks </s>===<s> row ( a ) ^ width ( a , 20 ) </s>
+<s> form a vertical line with 13 blocks </s>===<s> column ( a ) ^ height ( a , 13 ) </s>
+<s> create a 8 by 20 rectangle </s>===<s> rectangle ( a ) ^ height ( a , 20 ) ^ width ( a , 8 ) </s>
+<s> form a rectangle with a height of 13 blocks and a width of 9 blocks </s>===<s> rectangle ( a ) ^ height ( a , 13 ) ^ width ( a , 9 ) </s>
+<s> create a rectangle that is 18 blocks wide and 11 blocks tall </s>===<s> rectangle ( a ) ^ height ( a , 11 ) ^ width ( a , 18 ) </s>
+<s> construct a 13 block by 13 block square </s>===<s> square ( a ) ^ size ( a , 13 ) </s>
+<s> form a rectangle that is 16 blocks wide and 4 blocks tall </s>===<s> rectangle ( a ) ^ height ( a , 4 ) ^ width ( a , 16 ) </s>
+<s> build a rectangle that is 5 blocks tall and 15 blocks wide </s>===<s> rectangle ( a ) ^ height ( a , 5 ) ^ width ( a , 15 ) </s>
+<s> create a column of size 17 </s>===<s> column ( a ) ^ height ( a , 17 ) </s>
+<s> create a horizontal line of length 4 </s>===<s> row ( a ) ^ width ( a , 4 ) </s>
+<s> build a rectangle that is 2 blocks wide and 4 blocks tall </s>===<s> rectangle ( a ) ^ height ( a , 4 ) ^ width ( a , 2 ) </s>
+<s> construct a rectangle with a height of 13 blocks and a width of 14 blocks </s>===<s> rectangle ( a ) ^ height ( a , 13 ) ^ width ( a , 14 ) </s>
+<s> build a column of size 8 </s>===<s> column ( a ) ^ height ( a , 8 ) </s>
+<s> form a 14 block by 14 block square </s>===<s> square ( a ) ^ size ( a , 14 ) </s>
+<s> form a horizontal line using 15 blocks </s>===<s> row ( a ) ^ width ( a , 15 ) </s>
+<s> form a row of length 16 </s>===<s> row ( a ) ^ width ( a , 16 ) </s>
+<s> construct a rectangle with a width of 5 blocks and a height of 6 blocks </s>===<s> rectangle ( a ) ^ height ( a , 6 ) ^ width ( a , 5 ) </s>
+<s> build a horizontal line with 6 blocks </s>===<s> row ( a ) ^ width ( a , 6 ) </s>
+<s> create a vertical line using 5 blocks </s>===<s> column ( a ) ^ height ( a , 5 ) </s>
+<s> form a horizontal line of length 18 </s>===<s> row ( a ) ^ width ( a , 18 ) </s>
+<s> form a column using 5 blocks </s>===<s> column ( a ) ^ height ( a , 5 ) </s>
+<s> form a rectangle that is 18 blocks wide and 17 blocks tall </s>===<s> rectangle ( a ) ^ height ( a , 17 ) ^ width ( a , 18 ) </s>
+<s> build a horizontal line of length 13 </s>===<s> row ( a ) ^ width ( a , 13 ) </s>
+<s> form a horizontal line of length 19 </s>===<s> row ( a ) ^ width ( a , 19 ) </s>
+<s> create a horizontal line of length 3 </s>===<s> row ( a ) ^ width ( a , 3 ) </s>
+<s> create a rectangle that is 3 blocks wide and 14 blocks tall </s>===<s> rectangle ( a ) ^ height ( a , 14 ) ^ width ( a , 3 ) </s>
+<s> form a rectangle with a width of 19 blocks and a height of 16 blocks </s>===<s> rectangle ( a ) ^ height ( a , 16 ) ^ width ( a , 19 ) </s>
+<s> form a row of length 7 </s>===<s> row ( a ) ^ width ( a , 7 ) </s>
+<s> form a horizontal line of size 13 </s>===<s> row ( a ) ^ width ( a , 13 ) </s>
+<s> form a square with sides of block length 6 </s>===<s> square ( a ) ^ size ( a , 6 ) </s>
+<s> create a vertical line using 19 blocks </s>===<s> column ( a ) ^ height ( a , 19 ) </s>
+<s> form a rectangle that is 11 blocks wide and 18 blocks tall </s>===<s> rectangle ( a ) ^ height ( a , 18 ) ^ width ( a , 11 ) </s>
+<s> create a horizontal line using 16 blocks </s>===<s> row ( a ) ^ width ( a , 16 ) </s>
+<s> form a row of size 16 </s>===<s> row ( a ) ^ width ( a , 16 ) </s>
+<s> create a rectangle that is 9 blocks wide and 7 blocks tall </s>===<s> rectangle ( a ) ^ height ( a , 7 ) ^ width ( a , 9 ) </s>
+<s> create a row with 10 blocks </s>===<s> row ( a ) ^ width ( a , 10 ) </s>
+<s> form a vertical line using 7 blocks </s>===<s> column ( a ) ^ height ( a , 7 ) </s>
+<s> create a row with 13 blocks </s>===<s> row ( a ) ^ width ( a , 13 ) </s>
+<s> form a horizontal line using 12 blocks </s>===<s> row ( a ) ^ width ( a , 12 ) </s>
+<s> construct a 20 block by 20 block square </s>===<s> square ( a ) ^ size ( a , 20 ) </s>
+<s> build a square with sides of block length 14 </s>===<s> square ( a ) ^ size ( a , 14 ) </s>
+<s> build a horizontal line of length 19 </s>===<s> row ( a ) ^ width ( a , 19 ) </s>
+<s> create a rectangle with a width of 16 blocks and a height of 5 blocks </s>===<s> rectangle ( a ) ^ height ( a , 5 ) ^ width ( a , 16 ) </s>
+<s> create a vertical line with 6 blocks </s>===<s> column ( a ) ^ height ( a , 6 ) </s>
+<s> form a 15 by 13 rectangle </s>===<s> rectangle ( a ) ^ height ( a , 13 ) ^ width ( a , 15 ) </s>
+<s> build a vertical line with 8 blocks </s>===<s> column ( a ) ^ height ( a , 8 ) </s>
+<s> form a 17 block by 17 block square </s>===<s> square ( a ) ^ size ( a , 17 ) </s>
+<s> construct a row using 17 blocks </s>===<s> row ( a ) ^ width ( a , 17 ) </s>
+<s> form a column using 17 blocks </s>===<s> column ( a ) ^ height ( a , 17 ) </s>
+<s> form a rectangle with a height of 10 blocks and a width of 19 blocks </s>===<s> rectangle ( a ) ^ height ( a , 10 ) ^ width ( a , 19 ) </s>
+<s> build a rectangle with a width of 2 blocks and a height of 10 blocks </s>===<s> rectangle ( a ) ^ height ( a , 10 ) ^ width ( a , 2 ) </s>
+<s> create a 15 by 19 rectangle </s>===<s> rectangle ( a ) ^ height ( a , 19 ) ^ width ( a , 15 ) </s>
+<s> create a vertical line with 7 blocks </s>===<s> column ( a ) ^ height ( a , 7 ) </s>
+<s> construct a row using 13 blocks </s>===<s> row ( a ) ^ width ( a , 13 ) </s>
+<s> create a square with sides of block length 19 </s>===<s> square ( a ) ^ size ( a , 19 ) </s>
+<s> create a horizontal line of size 3 </s>===<s> row ( a ) ^ width ( a , 3 ) </s>
+<s> form a 20 by 20 square </s>===<s> square ( a ) ^ size ( a , 20 ) </s>
+<s> create a 5 by 5 square </s>===<s> square ( a ) ^ size ( a , 5 ) </s>
+<s> construct a row of size 6 </s>===<s> row ( a ) ^ width ( a , 6 ) </s>
+<s> form a square with sides of block length 19 </s>===<s> square ( a ) ^ size ( a , 19 ) </s>
+<s> build a horizontal line of length 11 </s>===<s> row ( a ) ^ width ( a , 11 ) </s>
+<s> create a rectangle that is 11 blocks wide and 9 blocks tall </s>===<s> rectangle ( a ) ^ height ( a , 9 ) ^ width ( a , 11 ) </s>
+<s> form a horizontal line with 15 blocks </s>===<s> row ( a ) ^ width ( a , 15 ) </s>
+<s> create a column with 4 blocks </s>===<s> column ( a ) ^ height ( a , 4 ) </s>
+<s> form a horizontal line with 13 blocks </s>===<s> row ( a ) ^ width ( a , 13 ) </s>
+<s> form a row using 14 blocks </s>===<s> row ( a ) ^ width ( a , 14 ) </s>
+<s> create a square with sides of block length 14 </s>===<s> square ( a ) ^ size ( a , 14 ) </s>
+<s> create a horizontal line with 13 blocks </s>===<s> row ( a ) ^ width ( a , 13 ) </s>
+<s> create a rectangle with a height of 16 blocks and a width of 10 blocks </s>===<s> rectangle ( a ) ^ height ( a , 16 ) ^ width ( a , 10 ) </s>
+<s> form a row of length 4 </s>===<s> row ( a ) ^ width ( a , 4 ) </s>
+<s> construct a row with 5 blocks </s>===<s> row ( a ) ^ width ( a , 5 ) </s>
+<s> build a square with sides of block length 10 </s>===<s> square ( a ) ^ size ( a , 10 ) </s>
+<s> construct a vertical line of height 15 </s>===<s> column ( a ) ^ height ( a , 15 ) </s>
+<s> form a horizontal line of size 17 </s>===<s> row ( a ) ^ width ( a , 17 ) </s>
+<s> create a row using 11 blocks </s>===<s> row ( a ) ^ width ( a , 11 ) </s>
+<s> form a 16 block by 16 block square </s>===<s> square ( a ) ^ size ( a , 16 ) </s>
+<s> construct a 15 block by 15 block square </s>===<s> square ( a ) ^ size ( a , 15 ) </s>
+<s> form a 17 by 18 rectangle </s>===<s> rectangle ( a ) ^ height ( a , 18 ) ^ width ( a , 17 ) </s>
+<s> build a row with 15 blocks </s>===<s> row ( a ) ^ width ( a , 15 ) </s>
+<s> create a 15 by 8 rectangle </s>===<s> rectangle ( a ) ^ height ( a , 8 ) ^ width ( a , 15 ) </s>
+<s> build a vertical line using 10 blocks </s>===<s> column ( a ) ^ height ( a , 10 ) </s>
+<s> build a square with sides of block length 20 </s>===<s> square ( a ) ^ size ( a , 20 ) </s>
+<s> create a square with sides of block length 8 </s>===<s> square ( a ) ^ size ( a , 8 ) </s>
+<s> construct a column of height 2 </s>===<s> column ( a ) ^ height ( a , 2 ) </s>
+<s> build a row using 13 blocks </s>===<s> row ( a ) ^ width ( a , 13 ) </s>
+<s> construct a column of height 19 </s>===<s> column ( a ) ^ height ( a , 19 ) </s>
+<s> construct a horizontal line of length 16 </s>===<s> row ( a ) ^ width ( a , 16 ) </s>
+<s> build a horizontal line using 4 blocks </s>===<s> row ( a ) ^ width ( a , 4 ) </s>
+<s> construct a horizontal line using 10 blocks </s>===<s> row ( a ) ^ width ( a , 10 ) </s>
+<s> form a 8 block by 8 block square </s>===<s> square ( a ) ^ size ( a , 8 ) </s>
+<s> build a rectangle with a width of 17 blocks and a height of 16 blocks </s>===<s> rectangle ( a ) ^ height ( a , 16 ) ^ width ( a , 17 ) </s>
+<s> construct a horizontal line of length 11 </s>===<s> row ( a ) ^ width ( a , 11 ) </s>
+<s> form a 9 block by 9 block square </s>===<s> square ( a ) ^ size ( a , 9 ) </s>
+<s> construct a rectangle with a height of 18 blocks and a width of 3 blocks </s>===<s> rectangle ( a ) ^ height ( a , 18 ) ^ width ( a , 3 ) </s>
+<s> build a 18 by 12 rectangle </s>===<s> rectangle ( a ) ^ height ( a , 12 ) ^ width ( a , 18 ) </s>
+<s> create a column of height 4 </s>===<s> column ( a ) ^ height ( a , 4 ) </s>
+<s> create a column of size 10 </s>===<s> column ( a ) ^ height ( a , 10 ) </s>
+<s> form a vertical line with 12 blocks </s>===<s> column ( a ) ^ height ( a , 12 ) </s>
+<s> build a 12 block by 12 block square </s>===<s> square ( a ) ^ size ( a , 12 ) </s>
+<s> create a rectangle that is 9 blocks wide and 11 blocks tall </s>===<s> rectangle ( a ) ^ height ( a , 11 ) ^ width ( a , 9 ) </s>
+<s> construct a square with sides of block length 20 </s>===<s> square ( a ) ^ size ( a , 20 ) </s>
+<s> form a rectangle with a height of 20 blocks and a width of 9 blocks </s>===<s> rectangle ( a ) ^ height ( a , 20 ) ^ width ( a , 9 ) </s>
+<s> create a horizontal line with 15 blocks </s>===<s> row ( a ) ^ width ( a , 15 ) </s>
+<s> form a column with 16 blocks </s>===<s> column ( a ) ^ height ( a , 16 ) </s>
+<s> build a column using 11 blocks </s>===<s> column ( a ) ^ height ( a , 11 ) </s>
+<s> create a vertical line of height 17 </s>===<s> column ( a ) ^ height ( a , 17 ) </s>
+<s> form a 5 by 5 square </s>===<s> square ( a ) ^ size ( a , 5 ) </s>
+<s> form a horizontal line of size 20 </s>===<s> row ( a ) ^ width ( a , 20 ) </s>
+<s> create a square with sides of block length 12 </s>===<s> square ( a ) ^ size ( a , 12 ) </s>
+<s> form a vertical line with 6 blocks </s>===<s> column ( a ) ^ height ( a , 6 ) </s>
+<s> build a column of size 17 </s>===<s> column ( a ) ^ height ( a , 17 ) </s>
+<s> build a horizontal line using 12 blocks </s>===<s> row ( a ) ^ width ( a , 12 ) </s>
+<s> form a 4 by 4 square </s>===<s> square ( a ) ^ size ( a , 4 ) </s>
+<s> create a 9 by 9 square </s>===<s> square ( a ) ^ size ( a , 9 ) </s>
+<s> construct a rectangle that is 6 blocks tall and 11 blocks wide </s>===<s> rectangle ( a ) ^ height ( a , 6 ) ^ width ( a , 11 ) </s>
+<s> construct a 12 by 12 square </s>===<s> square ( a ) ^ size ( a , 12 ) </s>
+<s> form a rectangle that is 14 blocks tall and 10 blocks wide </s>===<s> rectangle ( a ) ^ height ( a , 14 ) ^ width ( a , 10 ) </s>
+<s> construct a horizontal line of size 20 </s>===<s> row ( a ) ^ width ( a , 20 ) </s>
+<s> build a 4 by 4 square </s>===<s> square ( a ) ^ size ( a , 4 ) </s>
+<s> create a column with 2 blocks </s>===<s> column ( a ) ^ height ( a , 2 ) </s>
+<s> construct a 16 block by 16 block square </s>===<s> square ( a ) ^ size ( a , 16 ) </s>
+<s> build a column using 9 blocks </s>===<s> column ( a ) ^ height ( a , 9 ) </s>
+<s> build a horizontal line of size 7 </s>===<s> row ( a ) ^ width ( a , 7 ) </s>
+<s> form a column with 19 blocks </s>===<s> column ( a ) ^ height ( a , 19 ) </s>
+<s> build a horizontal line using 6 blocks </s>===<s> row ( a ) ^ width ( a , 6 ) </s>
+<s> build a column of height 9 </s>===<s> column ( a ) ^ height ( a , 9 ) </s>
+<s> create a 8 by 8 square </s>===<s> square ( a ) ^ size ( a , 8 ) </s>
+<s> form a rectangle with a width of 8 blocks and a height of 4 blocks </s>===<s> rectangle ( a ) ^ height ( a , 4 ) ^ width ( a , 8 ) </s>
+<s> construct a column of height 12 </s>===<s> column ( a ) ^ height ( a , 12 ) </s>
+<s> construct a row using 18 blocks </s>===<s> row ( a ) ^ width ( a , 18 ) </s>
+<s> form a vertical line with 9 blocks </s>===<s> column ( a ) ^ height ( a , 9 ) </s>
+<s> form a horizontal line of length 4 </s>===<s> row ( a ) ^ width ( a , 4 ) </s>
+<s> create a horizontal line with 2 blocks </s>===<s> row ( a ) ^ width ( a , 2 ) </s>
+<s> form a column using 9 blocks </s>===<s> column ( a ) ^ height ( a , 9 ) </s>
+<s> form a column with 17 blocks </s>===<s> column ( a ) ^ height ( a , 17 ) </s>
+<s> form a 15 block by 15 block square </s>===<s> square ( a ) ^ size ( a , 15 ) </s>
+<s> construct a 18 block by 18 block square </s>===<s> square ( a ) ^ size ( a , 18 ) </s>
+<s> create a vertical line of height 7 </s>===<s> column ( a ) ^ height ( a , 7 ) </s>
+<s> construct a vertical line with 7 blocks </s>===<s> column ( a ) ^ height ( a , 7 ) </s>
+<s> create a vertical line with 20 blocks </s>===<s> column ( a ) ^ height ( a , 20 ) </s>
+<s> form a column using 15 blocks </s>===<s> column ( a ) ^ height ( a , 15 ) </s>
+<s> construct a square with sides of block length 9 </s>===<s> square ( a ) ^ size ( a , 9 ) </s>
+<s> construct a vertical line of size 2 </s>===<s> column ( a ) ^ height ( a , 2 ) </s>
+<s> create a 15 by 2 rectangle </s>===<s> rectangle ( a ) ^ height ( a , 2 ) ^ width ( a , 15 ) </s>
+<s> construct a column with 2 blocks </s>===<s> column ( a ) ^ height ( a , 2 ) </s>
+<s> build a rectangle with a height of 5 blocks and a width of 10 blocks </s>===<s> rectangle ( a ) ^ height ( a , 5 ) ^ width ( a , 10 ) </s>
+<s> create a horizontal line of size 5 </s>===<s> row ( a ) ^ width ( a , 5 ) </s>
+<s> build a horizontal line using 8 blocks </s>===<s> row ( a ) ^ width ( a , 8 ) </s>
+<s> form a column of height 16 </s>===<s> column ( a ) ^ height ( a , 16 ) </s>
+<s> construct a 19 by 19 square </s>===<s> square ( a ) ^ size ( a , 19 ) </s>
+<s> construct a column with 18 blocks </s>===<s> column ( a ) ^ height ( a , 18 ) </s>
+<s> create a rectangle with a width of 17 blocks and a height of 11 blocks </s>===<s> rectangle ( a ) ^ height ( a , 11 ) ^ width ( a , 17 ) </s>
+<s> create a rectangle that is 9 blocks tall and 16 blocks wide </s>===<s> rectangle ( a ) ^ height ( a , 9 ) ^ width ( a , 16 ) </s>
+<s> create a 3 by 6 rectangle </s>===<s> rectangle ( a ) ^ height ( a , 6 ) ^ width ( a , 3 ) </s>
+<s> form a square with sides of block length 13 </s>===<s> square ( a ) ^ size ( a , 13 ) </s>
+<s> build a row using 8 blocks </s>===<s> row ( a ) ^ width ( a , 8 ) </s>
+<s> create a column of height 16 </s>===<s> column ( a ) ^ height ( a , 16 ) </s>
+<s> form a rectangle with a height of 5 blocks and a width of 19 blocks </s>===<s> rectangle ( a ) ^ height ( a , 5 ) ^ width ( a , 19 ) </s>
+<s> build a horizontal line of length 6 </s>===<s> row ( a ) ^ width ( a , 6 ) </s>
+<s> construct a 9 by 11 rectangle </s>===<s> rectangle ( a ) ^ height ( a , 11 ) ^ width ( a , 9 ) </s>
+<s> create a rectangle with a width of 13 blocks and a height of 7 blocks </s>===<s> rectangle ( a ) ^ height ( a , 7 ) ^ width ( a , 13 ) </s>
+<s> build a horizontal line of length 12 </s>===<s> row ( a ) ^ width ( a , 12 ) </s>
+<s> build a 15 block by 15 block square </s>===<s> square ( a ) ^ size ( a , 15 ) </s>
+<s> construct a vertical line with 11 blocks </s>===<s> column ( a ) ^ height ( a , 11 ) </s>
+<s> form a 17 by 17 square </s>===<s> square ( a ) ^ size ( a , 17 ) </s>
+<s> construct a column using 11 blocks </s>===<s> column ( a ) ^ height ( a , 11 ) </s>
+<s> create a square with sides of block length 10 </s>===<s> square ( a ) ^ size ( a , 10 ) </s>
+<s> form a 12 by 12 square </s>===<s> square ( a ) ^ size ( a , 12 ) </s>
+<s> build a horizontal line using 16 blocks </s>===<s> row ( a ) ^ width ( a , 16 ) </s>
+<s> form a rectangle that is 17 blocks wide and 12 blocks tall </s>===<s> rectangle ( a ) ^ height ( a , 12 ) ^ width ( a , 17 ) </s>
+<s> build a vertical line of height 7 </s>===<s> column ( a ) ^ height ( a , 7 ) </s>
+<s> form a vertical line of size 12 </s>===<s> column ( a ) ^ height ( a , 12 ) </s>
+<s> form a row of size 17 </s>===<s> row ( a ) ^ width ( a , 17 ) </s>
+<s> form a rectangle that is 20 blocks wide and 14 blocks tall </s>===<s> rectangle ( a ) ^ height ( a , 14 ) ^ width ( a , 20 ) </s>
+<s> build a square with sides of block length 16 </s>===<s> square ( a ) ^ size ( a , 16 ) </s>
+<s> create a row of size 6 </s>===<s> row ( a ) ^ width ( a , 6 ) </s>
+<s> construct a vertical line of height 2 </s>===<s> column ( a ) ^ height ( a , 2 ) </s>
+<s> create a rectangle that is 5 blocks tall and 4 blocks wide </s>===<s> rectangle ( a ) ^ height ( a , 5 ) ^ width ( a , 4 ) </s>
+<s> construct a rectangle with a height of 2 blocks and a width of 13 blocks </s>===<s> rectangle ( a ) ^ height ( a , 2 ) ^ width ( a , 13 ) </s>
+<s> build a square with sides of block length 17 </s>===<s> square ( a ) ^ size ( a , 17 ) </s>
+<s> form a vertical line of size 10 </s>===<s> column ( a ) ^ height ( a , 10 ) </s>
+<s> form a 15 by 15 square </s>===<s> square ( a ) ^ size ( a , 15 ) </s>
+<s> form a horizontal line of length 3 </s>===<s> row ( a ) ^ width ( a , 3 ) </s>
+<s> form a rectangle that is 8 blocks tall and 13 blocks wide </s>===<s> rectangle ( a ) ^ height ( a , 8 ) ^ width ( a , 13 ) </s>
+<s> form a row of length 20 </s>===<s> row ( a ) ^ width ( a , 20 ) </s>
+<s> create a rectangle with a width of 9 blocks and a height of 11 blocks </s>===<s> rectangle ( a ) ^ height ( a , 11 ) ^ width ( a , 9 ) </s>
+<s> build a rectangle with a height of 18 blocks and a width of 12 blocks </s>===<s> rectangle ( a ) ^ height ( a , 18 ) ^ width ( a , 12 ) </s>
+<s> create a horizontal line using 10 blocks </s>===<s> row ( a ) ^ width ( a , 10 ) </s>
+<s> form a rectangle with a width of 18 blocks and a height of 10 blocks </s>===<s> rectangle ( a ) ^ height ( a , 10 ) ^ width ( a , 18 ) </s>
+<s> construct a 20 by 3 rectangle </s>===<s> rectangle ( a ) ^ height ( a , 3 ) ^ width ( a , 20 ) </s>
+<s> build a 12 by 2 rectangle </s>===<s> rectangle ( a ) ^ height ( a , 2 ) ^ width ( a , 12 ) </s>
+<s> create a vertical line using 20 blocks </s>===<s> column ( a ) ^ height ( a , 20 ) </s>
+<s> construct a column of size 7 </s>===<s> column ( a ) ^ height ( a , 7 ) </s>
+<s> build a column with 5 blocks </s>===<s> column ( a ) ^ height ( a , 5 ) </s>
+<s> construct a rectangle that is 17 blocks tall and 20 blocks wide </s>===<s> rectangle ( a ) ^ height ( a , 17 ) ^ width ( a , 20 ) </s>
+<s> create a 16 block by 16 block square </s>===<s> square ( a ) ^ size ( a , 16 ) </s>
+<s> form a rectangle with a width of 8 blocks and a height of 15 blocks </s>===<s> rectangle ( a ) ^ height ( a , 15 ) ^ width ( a , 8 ) </s>
+<s> build a vertical line using 4 blocks </s>===<s> column ( a ) ^ height ( a , 4 ) </s>
+<s> create a horizontal line of length 12 </s>===<s> row ( a ) ^ width ( a , 12 ) </s>
+<s> form a row of length 18 </s>===<s> row ( a ) ^ width ( a , 18 ) </s>
+<s> create a rectangle with a width of 9 blocks and a height of 5 blocks </s>===<s> rectangle ( a ) ^ height ( a , 5 ) ^ width ( a , 9 ) </s>
+<s> build a rectangle that is 16 blocks wide and 19 blocks tall </s>===<s> rectangle ( a ) ^ height ( a , 19 ) ^ width ( a , 16 ) </s>
+<s> build a column using 6 blocks </s>===<s> column ( a ) ^ height ( a , 6 ) </s>
+<s> form a vertical line using 9 blocks </s>===<s> column ( a ) ^ height ( a , 9 ) </s>
+<s> form a vertical line with 18 blocks </s>===<s> column ( a ) ^ height ( a , 18 ) </s>
+<s> form a column of size 20 </s>===<s> column ( a ) ^ height ( a , 20 ) </s>
+<s> construct a horizontal line of length 13 </s>===<s> row ( a ) ^ width ( a , 13 ) </s>
+<s> form a 18 by 18 square </s>===<s> square ( a ) ^ size ( a , 18 ) </s>
+<s> create a rectangle that is 7 blocks wide and 10 blocks tall </s>===<s> rectangle ( a ) ^ height ( a , 10 ) ^ width ( a , 7 ) </s>
+<s> construct a 10 by 15 rectangle </s>===<s> rectangle ( a ) ^ height ( a , 15 ) ^ width ( a , 10 ) </s>
+<s> construct a vertical line using 13 blocks </s>===<s> column ( a ) ^ height ( a , 13 ) </s>
+<s> build a 4 block by 4 block square </s>===<s> square ( a ) ^ size ( a , 4 ) </s>
+<s> construct a vertical line of size 6 </s>===<s> column ( a ) ^ height ( a , 6 ) </s>
+<s> form a vertical line of height 14 </s>===<s> column ( a ) ^ height ( a , 14 ) </s>
+<s> construct a square with sides of block length 13 </s>===<s> square ( a ) ^ size ( a , 13 ) </s>
+<s> construct a column using 13 blocks </s>===<s> column ( a ) ^ height ( a , 13 ) </s>
+<s> create a column of height 17 </s>===<s> column ( a ) ^ height ( a , 17 ) </s>
+<s> create a row of size 15 </s>===<s> row ( a ) ^ width ( a , 15 ) </s>
+<s> create a rectangle with a height of 16 blocks and a width of 3 blocks </s>===<s> rectangle ( a ) ^ height ( a , 16 ) ^ width ( a , 3 ) </s>
+<s> create a rectangle with a height of 19 blocks and a width of 8 blocks </s>===<s> rectangle ( a ) ^ height ( a , 19 ) ^ width ( a , 8 ) </s>
+<s> form a rectangle with a height of 10 blocks and a width of 4 blocks </s>===<s> rectangle ( a ) ^ height ( a , 10 ) ^ width ( a , 4 ) </s>
+<s> form a rectangle that is 16 blocks tall and 14 blocks wide </s>===<s> rectangle ( a ) ^ height ( a , 16 ) ^ width ( a , 14 ) </s>
+<s> create a 19 by 19 square </s>===<s> square ( a ) ^ size ( a , 19 ) </s>
+<s> form a vertical line with 10 blocks </s>===<s> column ( a ) ^ height ( a , 10 ) </s>
+<s> construct a 20 by 20 square </s>===<s> square ( a ) ^ size ( a , 20 ) </s>
+<s> create a 13 block by 13 block square </s>===<s> square ( a ) ^ size ( a , 13 ) </s>
+<s> build a vertical line of size 17 </s>===<s> column ( a ) ^ height ( a , 17 ) </s>
+<s> create a square with sides of block length 4 </s>===<s> square ( a ) ^ size ( a , 4 ) </s>
+<s> form a row using 6 blocks </s>===<s> row ( a ) ^ width ( a , 6 ) </s>
+<s> create a row using 5 blocks </s>===<s> row ( a ) ^ width ( a , 5 ) </s>
+<s> build a column using 4 blocks </s>===<s> column ( a ) ^ height ( a , 4 ) </s>
+<s> form a vertical line using 18 blocks </s>===<s> column ( a ) ^ height ( a , 18 ) </s>
+<s> construct a column using 16 blocks </s>===<s> column ( a ) ^ height ( a , 16 ) </s>
+<s> construct a vertical line of height 10 </s>===<s> column ( a ) ^ height ( a , 10 ) </s>
+<s> create a horizontal line of size 15 </s>===<s> row ( a ) ^ width ( a , 15 ) </s>
+<s> create a horizontal line using 4 blocks </s>===<s> row ( a ) ^ width ( a , 4 ) </s>
+<s> build a 10 block by 10 block square </s>===<s> square ( a ) ^ size ( a , 10 ) </s>
+<s> construct a column of height 20 </s>===<s> column ( a ) ^ height ( a , 20 ) </s>
+<s> form a column of size 19 </s>===<s> column ( a ) ^ height ( a , 19 ) </s>
+<s> build a column of size 3 </s>===<s> column ( a ) ^ height ( a , 3 ) </s>
+<s> construct a column using 3 blocks </s>===<s> column ( a ) ^ height ( a , 3 ) </s>
+<s> construct a rectangle that is 5 blocks tall and 17 blocks wide </s>===<s> rectangle ( a ) ^ height ( a , 5 ) ^ width ( a , 17 ) </s>
+<s> construct a row with 11 blocks </s>===<s> row ( a ) ^ width ( a , 11 ) </s>
+<s> create a rectangle that is 2 blocks tall and 9 blocks wide </s>===<s> rectangle ( a ) ^ height ( a , 2 ) ^ width ( a , 9 ) </s>
+<s> create a column with 5 blocks </s>===<s> column ( a ) ^ height ( a , 5 ) </s>
+<s> build a 9 by 10 rectangle </s>===<s> rectangle ( a ) ^ height ( a , 10 ) ^ width ( a , 9 ) </s>
+<s> form a 14 by 14 square </s>===<s> square ( a ) ^ size ( a , 14 ) </s>
+<s> construct a rectangle that is 3 blocks wide and 8 blocks tall </s>===<s> rectangle ( a ) ^ height ( a , 8 ) ^ width ( a , 3 ) </s>
+<s> form a 3 block by 3 block square </s>===<s> square ( a ) ^ size ( a , 3 ) </s>
+<s> create a 13 by 13 square </s>===<s> square ( a ) ^ size ( a , 13 ) </s>
+<s> create a 15 by 15 square </s>===<s> square ( a ) ^ size ( a , 15 ) </s>
+<s> create a rectangle that is 13 blocks wide and 17 blocks tall </s>===<s> rectangle ( a ) ^ height ( a , 17 ) ^ width ( a , 13 ) </s>
+<s> create a rectangle with a width of 20 blocks and a height of 5 blocks </s>===<s> rectangle ( a ) ^ height ( a , 5 ) ^ width ( a , 20 ) </s>
+<s> build a rectangle with a height of 11 blocks and a width of 5 blocks </s>===<s> rectangle ( a ) ^ height ( a , 11 ) ^ width ( a , 5 ) </s>
+<s> build a 9 by 9 square </s>===<s> square ( a ) ^ size ( a , 9 ) </s>
+<s> build a rectangle with a width of 3 blocks and a height of 5 blocks </s>===<s> rectangle ( a ) ^ height ( a , 5 ) ^ width ( a , 3 ) </s>
+<s> build a rectangle with a width of 16 blocks and a height of 3 blocks </s>===<s> rectangle ( a ) ^ height ( a , 3 ) ^ width ( a , 16 ) </s>
+<s> create a rectangle with a height of 3 blocks and a width of 20 blocks </s>===<s> rectangle ( a ) ^ height ( a , 3 ) ^ width ( a , 20 ) </s>
+<s> form a vertical line of size 15 </s>===<s> column ( a ) ^ height ( a , 15 ) </s>
+<s> construct a column using 7 blocks </s>===<s> column ( a ) ^ height ( a , 7 ) </s>
+<s> build a 7 by 5 rectangle </s>===<s> rectangle ( a ) ^ height ( a , 5 ) ^ width ( a , 7 ) </s>
+<s> construct a row of length 11 </s>===<s> row ( a ) ^ width ( a , 11 ) </s>
+<s> form a rectangle with a width of 12 blocks and a height of 11 blocks </s>===<s> rectangle ( a ) ^ height ( a , 11 ) ^ width ( a , 12 ) </s>
+<s> form a 11 by 17 rectangle </s>===<s> rectangle ( a ) ^ height ( a , 17 ) ^ width ( a , 11 ) </s>
+<s> create a 17 block by 17 block square </s>===<s> square ( a ) ^ size ( a , 17 ) </s>
+<s> form a column of size 4 </s>===<s> column ( a ) ^ height ( a , 4 ) </s>
+<s> construct a vertical line of height 11 </s>===<s> column ( a ) ^ height ( a , 11 ) </s>
+<s> form a column of size 18 </s>===<s> column ( a ) ^ height ( a , 18 ) </s>
+<s> construct a 7 block by 7 block square </s>===<s> square ( a ) ^ size ( a , 7 ) </s>
+<s> build a 2 by 2 square </s>===<s> square ( a ) ^ size ( a , 2 ) </s>
+<s> build a column with 14 blocks </s>===<s> column ( a ) ^ height ( a , 14 ) </s>
+<s> form a rectangle that is 4 blocks wide and 9 blocks tall </s>===<s> rectangle ( a ) ^ height ( a , 9 ) ^ width ( a , 4 ) </s>
+<s> form a vertical line with 19 blocks </s>===<s> column ( a ) ^ height ( a , 19 ) </s>
+<s> create a horizontal line using 14 blocks </s>===<s> row ( a ) ^ width ( a , 14 ) </s>
+<s> build a column with 11 blocks </s>===<s> column ( a ) ^ height ( a , 11 ) </s>
+<s> construct a vertical line with 5 blocks </s>===<s> column ( a ) ^ height ( a , 5 ) </s>
+<s> construct a 3 by 3 square </s>===<s> square ( a ) ^ size ( a , 3 ) </s>
+<s> form a column of size 17 </s>===<s> column ( a ) ^ height ( a , 17 ) </s>
+<s> create a rectangle that is 12 blocks wide and 6 blocks tall </s>===<s> rectangle ( a ) ^ height ( a , 6 ) ^ width ( a , 12 ) </s>
+<s> construct a rectangle with a height of 8 blocks and a width of 7 blocks </s>===<s> rectangle ( a ) ^ height ( a , 8 ) ^ width ( a , 7 ) </s>
+<s> form a 10 by 11 rectangle </s>===<s> rectangle ( a ) ^ height ( a , 11 ) ^ width ( a , 10 ) </s>
+<s> create a rectangle that is 18 blocks tall and 10 blocks wide </s>===<s> rectangle ( a ) ^ height ( a , 18 ) ^ width ( a , 10 ) </s>
+<s> form a square with sides of block length 11 </s>===<s> square ( a ) ^ size ( a , 11 ) </s>
+<s> create a row of length 12 </s>===<s> row ( a ) ^ width ( a , 12 ) </s>
+<s> construct a rectangle with a width of 7 blocks and a height of 6 blocks </s>===<s> rectangle ( a ) ^ height ( a , 6 ) ^ width ( a , 7 ) </s>
+<s> form a horizontal line of size 12 </s>===<s> row ( a ) ^ width ( a , 12 ) </s>
+<s> create a row with 17 blocks </s>===<s> row ( a ) ^ width ( a , 17 ) </s>
+<s> build a horizontal line using 9 blocks </s>===<s> row ( a ) ^ width ( a , 9 ) </s>
+<s> create a column of size 14 </s>===<s> column ( a ) ^ height ( a , 14 ) </s>
+<s> create a column with 16 blocks </s>===<s> column ( a ) ^ height ( a , 16 ) </s>
+<s> construct a 14 block by 14 block square </s>===<s> square ( a ) ^ size ( a , 14 ) </s>
+<s> create a row using 19 blocks </s>===<s> row ( a ) ^ width ( a , 19 ) </s>
+<s> form a rectangle with a width of 3 blocks and a height of 12 blocks </s>===<s> rectangle ( a ) ^ height ( a , 12 ) ^ width ( a , 3 ) </s>
+<s> create a rectangle with a height of 15 blocks and a width of 5 blocks </s>===<s> rectangle ( a ) ^ height ( a , 15 ) ^ width ( a , 5 ) </s>
+<s> construct a rectangle that is 16 blocks tall and 5 blocks wide </s>===<s> rectangle ( a ) ^ height ( a , 16 ) ^ width ( a , 5 ) </s>
+<s> construct a vertical line of size 16 </s>===<s> column ( a ) ^ height ( a , 16 ) </s>
+<s> form a square with sides of block length 9 </s>===<s> square ( a ) ^ size ( a , 9 ) </s>
+<s> construct a 19 block by 19 block square </s>===<s> square ( a ) ^ size ( a , 19 ) </s>
+<s> create a column of height 6 </s>===<s> column ( a ) ^ height ( a , 6 ) </s>
+<s> create a rectangle that is 4 blocks wide and 7 blocks tall </s>===<s> rectangle ( a ) ^ height ( a , 7 ) ^ width ( a , 4 ) </s>
+<s> build a 19 by 14 rectangle </s>===<s> rectangle ( a ) ^ height ( a , 14 ) ^ width ( a , 19 ) </s>
+<s> construct a vertical line with 17 blocks </s>===<s> column ( a ) ^ height ( a , 17 ) </s>
+<s> build a 14 by 10 rectangle </s>===<s> rectangle ( a ) ^ height ( a , 10 ) ^ width ( a , 14 ) </s>
+<s> build a column with 10 blocks </s>===<s> column ( a ) ^ height ( a , 10 ) </s>
+<s> build a rectangle with a width of 20 blocks and a height of 3 blocks </s>===<s> rectangle ( a ) ^ height ( a , 3 ) ^ width ( a , 20 ) </s>
+<s> construct a row with 12 blocks </s>===<s> row ( a ) ^ width ( a , 12 ) </s>
+<s> create a rectangle that is 10 blocks tall and 14 blocks wide </s>===<s> rectangle ( a ) ^ height ( a , 10 ) ^ width ( a , 14 ) </s>
+<s> create a row with 16 blocks </s>===<s> row ( a ) ^ width ( a , 16 ) </s>
+<s> build a vertical line with 10 blocks </s>===<s> column ( a ) ^ height ( a , 10 ) </s>
+<s> create a vertical line using 17 blocks </s>===<s> column ( a ) ^ height ( a , 17 ) </s>
+<s> construct a column with 16 blocks </s>===<s> column ( a ) ^ height ( a , 16 ) </s>
+<s> form a 16 by 16 square </s>===<s> square ( a ) ^ size ( a , 16 ) </s>
+<s> construct a column of size 5 </s>===<s> column ( a ) ^ height ( a , 5 ) </s>
+<s> build a rectangle that is 8 blocks wide and 9 blocks tall </s>===<s> rectangle ( a ) ^ height ( a , 9 ) ^ width ( a , 8 ) </s>
+<s> form a rectangle that is 11 blocks tall and 4 blocks wide </s>===<s> rectangle ( a ) ^ height ( a , 11 ) ^ width ( a , 4 ) </s>
+<s> create a 18 by 18 square </s>===<s> square ( a ) ^ size ( a , 18 ) </s>
+<s> form a square with sides of block length 15 </s>===<s> square ( a ) ^ size ( a , 15 ) </s>
+<s> build a vertical line of size 19 </s>===<s> column ( a ) ^ height ( a , 19 ) </s>
+<s> form a row of size 14 </s>===<s> row ( a ) ^ width ( a , 14 ) </s>
+<s> form a vertical line of height 12 </s>===<s> column ( a ) ^ height ( a , 12 ) </s>
+<s> form a square with sides of block length 10 </s>===<s> square ( a ) ^ size ( a , 10 ) </s>
+<s> form a row of length 14 </s>===<s> row ( a ) ^ width ( a , 14 ) </s>
+<s> form a square with sides of block length 18 </s>===<s> square ( a ) ^ size ( a , 18 ) </s>
+<s> build a rectangle that is 9 blocks wide and 16 blocks tall </s>===<s> rectangle ( a ) ^ height ( a , 16 ) ^ width ( a , 9 ) </s>
+<s> create a rectangle with a width of 16 blocks and a height of 17 blocks </s>===<s> rectangle ( a ) ^ height ( a , 17 ) ^ width ( a , 16 ) </s>
+<s> build a row with 17 blocks </s>===<s> row ( a ) ^ width ( a , 17 ) </s>
+<s> form a rectangle that is 4 blocks tall and 6 blocks wide </s>===<s> rectangle ( a ) ^ height ( a , 4 ) ^ width ( a , 6 ) </s>
+<s> build a row using 19 blocks </s>===<s> row ( a ) ^ width ( a , 19 ) </s>
+<s> form a 12 block by 12 block square </s>===<s> square ( a ) ^ size ( a , 12 ) </s>
+<s> build a row of length 9 </s>===<s> row ( a ) ^ width ( a , 9 ) </s>
+<s> build a column with 4 blocks </s>===<s> column ( a ) ^ height ( a , 4 ) </s>
+<s> form a row with 8 blocks </s>===<s> row ( a ) ^ width ( a , 8 ) </s>
+<s> form a 17 by 20 rectangle </s>===<s> rectangle ( a ) ^ height ( a , 20 ) ^ width ( a , 17 ) </s>
+<s> build a 15 by 15 square </s>===<s> square ( a ) ^ size ( a , 15 ) </s>
+<s> create a row with 2 blocks </s>===<s> row ( a ) ^ width ( a , 2 ) </s>
+<s> form a row with 17 blocks </s>===<s> row ( a ) ^ width ( a , 17 ) </s>
+<s> build a 18 by 18 square </s>===<s> square ( a ) ^ size ( a , 18 ) </s>
+<s> build a row with 7 blocks </s>===<s> row ( a ) ^ width ( a , 7 ) </s>
+<s> form a column of height 4 </s>===<s> column ( a ) ^ height ( a , 4 ) </s>
+<s> build a 16 by 16 square </s>===<s> square ( a ) ^ size ( a , 16 ) </s>
+<s> create a column with 19 blocks </s>===<s> column ( a ) ^ height ( a , 19 ) </s>
+<s> form a 19 block by 19 block square </s>===<s> square ( a ) ^ size ( a , 19 ) </s>
+<s> build a column of height 14 </s>===<s> column ( a ) ^ height ( a , 14 ) </s>
+<s> form a row with 6 blocks </s>===<s> row ( a ) ^ width ( a , 6 ) </s>
+<s> build a row using 11 blocks </s>===<s> row ( a ) ^ width ( a , 11 ) </s>
+<s> construct a vertical line using 3 blocks </s>===<s> column ( a ) ^ height ( a , 3 ) </s>
+<s> build a row of length 15 </s>===<s> row ( a ) ^ width ( a , 15 ) </s>
+<s> form a horizontal line using 13 blocks </s>===<s> row ( a ) ^ width ( a , 13 ) </s>
+<s> create a rectangle with a height of 5 blocks and a width of 15 blocks </s>===<s> rectangle ( a ) ^ height ( a , 5 ) ^ width ( a , 15 ) </s>
+<s> construct a rectangle with a width of 18 blocks and a height of 11 blocks </s>===<s> rectangle ( a ) ^ height ( a , 11 ) ^ width ( a , 18 ) </s>
+<s> create a row with 8 blocks </s>===<s> row ( a ) ^ width ( a , 8 ) </s>
+<s> construct a horizontal line of length 20 </s>===<s> row ( a ) ^ width ( a , 20 ) </s>
+<s> build a rectangle with a height of 19 blocks and a width of 7 blocks </s>===<s> rectangle ( a ) ^ height ( a , 19 ) ^ width ( a , 7 ) </s>
+<s> build a horizontal line of length 10 </s>===<s> row ( a ) ^ width ( a , 10 ) </s>
+<s> build a 7 by 6 rectangle </s>===<s> rectangle ( a ) ^ height ( a , 6 ) ^ width ( a , 7 ) </s>
+<s> construct a rectangle with a height of 19 blocks and a width of 12 blocks </s>===<s> rectangle ( a ) ^ height ( a , 19 ) ^ width ( a , 12 ) </s>
+<s> form a row with 11 blocks </s>===<s> row ( a ) ^ width ( a , 11 ) </s>
+<s> create a rectangle that is 4 blocks tall and 12 blocks wide </s>===<s> rectangle ( a ) ^ height ( a , 4 ) ^ width ( a , 12 ) </s>
+<s> build a horizontal line with 10 blocks </s>===<s> row ( a ) ^ width ( a , 10 ) </s>
+<s> build a column with 15 blocks </s>===<s> column ( a ) ^ height ( a , 15 ) </s>
+<s> form a 10 by 10 square </s>===<s> square ( a ) ^ size ( a , 10 ) </s>
+<s> construct a row of size 4 </s>===<s> row ( a ) ^ width ( a , 4 ) </s>
+<s> form a rectangle that is 13 blocks wide and 9 blocks tall </s>===<s> rectangle ( a ) ^ height ( a , 9 ) ^ width ( a , 13 ) </s>
+<s> form a vertical line of height 5 </s>===<s> column ( a ) ^ height ( a , 5 ) </s>
+<s> create a row using 13 blocks </s>===<s> row ( a ) ^ width ( a , 13 ) </s>
+<s> build a column with 13 blocks </s>===<s> column ( a ) ^ height ( a , 13 ) </s>
+<s> form a rectangle with a width of 19 blocks and a height of 15 blocks </s>===<s> rectangle ( a ) ^ height ( a , 15 ) ^ width ( a , 19 ) </s>
+<s> construct a horizontal line of size 3 </s>===<s> row ( a ) ^ width ( a , 3 ) </s>
+<s> build a column using 10 blocks </s>===<s> column ( a ) ^ height ( a , 10 ) </s>
+<s> build a vertical line with 18 blocks </s>===<s> column ( a ) ^ height ( a , 18 ) </s>
+<s> create a column of height 20 </s>===<s> column ( a ) ^ height ( a , 20 ) </s>
+<s> construct a horizontal line of length 15 </s>===<s> row ( a ) ^ width ( a , 15 ) </s>
+<s> create a rectangle with a width of 4 blocks and a height of 8 blocks </s>===<s> rectangle ( a ) ^ height ( a , 8 ) ^ width ( a , 4 ) </s>
+<s> create a row with 3 blocks </s>===<s> row ( a ) ^ width ( a , 3 ) </s>
+<s> form a row using 4 blocks </s>===<s> row ( a ) ^ width ( a , 4 ) </s>
+<s> build a vertical line with 9 blocks </s>===<s> column ( a ) ^ height ( a , 9 ) </s>
+<s> construct a row of size 13 </s>===<s> row ( a ) ^ width ( a , 13 ) </s>
+<s> construct a horizontal line using 14 blocks </s>===<s> row ( a ) ^ width ( a , 14 ) </s>
+<s> create a column with 9 blocks </s>===<s> column ( a ) ^ height ( a , 9 ) </s>
+<s> construct a rectangle with a height of 17 blocks and a width of 19 blocks </s>===<s> rectangle ( a ) ^ height ( a , 17 ) ^ width ( a , 19 ) </s>
+<s> create a vertical line with 4 blocks </s>===<s> column ( a ) ^ height ( a , 4 ) </s>
+<s> create a column with 15 blocks </s>===<s> column ( a ) ^ height ( a , 15 ) </s>
+<s> construct a horizontal line of length 3 </s>===<s> row ( a ) ^ width ( a , 3 ) </s>
+<s> build a square with sides of block length 15 </s>===<s> square ( a ) ^ size ( a , 15 ) </s>
+<s> form a rectangle that is 11 blocks tall and 20 blocks wide </s>===<s> rectangle ( a ) ^ height ( a , 11 ) ^ width ( a , 20 ) </s>
+<s> construct a column using 20 blocks </s>===<s> column ( a ) ^ height ( a , 20 ) </s>
+<s> create a horizontal line with 10 blocks </s>===<s> row ( a ) ^ width ( a , 10 ) </s>
+<s> form a rectangle with a height of 6 blocks and a width of 14 blocks </s>===<s> rectangle ( a ) ^ height ( a , 6 ) ^ width ( a , 14 ) </s>
+<s> build a rectangle that is 18 blocks wide and 17 blocks tall </s>===<s> rectangle ( a ) ^ height ( a , 17 ) ^ width ( a , 18 ) </s>
+<s> construct a rectangle with a height of 7 blocks and a width of 11 blocks </s>===<s> rectangle ( a ) ^ height ( a , 7 ) ^ width ( a , 11 ) </s>
+<s> construct a vertical line with 19 blocks </s>===<s> column ( a ) ^ height ( a , 19 ) </s>
+<s> build a vertical line using 19 blocks </s>===<s> column ( a ) ^ height ( a , 19 ) </s>
+<s> form a row with 15 blocks </s>===<s> row ( a ) ^ width ( a , 15 ) </s>
+<s> form a 20 by 12 rectangle </s>===<s> rectangle ( a ) ^ height ( a , 12 ) ^ width ( a , 20 ) </s>
