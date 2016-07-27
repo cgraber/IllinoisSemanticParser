@@ -54,7 +54,7 @@ class BaseParseModel(object):
 
         target = [decoder_inputs[i+1]
             for i in xrange(len(decoder_inputs) - 1)]
-        return encoder_inputs, decoder_inputs[:-1], target, target_weights[:-1], outputs
+        return encoder_inputs, decoder_inputs, target, target_weights[:-1], outputs[:-1]
 
 
 
