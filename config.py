@@ -8,7 +8,7 @@ class Config(object):
 
 
     def __init__(self, source_vocab_size, target_vocab_size, num_layers, dropout, layer_size, batch_size, 
-                 buckets, learning_rate, learning_rate_decay_factor, fold=None):
+                 buckets, learning_rate, learning_rate_decay_factor, num_gpus, fold=None):
         self.max_gradient = 5
         self.batch_size = batch_size
         self.initialize_width = 0.08
@@ -22,6 +22,7 @@ class Config(object):
         self.learning_rate = learning_rate
         self.learning_rate_decay_factor = learning_rate_decay_factor
         self.fold = fold
+        self.num_gpus = num_gpus
 
     def get_dir(self):
         if self.fold:
@@ -30,7 +31,7 @@ class Config(object):
             return self.directory+"/"
 
 def config_beam_search(source_vocab_size, target_vocab_size, num_layers, batch_size, buckets, 
-                       learning_rate, learning_rate_decay_factor):
+                       learning_rate, learning_rate_decay_factor, num_gpus):
     for dropout, layer_size in itertools.product(dropout_beam, vector_beam):
         yield Config(source_vocab_size, target_vocab_size, num_layers, dropout, layer_size, batch_size, buckets, 
-                     learning_rate, learning_rate_decay_factor)
+                     learning_rate, learning_rate_decay_factor, num_gpus)
