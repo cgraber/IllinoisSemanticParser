@@ -119,7 +119,7 @@ def train(sess, train_data, validation_data, conf, num_steps = None):
             if not num_steps:
                 # Check early stopping condition
                 #print("LAST BATCH:")
-                temp_loss, temp_acc = test(sess, entries, model)
+                temp_loss, temp_acc = test(sess, train_data, model)
                 #print("VALIDATION:")
                 validation_loss, validation_acc = test(sess, validation_data, model)
 
@@ -150,8 +150,7 @@ def train(sess, train_data, validation_data, conf, num_steps = None):
     return model, num_steps
 
 def test(sess, test_data, model, dump_results=False):
-    loss, output_logits = model.step(sess, encoder_inputs, decoder_inputs,
-                                  target_weights, test_bucket, True)
+    loss, output_logits = model.step(sess, test_data, True)
     return loss, evaluate_logits(output_logits, test_data, dump_results)
 
 def evaluate_logits(output_logits, test_data, dump_results=False):

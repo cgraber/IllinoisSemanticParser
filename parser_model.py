@@ -28,7 +28,6 @@ class BaseParseModel(object):
         encoder_inputs = []
         decoder_inputs = []
         target_weights = []
-        print("\tCreating input feeds")
         for i in xrange(self.encoder_size):
             encoder_inputs.append(tf.placeholder(tf.int32, shape=[None],
                                                       name="encoder{0}".format(i)))
@@ -38,7 +37,6 @@ class BaseParseModel(object):
             target_weights.append(tf.placeholder(tf.float32, shape=[None],
                                                       name="weight{0}".format(i)))
         with tf.device('/cpu:0'):
-            print("\tCreating Cell")
             single_cell = tf.nn.rnn_cell.LSTMCell(self.layer_size, initializer=tf.random_uniform_initializer(minval=-1*self.initialize_width,maxval=self.initialize_width))
             single_cell = tf.nn.rnn_cell.DropoutWrapper(single_cell, output_keep_prob=self.keep_prob_input)
             cell = single_cell
@@ -325,17 +323,18 @@ class MultiParseModel(BaseParseModel):
                     tf.get_variable_scope().reuse_variables()
 
                     grads_and_vars = opt.compute_gradients(loss)
-                    clipped_grads_and_vars = [(tf.clip_by_global_norm(gv[0],config.max_gradient)[0], gv[1]) 
-                            for gv in grads_and_vars]
+                    grads, variables = [gv[0] for gv in grads_and_vars], [gv[1] for gv in grads_and_vars]
+                    clipped_grads, _ = tf.clip_by_global_norm(grads,config.max_gradient)
+                    clipped_grads_and_vars = zip(clipped_grads, variables)
                     tower_grads.append(clipped_grads_and_vars)
 
-        grads = average_gradients(tower_grads)
-        self.update_op = opt.apply_gradients(grads, global_step=global_step)
+        grads = self.average_gradients(tower_grads)
+        self.update_op = opt.apply_gradients(grads, global_step=self.global_step)
         self.total_loss = tf.add_n(self.losses)
 
-        saver = tf.train.Saver(tf.all_variables())
+        self.saver = tf.train.Saver(tf.all_variables())
 
-    def average_gradients(tower_grads):
+    def average_gradients(self, tower_grads):
         average_grads = []
         for grad_and_vars in zip(*tower_grads):
             # Note that each grad_and_vars looks like the following:
@@ -361,29 +360,33 @@ class MultiParseModel(BaseParseModel):
         return average_grads
 
     def step(self, session, data, is_test):
+
         input_feed = {}
         input_feed[self.is_test] = is_test
         if is_test:
-            encoder_inputs, decoder_inputs, target_weights = self.get_batch(data, is_test)
+            _, encoder_inputs, decoder_inputs, target_weights = self.get_batch(data, is_test)
             output_feed = [self.losses[0]]
             for l in xrange(self.encoder_size):
                 input_feed[self.encoder_inputs[0][l].name] = encoder_inputs[l]
             for l in xrange(self.decoder_size):
                 input_feed[self.decoder_inputs[0][l].name] = decoder_inputs[l]
-                if l < self.decoder_size - 1:
-                    input_feed[self.target_weights[0][l].name] = target_weights[l]
-                    output_feed.append(self.outputs[0][l])
+	        input_feed[self.target_weights[0][l].name] = target_weights[l]
+                output_feed.append(self.outputs[0][l])
+            last_target = self.decoder_inputs[0][self.decoder_size].name
+            input_feed[last_target] = np.zeros([len(decoder_inputs[0])], dtype=np.int32)
             input_feed[self.keep_prob_input] = 1.0
         else:
             for i in xrange(self.num_gpus):
-                encoder_inputs, decoder_inputs, target_weights = self.get_batch(data, is_test)
+                _, encoder_inputs, decoder_inputs, target_weights = self.get_batch(data, is_test)
                 for l in xrange(self.encoder_size):
                     input_feed[self.encoder_inputs[i][l].name] = encoder_inputs[l]
                 for l in xrange(self.decoder_size):
                     input_feed[self.decoder_inputs[i][l].name] = decoder_inputs[l]
                     input_feed[self.target_weights[i][l].name] = target_weights[l]
+		last_target = self.decoder_inputs[i][self.decoder_size].name
+                input_feed[last_target] = np.zeros([len(decoder_inputs[0])], dtype=np.int32)
             output_feed = [self.update_op,
-                           sel.total_loss]
+                           self.total_loss]
             input_feed[self.keep_prob_input] = self.keep_prob
         outputs = session.run(output_feed, input_feed)
         if is_test:
