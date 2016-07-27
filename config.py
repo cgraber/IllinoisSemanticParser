@@ -18,7 +18,8 @@ class Config(object):
         self.target_vocab_size = target_vocab_size
         self.num_layers = num_layers
         self.directory = "dropout_%.1f_vector_%d"%(dropout, layer_size)
-        self.buckets = buckets
+        self.input_max_length = buckets[-1][0]
+        self.output_max_length = buckets[-1][1]
         self.learning_rate = learning_rate
         self.learning_rate_decay_factor = learning_rate_decay_factor
         self.fold = fold

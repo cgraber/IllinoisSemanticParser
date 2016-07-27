@@ -19,6 +19,9 @@ class BaseParseModel(object):
         self.keep_prob = 1 - config.dropout_rate
         self.keep_prob_input = tf.placeholder(tf.float32) #For dropout control
         self.num_gpus = config.num_gpus
+        self.layer_size = config.layer_size
+        self.initialize_width = config.initialize_width
+        self.num_layers = config.num_layers
 
     def build_inference(self):
         # Feeds for inputs
@@ -37,18 +40,18 @@ class BaseParseModel(object):
                                                           name="weight{0}".format(i)))
         with tf.device('/cpu:0'):
             print("\tCreating Cell")
-            single_cell = tf.nn.rnn_cell.LSTMCell(config.layer_size, initializer=tf.random_uniform_initializer(minval=-1*config.initialize_width,maxval=config.initialize_width))
+            single_cell = tf.nn.rnn_cell.LSTMCell(self.layer_size, initializer=tf.random_uniform_initializer(minval=-1*self.initialize_width,maxval=self.initialize_width))
             single_cell = tf.nn.rnn_cell.DropoutWrapper(single_cell, output_keep_prob=self.keep_prob_input)
             cell = single_cell
-            if config.num_layers > 1:
-                cell = tf.nn.rnn_cell.MultiRNNCell([single_cell] * config.num_layers)
+            if self.num_layers > 1:
+                cell = tf.nn.rnn_cell.MultiRNNCell([single_cell] * self.num_layers)
 
             def seq2seq_f(encoder_inputs, decoder_inputs):
                 return tf.nn.seq2seq.embedding_attention_seq2seq(
                         encoder_inputs, decoder_inputs, cell,
                         num_encoder_symbols = self.source_vocab_size,
                         num_decoder_symbols = self.target_vocab_size,
-                        embedding_size = config.layer_size,
+                        embedding_size = self.layer_size,
                         feed_previous=self.is_test)
             outputs, _ = tf.nn.seq2seq.embedding_attention_seq2seq(
                 encoder_inputs, decoder_inputs, cell,
