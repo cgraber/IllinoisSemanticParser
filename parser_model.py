@@ -298,7 +298,7 @@ class ParseModel(object):
             batch_weights.append(batch_weight)
         return batch, batch_encoder_inputs, batch_decoder_inputs, batch_weights
 
-def MultiParseModel(BaseParseModel):
+class MultiParseModel(BaseParseModel):
     def __init__(self, config):
         with tf.device('/cpu:0'):
             super(MultiParseModel,self).__init__(config)
