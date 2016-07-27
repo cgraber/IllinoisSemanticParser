@@ -324,10 +324,10 @@ class MultiParseModel(BaseParseModel):
                     # Reuse variables for the next tower.
                     tf.get_variable_scope().reuse_variables()
 
-                    grads = opt.compute_gradients(loss)
-                    clipped_gradients, norm = tf.clip_by_global_norm(grads,
-                                                             config.max_gradient)
-                    tower_grads.append(grads)
+                    grads_and_vars = opt.compute_gradients(loss)
+                    clipped_grads_and_vars = [(tf.clip_by_global_norm(gv[0],config.max_gradient)[0], gv[1]) 
+                            for gv in grads_and_vars]
+                    tower_grads.append(clipped_grads_and_vars)
 
         grads = average_gradients(tower_grads)
         self.update_op = opt.apply_gradients(grads, global_step=global_step)
