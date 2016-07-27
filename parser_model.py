@@ -20,106 +20,106 @@ class BaseParseModel(object):
         self.keep_prob_input = tf.placeholder(tf.float32) #For dropout control
         self.num_gpus = config.num_gpus
 
-        def build_inference(self):
-            # Feeds for inputs
-            encoder_inputs = []
-            decoder_inputs = []
-            target_weights = []
-            print("\tCreating input feeds")
-            for i in xrange(self.encoder_size):
-                encoder_inputs.append(tf.placeholder(tf.int32, shape=[None],
-                                                          name="encoder{0}".format(i)))
-            for i in xrange(self.decoder_size):
-                decoder_inputs.append(tf.placeholder(tf.int32, shape=[None],
-                                                          name="decoder{0}".format(i)))
-                if i < self.decoder_size - 1:
-                    target_weights.append(tf.placeholder(tf.float32, shape=[None],
-                                                              name="weight{0}".format(i)))
-            with tf.device('/cpu:0'):
-                print("\tCreating Cell")
-                single_cell = tf.nn.rnn_cell.LSTMCell(config.layer_size, initializer=tf.random_uniform_initializer(minval=-1*config.initialize_width,maxval=config.initialize_width))
-                single_cell = tf.nn.rnn_cell.DropoutWrapper(single_cell, output_keep_prob=self.keep_prob_input)
-                cell = single_cell
-                if config.num_layers > 1:
-                    cell = tf.nn.rnn_cell.MultiRNNCell([single_cell] * config.num_layers)
+    def build_inference(self):
+        # Feeds for inputs
+        encoder_inputs = []
+        decoder_inputs = []
+        target_weights = []
+        print("\tCreating input feeds")
+        for i in xrange(self.encoder_size):
+            encoder_inputs.append(tf.placeholder(tf.int32, shape=[None],
+                                                      name="encoder{0}".format(i)))
+        for i in xrange(self.decoder_size):
+            decoder_inputs.append(tf.placeholder(tf.int32, shape=[None],
+                                                      name="decoder{0}".format(i)))
+            if i < self.decoder_size - 1:
+                target_weights.append(tf.placeholder(tf.float32, shape=[None],
+                                                          name="weight{0}".format(i)))
+        with tf.device('/cpu:0'):
+            print("\tCreating Cell")
+            single_cell = tf.nn.rnn_cell.LSTMCell(config.layer_size, initializer=tf.random_uniform_initializer(minval=-1*config.initialize_width,maxval=config.initialize_width))
+            single_cell = tf.nn.rnn_cell.DropoutWrapper(single_cell, output_keep_prob=self.keep_prob_input)
+            cell = single_cell
+            if config.num_layers > 1:
+                cell = tf.nn.rnn_cell.MultiRNNCell([single_cell] * config.num_layers)
 
-                def seq2seq_f(encoder_inputs, decoder_inputs):
-                    return tf.nn.seq2seq.embedding_attention_seq2seq(
-                            encoder_inputs, decoder_inputs, cell,
-                            num_encoder_symbols = self.source_vocab_size,
-                            num_decoder_symbols = self.target_vocab_size,
-                            embedding_size = config.layer_size,
-                            feed_previous=self.is_test)
-                outputs, _ = tf.nn.seq2seq.embedding_attention_seq2seq(
-                    encoder_inputs, decoder_inputs, cell,
-                    num_encoder_symbols = self.source_vocab_size,
-                    num_decoder_symbols = self.target_vocab_size,
-                    embedding_size = self.layer_size,
-                    feed_previous = self.is_test)
+            def seq2seq_f(encoder_inputs, decoder_inputs):
+                return tf.nn.seq2seq.embedding_attention_seq2seq(
+                        encoder_inputs, decoder_inputs, cell,
+                        num_encoder_symbols = self.source_vocab_size,
+                        num_decoder_symbols = self.target_vocab_size,
+                        embedding_size = config.layer_size,
+                        feed_previous=self.is_test)
+            outputs, _ = tf.nn.seq2seq.embedding_attention_seq2seq(
+                encoder_inputs, decoder_inputs, cell,
+                num_encoder_symbols = self.source_vocab_size,
+                num_decoder_symbols = self.target_vocab_size,
+                embedding_size = self.layer_size,
+                feed_previous = self.is_test)
 
-            target = [decoder_inputs[i+1]
-                for i in xrange(len(decoder_inputs) - 1)]
-            return encoder_inputs, decoder_inputs, target, target_weights, outputs
+        target = [decoder_inputs[i+1]
+            for i in xrange(len(decoder_inputs) - 1)]
+        return encoder_inputs, decoder_inputs, target, target_weights, outputs
 
 
 
-        def build_loss(self, logits, targets, weights):
-            losses = tf.nn.seq2seq.sequence_loss(logits, targets, weights)
-            return losses
-            
-        def get_batch(self, data, is_test):
-            """ Gets batch, formats it in correct way.
+    def build_loss(self, logits, targets, weights):
+        losses = tf.nn.seq2seq.sequence_loss(logits, targets, weights)
+        return losses
+        
+    def get_batch(self, data, is_test):
+        """ Gets batch, formats it in correct way.
 
-            If is_test=true, all of the data is used. Otherwise, a batch of size
-            batch_size is sampled.
-            """
-            encoder_inputs, decoder_inputs = [], []
+        If is_test=true, all of the data is used. Otherwise, a batch of size
+        batch_size is sampled.
+        """
+        encoder_inputs, decoder_inputs = [], []
 
-            if is_test:
-                batch_size = len(data)
-                batch = data
-            else:
-                batch_size = self.batch_size
-                batch = []
-                for _ in xrange(batch_size):
-                    batch.append(random.choice(data))
+        if is_test:
+            batch_size = len(data)
+            batch = data
+        else:
+            batch_size = self.batch_size
+            batch = []
+            for _ in xrange(batch_size):
+                batch.append(random.choice(data))
 
-            # pad entries if needed, reverse encoder inputs
-            for encoder_input, decoder_input in batch:
+        # pad entries if needed, reverse encoder inputs
+        for encoder_input, decoder_input in batch:
 
-                # Encoder inputs are padded and then reversed
-                encoder_pad = [data_utils.PAD_ID] * (self.encoder_size - len(encoder_input))
-                encoder_inputs.append(list(reversed(encoder_input + encoder_pad)))
+            # Encoder inputs are padded and then reversed
+            encoder_pad = [data_utils.PAD_ID] * (self.encoder_size - len(encoder_input))
+            encoder_inputs.append(list(reversed(encoder_input + encoder_pad)))
 
-                decoder_pad = [data_utils.PAD_ID] * (self.decoder_size - len(decoder_input))
-                decoder_inputs.append(decoder_input + decoder_pad)
+            decoder_pad = [data_utils.PAD_ID] * (self.decoder_size - len(decoder_input))
+            decoder_inputs.append(decoder_input + decoder_pad)
 
-            # NOw we create batch-major vectors from the data selected above
-            batch_encoder_inputs, batch_decoder_inputs, batch_weights = [], [], []
+        # NOw we create batch-major vectors from the data selected above
+        batch_encoder_inputs, batch_decoder_inputs, batch_weights = [], [], []
 
-            # Batch encoder inputs are just re-indexed encoder_inputs.
-            for length_idx in xrange(self.encoder_size):
-                batch_encoder_inputs.append(
-                    np.array([encoder_inputs[batch_idx][length_idx]
-                        for batch_idx in xrange(batch_size)], dtype=np.int32))
+        # Batch encoder inputs are just re-indexed encoder_inputs.
+        for length_idx in xrange(self.encoder_size):
+            batch_encoder_inputs.append(
+                np.array([encoder_inputs[batch_idx][length_idx]
+                    for batch_idx in xrange(batch_size)], dtype=np.int32))
 
-            # Batch decoder inputs are just re-indexed decoder inputs. We also create weights!
-            for length_idx in xrange(self.decoder_size):
-                batch_decoder_inputs.append(
-                    np.array([decoder_inputs[batch_idx][length_idx]
-                        for batch_idx in xrange(batch_size)], dtype=np.int32))
+        # Batch decoder inputs are just re-indexed decoder inputs. We also create weights!
+        for length_idx in xrange(self.decoder_size):
+            batch_decoder_inputs.append(
+                np.array([decoder_inputs[batch_idx][length_idx]
+                    for batch_idx in xrange(batch_size)], dtype=np.int32))
 
-                # Create target_weights to be 0 for targets that are padding
-                batch_weight = np.ones(batch_size, dtype=np.float32)
-                for batch_idx in xrange(batch_size):
-                    # We set weight to 0 if the corresponding target is a PAD symbol.
-                    # The corresponding target is decoder_input shifted by 1 forward.
-                    if length_idx < self.decoder_size - 1:
-                        target = decoder_inputs[batch_idx][length_idx+1]
-                    if length_idx == self.decoder_size - 1 or target == data_utils.PAD_ID:
-                        batch_weight[batch_idx] = 0.0
-                batch_weights.append(batch_weight)
-            return batch, batch_encoder_inputs, batch_decoder_inputs, batch_weights
+            # Create target_weights to be 0 for targets that are padding
+            batch_weight = np.ones(batch_size, dtype=np.float32)
+            for batch_idx in xrange(batch_size):
+                # We set weight to 0 if the corresponding target is a PAD symbol.
+                # The corresponding target is decoder_input shifted by 1 forward.
+                if length_idx < self.decoder_size - 1:
+                    target = decoder_inputs[batch_idx][length_idx+1]
+                if length_idx == self.decoder_size - 1 or target == data_utils.PAD_ID:
+                    batch_weight[batch_idx] = 0.0
+            batch_weights.append(batch_weight)
+        return batch, batch_encoder_inputs, batch_decoder_inputs, batch_weights
 
 
 class ParseModel(object):
@@ -316,8 +316,7 @@ def MultiParseModel(BaseParseModel):
                     # Calculate the loss for one tower of this model. This function
                     # constructs the entire model but shares the variables across
                     # all towers.
-                    encoder_input, decoder_input, target, target_weight, output =
-                        self.build_inference()
+                    encoder_input, decoder_input, target, target_weight, output = self.build_inference()
                     loss = self.build_loss(output, target, target_weight)
                     self.losses.append(loss)
                     self.encoder_inputs.append(encoder_input)
