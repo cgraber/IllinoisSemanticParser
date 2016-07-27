@@ -32,12 +32,11 @@ class BaseParseModel(object):
         for i in xrange(self.encoder_size):
             encoder_inputs.append(tf.placeholder(tf.int32, shape=[None],
                                                       name="encoder{0}".format(i)))
-        for i in xrange(self.decoder_size):
+        for i in xrange(self.decoder_size + 1):
             decoder_inputs.append(tf.placeholder(tf.int32, shape=[None],
                                                       name="decoder{0}".format(i)))
-            if i < self.decoder_size - 1:
-                target_weights.append(tf.placeholder(tf.float32, shape=[None],
-                                                          name="weight{0}".format(i)))
+            target_weights.append(tf.placeholder(tf.float32, shape=[None],
+                                                      name="weight{0}".format(i)))
         with tf.device('/cpu:0'):
             print("\tCreating Cell")
             single_cell = tf.nn.rnn_cell.LSTMCell(self.layer_size, initializer=tf.random_uniform_initializer(minval=-1*self.initialize_width,maxval=self.initialize_width))
@@ -372,9 +371,9 @@ class MultiParseModel(BaseParseModel):
         if is_test:
             encoder_inputs, decoder_inputs, target_weights = self.get_batch(data, is_test)
             output_feed = [self.losses[0]]
-            for l in xrange(len(self.encoder_inputs[0])):
+            for l in xrange(self.encoder_size):
                 input_feed[self.encoder_inputs[0][l].name] = encoder_inputs[l]
-            for l in xrange(len(self.decoder_inputs[0])):
+            for l in xrange(self.decoder_size):
                 input_feed[self.decoder_inputs[0][l].name] = decoder_inputs[l]
                 if l < self.decoder_size - 1:
                     input_feed[self.target_weights[0][l].name] = target_weights[l]
@@ -383,12 +382,11 @@ class MultiParseModel(BaseParseModel):
         else:
             for i in xrange(self.num_gpus):
                 encoder_inputs, decoder_inputs, target_weights = self.get_batch(data, is_test)
-                for l in xrange(len(self.encoder_inputs[i])):
+                for l in xrange(self.encoder_size):
                     input_feed[self.encoder_inputs[i][l].name] = encoder_inputs[l]
-                for l in xrange(len(self.decoder_inputs[i])):
+                for l in xrange(self.decoder_size):
                     input_feed[self.decoder_inputs[i][l].name] = decoder_inputs[l]
-                    if l < self.decoder_size - 1:
-                        input_feed[self.target_weights[i][l].name] = target_weights[l]
+                    input_feed[self.target_weights[i][l].name] = target_weights[l]
             output_feed = [self.update_op,
                            sel.total_loss]
             input_feed[self.keep_prob_input] = self.keep_prob
