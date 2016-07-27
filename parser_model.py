@@ -45,13 +45,6 @@ class BaseParseModel(object):
             if self.num_layers > 1:
                 cell = tf.nn.rnn_cell.MultiRNNCell([single_cell] * self.num_layers)
 
-            def seq2seq_f(encoder_inputs, decoder_inputs):
-                return tf.nn.seq2seq.embedding_attention_seq2seq(
-                        encoder_inputs, decoder_inputs, cell,
-                        num_encoder_symbols = self.source_vocab_size,
-                        num_decoder_symbols = self.target_vocab_size,
-                        embedding_size = self.layer_size,
-                        feed_previous=self.is_test)
             outputs, _ = tf.nn.seq2seq.embedding_attention_seq2seq(
                 encoder_inputs, decoder_inputs, cell,
                 num_encoder_symbols = self.source_vocab_size,
@@ -61,7 +54,7 @@ class BaseParseModel(object):
 
         target = [decoder_inputs[i+1]
             for i in xrange(len(decoder_inputs) - 1)]
-        return encoder_inputs, decoder_inputs, target, target_weights, outputs
+        return encoder_inputs, decoder_inputs[:-1], target, target_weights[:-1], outputs
 
 
 
@@ -312,9 +305,11 @@ class MultiParseModel(BaseParseModel):
         self.outputs = []
         tower_grads = []
         self.losses = []
+        print("\tConstructing gpu graphs")
         for i in xrange(config.num_gpus):
             with tf.device('/gpu:%d' % i):
                 with tf.name_scope('tower_%d' % i) as scope:
+                    print("\t\tConstructing graph for gpu %d"%i)
                     # Calculate the loss for one tower of this model. This function
                     # constructs the entire model but shares the variables across
                     # all towers.
