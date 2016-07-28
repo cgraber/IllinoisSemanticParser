@@ -2,7 +2,9 @@ TRAIN_SIZE = 500
 TEST_SIZE = 200
 maxNumShapes = 3
 
-import random, sys
+
+import random, sys, os
+import gen_images
 from random import randint, shuffle
 
 COMMANDS = ["Create", "Construct", "Build", "Form"]
@@ -466,11 +468,21 @@ class CompositeShape(object):
         yShift = -1 * self.minY
         self.minY += yShift
         self.maxY += yShift
+
+        if self.maxX >= gen_images.GRID_WIDTH or self.maxY >= gen_images.GRID_HEIGHT:
+            return False
+        if self.maxX < gen_images.GRID_WIDTH - 1:
+            xShift += (gen_images.GRID_WIDTH - self.maxX - 1) / 2
+        if self.maxY < gen_images.GRID_HEIGHT - 1:
+            yShift += (gen_images.GRID_HEIGHT - self.maxY - 1) / 2
+
         for shape in self.shapes:
             shape.left += xShift
             shape.right += xShift
             shape.top += yShift
             shape.bottom += yShift
+        return True
+            
 
     def getDescription(self):
         if self.description:
@@ -507,8 +519,7 @@ class CompositeShape(object):
 
 
     def draw(self):
-        self.normalize()
-        result = [['O']*(self.maxX + 1) for i in xrange(self.maxY + 1)]
+        result = [['O']*(gen_images.GRID_WIDTH) for i in xrange(gen_images.GRID_HEIGHT)]
         for shape in self.shapes:
             shape.fillIn(result)
         return result
@@ -523,6 +534,10 @@ class CompositeShape(object):
         fout.write("\n")
         fout.write(self.getDescription())
         fout.write("\n")
+
+    def draw_to_file(self, file_path):
+        shape = self.draw()
+        gen_images.draw_shape_to_file(shape, file_path)
 
 
 class Row(Shape):
@@ -613,8 +628,8 @@ genShape = [randRow, randCol, randSquare, randRect]
 
 configs = []
 descriptions = []
-if len(sys.argv) != 3:
-    print "Usage: python generate.py <train output name> <test output name>"
+if len(sys.argv) != 4:
+    print "Usage: python generate.py <train output name> <test output name> <image dir>"
     sys.exit(1)
 
 shapes = []
@@ -627,15 +642,24 @@ while len(shapes) < TRAIN_SIZE + TEST_SIZE:
         newShape = genShape[randint(0,3)]()
         direction = randint(0,3)
         composite.addShape(newShape, direction)
-    if composite.getDescription() not in descriptions:
+    if composite.getDescription() not in descriptions and composite.normalize():
         descriptions.add(composite.getDescription())
         shapes.append(composite)
+    
 
+train_dir = os.path.join(sys.argv[3], "train")
+test_dir = os.path.join(sys.argv[3], "test")
+os.makedirs(train_dir)
+os.makedirs(test_dir)
 with open(sys.argv[1], "w") as fout:
-    for shape in shapes[:TRAIN_SIZE]:
+    for i in xrange(TRAIN_SIZE):
+        shape = shapes[i]
         shape.write(fout)
         fout.write("\n")
+        shape.draw_to_file(os.path.join(train_dir, "train_%d.png"%i))
 with open(sys.argv[2], "w") as fout:
-    for shape in shapes[TRAIN_SIZE:]:
+    for i in xrange(TRAIN_SIZE, len(shapes)):
+        shape = shapes[i]
         shape.write(fout)
         fout.write("\n")
+        shape.draw_to_file(os.path.join(test_dir, "test_%d.png"%(i-TRAIN_SIZE)))
