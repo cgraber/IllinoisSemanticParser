@@ -37,7 +37,8 @@ parser.add_argument('domain', choices=['geo', 'blocks'],
 FLAGS = parser.parse_args()
 
 GEO_BUCKETS = [(10,15), (15,20), (20,25), (40,70)] 
-BLOCKS_BUCKETS = [(15,25),(50,100),(100,200)]
+#BLOCKS_BUCKETS = [(15,25),(50,100),(100,200)]
+BLOCKS_BUCKETS = [(100, 200)]
 
 if FLAGS.domain == 'geo':
     _buckets = GEO_BUCKETS
@@ -133,15 +134,12 @@ def train(sess, train_data, validation_data, conf, num_steps = None):
 
             if not num_steps:
                 # Check early stopping condition
-                #print("LAST BATCH:")
-                temp_loss, temp_acc = test(sess, entries, model)
                 #print("VALIDATION:")
                 validation_loss, validation_acc = test(sess, validation_data, model)
 
-                print("TEST: PREV LOSS=%.2f, NEW LOSS=%.2f, acc=%.2f"%(step_loss, temp_loss, temp_acc))
                 print("global step %s learning rate %.4f step-time %.2f training loss %.2f" %
                     (model.global_step.eval(), model.learning_rate.eval(),
-                     step_time, step_loss))
+                     step_time, loss))
                 print("               validation loss %.2f validaiton acc %.2f"%(validation_loss, validation_acc))
                 if validation_acc > best_validation_acc or (validation_acc == best_validation_acc and validation_loss < best_validation_loss):
                     best_validation_loss = validation_loss
@@ -156,9 +154,12 @@ def train(sess, train_data, validation_data, conf, num_steps = None):
             else:
                 print("\tIteration %d of %d"%(current_step, num_steps))
             # Decrease learning rate if no improvement was seen over last 3 times.
-            #if len(previous_losses) > 2 and loss > max(previous_losses[-3:]):
-            #    sess.run(model.learning_rate_decay_op)
+            if len(previous_losses) > 2 and loss > max(previous_losses[-3:]):
+                sess.run(model.learning_rate_decay_op)
             previous_losses.append(loss)
+            if len(previous_losses) > 3:
+                del previous_losses[0]
+
             # Save checkpoint and zero timer and loss
             step_time, loss = 0.0, 0.0
             sys.stdout.flush()
