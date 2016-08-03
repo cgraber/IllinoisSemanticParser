@@ -16,6 +16,7 @@ class ParseModel(object):
         self.buckets = config.buckets
         self.batch_size = config.batch_size
         self.learning_rate = tf.Variable(float(config.learning_rate), trainable=False)
+        self.feed_prev = tf.placeholder(tf.bool)
         self.is_test = tf.placeholder(tf.bool)
         self.learning_rate_decay_op = self.learning_rate.assign(
             self.learning_rate * config.learning_rate_decay_factor)
@@ -38,7 +39,7 @@ class ParseModel(object):
                 num_encoder_symbols = self.source_vocab_size,
                 num_decoder_symbols = self.target_vocab_size,
                 embedding_size = config.layer_size,
-                feed_previous=self.is_test)
+                feed_previous=self.feed_prev)
 
         # Feeds for inputs
         self.encoder_inputs = []
@@ -78,7 +79,7 @@ class ParseModel(object):
         self.saver = tf.train.Saver(tf.all_variables()) #TODO: need to figure out how this works w/hyperparameter tuning
 
     def step(self, session, encoder_inputs, decoder_inputs, target_weights,
-             bucket_id, is_test):
+             bucket_id, is_test, feed_prev = True):
         """
         Run a step of the model feeding the given inputs
         """
@@ -111,12 +112,14 @@ class ParseModel(object):
             for l in xrange(decoder_size):  # Output logits
                 output_feed.append(self.outputs[bucket_id][l])
             input_feed[self.keep_prob_input] = 1.0
+            input_feed[self.feed_prev] = True
 
         else: 
             output_feed = [self.updates[bucket_id],  #Update Op that does RMSProp
                            self.gradient_norms[bucket_id],   # Gradient norm
                            self.losses[bucket_id]]   #Loss for this batch
             input_feed[self.keep_prob_input] = self.keep_prob
+            input_feed[self.feed_prev] = feed_prev
         outputs = session.run(output_feed, input_feed)
         if is_test:
             return None, outputs[0], outputs[1:] #No gradient norm, loss, outputs

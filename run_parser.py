@@ -34,6 +34,8 @@ parser.add_argument('mode', choices=['train', 'test'],
                     help='Way to run the app')
 parser.add_argument('domain', choices=['geo', 'blocks'],
                     help='The domain on which to run')
+parser.add_argument('-fp', '--feed_prev_itr', type=int, default=500,
+                    help='The iteration after which training updates use feed previous')
 FLAGS = parser.parse_args()
 
 GEO_BUCKETS = [(10,15), (15,20), (20,25), (40,70)] 
@@ -94,6 +96,7 @@ def train(sess, train_data, validation_data, conf, num_steps = None):
     train_total_size = float(sum(train_bucket_sizes))
     checkpoint_dir = os.path.join(FLAGS.train_dir, conf.get_dir())
     checkpoint_path = os.path.join(checkpoint_dir, "parse.ckpt")
+    feed_prev = False
     if not os.path.exists(checkpoint_dir):
         os.makedirs(checkpoint_dir)
 
@@ -113,6 +116,8 @@ def train(sess, train_data, validation_data, conf, num_steps = None):
     print("Starting training")
     sys.stdout.flush()
     while not num_steps or current_step < num_steps:
+        if current_step >= FLAGS.feed_prev_itr:
+            feed_prev = True
         # Choose a bucket according to data distribution. We pick a random number
         # in [0, 1] and use the corresponding interval in train_buckets_scale.
         random_number_01 = np.random.random_sample()
@@ -124,7 +129,7 @@ def train(sess, train_data, validation_data, conf, num_steps = None):
         entries, encoder_inputs, decoder_inputs, target_weights = model.get_batch(
             train_buckets, bucket_id, False)
         _, step_loss, step_outputs = model.step(sess, encoder_inputs, decoder_inputs,
-                                     target_weights, bucket_id, False)
+                                     target_weights, bucket_id, False, feed_prev)
         step_time += (time.time() - start_time) / FLAGS.steps_per_checkpoint
         loss += step_loss / FLAGS.steps_per_checkpoint
         current_step += 1
@@ -137,10 +142,9 @@ def train(sess, train_data, validation_data, conf, num_steps = None):
                 #print("VALIDATION:")
                 validation_loss, validation_acc = test(sess, validation_data, model)
 
-                print("global step %s learning rate %.4f step-time %.2f training loss %.2f" %
+                print("global step %s learning rate %.4f step-time %.2f training loss %.4f validation loss %.4f valdiation acc %.4f" %
                     (model.global_step.eval(), model.learning_rate.eval(),
-                     step_time, loss))
-                print("               validation loss %.2f validaiton acc %.2f"%(validation_loss, validation_acc))
+                     step_time, loss, validation_loss, validation_acc))
                 if validation_acc > best_validation_acc or (validation_acc == best_validation_acc and validation_loss < best_validation_loss):
                     best_validation_loss = validation_loss
                     best_validation_step = current_step
