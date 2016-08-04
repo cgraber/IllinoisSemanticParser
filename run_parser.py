@@ -137,10 +137,9 @@ def train(sess, train_data, validation_data, conf, num_steps = None):
                 #print("VALIDATION:")
                 validation_loss, validation_acc = test(sess, validation_data, model)
 
-                print("global step %s learning rate %.4f step-time %.2f training loss %.2f" %
+                print("global step %s learning rate %.4f step-time %.2f training loss %.4f validation loss %.4f validation acc %.4f" %
                     (model.global_step.eval(), model.learning_rate.eval(),
-                     step_time, loss))
-                print("               validation loss %.2f validaiton acc %.2f"%(validation_loss, validation_acc))
+                     step_time, loss, validation_loss, validation_acc))
                 if validation_acc > best_validation_acc or (validation_acc == best_validation_acc and validation_loss < best_validation_loss):
                     best_validation_loss = validation_loss
                     best_validation_step = current_step
@@ -233,7 +232,8 @@ def main_train():
     folds, test_data, (source_vocab_size, target_vocab_size) = load_data()
     train_data = sum(folds[:-1],[])
     validation_data = folds[-1]
-    conf = parameter_tuning(folds, source_vocab_size, target_vocab_size)
+    #conf = parameter_tuning(folds, source_vocab_size, target_vocab_size)
+    conf = list(config.config_beam_search(source_vocab_size, target_vocab_size, FLAGS.num_layers, FLAGS.batch_size, _buckets, FLAGS.learning_rate, FLAGS.learning_rate_decay_factor))[0]
 
     #First, train with held-out data to find number of iterations
     with tf.Session() as sess:
