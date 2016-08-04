@@ -507,10 +507,10 @@ class CompositeShape(object):
                 if i == 0:
                     self.description += self.shapes[i+1].description + " to its %s where "%DIRECTIONS[self.relations[i].direction]
                 else:
-                    if self.shapes[i-1].ind == 0:
-                        name = "the %s"%self.shapes[i-1].name
+                    if self.shapes[i].ind == 0:
+                        name = "the %s"%self.shapes[i].name
                     else:
-                        name = "the %s %s"%(ORDINALS[self.shapes[i-1].ind], self.shapes[i-1].name)
+                        name = "the %s %s"%(ORDINALS[self.shapes[i].ind], self.shapes[i].name)
                     self.description += self.shapes[i+1].description + " to the %s of %s where "%(DIRECTIONS[self.relations[i].direction], name)
                 if i < len(self.shapes) - 2:
                     self.description += self.relations[i].description + ", "
