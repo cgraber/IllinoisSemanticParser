@@ -1,0 +1,869 @@
+<s> First , construct a 2 by 4 rectangle </s>===<s> rectangle ( a ) ^ height ( a , 4 ) ^ width ( a , 2 ) </s>
+<s> After that , construct a vertical line of height 4 to the left of the rectangle </s>===<s> column ( a ) ^ height ( a , 4 ) ^ rectangle ( b ) ^ left ( a , b ) </s>
+<s> Make sure that the bottom end of the vertical line is next to the second row of the rectangle </s>===<s> column ( a ) ^ rectangle ( b ) ^ block ( c ) ^ location ( w1 ) ^ block-location ( c , w1 ) ^ enum ( a , c , 3 ) ^ block ( d ) ^ location ( w2 ) ^ block-location ( d , w2 ) ^ enum ( b , d , 2 ) ^ spatial-rel ( west , 0 , w2 , w1 ) </s>
+<s> Finally , build a rectangle with a height of 2 blocks and a width of 4 blocks to the right of the vertical line </s>===<s> rectangle ( a ) ^ height ( a , 2 ) ^ width ( a , 4 ) ^ rectangle ( b ) ^ right ( a , b ) </s>
+<s> Make sure that the upper left corner of this rectangle is next to the second row of the first rectangle </s>===<s> rectangle ( a ) ^ rectangle ( b ) ^ block ( c ) ^ location ( w1 ) ^ block-location ( c , w1 ) ^ enum ( a , c , 0 ) ^ block ( d ) ^ location ( w2 ) ^ block-location ( d , w2 ) ^ enum ( b , d , 3 ) ^ spatial-rel ( east , 0 , w2 , w1 ) </s>
+
+<s> First , form a rectangle that is 3 blocks wide and 2 blocks tall </s>===<s> rectangle ( a ) ^ height ( a , 2 ) ^ width ( a , 3 ) </s>
+<s> After that , build a 2 by 3 rectangle to the left of the rectangle </s>===<s> rectangle ( a ) ^ height ( a , 3 ) ^ width ( a , 2 ) ^ rectangle ( b ) ^ left ( a , b ) </s>
+<s> Make sure that this rectangle 's upper right corner is adjacent to the lower left corner of the first rectangle </s>===<s> rectangle ( a ) ^ rectangle ( b ) ^ block ( c ) ^ location ( w1 ) ^ block-location ( c , w1 ) ^ enum ( a , c , 1 ) ^ block ( d ) ^ location ( w2 ) ^ block-location ( d , w2 ) ^ enum ( b , d , 3 ) ^ spatial-rel ( west , 0 , w2 , w1 ) </s>
+<s> Finally , construct a vertical line with 3 blocks to the left of the second rectangle </s>===<s> column ( a ) ^ height ( a , 3 ) ^ rectangle ( b ) ^ left ( a , b ) </s>
+<s> Make sure that the top end of the vertical line is next to the second row of the second rectangle </s>===<s> column ( a ) ^ rectangle ( b ) ^ block ( c ) ^ location ( w1 ) ^ block-location ( c , w1 ) ^ enum ( a , c , 0 ) ^ block ( d ) ^ location ( w2 ) ^ block-location ( d , w2 ) ^ enum ( b , d , 2 ) ^ spatial-rel ( west , 0 , w2 , w1 ) </s>
+
+<s> First , build a vertical line of size 3 </s>===<s> column ( a ) ^ height ( a , 3 ) </s>
+<s> Next , build a 4 by 4 square to the left of the vertical line </s>===<s> square ( a ) ^ size ( a , 4 ) ^ column ( b ) ^ left ( a , b ) </s>
+<s> Make sure that the square 's upper right corner is adjacent to the second row of the vertical line </s>===<s> square ( a ) ^ column ( b ) ^ block ( c ) ^ location ( w1 ) ^ block-location ( c , w1 ) ^ enum ( a , c , 3 ) ^ block ( d ) ^ location ( w2 ) ^ block-location ( d , w2 ) ^ enum ( b , d , 1 ) ^ spatial-rel ( west , 0 , w2 , w1 ) </s>
+<s> Finally , build a rectangle that is 2 blocks wide and 4 blocks tall to the right of the square </s>===<s> rectangle ( a ) ^ height ( a , 4 ) ^ width ( a , 2 ) ^ column ( b ) ^ right ( a , b ) </s>
+<s> Make sure that the rectangle 's upper left corner is next to the bottom end of the vertical line </s>===<s> rectangle ( a ) ^ column ( b ) ^ block ( c ) ^ location ( w1 ) ^ block-location ( c , w1 ) ^ enum ( a , c , 0 ) ^ block ( d ) ^ location ( w2 ) ^ block-location ( d , w2 ) ^ enum ( b , d , 2 ) ^ spatial-rel ( east , 0 , w2 , w1 ) </s>
+
+<s> Create a rectangle that is 3 blocks tall and 4 blocks wide </s>===<s> rectangle ( a ) ^ height ( a , 3 ) ^ width ( a , 4 ) </s>
+<s> Then , build a 3 by 3 square to the left of the rectangle </s>===<s> square ( a ) ^ size ( a , 3 ) ^ rectangle ( b ) ^ left ( a , b ) </s>
+<s> Ensure that the upper right corner of the square is aligned with the rectangle 's upper left corner </s>===<s> square ( a ) ^ rectangle ( b ) ^ block ( c ) ^ location ( w1 ) ^ block-location ( c , w1 ) ^ enum ( a , c , 2 ) ^ block ( d ) ^ location ( w2 ) ^ block-location ( d , w2 ) ^ enum ( b , d , 0 ) ^ spatial-rel ( west , 0 , w2 , w1 ) </s>
+
+<s> Construct a column of size 4 </s>===<s> column ( a ) ^ height ( a , 4 ) </s>
+<s> Next , form a 4 block by 4 block square to the top of the column </s>===<s> square ( a ) ^ size ( a , 4 ) ^ column ( b ) ^ top ( a , b ) </s>
+<s> Ensure that the third column of the square is adjacent to the top end of the column </s>===<s> square ( a ) ^ column ( b ) ^ block ( c ) ^ location ( w1 ) ^ block-location ( c , w1 ) ^ enum ( a , c , 14 ) ^ block ( d ) ^ location ( w2 ) ^ block-location ( d , w2 ) ^ enum ( b , d , 0 ) ^ spatial-rel ( north , 0 , w2 , w1 ) </s>
+
+<s> First , create a rectangle with a width of 4 blocks and a height of 2 blocks </s>===<s> rectangle ( a ) ^ height ( a , 2 ) ^ width ( a , 4 ) </s>
+<s> Next , build a 3 block by 3 block square to the left of the rectangle </s>===<s> square ( a ) ^ size ( a , 3 ) ^ rectangle ( b ) ^ left ( a , b ) </s>
+<s> Make sure that the square 's upper right corner is next to the rectangle 's upper left corner </s>===<s> square ( a ) ^ rectangle ( b ) ^ block ( c ) ^ location ( w1 ) ^ block-location ( c , w1 ) ^ enum ( a , c , 2 ) ^ block ( d ) ^ location ( w2 ) ^ block-location ( d , w2 ) ^ enum ( b , d , 0 ) ^ spatial-rel ( west , 0 , w2 , w1 ) </s>
+<s> Finally , create a vertical line with 4 blocks to the right of the square </s>===<s> column ( a ) ^ height ( a , 4 ) ^ rectangle ( b ) ^ right ( a , b ) </s>
+<s> Make sure that the vertical line 's top end is next to the rectangle 's lower right corner </s>===<s> column ( a ) ^ rectangle ( b ) ^ block ( c ) ^ location ( w1 ) ^ block-location ( c , w1 ) ^ enum ( a , c , 0 ) ^ block ( d ) ^ location ( w2 ) ^ block-location ( d , w2 ) ^ enum ( b , d , 7 ) ^ spatial-rel ( east , 0 , w2 , w1 ) </s>
+
+<s> Form a rectangle that is 3 blocks wide and 4 blocks tall </s>===<s> rectangle ( a ) ^ height ( a , 4 ) ^ width ( a , 3 ) </s>
+
+<s> Form a horizontal line of size 4 </s>===<s> row ( a ) ^ width ( a , 4 ) </s>
+<s> Then , create a 4 block by 4 block square to the left of the horizontal line </s>===<s> square ( a ) ^ size ( a , 4 ) ^ row ( b ) ^ left ( a , b ) </s>
+<s> Ensure that the third row of the square is adjacent to the horizontal line 's left end </s>===<s> square ( a ) ^ row ( b ) ^ block ( c ) ^ location ( w1 ) ^ block-location ( c , w1 ) ^ enum ( a , c , 11 ) ^ block ( d ) ^ location ( w2 ) ^ block-location ( d , w2 ) ^ enum ( b , d , 0 ) ^ spatial-rel ( west , 0 , w2 , w1 ) </s>
+
+<s> Create a vertical line of size 4 </s>===<s> column ( a ) ^ height ( a , 4 ) </s>
+<s> Then , form a horizontal line of size 4 to the right of the vertical line </s>===<s> row ( a ) ^ width ( a , 4 ) ^ column ( b ) ^ right ( a , b ) </s>
+<s> Ensure that the horizontal line 's left end is next to the vertical line 's bottom end </s>===<s> row ( a ) ^ column ( b ) ^ block ( c ) ^ location ( w1 ) ^ block-location ( c , w1 ) ^ enum ( a , c , 0 ) ^ block ( d ) ^ location ( w2 ) ^ block-location ( d , w2 ) ^ enum ( b , d , 3 ) ^ spatial-rel ( east , 0 , w2 , w1 ) </s>
+
+<s> First , build a rectangle with a height of 2 blocks and a width of 4 blocks </s>===<s> rectangle ( a ) ^ height ( a , 2 ) ^ width ( a , 4 ) </s>
+<s> After that , build a vertical line of height 3 to the left of the rectangle </s>===<s> column ( a ) ^ height ( a , 3 ) ^ rectangle ( b ) ^ left ( a , b ) </s>
+<s> Make sure that the bottom end of the vertical line is aligned with the lower left corner of the rectangle </s>===<s> column ( a ) ^ rectangle ( b ) ^ block ( c ) ^ location ( w1 ) ^ block-location ( c , w1 ) ^ enum ( a , c , 2 ) ^ block ( d ) ^ location ( w2 ) ^ block-location ( d , w2 ) ^ enum ( b , d , 4 ) ^ spatial-rel ( west , 0 , w2 , w1 ) </s>
+<s> Finally , form a horizontal line using 3 blocks to the top of the vertical line </s>===<s> row ( a ) ^ width ( a , 3 ) ^ column ( b ) ^ top ( a , b ) </s>
+<s> Make sure that the second column of the horizontal line is next to the vertical line 's top end </s>===<s> row ( a ) ^ column ( b ) ^ block ( c ) ^ location ( w1 ) ^ block-location ( c , w1 ) ^ enum ( a , c , 1 ) ^ block ( d ) ^ location ( w2 ) ^ block-location ( d , w2 ) ^ enum ( b , d , 0 ) ^ spatial-rel ( north , 0 , w2 , w1 ) </s>
+
+<s> First , construct a horizontal line of size 3 </s>===<s> row ( a ) ^ width ( a , 3 ) </s>
+<s> Then , build a horizontal line of length 3 to the right of the horizontal line </s>===<s> row ( a ) ^ width ( a , 3 ) ^ row ( b ) ^ right ( a , b ) </s>
+<s> Make sure that the new horizontal line 's left end is adjacent to the first horizontal line 's right end </s>===<s> row ( a ) ^ row ( b ) ^ block ( c ) ^ location ( w1 ) ^ block-location ( c , w1 ) ^ enum ( a , c , 0 ) ^ block ( d ) ^ location ( w2 ) ^ block-location ( d , w2 ) ^ enum ( b , d , 2 ) ^ spatial-rel ( east , 0 , w2 , w1 ) </s>
+<s> Finally , create a vertical line using 3 blocks to the left of the second horizontal line </s>===<s> column ( a ) ^ height ( a , 3 ) ^ row ( b ) ^ left ( a , b ) </s>
+<s> Make sure that the vertical line 's bottom end is next to the first horizontal line 's left end </s>===<s> column ( a ) ^ row ( b ) ^ block ( c ) ^ location ( w1 ) ^ block-location ( c , w1 ) ^ enum ( a , c , 2 ) ^ block ( d ) ^ location ( w2 ) ^ block-location ( d , w2 ) ^ enum ( b , d , 0 ) ^ spatial-rel ( west , 0 , w2 , w1 ) </s>
+
+<s> Build a column of height 4 </s>===<s> column ( a ) ^ height ( a , 4 ) </s>
+<s> Then , construct a row using 5 blocks to the left of the column </s>===<s> row ( a ) ^ width ( a , 5 ) ^ column ( b ) ^ left ( a , b ) </s>
+<s> Ensure that the right end of the row is in line with the top end of the column </s>===<s> row ( a ) ^ column ( b ) ^ block ( c ) ^ location ( w1 ) ^ block-location ( c , w1 ) ^ enum ( a , c , 4 ) ^ block ( d ) ^ location ( w2 ) ^ block-location ( d , w2 ) ^ enum ( b , d , 0 ) ^ spatial-rel ( west , 0 , w2 , w1 ) </s>
+
+<s> First , build a rectangle with a width of 2 blocks and a height of 3 blocks </s>===<s> rectangle ( a ) ^ height ( a , 3 ) ^ width ( a , 2 ) </s>
+<s> Next , build a column with 3 blocks to the top of the rectangle </s>===<s> column ( a ) ^ height ( a , 3 ) ^ rectangle ( b ) ^ top ( a , b ) </s>
+<s> Make sure that the bottom end of the column is adjacent to the rectangle 's upper left corner </s>===<s> column ( a ) ^ rectangle ( b ) ^ block ( c ) ^ location ( w1 ) ^ block-location ( c , w1 ) ^ enum ( a , c , 2 ) ^ block ( d ) ^ location ( w2 ) ^ block-location ( d , w2 ) ^ enum ( b , d , 0 ) ^ spatial-rel ( north , 0 , w2 , w1 ) </s>
+<s> Finally , form a rectangle with a width of 4 blocks and a height of 3 blocks to the top of the column </s>===<s> rectangle ( a ) ^ height ( a , 3 ) ^ width ( a , 4 ) ^ column ( b ) ^ top ( a , b ) </s>
+<s> Make sure that the second column of the new rectangle is adjacent to the top end of the column </s>===<s> rectangle ( a ) ^ column ( b ) ^ block ( c ) ^ location ( w1 ) ^ block-location ( c , w1 ) ^ enum ( a , c , 9 ) ^ block ( d ) ^ location ( w2 ) ^ block-location ( d , w2 ) ^ enum ( b , d , 0 ) ^ spatial-rel ( north , 0 , w2 , w1 ) </s>
+
+<s> Construct a 2 block by 2 block square </s>===<s> square ( a ) ^ size ( a , 2 ) </s>
+<s> Next , form a square with sides of block length 4 to the top of the first square </s>===<s> square ( a ) ^ size ( a , 4 ) ^ square ( b ) ^ top ( a , b ) </s>
+<s> Ensure that the new square 's lower left corner is adjacent to the first square 's upper right corner </s>===<s> square ( a ) ^ square ( b ) ^ block ( c ) ^ location ( w1 ) ^ block-location ( c , w1 ) ^ enum ( a , c , 12 ) ^ block ( d ) ^ location ( w2 ) ^ block-location ( d , w2 ) ^ enum ( b , d , 1 ) ^ spatial-rel ( north , 0 , w2 , w1 ) </s>
+
+<s> Form a vertical line using 3 blocks </s>===<s> column ( a ) ^ height ( a , 3 ) </s>
+<s> Then , construct a column of height 3 to the right of the vertical line </s>===<s> column ( a ) ^ height ( a , 3 ) ^ column ( b ) ^ right ( a , b ) </s>
+<s> Ensure that the column 's bottom end is adjacent to the top end of the vertical line </s>===<s> column ( a ) ^ column ( b ) ^ block ( c ) ^ location ( w1 ) ^ block-location ( c , w1 ) ^ enum ( a , c , 2 ) ^ block ( d ) ^ location ( w2 ) ^ block-location ( d , w2 ) ^ enum ( b , d , 0 ) ^ spatial-rel ( east , 0 , w2 , w1 ) </s>
+
+<s> First , form a vertical line with 5 blocks </s>===<s> column ( a ) ^ height ( a , 5 ) </s>
+<s> After that , build a row with 5 blocks to the top of the vertical line </s>===<s> row ( a ) ^ width ( a , 5 ) ^ column ( b ) ^ top ( a , b ) </s>
+<s> Make sure that the second column of the row is next to the vertical line 's top end </s>===<s> row ( a ) ^ column ( b ) ^ block ( c ) ^ location ( w1 ) ^ block-location ( c , w1 ) ^ enum ( a , c , 1 ) ^ block ( d ) ^ location ( w2 ) ^ block-location ( d , w2 ) ^ enum ( b , d , 0 ) ^ spatial-rel ( north , 0 , w2 , w1 ) </s>
+<s> Finally , construct a rectangle that is 3 blocks wide and 4 blocks tall to the bottom of the row </s>===<s> rectangle ( a ) ^ height ( a , 4 ) ^ width ( a , 3 ) ^ column ( b ) ^ bottom ( a , b ) </s>
+<s> Make sure that the upper right corner of the rectangle is next to the bottom end of the vertical line </s>===<s> rectangle ( a ) ^ column ( b ) ^ block ( c ) ^ location ( w1 ) ^ block-location ( c , w1 ) ^ enum ( a , c , 2 ) ^ block ( d ) ^ location ( w2 ) ^ block-location ( d , w2 ) ^ enum ( b , d , 4 ) ^ spatial-rel ( south , 0 , w2 , w1 ) </s>
+
+<s> Build a row of length 4 </s>===<s> row ( a ) ^ width ( a , 4 ) </s>
+<s> Then , build a rectangle with a width of 2 blocks and a height of 3 blocks to the bottom of the row </s>===<s> rectangle ( a ) ^ height ( a , 3 ) ^ width ( a , 2 ) ^ row ( b ) ^ bottom ( a , b ) </s>
+<s> Ensure that the rectangle 's upper left corner is next to the row 's right end </s>===<s> rectangle ( a ) ^ row ( b ) ^ block ( c ) ^ location ( w1 ) ^ block-location ( c , w1 ) ^ enum ( a , c , 0 ) ^ block ( d ) ^ location ( w2 ) ^ block-location ( d , w2 ) ^ enum ( b , d , 3 ) ^ spatial-rel ( south , 0 , w2 , w1 ) </s>
+
+<s> Create a 2 by 3 rectangle </s>===<s> rectangle ( a ) ^ height ( a , 3 ) ^ width ( a , 2 ) </s>
+<s> Then , build a row with 4 blocks to the top of the rectangle </s>===<s> row ( a ) ^ width ( a , 4 ) ^ rectangle ( b ) ^ top ( a , b ) </s>
+<s> Ensure that the second column of the row is next to the rectangle 's upper left corner </s>===<s> row ( a ) ^ rectangle ( b ) ^ block ( c ) ^ location ( w1 ) ^ block-location ( c , w1 ) ^ enum ( a , c , 1 ) ^ block ( d ) ^ location ( w2 ) ^ block-location ( d , w2 ) ^ enum ( b , d , 0 ) ^ spatial-rel ( north , 0 , w2 , w1 ) </s>
+
+<s> First , build a 4 block by 4 block square </s>===<s> square ( a ) ^ size ( a , 4 ) </s>
+<s> Next , create a rectangle with a width of 2 blocks and a height of 4 blocks to the top of the square </s>===<s> rectangle ( a ) ^ height ( a , 4 ) ^ width ( a , 2 ) ^ square ( b ) ^ top ( a , b ) </s>
+<s> Make sure that the rectangle 's lower left corner is next to the upper right corner of the square </s>===<s> rectangle ( a ) ^ square ( b ) ^ block ( c ) ^ location ( w1 ) ^ block-location ( c , w1 ) ^ enum ( a , c , 6 ) ^ block ( d ) ^ location ( w2 ) ^ block-location ( d , w2 ) ^ enum ( b , d , 3 ) ^ spatial-rel ( north , 0 , w2 , w1 ) </s>
+<s> Finally , create a vertical line of height 5 to the top of the rectangle </s>===<s> column ( a ) ^ height ( a , 5 ) ^ rectangle ( b ) ^ top ( a , b ) </s>
+<s> Make sure that the bottom end of the vertical line is next to the upper right corner of the rectangle </s>===<s> column ( a ) ^ rectangle ( b ) ^ block ( c ) ^ location ( w1 ) ^ block-location ( c , w1 ) ^ enum ( a , c , 4 ) ^ block ( d ) ^ location ( w2 ) ^ block-location ( d , w2 ) ^ enum ( b , d , 1 ) ^ spatial-rel ( north , 0 , w2 , w1 ) </s>
+
+<s> Construct a vertical line of size 4 </s>===<s> column ( a ) ^ height ( a , 4 ) </s>
+<s> Then , construct a column of height 3 to the top of the vertical line </s>===<s> column ( a ) ^ height ( a , 3 ) ^ column ( b ) ^ top ( a , b ) </s>
+<s> Ensure that the bottom end of the column is in line with the top end of the vertical line </s>===<s> column ( a ) ^ column ( b ) ^ block ( c ) ^ location ( w1 ) ^ block-location ( c , w1 ) ^ enum ( a , c , 2 ) ^ block ( d ) ^ location ( w2 ) ^ block-location ( d , w2 ) ^ enum ( b , d , 0 ) ^ spatial-rel ( north , 0 , w2 , w1 ) </s>
+
+<s> First , create a vertical line with 4 blocks </s>===<s> column ( a ) ^ height ( a , 4 ) </s>
+<s> Next , build a square with sides of block length 2 to the top of the vertical line </s>===<s> square ( a ) ^ size ( a , 2 ) ^ column ( b ) ^ top ( a , b ) </s>
+<s> Make sure that the lower right corner of the square is next to the top end of the vertical line </s>===<s> square ( a ) ^ column ( b ) ^ block ( c ) ^ location ( w1 ) ^ block-location ( c , w1 ) ^ enum ( a , c , 3 ) ^ block ( d ) ^ location ( w2 ) ^ block-location ( d , w2 ) ^ enum ( b , d , 0 ) ^ spatial-rel ( north , 0 , w2 , w1 ) </s>
+<s> Finally , construct a rectangle that is 3 blocks wide and 4 blocks tall to the right of the square </s>===<s> rectangle ( a ) ^ height ( a , 4 ) ^ width ( a , 3 ) ^ square ( b ) ^ right ( a , b ) </s>
+<s> Make sure that the rectangle 's upper left corner is adjacent to the upper right corner of the square </s>===<s> rectangle ( a ) ^ square ( b ) ^ block ( c ) ^ location ( w1 ) ^ block-location ( c , w1 ) ^ enum ( a , c , 0 ) ^ block ( d ) ^ location ( w2 ) ^ block-location ( d , w2 ) ^ enum ( b , d , 1 ) ^ spatial-rel ( east , 0 , w2 , w1 ) </s>
+
+<s> Build a column of size 5 </s>===<s> column ( a ) ^ height ( a , 5 ) </s>
+
+<s> Construct a 4 block by 4 block square </s>===<s> square ( a ) ^ size ( a , 4 ) </s>
+
+<s> Create a rectangle that is 2 blocks wide and 3 blocks tall </s>===<s> rectangle ( a ) ^ height ( a , 3 ) ^ width ( a , 2 ) </s>
+
+<s> Construct a rectangle with a width of 4 blocks and a height of 2 blocks </s>===<s> rectangle ( a ) ^ height ( a , 2 ) ^ width ( a , 4 ) </s>
+<s> After that , create a rectangle that is 2 blocks tall and 4 blocks wide to the bottom of the first rectangle </s>===<s> rectangle ( a ) ^ height ( a , 2 ) ^ width ( a , 4 ) ^ rectangle ( b ) ^ bottom ( a , b ) </s>
+<s> Ensure that the upper left corner of this rectangle is adjacent to the third column of the first rectangle </s>===<s> rectangle ( a ) ^ rectangle ( b ) ^ block ( c ) ^ location ( w1 ) ^ block-location ( c , w1 ) ^ enum ( a , c , 0 ) ^ block ( d ) ^ location ( w2 ) ^ block-location ( d , w2 ) ^ enum ( b , d , 6 ) ^ spatial-rel ( south , 0 , w2 , w1 ) </s>
+
+<s> First , create a horizontal line using 3 blocks </s>===<s> row ( a ) ^ width ( a , 3 ) </s>
+<s> Then , build a column with 5 blocks to the top of the horizontal line </s>===<s> column ( a ) ^ height ( a , 5 ) ^ row ( b ) ^ top ( a , b ) </s>
+<s> Make sure that the column 's bottom end is aligned with the left end of the horizontal line </s>===<s> column ( a ) ^ row ( b ) ^ block ( c ) ^ location ( w1 ) ^ block-location ( c , w1 ) ^ enum ( a , c , 4 ) ^ block ( d ) ^ location ( w2 ) ^ block-location ( d , w2 ) ^ enum ( b , d , 0 ) ^ spatial-rel ( north , 0 , w2 , w1 ) </s>
+<s> Finally , create a 3 block by 3 block square to the left of the column </s>===<s> square ( a ) ^ size ( a , 3 ) ^ column ( b ) ^ left ( a , b ) </s>
+<s> Make sure that the upper right corner of the square is next to the column 's top end </s>===<s> square ( a ) ^ column ( b ) ^ block ( c ) ^ location ( w1 ) ^ block-location ( c , w1 ) ^ enum ( a , c , 2 ) ^ block ( d ) ^ location ( w2 ) ^ block-location ( d , w2 ) ^ enum ( b , d , 0 ) ^ spatial-rel ( west , 0 , w2 , w1 ) </s>
+
+<s> Build a rectangle with a height of 3 blocks and a width of 2 blocks </s>===<s> rectangle ( a ) ^ height ( a , 3 ) ^ width ( a , 2 ) </s>
+
+<s> First , form a vertical line of size 3 </s>===<s> column ( a ) ^ height ( a , 3 ) </s>
+<s> Then , construct a column of size 4 to the top of the vertical line </s>===<s> column ( a ) ^ height ( a , 4 ) ^ column ( b ) ^ top ( a , b ) </s>
+<s> Make sure that the column 's bottom end is adjacent to the vertical line 's top end </s>===<s> column ( a ) ^ column ( b ) ^ block ( c ) ^ location ( w1 ) ^ block-location ( c , w1 ) ^ enum ( a , c , 3 ) ^ block ( d ) ^ location ( w2 ) ^ block-location ( d , w2 ) ^ enum ( b , d , 0 ) ^ spatial-rel ( north , 0 , w2 , w1 ) </s>
+<s> Finally , build a vertical line of size 3 to the right of the column </s>===<s> column ( a ) ^ height ( a , 3 ) ^ column ( b ) ^ right ( a , b ) </s>
+<s> Make sure that this vertical line 's top end is adjacent to the second row of the column </s>===<s> column ( a ) ^ column ( b ) ^ block ( c ) ^ location ( w1 ) ^ block-location ( c , w1 ) ^ enum ( a , c , 0 ) ^ block ( d ) ^ location ( w2 ) ^ block-location ( d , w2 ) ^ enum ( b , d , 1 ) ^ spatial-rel ( east , 0 , w2 , w1 ) </s>
+
+<s> First , build a vertical line with 3 blocks </s>===<s> column ( a ) ^ height ( a , 3 ) </s>
+<s> Next , construct a horizontal line of length 3 to the left of the vertical line </s>===<s> row ( a ) ^ width ( a , 3 ) ^ column ( b ) ^ left ( a , b ) </s>
+<s> Make sure that the right end of the horizontal line is in line with the top end of the vertical line </s>===<s> row ( a ) ^ column ( b ) ^ block ( c ) ^ location ( w1 ) ^ block-location ( c , w1 ) ^ enum ( a , c , 2 ) ^ block ( d ) ^ location ( w2 ) ^ block-location ( d , w2 ) ^ enum ( b , d , 0 ) ^ spatial-rel ( west , 0 , w2 , w1 ) </s>
+<s> Finally , construct a rectangle with a width of 2 blocks and a height of 4 blocks to the top of the horizontal line </s>===<s> rectangle ( a ) ^ height ( a , 4 ) ^ width ( a , 2 ) ^ row ( b ) ^ top ( a , b ) </s>
+<s> Make sure that the rectangle 's lower left corner is adjacent to the second column of the horizontal line </s>===<s> rectangle ( a ) ^ row ( b ) ^ block ( c ) ^ location ( w1 ) ^ block-location ( c , w1 ) ^ enum ( a , c , 6 ) ^ block ( d ) ^ location ( w2 ) ^ block-location ( d , w2 ) ^ enum ( b , d , 1 ) ^ spatial-rel ( north , 0 , w2 , w1 ) </s>
+
+<s> Form a 2 by 4 rectangle </s>===<s> rectangle ( a ) ^ height ( a , 4 ) ^ width ( a , 2 ) </s>
+<s> Then , create a rectangle that is 2 blocks tall and 3 blocks wide to the left of the first rectangle </s>===<s> rectangle ( a ) ^ height ( a , 2 ) ^ width ( a , 3 ) ^ rectangle ( b ) ^ left ( a , b ) </s>
+<s> Ensure that this rectangle 's lower right corner is adjacent to the upper left corner of the first rectangle </s>===<s> rectangle ( a ) ^ rectangle ( b ) ^ block ( c ) ^ location ( w1 ) ^ block-location ( c , w1 ) ^ enum ( a , c , 5 ) ^ block ( d ) ^ location ( w2 ) ^ block-location ( d , w2 ) ^ enum ( b , d , 0 ) ^ spatial-rel ( west , 0 , w2 , w1 ) </s>
+
+<s> First , construct a horizontal line of length 5 </s>===<s> row ( a ) ^ width ( a , 5 ) </s>
+<s> Then , form a 2 by 2 square to the right of the horizontal line </s>===<s> square ( a ) ^ size ( a , 2 ) ^ row ( b ) ^ right ( a , b ) </s>
+<s> Make sure that the square 's upper left corner is adjacent to the horizontal line 's right end </s>===<s> square ( a ) ^ row ( b ) ^ block ( c ) ^ location ( w1 ) ^ block-location ( c , w1 ) ^ enum ( a , c , 0 ) ^ block ( d ) ^ location ( w2 ) ^ block-location ( d , w2 ) ^ enum ( b , d , 4 ) ^ spatial-rel ( east , 0 , w2 , w1 ) </s>
+<s> Finally , build a 4 by 2 rectangle to the left of the square </s>===<s> rectangle ( a ) ^ height ( a , 2 ) ^ width ( a , 4 ) ^ row ( b ) ^ left ( a , b ) </s>
+<s> Make sure that the rectangle 's upper right corner is in line with the left end of the horizontal line </s>===<s> rectangle ( a ) ^ row ( b ) ^ block ( c ) ^ location ( w1 ) ^ block-location ( c , w1 ) ^ enum ( a , c , 3 ) ^ block ( d ) ^ location ( w2 ) ^ block-location ( d , w2 ) ^ enum ( b , d , 0 ) ^ spatial-rel ( west , 0 , w2 , w1 ) </s>
+
+<s> Construct a rectangle with a width of 2 blocks and a height of 3 blocks </s>===<s> rectangle ( a ) ^ height ( a , 3 ) ^ width ( a , 2 ) </s>
+<s> Next , form a rectangle that is 2 blocks wide and 3 blocks tall to the left of the first rectangle </s>===<s> rectangle ( a ) ^ height ( a , 3 ) ^ width ( a , 2 ) ^ rectangle ( b ) ^ left ( a , b ) </s>
+<s> Ensure that this rectangle 's lower right corner is next to the upper left corner of the first rectangle </s>===<s> rectangle ( a ) ^ rectangle ( b ) ^ block ( c ) ^ location ( w1 ) ^ block-location ( c , w1 ) ^ enum ( a , c , 5 ) ^ block ( d ) ^ location ( w2 ) ^ block-location ( d , w2 ) ^ enum ( b , d , 0 ) ^ spatial-rel ( west , 0 , w2 , w1 ) </s>
+
+<s> Build a horizontal line using 4 blocks </s>===<s> row ( a ) ^ width ( a , 4 ) </s>
+
+<s> Construct a 4 by 4 square </s>===<s> square ( a ) ^ size ( a , 4 ) </s>
+
+<s> Create a column using 3 blocks </s>===<s> column ( a ) ^ height ( a , 3 ) </s>
+
+<s> Form a rectangle that is 2 blocks wide and 4 blocks tall </s>===<s> rectangle ( a ) ^ height ( a , 4 ) ^ width ( a , 2 ) </s>
+
+<s> First , construct a row with 3 blocks </s>===<s> row ( a ) ^ width ( a , 3 ) </s>
+<s> Then , form a row using 5 blocks to the bottom of the row </s>===<s> row ( a ) ^ width ( a , 5 ) ^ row ( b ) ^ bottom ( a , b ) </s>
+<s> Make sure that the new row 's left end is next to the second column of the first row </s>===<s> row ( a ) ^ row ( b ) ^ block ( c ) ^ location ( w1 ) ^ block-location ( c , w1 ) ^ enum ( a , c , 0 ) ^ block ( d ) ^ location ( w2 ) ^ block-location ( d , w2 ) ^ enum ( b , d , 1 ) ^ spatial-rel ( south , 0 , w2 , w1 ) </s>
+<s> Finally , build a 2 block by 2 block square to the top of the second row </s>===<s> square ( a ) ^ size ( a , 2 ) ^ row ( b ) ^ top ( a , b ) </s>
+<s> Make sure that the square 's lower left corner is adjacent to the first row 's left end </s>===<s> square ( a ) ^ row ( b ) ^ block ( c ) ^ location ( w1 ) ^ block-location ( c , w1 ) ^ enum ( a , c , 2 ) ^ block ( d ) ^ location ( w2 ) ^ block-location ( d , w2 ) ^ enum ( b , d , 0 ) ^ spatial-rel ( north , 0 , w2 , w1 ) </s>
+
+<s> First , create a rectangle that is 4 blocks wide and 3 blocks tall </s>===<s> rectangle ( a ) ^ height ( a , 3 ) ^ width ( a , 4 ) </s>
+<s> Then , form a 4 by 2 rectangle to the left of the rectangle </s>===<s> rectangle ( a ) ^ height ( a , 2 ) ^ width ( a , 4 ) ^ rectangle ( b ) ^ left ( a , b ) </s>
+<s> Make sure that the upper right corner of this rectangle is aligned with the second row of the first rectangle </s>===<s> rectangle ( a ) ^ rectangle ( b ) ^ block ( c ) ^ location ( w1 ) ^ block-location ( c , w1 ) ^ enum ( a , c , 3 ) ^ block ( d ) ^ location ( w2 ) ^ block-location ( d , w2 ) ^ enum ( b , d , 4 ) ^ spatial-rel ( west , 0 , w2 , w1 ) </s>
+<s> Finally , create a vertical line with 3 blocks to the left of the second rectangle </s>===<s> column ( a ) ^ height ( a , 3 ) ^ rectangle ( b ) ^ left ( a , b ) </s>
+<s> Make sure that the vertical line 's bottom end is adjacent to the upper left corner of the second rectangle </s>===<s> column ( a ) ^ rectangle ( b ) ^ block ( c ) ^ location ( w1 ) ^ block-location ( c , w1 ) ^ enum ( a , c , 2 ) ^ block ( d ) ^ location ( w2 ) ^ block-location ( d , w2 ) ^ enum ( b , d , 0 ) ^ spatial-rel ( west , 0 , w2 , w1 ) </s>
+
+<s> Create a column using 3 blocks </s>===<s> column ( a ) ^ height ( a , 3 ) </s>
+<s> After that , create a column of size 4 to the left of the first column </s>===<s> column ( a ) ^ height ( a , 4 ) ^ column ( b ) ^ left ( a , b ) </s>
+<s> Ensure that the bottom end of this column is next to the first column 's top end </s>===<s> column ( a ) ^ column ( b ) ^ block ( c ) ^ location ( w1 ) ^ block-location ( c , w1 ) ^ enum ( a , c , 3 ) ^ block ( d ) ^ location ( w2 ) ^ block-location ( d , w2 ) ^ enum ( b , d , 0 ) ^ spatial-rel ( west , 0 , w2 , w1 ) </s>
+
+<s> First , build a horizontal line using 3 blocks </s>===<s> row ( a ) ^ width ( a , 3 ) </s>
+<s> Next , form a 3 by 2 rectangle to the top of the horizontal line </s>===<s> rectangle ( a ) ^ height ( a , 2 ) ^ width ( a , 3 ) ^ row ( b ) ^ top ( a , b ) </s>
+<s> Make sure that the lower left corner of the rectangle is adjacent to the second column of the horizontal line </s>===<s> rectangle ( a ) ^ row ( b ) ^ block ( c ) ^ location ( w1 ) ^ block-location ( c , w1 ) ^ enum ( a , c , 3 ) ^ block ( d ) ^ location ( w2 ) ^ block-location ( d , w2 ) ^ enum ( b , d , 1 ) ^ spatial-rel ( north , 0 , w2 , w1 ) </s>
+<s> Finally , build a column of size 3 to the right of the rectangle </s>===<s> column ( a ) ^ height ( a , 3 ) ^ rectangle ( b ) ^ right ( a , b ) </s>
+<s> Make sure that the bottom end of the column is next to the rectangle 's lower right corner </s>===<s> column ( a ) ^ rectangle ( b ) ^ block ( c ) ^ location ( w1 ) ^ block-location ( c , w1 ) ^ enum ( a , c , 2 ) ^ block ( d ) ^ location ( w2 ) ^ block-location ( d , w2 ) ^ enum ( b , d , 5 ) ^ spatial-rel ( east , 0 , w2 , w1 ) </s>
+
+<s> First , construct a 3 by 3 square </s>===<s> square ( a ) ^ size ( a , 3 ) </s>
+<s> Then , build a rectangle with a height of 3 blocks and a width of 2 blocks to the right of the square </s>===<s> rectangle ( a ) ^ height ( a , 3 ) ^ width ( a , 2 ) ^ square ( b ) ^ right ( a , b ) </s>
+<s> Make sure that the upper left corner of the rectangle is adjacent to the second row of the square </s>===<s> rectangle ( a ) ^ square ( b ) ^ block ( c ) ^ location ( w1 ) ^ block-location ( c , w1 ) ^ enum ( a , c , 0 ) ^ block ( d ) ^ location ( w2 ) ^ block-location ( d , w2 ) ^ enum ( b , d , 5 ) ^ spatial-rel ( east , 0 , w2 , w1 ) </s>
+<s> Finally , form a column of size 5 to the top of the rectangle </s>===<s> column ( a ) ^ height ( a , 5 ) ^ square ( b ) ^ top ( a , b ) </s>
+<s> Make sure that the bottom end of the column is next to the upper left corner of the square </s>===<s> column ( a ) ^ square ( b ) ^ block ( c ) ^ location ( w1 ) ^ block-location ( c , w1 ) ^ enum ( a , c , 4 ) ^ block ( d ) ^ location ( w2 ) ^ block-location ( d , w2 ) ^ enum ( b , d , 0 ) ^ spatial-rel ( north , 0 , w2 , w1 ) </s>
+
+<s> Create a 3 block by 3 block square </s>===<s> square ( a ) ^ size ( a , 3 ) </s>
+
+<s> Create a square with sides of block length 4 </s>===<s> square ( a ) ^ size ( a , 4 ) </s>
+
+<s> First , construct a 3 by 3 square </s>===<s> square ( a ) ^ size ( a , 3 ) </s>
+<s> Next , build a 3 block by 3 block square to the left of the square </s>===<s> square ( a ) ^ size ( a , 3 ) ^ square ( b ) ^ left ( a , b ) </s>
+<s> Make sure that the upper right corner of the new square is adjacent to the lower left corner of the first square </s>===<s> square ( a ) ^ square ( b ) ^ block ( c ) ^ location ( w1 ) ^ block-location ( c , w1 ) ^ enum ( a , c , 2 ) ^ block ( d ) ^ location ( w2 ) ^ block-location ( d , w2 ) ^ enum ( b , d , 6 ) ^ spatial-rel ( west , 0 , w2 , w1 ) </s>
+<s> Finally , create a square with sides of block length 3 to the bottom of the second square </s>===<s> square ( a ) ^ size ( a , 3 ) ^ square ( b ) ^ bottom ( a , b ) </s>
+<s> Make sure that the new square 's upper right corner is adjacent to the second column of the second square </s>===<s> square ( a ) ^ square ( b ) ^ block ( c ) ^ location ( w1 ) ^ block-location ( c , w1 ) ^ enum ( a , c , 2 ) ^ block ( d ) ^ location ( w2 ) ^ block-location ( d , w2 ) ^ enum ( b , d , 7 ) ^ spatial-rel ( south , 0 , w2 , w1 ) </s>
+
+<s> Form a column with 4 blocks </s>===<s> column ( a ) ^ height ( a , 4 ) </s>
+<s> Next , form a 4 by 3 rectangle to the left of the column </s>===<s> rectangle ( a ) ^ height ( a , 3 ) ^ width ( a , 4 ) ^ column ( b ) ^ left ( a , b ) </s>
+<s> Ensure that the lower right corner of the rectangle is next to the column 's top end </s>===<s> rectangle ( a ) ^ column ( b ) ^ block ( c ) ^ location ( w1 ) ^ block-location ( c , w1 ) ^ enum ( a , c , 11 ) ^ block ( d ) ^ location ( w2 ) ^ block-location ( d , w2 ) ^ enum ( b , d , 0 ) ^ spatial-rel ( west , 0 , w2 , w1 ) </s>
+
+<s> Form a rectangle that is 4 blocks wide and 3 blocks tall </s>===<s> rectangle ( a ) ^ height ( a , 3 ) ^ width ( a , 4 ) </s>
+
+<s> Create a square with sides of block length 2 </s>===<s> square ( a ) ^ size ( a , 2 ) </s>
+<s> After that , form a square with sides of block length 2 to the right of the first square </s>===<s> square ( a ) ^ size ( a , 2 ) ^ square ( b ) ^ right ( a , b ) </s>
+<s> Ensure that the upper left corner of this square is aligned with the first square 's upper right corner </s>===<s> square ( a ) ^ square ( b ) ^ block ( c ) ^ location ( w1 ) ^ block-location ( c , w1 ) ^ enum ( a , c , 0 ) ^ block ( d ) ^ location ( w2 ) ^ block-location ( d , w2 ) ^ enum ( b , d , 1 ) ^ spatial-rel ( east , 0 , w2 , w1 ) </s>
+
+<s> Form a vertical line using 5 blocks </s>===<s> column ( a ) ^ height ( a , 5 ) </s>
+
+<s> Create a row using 3 blocks </s>===<s> row ( a ) ^ width ( a , 3 ) </s>
+
+<s> Create a rectangle that is 2 blocks tall and 4 blocks wide </s>===<s> rectangle ( a ) ^ height ( a , 2 ) ^ width ( a , 4 ) </s>
+
+<s> Build a column of height 5 </s>===<s> column ( a ) ^ height ( a , 5 ) </s>
+
+<s> Build a vertical line using 4 blocks </s>===<s> column ( a ) ^ height ( a , 4 ) </s>
+<s> After that , build a rectangle that is 3 blocks wide and 4 blocks tall to the left of the vertical line </s>===<s> rectangle ( a ) ^ height ( a , 4 ) ^ width ( a , 3 ) ^ column ( b ) ^ left ( a , b ) </s>
+<s> Ensure that the rectangle 's lower right corner is adjacent to the vertical line 's top end </s>===<s> rectangle ( a ) ^ column ( b ) ^ block ( c ) ^ location ( w1 ) ^ block-location ( c , w1 ) ^ enum ( a , c , 11 ) ^ block ( d ) ^ location ( w2 ) ^ block-location ( d , w2 ) ^ enum ( b , d , 0 ) ^ spatial-rel ( west , 0 , w2 , w1 ) </s>
+
+<s> Form a rectangle that is 3 blocks tall and 4 blocks wide </s>===<s> rectangle ( a ) ^ height ( a , 3 ) ^ width ( a , 4 ) </s>
+
+<s> First , create a vertical line of height 5 </s>===<s> column ( a ) ^ height ( a , 5 ) </s>
+<s> After that , build a rectangle that is 3 blocks wide and 2 blocks tall to the left of the vertical line </s>===<s> rectangle ( a ) ^ height ( a , 2 ) ^ width ( a , 3 ) ^ column ( b ) ^ left ( a , b ) </s>
+<s> Make sure that the rectangle 's upper right corner is adjacent to the vertical line 's top end </s>===<s> rectangle ( a ) ^ column ( b ) ^ block ( c ) ^ location ( w1 ) ^ block-location ( c , w1 ) ^ enum ( a , c , 2 ) ^ block ( d ) ^ location ( w2 ) ^ block-location ( d , w2 ) ^ enum ( b , d , 0 ) ^ spatial-rel ( west , 0 , w2 , w1 ) </s>
+<s> Finally , build a 2 by 4 rectangle to the right of the first rectangle </s>===<s> rectangle ( a ) ^ height ( a , 4 ) ^ width ( a , 2 ) ^ column ( b ) ^ right ( a , b ) </s>
+<s> Make sure that the lower left corner of the new rectangle is adjacent to the vertical line 's top end </s>===<s> rectangle ( a ) ^ column ( b ) ^ block ( c ) ^ location ( w1 ) ^ block-location ( c , w1 ) ^ enum ( a , c , 6 ) ^ block ( d ) ^ location ( w2 ) ^ block-location ( d , w2 ) ^ enum ( b , d , 0 ) ^ spatial-rel ( east , 0 , w2 , w1 ) </s>
+
+<s> First , create a rectangle with a width of 4 blocks and a height of 2 blocks </s>===<s> rectangle ( a ) ^ height ( a , 2 ) ^ width ( a , 4 ) </s>
+<s> After that , form a rectangle with a height of 3 blocks and a width of 2 blocks to the bottom of the rectangle </s>===<s> rectangle ( a ) ^ height ( a , 3 ) ^ width ( a , 2 ) ^ rectangle ( b ) ^ bottom ( a , b ) </s>
+<s> Make sure that the new rectangle 's upper left corner is next to the first rectangle 's lower right corner </s>===<s> rectangle ( a ) ^ rectangle ( b ) ^ block ( c ) ^ location ( w1 ) ^ block-location ( c , w1 ) ^ enum ( a , c , 0 ) ^ block ( d ) ^ location ( w2 ) ^ block-location ( d , w2 ) ^ enum ( b , d , 7 ) ^ spatial-rel ( south , 0 , w2 , w1 ) </s>
+<s> Finally , form a 4 by 4 square to the right of the second rectangle </s>===<s> square ( a ) ^ size ( a , 4 ) ^ rectangle ( b ) ^ right ( a , b ) </s>
+<s> Make sure that the upper left corner of the square is adjacent to the second rectangle 's lower right corner </s>===<s> square ( a ) ^ rectangle ( b ) ^ block ( c ) ^ location ( w1 ) ^ block-location ( c , w1 ) ^ enum ( a , c , 0 ) ^ block ( d ) ^ location ( w2 ) ^ block-location ( d , w2 ) ^ enum ( b , d , 5 ) ^ spatial-rel ( east , 0 , w2 , w1 ) </s>
+
+<s> First , construct a rectangle with a height of 4 blocks and a width of 2 blocks </s>===<s> rectangle ( a ) ^ height ( a , 4 ) ^ width ( a , 2 ) </s>
+<s> After that , build a horizontal line with 3 blocks to the top of the rectangle </s>===<s> row ( a ) ^ width ( a , 3 ) ^ rectangle ( b ) ^ top ( a , b ) </s>
+<s> Make sure that the left end of the horizontal line is in line with the rectangle 's upper left corner </s>===<s> row ( a ) ^ rectangle ( b ) ^ block ( c ) ^ location ( w1 ) ^ block-location ( c , w1 ) ^ enum ( a , c , 0 ) ^ block ( d ) ^ location ( w2 ) ^ block-location ( d , w2 ) ^ enum ( b , d , 0 ) ^ spatial-rel ( north , 0 , w2 , w1 ) </s>
+<s> Finally , construct a 2 block by 2 block square to the right of the horizontal line </s>===<s> square ( a ) ^ size ( a , 2 ) ^ row ( b ) ^ right ( a , b ) </s>
+<s> Make sure that the square 's upper left corner is next to the horizontal line 's right end </s>===<s> square ( a ) ^ row ( b ) ^ block ( c ) ^ location ( w1 ) ^ block-location ( c , w1 ) ^ enum ( a , c , 0 ) ^ block ( d ) ^ location ( w2 ) ^ block-location ( d , w2 ) ^ enum ( b , d , 2 ) ^ spatial-rel ( east , 0 , w2 , w1 ) </s>
+
+<s> First , build a rectangle that is 4 blocks wide and 3 blocks tall </s>===<s> rectangle ( a ) ^ height ( a , 3 ) ^ width ( a , 4 ) </s>
+<s> Next , construct a rectangle with a height of 2 blocks and a width of 3 blocks to the top of the rectangle </s>===<s> rectangle ( a ) ^ height ( a , 2 ) ^ width ( a , 3 ) ^ rectangle ( b ) ^ top ( a , b ) </s>
+<s> Make sure that this rectangle 's lower left corner is adjacent to the second column of the first rectangle </s>===<s> rectangle ( a ) ^ rectangle ( b ) ^ block ( c ) ^ location ( w1 ) ^ block-location ( c , w1 ) ^ enum ( a , c , 3 ) ^ block ( d ) ^ location ( w2 ) ^ block-location ( d , w2 ) ^ enum ( b , d , 1 ) ^ spatial-rel ( north , 0 , w2 , w1 ) </s>
+<s> Finally , construct a column with 3 blocks to the right of the second rectangle </s>===<s> column ( a ) ^ height ( a , 3 ) ^ rectangle ( b ) ^ right ( a , b ) </s>
+<s> Make sure that the top end of the column is adjacent to the second rectangle 's upper right corner </s>===<s> column ( a ) ^ rectangle ( b ) ^ block ( c ) ^ location ( w1 ) ^ block-location ( c , w1 ) ^ enum ( a , c , 0 ) ^ block ( d ) ^ location ( w2 ) ^ block-location ( d , w2 ) ^ enum ( b , d , 2 ) ^ spatial-rel ( east , 0 , w2 , w1 ) </s>
+
+<s> Create a column with 4 blocks </s>===<s> column ( a ) ^ height ( a , 4 ) </s>
+<s> After that , create a row of length 5 to the bottom of the column </s>===<s> row ( a ) ^ width ( a , 5 ) ^ column ( b ) ^ bottom ( a , b ) </s>
+<s> Ensure that the left end of the row is aligned with the bottom end of the column </s>===<s> row ( a ) ^ column ( b ) ^ block ( c ) ^ location ( w1 ) ^ block-location ( c , w1 ) ^ enum ( a , c , 0 ) ^ block ( d ) ^ location ( w2 ) ^ block-location ( d , w2 ) ^ enum ( b , d , 3 ) ^ spatial-rel ( south , 0 , w2 , w1 ) </s>
+
+<s> Construct a horizontal line with 3 blocks </s>===<s> row ( a ) ^ width ( a , 3 ) </s>
+<s> Next , create a row of length 3 to the left of the horizontal line </s>===<s> row ( a ) ^ width ( a , 3 ) ^ row ( b ) ^ left ( a , b ) </s>
+<s> Ensure that the right end of the row is aligned with the horizontal line 's left end </s>===<s> row ( a ) ^ row ( b ) ^ block ( c ) ^ location ( w1 ) ^ block-location ( c , w1 ) ^ enum ( a , c , 2 ) ^ block ( d ) ^ location ( w2 ) ^ block-location ( d , w2 ) ^ enum ( b , d , 0 ) ^ spatial-rel ( west , 0 , w2 , w1 ) </s>
+
+<s> Create a horizontal line with 4 blocks </s>===<s> row ( a ) ^ width ( a , 4 ) </s>
+
+<s> Construct a 4 by 2 rectangle </s>===<s> rectangle ( a ) ^ height ( a , 2 ) ^ width ( a , 4 ) </s>
+<s> Next , construct a horizontal line of length 5 to the right of the rectangle </s>===<s> row ( a ) ^ width ( a , 5 ) ^ rectangle ( b ) ^ right ( a , b ) </s>
+<s> Ensure that the left end of the horizontal line is in line with the rectangle 's upper right corner </s>===<s> row ( a ) ^ rectangle ( b ) ^ block ( c ) ^ location ( w1 ) ^ block-location ( c , w1 ) ^ enum ( a , c , 0 ) ^ block ( d ) ^ location ( w2 ) ^ block-location ( d , w2 ) ^ enum ( b , d , 3 ) ^ spatial-rel ( east , 0 , w2 , w1 ) </s>
+
+<s> First , construct a square with sides of block length 2 </s>===<s> square ( a ) ^ size ( a , 2 ) </s>
+<s> Then , build a row using 3 blocks to the top of the square </s>===<s> row ( a ) ^ width ( a , 3 ) ^ square ( b ) ^ top ( a , b ) </s>
+<s> Make sure that the row 's right end is next to the upper right corner of the square </s>===<s> row ( a ) ^ square ( b ) ^ block ( c ) ^ location ( w1 ) ^ block-location ( c , w1 ) ^ enum ( a , c , 2 ) ^ block ( d ) ^ location ( w2 ) ^ block-location ( d , w2 ) ^ enum ( b , d , 1 ) ^ spatial-rel ( north , 0 , w2 , w1 ) </s>
+<s> Finally , form a horizontal line of length 4 to the left of the row </s>===<s> row ( a ) ^ width ( a , 4 ) ^ row ( b ) ^ left ( a , b ) </s>
+<s> Make sure that the right end of the horizontal line is in line with the row 's left end </s>===<s> row ( a ) ^ row ( b ) ^ block ( c ) ^ location ( w1 ) ^ block-location ( c , w1 ) ^ enum ( a , c , 3 ) ^ block ( d ) ^ location ( w2 ) ^ block-location ( d , w2 ) ^ enum ( b , d , 0 ) ^ spatial-rel ( west , 0 , w2 , w1 ) </s>
+
+<s> First , form a rectangle with a width of 3 blocks and a height of 4 blocks </s>===<s> rectangle ( a ) ^ height ( a , 4 ) ^ width ( a , 3 ) </s>
+<s> After that , create a vertical line with 3 blocks to the top of the rectangle </s>===<s> column ( a ) ^ height ( a , 3 ) ^ rectangle ( b ) ^ top ( a , b ) </s>
+<s> Make sure that the bottom end of the vertical line is adjacent to the upper left corner of the rectangle </s>===<s> column ( a ) ^ rectangle ( b ) ^ block ( c ) ^ location ( w1 ) ^ block-location ( c , w1 ) ^ enum ( a , c , 2 ) ^ block ( d ) ^ location ( w2 ) ^ block-location ( d , w2 ) ^ enum ( b , d , 0 ) ^ spatial-rel ( north , 0 , w2 , w1 ) </s>
+<s> Finally , build a rectangle with a width of 4 blocks and a height of 3 blocks to the right of the vertical line </s>===<s> rectangle ( a ) ^ height ( a , 3 ) ^ width ( a , 4 ) ^ rectangle ( b ) ^ right ( a , b ) </s>
+<s> Make sure that the upper left corner of the new rectangle is in line with the upper right corner of the first rectangle </s>===<s> rectangle ( a ) ^ rectangle ( b ) ^ block ( c ) ^ location ( w1 ) ^ block-location ( c , w1 ) ^ enum ( a , c , 0 ) ^ block ( d ) ^ location ( w2 ) ^ block-location ( d , w2 ) ^ enum ( b , d , 2 ) ^ spatial-rel ( east , 0 , w2 , w1 ) </s>
+
+<s> First , construct a vertical line with 4 blocks </s>===<s> column ( a ) ^ height ( a , 4 ) </s>
+<s> Next , form a rectangle that is 3 blocks tall and 2 blocks wide to the left of the vertical line </s>===<s> rectangle ( a ) ^ height ( a , 3 ) ^ width ( a , 2 ) ^ column ( b ) ^ left ( a , b ) </s>
+<s> Make sure that the rectangle 's upper right corner is next to the bottom end of the vertical line </s>===<s> rectangle ( a ) ^ column ( b ) ^ block ( c ) ^ location ( w1 ) ^ block-location ( c , w1 ) ^ enum ( a , c , 1 ) ^ block ( d ) ^ location ( w2 ) ^ block-location ( d , w2 ) ^ enum ( b , d , 3 ) ^ spatial-rel ( west , 0 , w2 , w1 ) </s>
+<s> Finally , form a 3 by 4 rectangle to the left of the first rectangle </s>===<s> rectangle ( a ) ^ height ( a , 4 ) ^ width ( a , 3 ) ^ rectangle ( b ) ^ left ( a , b ) </s>
+<s> Make sure that the new rectangle 's lower right corner is next to the second row of the first rectangle </s>===<s> rectangle ( a ) ^ rectangle ( b ) ^ block ( c ) ^ location ( w1 ) ^ block-location ( c , w1 ) ^ enum ( a , c , 11 ) ^ block ( d ) ^ location ( w2 ) ^ block-location ( d , w2 ) ^ enum ( b , d , 2 ) ^ spatial-rel ( west , 0 , w2 , w1 ) </s>
+
+<s> Form a column with 3 blocks </s>===<s> column ( a ) ^ height ( a , 3 ) </s>
+<s> Next , create a square with sides of block length 2 to the right of the column </s>===<s> square ( a ) ^ size ( a , 2 ) ^ column ( b ) ^ right ( a , b ) </s>
+<s> Ensure that the square 's upper left corner is next to the column 's bottom end </s>===<s> square ( a ) ^ column ( b ) ^ block ( c ) ^ location ( w1 ) ^ block-location ( c , w1 ) ^ enum ( a , c , 0 ) ^ block ( d ) ^ location ( w2 ) ^ block-location ( d , w2 ) ^ enum ( b , d , 2 ) ^ spatial-rel ( east , 0 , w2 , w1 ) </s>
+
+<s> Create a square with sides of block length 4 </s>===<s> square ( a ) ^ size ( a , 4 ) </s>
+<s> Next , form a row of length 5 to the left of the square </s>===<s> row ( a ) ^ width ( a , 5 ) ^ square ( b ) ^ left ( a , b ) </s>
+<s> Ensure that the right end of the row is next to the second row of the square </s>===<s> row ( a ) ^ square ( b ) ^ block ( c ) ^ location ( w1 ) ^ block-location ( c , w1 ) ^ enum ( a , c , 4 ) ^ block ( d ) ^ location ( w2 ) ^ block-location ( d , w2 ) ^ enum ( b , d , 4 ) ^ spatial-rel ( west , 0 , w2 , w1 ) </s>
+
+<s> First , construct a 4 by 3 rectangle </s>===<s> rectangle ( a ) ^ height ( a , 3 ) ^ width ( a , 4 ) </s>
+<s> After that , construct a vertical line of height 5 to the left of the rectangle </s>===<s> column ( a ) ^ height ( a , 5 ) ^ rectangle ( b ) ^ left ( a , b ) </s>
+<s> Make sure that the bottom end of the vertical line is next to the lower left corner of the rectangle </s>===<s> column ( a ) ^ rectangle ( b ) ^ block ( c ) ^ location ( w1 ) ^ block-location ( c , w1 ) ^ enum ( a , c , 4 ) ^ block ( d ) ^ location ( w2 ) ^ block-location ( d , w2 ) ^ enum ( b , d , 8 ) ^ spatial-rel ( west , 0 , w2 , w1 ) </s>
+<s> Finally , form a 2 by 2 square to the bottom of the vertical line </s>===<s> square ( a ) ^ size ( a , 2 ) ^ column ( b ) ^ bottom ( a , b ) </s>
+<s> Make sure that the square 's upper right corner is next to the bottom end of the vertical line </s>===<s> square ( a ) ^ column ( b ) ^ block ( c ) ^ location ( w1 ) ^ block-location ( c , w1 ) ^ enum ( a , c , 1 ) ^ block ( d ) ^ location ( w2 ) ^ block-location ( d , w2 ) ^ enum ( b , d , 4 ) ^ spatial-rel ( south , 0 , w2 , w1 ) </s>
+
+<s> Create a rectangle that is 3 blocks wide and 2 blocks tall </s>===<s> rectangle ( a ) ^ height ( a , 2 ) ^ width ( a , 3 ) </s>
+<s> Then , form a square with sides of block length 2 to the top of the rectangle </s>===<s> square ( a ) ^ size ( a , 2 ) ^ rectangle ( b ) ^ top ( a , b ) </s>
+<s> Ensure that the lower left corner of the square is next to the rectangle 's upper right corner </s>===<s> square ( a ) ^ rectangle ( b ) ^ block ( c ) ^ location ( w1 ) ^ block-location ( c , w1 ) ^ enum ( a , c , 2 ) ^ block ( d ) ^ location ( w2 ) ^ block-location ( d , w2 ) ^ enum ( b , d , 2 ) ^ spatial-rel ( north , 0 , w2 , w1 ) </s>
+
+<s> Build a rectangle that is 3 blocks wide and 4 blocks tall </s>===<s> rectangle ( a ) ^ height ( a , 4 ) ^ width ( a , 3 ) </s>
+
+<s> First , construct a horizontal line with 4 blocks </s>===<s> row ( a ) ^ width ( a , 4 ) </s>
+<s> Then , form a 3 block by 3 block square to the top of the horizontal line </s>===<s> square ( a ) ^ size ( a , 3 ) ^ row ( b ) ^ top ( a , b ) </s>
+<s> Make sure that the square 's lower left corner is next to the left end of the horizontal line </s>===<s> square ( a ) ^ row ( b ) ^ block ( c ) ^ location ( w1 ) ^ block-location ( c , w1 ) ^ enum ( a , c , 6 ) ^ block ( d ) ^ location ( w2 ) ^ block-location ( d , w2 ) ^ enum ( b , d , 0 ) ^ spatial-rel ( north , 0 , w2 , w1 ) </s>
+<s> Finally , create a 4 by 4 square to the top of the first square </s>===<s> square ( a ) ^ size ( a , 4 ) ^ square ( b ) ^ top ( a , b ) </s>
+<s> Make sure that this square 's lower right corner is adjacent to the upper right corner of the first square </s>===<s> square ( a ) ^ square ( b ) ^ block ( c ) ^ location ( w1 ) ^ block-location ( c , w1 ) ^ enum ( a , c , 15 ) ^ block ( d ) ^ location ( w2 ) ^ block-location ( d , w2 ) ^ enum ( b , d , 2 ) ^ spatial-rel ( north , 0 , w2 , w1 ) </s>
+
+<s> Form a horizontal line with 5 blocks </s>===<s> row ( a ) ^ width ( a , 5 ) </s>
+<s> Then , build a horizontal line of size 3 to the bottom of the first horizontal line </s>===<s> row ( a ) ^ width ( a , 3 ) ^ row ( b ) ^ bottom ( a , b ) </s>
+<s> Ensure that the left end of the new horizontal line is adjacent to the first horizontal line 's right end </s>===<s> row ( a ) ^ row ( b ) ^ block ( c ) ^ location ( w1 ) ^ block-location ( c , w1 ) ^ enum ( a , c , 0 ) ^ block ( d ) ^ location ( w2 ) ^ block-location ( d , w2 ) ^ enum ( b , d , 4 ) ^ spatial-rel ( south , 0 , w2 , w1 ) </s>
+
+<s> First , construct a 4 by 4 square </s>===<s> square ( a ) ^ size ( a , 4 ) </s>
+<s> Then , form a vertical line of height 3 to the left of the square </s>===<s> column ( a ) ^ height ( a , 3 ) ^ square ( b ) ^ left ( a , b ) </s>
+<s> Make sure that the vertical line 's top end is adjacent to the third row of the square </s>===<s> column ( a ) ^ square ( b ) ^ block ( c ) ^ location ( w1 ) ^ block-location ( c , w1 ) ^ enum ( a , c , 0 ) ^ block ( d ) ^ location ( w2 ) ^ block-location ( d , w2 ) ^ enum ( b , d , 8 ) ^ spatial-rel ( west , 0 , w2 , w1 ) </s>
+<s> Finally , build a column of height 5 to the left of the vertical line </s>===<s> column ( a ) ^ height ( a , 5 ) ^ column ( b ) ^ left ( a , b ) </s>
+<s> Make sure that the bottom end of the column is adjacent to the second row of the vertical line </s>===<s> column ( a ) ^ column ( b ) ^ block ( c ) ^ location ( w1 ) ^ block-location ( c , w1 ) ^ enum ( a , c , 4 ) ^ block ( d ) ^ location ( w2 ) ^ block-location ( d , w2 ) ^ enum ( b , d , 1 ) ^ spatial-rel ( west , 0 , w2 , w1 ) </s>
+
+<s> First , construct a vertical line of size 4 </s>===<s> column ( a ) ^ height ( a , 4 ) </s>
+<s> Next , create a row of length 3 to the top of the vertical line </s>===<s> row ( a ) ^ width ( a , 3 ) ^ column ( b ) ^ top ( a , b ) </s>
+<s> Make sure that the row 's right end is adjacent to the top end of the vertical line </s>===<s> row ( a ) ^ column ( b ) ^ block ( c ) ^ location ( w1 ) ^ block-location ( c , w1 ) ^ enum ( a , c , 2 ) ^ block ( d ) ^ location ( w2 ) ^ block-location ( d , w2 ) ^ enum ( b , d , 0 ) ^ spatial-rel ( north , 0 , w2 , w1 ) </s>
+<s> Finally , construct a 4 by 4 square to the bottom of the row </s>===<s> square ( a ) ^ size ( a , 4 ) ^ column ( b ) ^ bottom ( a , b ) </s>
+<s> Make sure that the square 's upper left corner is in line with the vertical line 's bottom end </s>===<s> square ( a ) ^ column ( b ) ^ block ( c ) ^ location ( w1 ) ^ block-location ( c , w1 ) ^ enum ( a , c , 0 ) ^ block ( d ) ^ location ( w2 ) ^ block-location ( d , w2 ) ^ enum ( b , d , 3 ) ^ spatial-rel ( south , 0 , w2 , w1 ) </s>
+
+<s> First , build a row of length 5 </s>===<s> row ( a ) ^ width ( a , 5 ) </s>
+<s> After that , build a column using 4 blocks to the right of the row </s>===<s> column ( a ) ^ height ( a , 4 ) ^ row ( b ) ^ right ( a , b ) </s>
+<s> Make sure that the bottom end of the column is adjacent to the right end of the row </s>===<s> column ( a ) ^ row ( b ) ^ block ( c ) ^ location ( w1 ) ^ block-location ( c , w1 ) ^ enum ( a , c , 3 ) ^ block ( d ) ^ location ( w2 ) ^ block-location ( d , w2 ) ^ enum ( b , d , 4 ) ^ spatial-rel ( east , 0 , w2 , w1 ) </s>
+<s> Finally , form a vertical line of height 3 to the right of the column </s>===<s> column ( a ) ^ height ( a , 3 ) ^ column ( b ) ^ right ( a , b ) </s>
+<s> Make sure that the vertical line 's top end is next to the column 's bottom end </s>===<s> column ( a ) ^ column ( b ) ^ block ( c ) ^ location ( w1 ) ^ block-location ( c , w1 ) ^ enum ( a , c , 0 ) ^ block ( d ) ^ location ( w2 ) ^ block-location ( d , w2 ) ^ enum ( b , d , 3 ) ^ spatial-rel ( east , 0 , w2 , w1 ) </s>
+
+<s> First , form a vertical line of size 4 </s>===<s> column ( a ) ^ height ( a , 4 ) </s>
+<s> After that , form a rectangle that is 3 blocks wide and 2 blocks tall to the left of the vertical line </s>===<s> rectangle ( a ) ^ height ( a , 2 ) ^ width ( a , 3 ) ^ column ( b ) ^ left ( a , b ) </s>
+<s> Make sure that the rectangle 's upper right corner is adjacent to the vertical line 's bottom end </s>===<s> rectangle ( a ) ^ column ( b ) ^ block ( c ) ^ location ( w1 ) ^ block-location ( c , w1 ) ^ enum ( a , c , 2 ) ^ block ( d ) ^ location ( w2 ) ^ block-location ( d , w2 ) ^ enum ( b , d , 3 ) ^ spatial-rel ( west , 0 , w2 , w1 ) </s>
+<s> Finally , construct a vertical line of size 4 to the right of the rectangle </s>===<s> column ( a ) ^ height ( a , 4 ) ^ column ( b ) ^ right ( a , b ) </s>
+<s> Make sure that the bottom end of this vertical line is next to the third row of the first vertical line </s>===<s> column ( a ) ^ column ( b ) ^ block ( c ) ^ location ( w1 ) ^ block-location ( c , w1 ) ^ enum ( a , c , 3 ) ^ block ( d ) ^ location ( w2 ) ^ block-location ( d , w2 ) ^ enum ( b , d , 2 ) ^ spatial-rel ( east , 0 , w2 , w1 ) </s>
+
+<s> Build a vertical line of height 4 </s>===<s> column ( a ) ^ height ( a , 4 ) </s>
+<s> Then , form a horizontal line using 5 blocks to the bottom of the vertical line </s>===<s> row ( a ) ^ width ( a , 5 ) ^ column ( b ) ^ bottom ( a , b ) </s>
+<s> Ensure that the right end of the horizontal line is adjacent to the vertical line 's bottom end </s>===<s> row ( a ) ^ column ( b ) ^ block ( c ) ^ location ( w1 ) ^ block-location ( c , w1 ) ^ enum ( a , c , 4 ) ^ block ( d ) ^ location ( w2 ) ^ block-location ( d , w2 ) ^ enum ( b , d , 3 ) ^ spatial-rel ( south , 0 , w2 , w1 ) </s>
+
+<s> Form a rectangle with a width of 4 blocks and a height of 3 blocks </s>===<s> rectangle ( a ) ^ height ( a , 3 ) ^ width ( a , 4 ) </s>
+
+<s> Form a row of length 5 </s>===<s> row ( a ) ^ width ( a , 5 ) </s>
+<s> Then , build a rectangle that is 2 blocks tall and 3 blocks wide to the left of the row </s>===<s> rectangle ( a ) ^ height ( a , 2 ) ^ width ( a , 3 ) ^ row ( b ) ^ left ( a , b ) </s>
+<s> Ensure that the rectangle 's lower right corner is in line with the row 's left end </s>===<s> rectangle ( a ) ^ row ( b ) ^ block ( c ) ^ location ( w1 ) ^ block-location ( c , w1 ) ^ enum ( a , c , 5 ) ^ block ( d ) ^ location ( w2 ) ^ block-location ( d , w2 ) ^ enum ( b , d , 0 ) ^ spatial-rel ( west , 0 , w2 , w1 ) </s>
+
+<s> First , build a square with sides of block length 4 </s>===<s> square ( a ) ^ size ( a , 4 ) </s>
+<s> After that , build a square with sides of block length 4 to the top of the square </s>===<s> square ( a ) ^ size ( a , 4 ) ^ square ( b ) ^ top ( a , b ) </s>
+<s> Make sure that this square 's lower left corner is adjacent to the upper left corner of the first square </s>===<s> square ( a ) ^ square ( b ) ^ block ( c ) ^ location ( w1 ) ^ block-location ( c , w1 ) ^ enum ( a , c , 12 ) ^ block ( d ) ^ location ( w2 ) ^ block-location ( d , w2 ) ^ enum ( b , d , 0 ) ^ spatial-rel ( north , 0 , w2 , w1 ) </s>
+<s> Finally , construct a horizontal line using 3 blocks to the right of the second square </s>===<s> row ( a ) ^ width ( a , 3 ) ^ square ( b ) ^ right ( a , b ) </s>
+<s> Make sure that the horizontal line 's left end is adjacent to the second row of the second square </s>===<s> row ( a ) ^ square ( b ) ^ block ( c ) ^ location ( w1 ) ^ block-location ( c , w1 ) ^ enum ( a , c , 0 ) ^ block ( d ) ^ location ( w2 ) ^ block-location ( d , w2 ) ^ enum ( b , d , 7 ) ^ spatial-rel ( east , 0 , w2 , w1 ) </s>
+
+<s> Create a 2 by 4 rectangle </s>===<s> rectangle ( a ) ^ height ( a , 4 ) ^ width ( a , 2 ) </s>
+<s> After that , build a rectangle with a height of 4 blocks and a width of 2 blocks to the left of the first rectangle </s>===<s> rectangle ( a ) ^ height ( a , 4 ) ^ width ( a , 2 ) ^ rectangle ( b ) ^ left ( a , b ) </s>
+<s> Ensure that the new rectangle 's lower right corner is next to the second row of the first rectangle </s>===<s> rectangle ( a ) ^ rectangle ( b ) ^ block ( c ) ^ location ( w1 ) ^ block-location ( c , w1 ) ^ enum ( a , c , 7 ) ^ block ( d ) ^ location ( w2 ) ^ block-location ( d , w2 ) ^ enum ( b , d , 2 ) ^ spatial-rel ( west , 0 , w2 , w1 ) </s>
+
+<s> Create a horizontal line of length 3 </s>===<s> row ( a ) ^ width ( a , 3 ) </s>
+
+<s> First , construct a horizontal line of size 5 </s>===<s> row ( a ) ^ width ( a , 5 ) </s>
+<s> Next , form a 3 by 3 square to the top of the horizontal line </s>===<s> square ( a ) ^ size ( a , 3 ) ^ row ( b ) ^ top ( a , b ) </s>
+<s> Make sure that the lower right corner of the square is next to the second column of the horizontal line </s>===<s> square ( a ) ^ row ( b ) ^ block ( c ) ^ location ( w1 ) ^ block-location ( c , w1 ) ^ enum ( a , c , 8 ) ^ block ( d ) ^ location ( w2 ) ^ block-location ( d , w2 ) ^ enum ( b , d , 1 ) ^ spatial-rel ( north , 0 , w2 , w1 ) </s>
+<s> Finally , form a 3 block by 3 block square to the right of the first square </s>===<s> square ( a ) ^ size ( a , 3 ) ^ row ( b ) ^ right ( a , b ) </s>
+<s> Make sure that the new square 's upper left corner is adjacent to the right end of the horizontal line </s>===<s> square ( a ) ^ row ( b ) ^ block ( c ) ^ location ( w1 ) ^ block-location ( c , w1 ) ^ enum ( a , c , 0 ) ^ block ( d ) ^ location ( w2 ) ^ block-location ( d , w2 ) ^ enum ( b , d , 4 ) ^ spatial-rel ( east , 0 , w2 , w1 ) </s>
+
+<s> First , build a vertical line of height 5 </s>===<s> column ( a ) ^ height ( a , 5 ) </s>
+<s> Then , form a horizontal line using 5 blocks to the right of the vertical line </s>===<s> row ( a ) ^ width ( a , 5 ) ^ column ( b ) ^ right ( a , b ) </s>
+<s> Make sure that the left end of the horizontal line is adjacent to the second row of the vertical line </s>===<s> row ( a ) ^ column ( b ) ^ block ( c ) ^ location ( w1 ) ^ block-location ( c , w1 ) ^ enum ( a , c , 0 ) ^ block ( d ) ^ location ( w2 ) ^ block-location ( d , w2 ) ^ enum ( b , d , 1 ) ^ spatial-rel ( east , 0 , w2 , w1 ) </s>
+<s> Finally , build a column of size 5 to the right of the horizontal line </s>===<s> column ( a ) ^ height ( a , 5 ) ^ row ( b ) ^ right ( a , b ) </s>
+<s> Make sure that the fourth row of the column is adjacent to the right end of the horizontal line </s>===<s> column ( a ) ^ row ( b ) ^ block ( c ) ^ location ( w1 ) ^ block-location ( c , w1 ) ^ enum ( a , c , 3 ) ^ block ( d ) ^ location ( w2 ) ^ block-location ( d , w2 ) ^ enum ( b , d , 4 ) ^ spatial-rel ( east , 0 , w2 , w1 ) </s>
+
+<s> Construct a horizontal line using 4 blocks </s>===<s> row ( a ) ^ width ( a , 4 ) </s>
+
+<s> First , construct a 2 by 4 rectangle </s>===<s> rectangle ( a ) ^ height ( a , 4 ) ^ width ( a , 2 ) </s>
+<s> After that , form a 4 by 4 square to the left of the rectangle </s>===<s> square ( a ) ^ size ( a , 4 ) ^ rectangle ( b ) ^ left ( a , b ) </s>
+<s> Make sure that the upper right corner of the square is adjacent to the third row of the rectangle </s>===<s> square ( a ) ^ rectangle ( b ) ^ block ( c ) ^ location ( w1 ) ^ block-location ( c , w1 ) ^ enum ( a , c , 3 ) ^ block ( d ) ^ location ( w2 ) ^ block-location ( d , w2 ) ^ enum ( b , d , 4 ) ^ spatial-rel ( west , 0 , w2 , w1 ) </s>
+<s> Finally , form a rectangle that is 4 blocks wide and 2 blocks tall to the right of the square </s>===<s> rectangle ( a ) ^ height ( a , 2 ) ^ width ( a , 4 ) ^ rectangle ( b ) ^ right ( a , b ) </s>
+<s> Make sure that the new rectangle 's lower left corner is adjacent to the first rectangle 's upper right corner </s>===<s> rectangle ( a ) ^ rectangle ( b ) ^ block ( c ) ^ location ( w1 ) ^ block-location ( c , w1 ) ^ enum ( a , c , 4 ) ^ block ( d ) ^ location ( w2 ) ^ block-location ( d , w2 ) ^ enum ( b , d , 1 ) ^ spatial-rel ( east , 0 , w2 , w1 ) </s>
+
+<s> First , create a vertical line of height 5 </s>===<s> column ( a ) ^ height ( a , 5 ) </s>
+<s> Then , create a rectangle with a width of 4 blocks and a height of 2 blocks to the bottom of the vertical line </s>===<s> rectangle ( a ) ^ height ( a , 2 ) ^ width ( a , 4 ) ^ column ( b ) ^ bottom ( a , b ) </s>
+<s> Make sure that the second column of the rectangle is adjacent to the vertical line 's bottom end </s>===<s> rectangle ( a ) ^ column ( b ) ^ block ( c ) ^ location ( w1 ) ^ block-location ( c , w1 ) ^ enum ( a , c , 1 ) ^ block ( d ) ^ location ( w2 ) ^ block-location ( d , w2 ) ^ enum ( b , d , 4 ) ^ spatial-rel ( south , 0 , w2 , w1 ) </s>
+<s> Finally , form a vertical line using 3 blocks to the bottom of the rectangle </s>===<s> column ( a ) ^ height ( a , 3 ) ^ rectangle ( b ) ^ bottom ( a , b ) </s>
+<s> Make sure that the top end of the new vertical line is next to the rectangle 's lower right corner </s>===<s> column ( a ) ^ rectangle ( b ) ^ block ( c ) ^ location ( w1 ) ^ block-location ( c , w1 ) ^ enum ( a , c , 0 ) ^ block ( d ) ^ location ( w2 ) ^ block-location ( d , w2 ) ^ enum ( b , d , 7 ) ^ spatial-rel ( south , 0 , w2 , w1 ) </s>
+
+<s> Build a horizontal line of length 5 </s>===<s> row ( a ) ^ width ( a , 5 ) </s>
+<s> Next , form a square with sides of block length 2 to the bottom of the horizontal line </s>===<s> square ( a ) ^ size ( a , 2 ) ^ row ( b ) ^ bottom ( a , b ) </s>
+<s> Ensure that the upper left corner of the square is next to the horizontal line 's right end </s>===<s> square ( a ) ^ row ( b ) ^ block ( c ) ^ location ( w1 ) ^ block-location ( c , w1 ) ^ enum ( a , c , 0 ) ^ block ( d ) ^ location ( w2 ) ^ block-location ( d , w2 ) ^ enum ( b , d , 4 ) ^ spatial-rel ( south , 0 , w2 , w1 ) </s>
+
+<s> Create a square with sides of block length 3 </s>===<s> square ( a ) ^ size ( a , 3 ) </s>
+<s> After that , form a 2 block by 2 block square to the right of the first square </s>===<s> square ( a ) ^ size ( a , 2 ) ^ square ( b ) ^ right ( a , b ) </s>
+<s> Ensure that this square 's upper left corner is next to the second row of the first square </s>===<s> square ( a ) ^ square ( b ) ^ block ( c ) ^ location ( w1 ) ^ block-location ( c , w1 ) ^ enum ( a , c , 0 ) ^ block ( d ) ^ location ( w2 ) ^ block-location ( d , w2 ) ^ enum ( b , d , 5 ) ^ spatial-rel ( east , 0 , w2 , w1 ) </s>
+
+<s> Build a vertical line of size 3 </s>===<s> column ( a ) ^ height ( a , 3 ) </s>
+<s> Next , create a 2 block by 2 block square to the left of the vertical line </s>===<s> square ( a ) ^ size ( a , 2 ) ^ column ( b ) ^ left ( a , b ) </s>
+<s> Ensure that the upper right corner of the square is adjacent to the vertical line 's bottom end </s>===<s> square ( a ) ^ column ( b ) ^ block ( c ) ^ location ( w1 ) ^ block-location ( c , w1 ) ^ enum ( a , c , 1 ) ^ block ( d ) ^ location ( w2 ) ^ block-location ( d , w2 ) ^ enum ( b , d , 2 ) ^ spatial-rel ( west , 0 , w2 , w1 ) </s>
+
+<s> Construct a 3 by 2 rectangle </s>===<s> rectangle ( a ) ^ height ( a , 2 ) ^ width ( a , 3 ) </s>
+
+<s> Create a square with sides of block length 4 </s>===<s> square ( a ) ^ size ( a , 4 ) </s>
+<s> Then , create a square with sides of block length 4 to the bottom of the first square </s>===<s> square ( a ) ^ size ( a , 4 ) ^ square ( b ) ^ bottom ( a , b ) </s>
+<s> Ensure that this square 's upper left corner is aligned with the lower left corner of the first square </s>===<s> square ( a ) ^ square ( b ) ^ block ( c ) ^ location ( w1 ) ^ block-location ( c , w1 ) ^ enum ( a , c , 0 ) ^ block ( d ) ^ location ( w2 ) ^ block-location ( d , w2 ) ^ enum ( b , d , 12 ) ^ spatial-rel ( south , 0 , w2 , w1 ) </s>
+
+<s> Build a horizontal line with 5 blocks </s>===<s> row ( a ) ^ width ( a , 5 ) </s>
+<s> After that , build a rectangle that is 4 blocks tall and 3 blocks wide to the top of the horizontal line </s>===<s> rectangle ( a ) ^ height ( a , 4 ) ^ width ( a , 3 ) ^ row ( b ) ^ top ( a , b ) </s>
+<s> Ensure that the rectangle 's lower left corner is adjacent to the horizontal line 's left end </s>===<s> rectangle ( a ) ^ row ( b ) ^ block ( c ) ^ location ( w1 ) ^ block-location ( c , w1 ) ^ enum ( a , c , 9 ) ^ block ( d ) ^ location ( w2 ) ^ block-location ( d , w2 ) ^ enum ( b , d , 0 ) ^ spatial-rel ( north , 0 , w2 , w1 ) </s>
+
+<s> Build a row using 5 blocks </s>===<s> row ( a ) ^ width ( a , 5 ) </s>
+
+<s> Build a horizontal line of size 3 </s>===<s> row ( a ) ^ width ( a , 3 ) </s>
+<s> Then , create a rectangle with a width of 2 blocks and a height of 3 blocks to the top of the horizontal line </s>===<s> rectangle ( a ) ^ height ( a , 3 ) ^ width ( a , 2 ) ^ row ( b ) ^ top ( a , b ) </s>
+<s> Ensure that the lower left corner of the rectangle is next to the second column of the horizontal line </s>===<s> rectangle ( a ) ^ row ( b ) ^ block ( c ) ^ location ( w1 ) ^ block-location ( c , w1 ) ^ enum ( a , c , 4 ) ^ block ( d ) ^ location ( w2 ) ^ block-location ( d , w2 ) ^ enum ( b , d , 1 ) ^ spatial-rel ( north , 0 , w2 , w1 ) </s>
+
+<s> Build a rectangle that is 3 blocks tall and 4 blocks wide </s>===<s> rectangle ( a ) ^ height ( a , 3 ) ^ width ( a , 4 ) </s>
+
+<s> First , create a horizontal line of size 5 </s>===<s> row ( a ) ^ width ( a , 5 ) </s>
+<s> After that , create a vertical line using 5 blocks to the top of the horizontal line </s>===<s> column ( a ) ^ height ( a , 5 ) ^ row ( b ) ^ top ( a , b ) </s>
+<s> Make sure that the bottom end of the vertical line is adjacent to the right end of the horizontal line </s>===<s> column ( a ) ^ row ( b ) ^ block ( c ) ^ location ( w1 ) ^ block-location ( c , w1 ) ^ enum ( a , c , 4 ) ^ block ( d ) ^ location ( w2 ) ^ block-location ( d , w2 ) ^ enum ( b , d , 4 ) ^ spatial-rel ( north , 0 , w2 , w1 ) </s>
+<s> Finally , form a 4 by 3 rectangle to the bottom of the vertical line </s>===<s> rectangle ( a ) ^ height ( a , 3 ) ^ width ( a , 4 ) ^ row ( b ) ^ bottom ( a , b ) </s>
+<s> Make sure that the upper left corner of the rectangle is adjacent to the fourth column of the horizontal line </s>===<s> rectangle ( a ) ^ row ( b ) ^ block ( c ) ^ location ( w1 ) ^ block-location ( c , w1 ) ^ enum ( a , c , 0 ) ^ block ( d ) ^ location ( w2 ) ^ block-location ( d , w2 ) ^ enum ( b , d , 3 ) ^ spatial-rel ( south , 0 , w2 , w1 ) </s>
+
+<s> First , create a 4 block by 4 block square </s>===<s> square ( a ) ^ size ( a , 4 ) </s>
+<s> Then , construct a rectangle with a height of 4 blocks and a width of 2 blocks to the right of the square </s>===<s> rectangle ( a ) ^ height ( a , 4 ) ^ width ( a , 2 ) ^ square ( b ) ^ right ( a , b ) </s>
+<s> Make sure that the lower left corner of the rectangle is adjacent to the square 's upper right corner </s>===<s> rectangle ( a ) ^ square ( b ) ^ block ( c ) ^ location ( w1 ) ^ block-location ( c , w1 ) ^ enum ( a , c , 6 ) ^ block ( d ) ^ location ( w2 ) ^ block-location ( d , w2 ) ^ enum ( b , d , 3 ) ^ spatial-rel ( east , 0 , w2 , w1 ) </s>
+<s> Finally , build a horizontal line of length 3 to the left of the rectangle </s>===<s> row ( a ) ^ width ( a , 3 ) ^ square ( b ) ^ left ( a , b ) </s>
+<s> Make sure that the horizontal line 's right end is in line with the upper left corner of the square </s>===<s> row ( a ) ^ square ( b ) ^ block ( c ) ^ location ( w1 ) ^ block-location ( c , w1 ) ^ enum ( a , c , 2 ) ^ block ( d ) ^ location ( w2 ) ^ block-location ( d , w2 ) ^ enum ( b , d , 0 ) ^ spatial-rel ( west , 0 , w2 , w1 ) </s>
+
+<s> First , form a square with sides of block length 3 </s>===<s> square ( a ) ^ size ( a , 3 ) </s>
+<s> Then , build a 3 by 2 rectangle to the bottom of the square </s>===<s> rectangle ( a ) ^ height ( a , 2 ) ^ width ( a , 3 ) ^ square ( b ) ^ bottom ( a , b ) </s>
+<s> Make sure that the rectangle 's upper right corner is next to the square 's lower left corner </s>===<s> rectangle ( a ) ^ square ( b ) ^ block ( c ) ^ location ( w1 ) ^ block-location ( c , w1 ) ^ enum ( a , c , 2 ) ^ block ( d ) ^ location ( w2 ) ^ block-location ( d , w2 ) ^ enum ( b , d , 6 ) ^ spatial-rel ( south , 0 , w2 , w1 ) </s>
+<s> Finally , create a rectangle that is 4 blocks tall and 3 blocks wide to the left of the first rectangle </s>===<s> rectangle ( a ) ^ height ( a , 4 ) ^ width ( a , 3 ) ^ rectangle ( b ) ^ left ( a , b ) </s>
+<s> Make sure that the second row of this rectangle is adjacent to the upper left corner of the first rectangle </s>===<s> rectangle ( a ) ^ rectangle ( b ) ^ block ( c ) ^ location ( w1 ) ^ block-location ( c , w1 ) ^ enum ( a , c , 5 ) ^ block ( d ) ^ location ( w2 ) ^ block-location ( d , w2 ) ^ enum ( b , d , 0 ) ^ spatial-rel ( west , 0 , w2 , w1 ) </s>
+
+<s> Construct a row of length 4 </s>===<s> row ( a ) ^ width ( a , 4 ) </s>
+<s> Next , construct a horizontal line of size 4 to the right of the row </s>===<s> row ( a ) ^ width ( a , 4 ) ^ row ( b ) ^ right ( a , b ) </s>
+<s> Ensure that the horizontal line 's left end is in line with the right end of the row </s>===<s> row ( a ) ^ row ( b ) ^ block ( c ) ^ location ( w1 ) ^ block-location ( c , w1 ) ^ enum ( a , c , 0 ) ^ block ( d ) ^ location ( w2 ) ^ block-location ( d , w2 ) ^ enum ( b , d , 3 ) ^ spatial-rel ( east , 0 , w2 , w1 ) </s>
+
+<s> First , create a row with 5 blocks </s>===<s> row ( a ) ^ width ( a , 5 ) </s>
+<s> Then , build a 2 block by 2 block square to the bottom of the row </s>===<s> square ( a ) ^ size ( a , 2 ) ^ row ( b ) ^ bottom ( a , b ) </s>
+<s> Make sure that the square 's upper left corner is adjacent to the third column of the row </s>===<s> square ( a ) ^ row ( b ) ^ block ( c ) ^ location ( w1 ) ^ block-location ( c , w1 ) ^ enum ( a , c , 0 ) ^ block ( d ) ^ location ( w2 ) ^ block-location ( d , w2 ) ^ enum ( b , d , 2 ) ^ spatial-rel ( south , 0 , w2 , w1 ) </s>
+<s> Finally , build a rectangle with a height of 3 blocks and a width of 2 blocks to the right of the square </s>===<s> rectangle ( a ) ^ height ( a , 3 ) ^ width ( a , 2 ) ^ row ( b ) ^ right ( a , b ) </s>
+<s> Make sure that the lower left corner of the rectangle is adjacent to the row 's right end </s>===<s> rectangle ( a ) ^ row ( b ) ^ block ( c ) ^ location ( w1 ) ^ block-location ( c , w1 ) ^ enum ( a , c , 4 ) ^ block ( d ) ^ location ( w2 ) ^ block-location ( d , w2 ) ^ enum ( b , d , 4 ) ^ spatial-rel ( east , 0 , w2 , w1 ) </s>
+
+<s> First , build a column with 5 blocks </s>===<s> column ( a ) ^ height ( a , 5 ) </s>
+<s> After that , create a vertical line of height 3 to the top of the column </s>===<s> column ( a ) ^ height ( a , 3 ) ^ column ( b ) ^ top ( a , b ) </s>
+<s> Make sure that the vertical line 's bottom end is in line with the top end of the column </s>===<s> column ( a ) ^ column ( b ) ^ block ( c ) ^ location ( w1 ) ^ block-location ( c , w1 ) ^ enum ( a , c , 2 ) ^ block ( d ) ^ location ( w2 ) ^ block-location ( d , w2 ) ^ enum ( b , d , 0 ) ^ spatial-rel ( north , 0 , w2 , w1 ) </s>
+<s> Finally , form a horizontal line of length 4 to the right of the vertical line </s>===<s> row ( a ) ^ width ( a , 4 ) ^ column ( b ) ^ right ( a , b ) </s>
+<s> Make sure that the horizontal line 's left end is adjacent to the bottom end of the vertical line </s>===<s> row ( a ) ^ column ( b ) ^ block ( c ) ^ location ( w1 ) ^ block-location ( c , w1 ) ^ enum ( a , c , 0 ) ^ block ( d ) ^ location ( w2 ) ^ block-location ( d , w2 ) ^ enum ( b , d , 2 ) ^ spatial-rel ( east , 0 , w2 , w1 ) </s>
+
+<s> Construct a column of size 3 </s>===<s> column ( a ) ^ height ( a , 3 ) </s>
+<s> After that , form a column using 5 blocks to the top of the first column </s>===<s> column ( a ) ^ height ( a , 5 ) ^ column ( b ) ^ top ( a , b ) </s>
+<s> Ensure that the new column 's bottom end is adjacent to the top end of the first column </s>===<s> column ( a ) ^ column ( b ) ^ block ( c ) ^ location ( w1 ) ^ block-location ( c , w1 ) ^ enum ( a , c , 4 ) ^ block ( d ) ^ location ( w2 ) ^ block-location ( d , w2 ) ^ enum ( b , d , 0 ) ^ spatial-rel ( north , 0 , w2 , w1 ) </s>
+
+<s> Construct a rectangle that is 3 blocks tall and 2 blocks wide </s>===<s> rectangle ( a ) ^ height ( a , 3 ) ^ width ( a , 2 ) </s>
+<s> Then , form a rectangle with a height of 3 blocks and a width of 2 blocks to the right of the first rectangle </s>===<s> rectangle ( a ) ^ height ( a , 3 ) ^ width ( a , 2 ) ^ rectangle ( b ) ^ right ( a , b ) </s>
+<s> Ensure that the upper left corner of the new rectangle is adjacent to the first rectangle 's upper right corner </s>===<s> rectangle ( a ) ^ rectangle ( b ) ^ block ( c ) ^ location ( w1 ) ^ block-location ( c , w1 ) ^ enum ( a , c , 0 ) ^ block ( d ) ^ location ( w2 ) ^ block-location ( d , w2 ) ^ enum ( b , d , 1 ) ^ spatial-rel ( east , 0 , w2 , w1 ) </s>
+
+<s> First , form a vertical line of height 5 </s>===<s> column ( a ) ^ height ( a , 5 ) </s>
+<s> Then , construct a rectangle that is 3 blocks tall and 2 blocks wide to the right of the vertical line </s>===<s> rectangle ( a ) ^ height ( a , 3 ) ^ width ( a , 2 ) ^ column ( b ) ^ right ( a , b ) </s>
+<s> Make sure that the rectangle 's lower left corner is next to the second row of the vertical line </s>===<s> rectangle ( a ) ^ column ( b ) ^ block ( c ) ^ location ( w1 ) ^ block-location ( c , w1 ) ^ enum ( a , c , 4 ) ^ block ( d ) ^ location ( w2 ) ^ block-location ( d , w2 ) ^ enum ( b , d , 1 ) ^ spatial-rel ( east , 0 , w2 , w1 ) </s>
+<s> Finally , create a vertical line of height 3 to the right of the rectangle </s>===<s> column ( a ) ^ height ( a , 3 ) ^ rectangle ( b ) ^ right ( a , b ) </s>
+<s> Make sure that the top end of this vertical line is adjacent to the second row of the rectangle </s>===<s> column ( a ) ^ rectangle ( b ) ^ block ( c ) ^ location ( w1 ) ^ block-location ( c , w1 ) ^ enum ( a , c , 0 ) ^ block ( d ) ^ location ( w2 ) ^ block-location ( d , w2 ) ^ enum ( b , d , 3 ) ^ spatial-rel ( east , 0 , w2 , w1 ) </s>
+
+<s> First , build a square with sides of block length 3 </s>===<s> square ( a ) ^ size ( a , 3 ) </s>
+<s> Next , construct a row with 4 blocks to the left of the square </s>===<s> row ( a ) ^ width ( a , 4 ) ^ square ( b ) ^ left ( a , b ) </s>
+<s> Make sure that the right end of the row is next to the square 's upper left corner </s>===<s> row ( a ) ^ square ( b ) ^ block ( c ) ^ location ( w1 ) ^ block-location ( c , w1 ) ^ enum ( a , c , 3 ) ^ block ( d ) ^ location ( w2 ) ^ block-location ( d , w2 ) ^ enum ( b , d , 0 ) ^ spatial-rel ( west , 0 , w2 , w1 ) </s>
+<s> Finally , create a horizontal line with 4 blocks to the top of the row </s>===<s> row ( a ) ^ width ( a , 4 ) ^ row ( b ) ^ top ( a , b ) </s>
+<s> Make sure that the left end of the horizontal line is next to the row 's left end </s>===<s> row ( a ) ^ row ( b ) ^ block ( c ) ^ location ( w1 ) ^ block-location ( c , w1 ) ^ enum ( a , c , 0 ) ^ block ( d ) ^ location ( w2 ) ^ block-location ( d , w2 ) ^ enum ( b , d , 0 ) ^ spatial-rel ( north , 0 , w2 , w1 ) </s>
+
+<s> Build a horizontal line of length 4 </s>===<s> row ( a ) ^ width ( a , 4 ) </s>
+
+<s> Construct a horizontal line of size 3 </s>===<s> row ( a ) ^ width ( a , 3 ) </s>
+<s> Then , build a 2 by 3 rectangle to the bottom of the horizontal line </s>===<s> rectangle ( a ) ^ height ( a , 3 ) ^ width ( a , 2 ) ^ row ( b ) ^ bottom ( a , b ) </s>
+<s> Ensure that the upper left corner of the rectangle is adjacent to the second column of the horizontal line </s>===<s> rectangle ( a ) ^ row ( b ) ^ block ( c ) ^ location ( w1 ) ^ block-location ( c , w1 ) ^ enum ( a , c , 0 ) ^ block ( d ) ^ location ( w2 ) ^ block-location ( d , w2 ) ^ enum ( b , d , 1 ) ^ spatial-rel ( south , 0 , w2 , w1 ) </s>
+
+<s> Construct a square with sides of block length 4 </s>===<s> square ( a ) ^ size ( a , 4 ) </s>
+<s> Then , form a column using 4 blocks to the top of the square </s>===<s> column ( a ) ^ height ( a , 4 ) ^ square ( b ) ^ top ( a , b ) </s>
+<s> Ensure that the column 's bottom end is aligned with the square 's upper left corner </s>===<s> column ( a ) ^ square ( b ) ^ block ( c ) ^ location ( w1 ) ^ block-location ( c , w1 ) ^ enum ( a , c , 3 ) ^ block ( d ) ^ location ( w2 ) ^ block-location ( d , w2 ) ^ enum ( b , d , 0 ) ^ spatial-rel ( north , 0 , w2 , w1 ) </s>
+
+<s> Build a horizontal line of size 3 </s>===<s> row ( a ) ^ width ( a , 3 ) </s>
+<s> Next , form a rectangle with a width of 4 blocks and a height of 2 blocks to the top of the horizontal line </s>===<s> rectangle ( a ) ^ height ( a , 2 ) ^ width ( a , 4 ) ^ row ( b ) ^ top ( a , b ) </s>
+<s> Ensure that the lower left corner of the rectangle is aligned with the horizontal line 's left end </s>===<s> rectangle ( a ) ^ row ( b ) ^ block ( c ) ^ location ( w1 ) ^ block-location ( c , w1 ) ^ enum ( a , c , 4 ) ^ block ( d ) ^ location ( w2 ) ^ block-location ( d , w2 ) ^ enum ( b , d , 0 ) ^ spatial-rel ( north , 0 , w2 , w1 ) </s>
+
+<s> Construct a 3 block by 3 block square </s>===<s> square ( a ) ^ size ( a , 3 ) </s>
+<s> Next , build a column with 3 blocks to the bottom of the square </s>===<s> column ( a ) ^ height ( a , 3 ) ^ square ( b ) ^ bottom ( a , b ) </s>
+<s> Ensure that the top end of the column is adjacent to the second column of the square </s>===<s> column ( a ) ^ square ( b ) ^ block ( c ) ^ location ( w1 ) ^ block-location ( c , w1 ) ^ enum ( a , c , 0 ) ^ block ( d ) ^ location ( w2 ) ^ block-location ( d , w2 ) ^ enum ( b , d , 7 ) ^ spatial-rel ( south , 0 , w2 , w1 ) </s>
+
+<s> First , form a rectangle that is 2 blocks tall and 4 blocks wide </s>===<s> rectangle ( a ) ^ height ( a , 2 ) ^ width ( a , 4 ) </s>
+<s> Next , build a horizontal line of size 3 to the right of the rectangle </s>===<s> row ( a ) ^ width ( a , 3 ) ^ rectangle ( b ) ^ right ( a , b ) </s>
+<s> Make sure that the left end of the horizontal line is aligned with the rectangle 's upper right corner </s>===<s> row ( a ) ^ rectangle ( b ) ^ block ( c ) ^ location ( w1 ) ^ block-location ( c , w1 ) ^ enum ( a , c , 0 ) ^ block ( d ) ^ location ( w2 ) ^ block-location ( d , w2 ) ^ enum ( b , d , 3 ) ^ spatial-rel ( east , 0 , w2 , w1 ) </s>
+<s> Finally , create a square with sides of block length 2 to the bottom of the horizontal line </s>===<s> square ( a ) ^ size ( a , 2 ) ^ rectangle ( b ) ^ bottom ( a , b ) </s>
+<s> Make sure that the upper left corner of the square is adjacent to the third column of the rectangle </s>===<s> square ( a ) ^ rectangle ( b ) ^ block ( c ) ^ location ( w1 ) ^ block-location ( c , w1 ) ^ enum ( a , c , 0 ) ^ block ( d ) ^ location ( w2 ) ^ block-location ( d , w2 ) ^ enum ( b , d , 6 ) ^ spatial-rel ( south , 0 , w2 , w1 ) </s>
+
+<s> Create a column of height 4 </s>===<s> column ( a ) ^ height ( a , 4 ) </s>
+<s> Next , form a rectangle that is 2 blocks wide and 4 blocks tall to the left of the column </s>===<s> rectangle ( a ) ^ height ( a , 4 ) ^ width ( a , 2 ) ^ column ( b ) ^ left ( a , b ) </s>
+<s> Ensure that the rectangle 's upper right corner is next to the second row of the column </s>===<s> rectangle ( a ) ^ column ( b ) ^ block ( c ) ^ location ( w1 ) ^ block-location ( c , w1 ) ^ enum ( a , c , 1 ) ^ block ( d ) ^ location ( w2 ) ^ block-location ( d , w2 ) ^ enum ( b , d , 1 ) ^ spatial-rel ( west , 0 , w2 , w1 ) </s>
+
+<s> Form a vertical line of size 5 </s>===<s> column ( a ) ^ height ( a , 5 ) </s>
+<s> After that , create a column of height 4 to the left of the vertical line </s>===<s> column ( a ) ^ height ( a , 4 ) ^ column ( b ) ^ left ( a , b ) </s>
+<s> Ensure that the column 's top end is adjacent to the third row of the vertical line </s>===<s> column ( a ) ^ column ( b ) ^ block ( c ) ^ location ( w1 ) ^ block-location ( c , w1 ) ^ enum ( a , c , 0 ) ^ block ( d ) ^ location ( w2 ) ^ block-location ( d , w2 ) ^ enum ( b , d , 2 ) ^ spatial-rel ( west , 0 , w2 , w1 ) </s>
+
+<s> First , build a column with 3 blocks </s>===<s> column ( a ) ^ height ( a , 3 ) </s>
+<s> Then , construct a row with 4 blocks to the top of the column </s>===<s> row ( a ) ^ width ( a , 4 ) ^ column ( b ) ^ top ( a , b ) </s>
+<s> Make sure that the third column of the row is adjacent to the column 's top end </s>===<s> row ( a ) ^ column ( b ) ^ block ( c ) ^ location ( w1 ) ^ block-location ( c , w1 ) ^ enum ( a , c , 2 ) ^ block ( d ) ^ location ( w2 ) ^ block-location ( d , w2 ) ^ enum ( b , d , 0 ) ^ spatial-rel ( north , 0 , w2 , w1 ) </s>
+<s> Finally , build a vertical line using 3 blocks to the bottom of the row </s>===<s> column ( a ) ^ height ( a , 3 ) ^ column ( b ) ^ bottom ( a , b ) </s>
+<s> Make sure that the top end of the vertical line is next to the column 's bottom end </s>===<s> column ( a ) ^ column ( b ) ^ block ( c ) ^ location ( w1 ) ^ block-location ( c , w1 ) ^ enum ( a , c , 0 ) ^ block ( d ) ^ location ( w2 ) ^ block-location ( d , w2 ) ^ enum ( b , d , 2 ) ^ spatial-rel ( south , 0 , w2 , w1 ) </s>
+
+<s> Create a rectangle with a width of 2 blocks and a height of 4 blocks </s>===<s> rectangle ( a ) ^ height ( a , 4 ) ^ width ( a , 2 ) </s>
+
+<s> Form a square with sides of block length 2 </s>===<s> square ( a ) ^ size ( a , 2 ) </s>
+<s> Then , construct a square with sides of block length 4 to the top of the first square </s>===<s> square ( a ) ^ size ( a , 4 ) ^ square ( b ) ^ top ( a , b ) </s>
+<s> Ensure that the lower left corner of this square is next to the upper left corner of the first square </s>===<s> square ( a ) ^ square ( b ) ^ block ( c ) ^ location ( w1 ) ^ block-location ( c , w1 ) ^ enum ( a , c , 12 ) ^ block ( d ) ^ location ( w2 ) ^ block-location ( d , w2 ) ^ enum ( b , d , 0 ) ^ spatial-rel ( north , 0 , w2 , w1 ) </s>
+
+<s> Create a horizontal line of size 3 </s>===<s> row ( a ) ^ width ( a , 3 ) </s>
+<s> Then , build a column using 3 blocks to the left of the horizontal line </s>===<s> column ( a ) ^ height ( a , 3 ) ^ row ( b ) ^ left ( a , b ) </s>
+<s> Ensure that the second row of the column is next to the horizontal line 's left end </s>===<s> column ( a ) ^ row ( b ) ^ block ( c ) ^ location ( w1 ) ^ block-location ( c , w1 ) ^ enum ( a , c , 1 ) ^ block ( d ) ^ location ( w2 ) ^ block-location ( d , w2 ) ^ enum ( b , d , 0 ) ^ spatial-rel ( west , 0 , w2 , w1 ) </s>
+
+<s> First , construct a row of size 4 </s>===<s> row ( a ) ^ width ( a , 4 ) </s>
+<s> Next , create a rectangle that is 2 blocks tall and 4 blocks wide to the top of the row </s>===<s> rectangle ( a ) ^ height ( a , 2 ) ^ width ( a , 4 ) ^ row ( b ) ^ top ( a , b ) </s>
+<s> Make sure that the lower left corner of the rectangle is adjacent to the row 's left end </s>===<s> rectangle ( a ) ^ row ( b ) ^ block ( c ) ^ location ( w1 ) ^ block-location ( c , w1 ) ^ enum ( a , c , 4 ) ^ block ( d ) ^ location ( w2 ) ^ block-location ( d , w2 ) ^ enum ( b , d , 0 ) ^ spatial-rel ( north , 0 , w2 , w1 ) </s>
+<s> Finally , construct a rectangle that is 3 blocks tall and 2 blocks wide to the right of the first rectangle </s>===<s> rectangle ( a ) ^ height ( a , 3 ) ^ width ( a , 2 ) ^ rectangle ( b ) ^ right ( a , b ) </s>
+<s> Make sure that this rectangle 's lower left corner is next to the upper right corner of the first rectangle </s>===<s> rectangle ( a ) ^ rectangle ( b ) ^ block ( c ) ^ location ( w1 ) ^ block-location ( c , w1 ) ^ enum ( a , c , 4 ) ^ block ( d ) ^ location ( w2 ) ^ block-location ( d , w2 ) ^ enum ( b , d , 3 ) ^ spatial-rel ( east , 0 , w2 , w1 ) </s>
+
+<s> Construct a rectangle that is 4 blocks tall and 2 blocks wide </s>===<s> rectangle ( a ) ^ height ( a , 4 ) ^ width ( a , 2 ) </s>
+<s> After that , build a column using 5 blocks to the right of the rectangle </s>===<s> column ( a ) ^ height ( a , 5 ) ^ rectangle ( b ) ^ right ( a , b ) </s>
+<s> Ensure that the bottom end of the column is next to the third row of the rectangle </s>===<s> column ( a ) ^ rectangle ( b ) ^ block ( c ) ^ location ( w1 ) ^ block-location ( c , w1 ) ^ enum ( a , c , 4 ) ^ block ( d ) ^ location ( w2 ) ^ block-location ( d , w2 ) ^ enum ( b , d , 5 ) ^ spatial-rel ( east , 0 , w2 , w1 ) </s>
+
+<s> Create a rectangle that is 3 blocks tall and 2 blocks wide </s>===<s> rectangle ( a ) ^ height ( a , 3 ) ^ width ( a , 2 ) </s>
+
+<s> Construct a rectangle that is 2 blocks wide and 4 blocks tall </s>===<s> rectangle ( a ) ^ height ( a , 4 ) ^ width ( a , 2 ) </s>
+
+<s> Build a horizontal line with 5 blocks </s>===<s> row ( a ) ^ width ( a , 5 ) </s>
+<s> Then , construct a column using 4 blocks to the right of the horizontal line </s>===<s> column ( a ) ^ height ( a , 4 ) ^ row ( b ) ^ right ( a , b ) </s>
+<s> Ensure that the second row of the column is next to the right end of the horizontal line </s>===<s> column ( a ) ^ row ( b ) ^ block ( c ) ^ location ( w1 ) ^ block-location ( c , w1 ) ^ enum ( a , c , 1 ) ^ block ( d ) ^ location ( w2 ) ^ block-location ( d , w2 ) ^ enum ( b , d , 4 ) ^ spatial-rel ( east , 0 , w2 , w1 ) </s>
+
+<s> Build a square with sides of block length 3 </s>===<s> square ( a ) ^ size ( a , 3 ) </s>
+<s> Then , create a column using 5 blocks to the top of the square </s>===<s> column ( a ) ^ height ( a , 5 ) ^ square ( b ) ^ top ( a , b ) </s>
+<s> Ensure that the column 's bottom end is adjacent to the square 's upper left corner </s>===<s> column ( a ) ^ square ( b ) ^ block ( c ) ^ location ( w1 ) ^ block-location ( c , w1 ) ^ enum ( a , c , 4 ) ^ block ( d ) ^ location ( w2 ) ^ block-location ( d , w2 ) ^ enum ( b , d , 0 ) ^ spatial-rel ( north , 0 , w2 , w1 ) </s>
+
+<s> First , form a column using 3 blocks </s>===<s> column ( a ) ^ height ( a , 3 ) </s>
+<s> After that , construct a horizontal line using 5 blocks to the top of the column </s>===<s> row ( a ) ^ width ( a , 5 ) ^ column ( b ) ^ top ( a , b ) </s>
+<s> Make sure that the right end of the horizontal line is adjacent to the top end of the column </s>===<s> row ( a ) ^ column ( b ) ^ block ( c ) ^ location ( w1 ) ^ block-location ( c , w1 ) ^ enum ( a , c , 4 ) ^ block ( d ) ^ location ( w2 ) ^ block-location ( d , w2 ) ^ enum ( b , d , 0 ) ^ spatial-rel ( north , 0 , w2 , w1 ) </s>
+<s> Finally , construct a vertical line of size 5 to the left of the horizontal line </s>===<s> column ( a ) ^ height ( a , 5 ) ^ row ( b ) ^ left ( a , b ) </s>
+<s> Make sure that the second row of the vertical line is adjacent to the left end of the horizontal line </s>===<s> column ( a ) ^ row ( b ) ^ block ( c ) ^ location ( w1 ) ^ block-location ( c , w1 ) ^ enum ( a , c , 1 ) ^ block ( d ) ^ location ( w2 ) ^ block-location ( d , w2 ) ^ enum ( b , d , 0 ) ^ spatial-rel ( west , 0 , w2 , w1 ) </s>
+
+<s> Build a rectangle that is 4 blocks wide and 2 blocks tall </s>===<s> rectangle ( a ) ^ height ( a , 2 ) ^ width ( a , 4 ) </s>
+<s> After that , construct a vertical line with 4 blocks to the top of the rectangle </s>===<s> column ( a ) ^ height ( a , 4 ) ^ rectangle ( b ) ^ top ( a , b ) </s>
+<s> Ensure that the vertical line 's bottom end is adjacent to the second column of the rectangle </s>===<s> column ( a ) ^ rectangle ( b ) ^ block ( c ) ^ location ( w1 ) ^ block-location ( c , w1 ) ^ enum ( a , c , 3 ) ^ block ( d ) ^ location ( w2 ) ^ block-location ( d , w2 ) ^ enum ( b , d , 1 ) ^ spatial-rel ( north , 0 , w2 , w1 ) </s>
+
+<s> Form a row of length 5 </s>===<s> row ( a ) ^ width ( a , 5 ) </s>
+<s> After that , construct a column of size 5 to the left of the row </s>===<s> column ( a ) ^ height ( a , 5 ) ^ row ( b ) ^ left ( a , b ) </s>
+<s> Ensure that the third row of the column is adjacent to the left end of the row </s>===<s> column ( a ) ^ row ( b ) ^ block ( c ) ^ location ( w1 ) ^ block-location ( c , w1 ) ^ enum ( a , c , 2 ) ^ block ( d ) ^ location ( w2 ) ^ block-location ( d , w2 ) ^ enum ( b , d , 0 ) ^ spatial-rel ( west , 0 , w2 , w1 ) </s>
+
+<s> First , form a column with 3 blocks </s>===<s> column ( a ) ^ height ( a , 3 ) </s>
+<s> After that , form a vertical line using 3 blocks to the bottom of the column </s>===<s> column ( a ) ^ height ( a , 3 ) ^ column ( b ) ^ bottom ( a , b ) </s>
+<s> Make sure that the vertical line 's top end is aligned with the column 's bottom end </s>===<s> column ( a ) ^ column ( b ) ^ block ( c ) ^ location ( w1 ) ^ block-location ( c , w1 ) ^ enum ( a , c , 0 ) ^ block ( d ) ^ location ( w2 ) ^ block-location ( d , w2 ) ^ enum ( b , d , 2 ) ^ spatial-rel ( south , 0 , w2 , w1 ) </s>
+<s> Finally , form a rectangle that is 4 blocks wide and 2 blocks tall to the bottom of the vertical line </s>===<s> rectangle ( a ) ^ height ( a , 2 ) ^ width ( a , 4 ) ^ column ( b ) ^ bottom ( a , b ) </s>
+<s> Make sure that the third column of the rectangle is next to the bottom end of the vertical line </s>===<s> rectangle ( a ) ^ column ( b ) ^ block ( c ) ^ location ( w1 ) ^ block-location ( c , w1 ) ^ enum ( a , c , 2 ) ^ block ( d ) ^ location ( w2 ) ^ block-location ( d , w2 ) ^ enum ( b , d , 2 ) ^ spatial-rel ( south , 0 , w2 , w1 ) </s>
+
+<s> Create a rectangle that is 2 blocks wide and 4 blocks tall </s>===<s> rectangle ( a ) ^ height ( a , 4 ) ^ width ( a , 2 ) </s>
+
+<s> First , construct a rectangle with a width of 4 blocks and a height of 2 blocks </s>===<s> rectangle ( a ) ^ height ( a , 2 ) ^ width ( a , 4 ) </s>
+<s> Next , construct a rectangle with a height of 2 blocks and a width of 3 blocks to the bottom of the rectangle </s>===<s> rectangle ( a ) ^ height ( a , 2 ) ^ width ( a , 3 ) ^ rectangle ( b ) ^ bottom ( a , b ) </s>
+<s> Make sure that this rectangle 's upper right corner is next to the second column of the first rectangle </s>===<s> rectangle ( a ) ^ rectangle ( b ) ^ block ( c ) ^ location ( w1 ) ^ block-location ( c , w1 ) ^ enum ( a , c , 2 ) ^ block ( d ) ^ location ( w2 ) ^ block-location ( d , w2 ) ^ enum ( b , d , 5 ) ^ spatial-rel ( south , 0 , w2 , w1 ) </s>
+<s> Finally , create a column using 3 blocks to the bottom of the second rectangle </s>===<s> column ( a ) ^ height ( a , 3 ) ^ rectangle ( b ) ^ bottom ( a , b ) </s>
+<s> Make sure that the column 's top end is next to the second rectangle 's lower right corner </s>===<s> column ( a ) ^ rectangle ( b ) ^ block ( c ) ^ location ( w1 ) ^ block-location ( c , w1 ) ^ enum ( a , c , 0 ) ^ block ( d ) ^ location ( w2 ) ^ block-location ( d , w2 ) ^ enum ( b , d , 5 ) ^ spatial-rel ( south , 0 , w2 , w1 ) </s>
+
+<s> Construct a horizontal line of size 3 </s>===<s> row ( a ) ^ width ( a , 3 ) </s>
+
+<s> Build a square with sides of block length 4 </s>===<s> square ( a ) ^ size ( a , 4 ) </s>
+
+<s> First , construct a rectangle that is 2 blocks wide and 4 blocks tall </s>===<s> rectangle ( a ) ^ height ( a , 4 ) ^ width ( a , 2 ) </s>
+<s> After that , form a rectangle with a height of 4 blocks and a width of 3 blocks to the left of the rectangle </s>===<s> rectangle ( a ) ^ height ( a , 4 ) ^ width ( a , 3 ) ^ rectangle ( b ) ^ left ( a , b ) </s>
+<s> Make sure that the upper right corner of this rectangle is adjacent to the third row of the first rectangle </s>===<s> rectangle ( a ) ^ rectangle ( b ) ^ block ( c ) ^ location ( w1 ) ^ block-location ( c , w1 ) ^ enum ( a , c , 2 ) ^ block ( d ) ^ location ( w2 ) ^ block-location ( d , w2 ) ^ enum ( b , d , 4 ) ^ spatial-rel ( west , 0 , w2 , w1 ) </s>
+<s> Finally , construct a square with sides of block length 4 to the top of the second rectangle </s>===<s> square ( a ) ^ size ( a , 4 ) ^ rectangle ( b ) ^ top ( a , b ) </s>
+<s> Make sure that the lower left corner of the square is next to the first rectangle 's upper right corner </s>===<s> square ( a ) ^ rectangle ( b ) ^ block ( c ) ^ location ( w1 ) ^ block-location ( c , w1 ) ^ enum ( a , c , 12 ) ^ block ( d ) ^ location ( w2 ) ^ block-location ( d , w2 ) ^ enum ( b , d , 1 ) ^ spatial-rel ( north , 0 , w2 , w1 ) </s>
+
+<s> First , construct a rectangle with a width of 2 blocks and a height of 3 blocks </s>===<s> rectangle ( a ) ^ height ( a , 3 ) ^ width ( a , 2 ) </s>
+<s> Next , build a rectangle that is 2 blocks tall and 3 blocks wide to the right of the rectangle </s>===<s> rectangle ( a ) ^ height ( a , 2 ) ^ width ( a , 3 ) ^ rectangle ( b ) ^ right ( a , b ) </s>
+<s> Make sure that the lower left corner of the new rectangle is next to the first rectangle 's upper right corner </s>===<s> rectangle ( a ) ^ rectangle ( b ) ^ block ( c ) ^ location ( w1 ) ^ block-location ( c , w1 ) ^ enum ( a , c , 3 ) ^ block ( d ) ^ location ( w2 ) ^ block-location ( d , w2 ) ^ enum ( b , d , 1 ) ^ spatial-rel ( east , 0 , w2 , w1 ) </s>
+<s> Finally , form a horizontal line using 5 blocks to the left of the second rectangle </s>===<s> row ( a ) ^ width ( a , 5 ) ^ rectangle ( b ) ^ left ( a , b ) </s>
+<s> Make sure that the right end of the horizontal line is adjacent to the second row of the first rectangle </s>===<s> row ( a ) ^ rectangle ( b ) ^ block ( c ) ^ location ( w1 ) ^ block-location ( c , w1 ) ^ enum ( a , c , 4 ) ^ block ( d ) ^ location ( w2 ) ^ block-location ( d , w2 ) ^ enum ( b , d , 2 ) ^ spatial-rel ( west , 0 , w2 , w1 ) </s>
+
+<s> Create a 4 block by 4 block square </s>===<s> square ( a ) ^ size ( a , 4 ) </s>
+<s> Then , create a vertical line with 3 blocks to the top of the square </s>===<s> column ( a ) ^ height ( a , 3 ) ^ square ( b ) ^ top ( a , b ) </s>
+<s> Ensure that the vertical line 's bottom end is next to the third column of the square </s>===<s> column ( a ) ^ square ( b ) ^ block ( c ) ^ location ( w1 ) ^ block-location ( c , w1 ) ^ enum ( a , c , 2 ) ^ block ( d ) ^ location ( w2 ) ^ block-location ( d , w2 ) ^ enum ( b , d , 2 ) ^ spatial-rel ( north , 0 , w2 , w1 ) </s>
+
+<s> Build a rectangle with a width of 2 blocks and a height of 4 blocks </s>===<s> rectangle ( a ) ^ height ( a , 4 ) ^ width ( a , 2 ) </s>
+<s> After that , build a vertical line with 3 blocks to the right of the rectangle </s>===<s> column ( a ) ^ height ( a , 3 ) ^ rectangle ( b ) ^ right ( a , b ) </s>
+<s> Ensure that the top end of the vertical line is adjacent to the second row of the rectangle </s>===<s> column ( a ) ^ rectangle ( b ) ^ block ( c ) ^ location ( w1 ) ^ block-location ( c , w1 ) ^ enum ( a , c , 0 ) ^ block ( d ) ^ location ( w2 ) ^ block-location ( d , w2 ) ^ enum ( b , d , 3 ) ^ spatial-rel ( east , 0 , w2 , w1 ) </s>
+
+<s> First , create a horizontal line using 4 blocks </s>===<s> row ( a ) ^ width ( a , 4 ) </s>
+<s> Then , form a horizontal line of length 4 to the bottom of the horizontal line </s>===<s> row ( a ) ^ width ( a , 4 ) ^ row ( b ) ^ bottom ( a , b ) </s>
+<s> Make sure that the left end of this horizontal line is next to the second column of the first horizontal line </s>===<s> row ( a ) ^ row ( b ) ^ block ( c ) ^ location ( w1 ) ^ block-location ( c , w1 ) ^ enum ( a , c , 0 ) ^ block ( d ) ^ location ( w2 ) ^ block-location ( d , w2 ) ^ enum ( b , d , 1 ) ^ spatial-rel ( south , 0 , w2 , w1 ) </s>
+<s> Finally , create a vertical line of size 4 to the top of the second horizontal line </s>===<s> column ( a ) ^ height ( a , 4 ) ^ row ( b ) ^ top ( a , b ) </s>
+<s> Make sure that the bottom end of the vertical line is adjacent to the first horizontal line 's left end </s>===<s> column ( a ) ^ row ( b ) ^ block ( c ) ^ location ( w1 ) ^ block-location ( c , w1 ) ^ enum ( a , c , 3 ) ^ block ( d ) ^ location ( w2 ) ^ block-location ( d , w2 ) ^ enum ( b , d , 0 ) ^ spatial-rel ( north , 0 , w2 , w1 ) </s>
+
+<s> Construct a 3 block by 3 block square </s>===<s> square ( a ) ^ size ( a , 3 ) </s>
+<s> Next , build a rectangle that is 2 blocks wide and 3 blocks tall to the right of the square </s>===<s> rectangle ( a ) ^ height ( a , 3 ) ^ width ( a , 2 ) ^ square ( b ) ^ right ( a , b ) </s>
+<s> Ensure that the rectangle 's upper left corner is in line with the upper right corner of the square </s>===<s> rectangle ( a ) ^ square ( b ) ^ block ( c ) ^ location ( w1 ) ^ block-location ( c , w1 ) ^ enum ( a , c , 0 ) ^ block ( d ) ^ location ( w2 ) ^ block-location ( d , w2 ) ^ enum ( b , d , 2 ) ^ spatial-rel ( east , 0 , w2 , w1 ) </s>
+
+<s> Build a rectangle with a width of 3 blocks and a height of 2 blocks </s>===<s> rectangle ( a ) ^ height ( a , 2 ) ^ width ( a , 3 ) </s>
+<s> Next , build a row with 4 blocks to the bottom of the rectangle </s>===<s> row ( a ) ^ width ( a , 4 ) ^ rectangle ( b ) ^ bottom ( a , b ) </s>
+<s> Ensure that the left end of the row is next to the second column of the rectangle </s>===<s> row ( a ) ^ rectangle ( b ) ^ block ( c ) ^ location ( w1 ) ^ block-location ( c , w1 ) ^ enum ( a , c , 0 ) ^ block ( d ) ^ location ( w2 ) ^ block-location ( d , w2 ) ^ enum ( b , d , 4 ) ^ spatial-rel ( south , 0 , w2 , w1 ) </s>
+
+<s> Form a row using 4 blocks </s>===<s> row ( a ) ^ width ( a , 4 ) </s>
+<s> After that , build a horizontal line with 4 blocks to the top of the row </s>===<s> row ( a ) ^ width ( a , 4 ) ^ row ( b ) ^ top ( a , b ) </s>
+<s> Ensure that the horizontal line 's left end is adjacent to the third column of the row </s>===<s> row ( a ) ^ row ( b ) ^ block ( c ) ^ location ( w1 ) ^ block-location ( c , w1 ) ^ enum ( a , c , 0 ) ^ block ( d ) ^ location ( w2 ) ^ block-location ( d , w2 ) ^ enum ( b , d , 2 ) ^ spatial-rel ( north , 0 , w2 , w1 ) </s>
+
+<s> First , create a square with sides of block length 3 </s>===<s> square ( a ) ^ size ( a , 3 ) </s>
+<s> Next , create a horizontal line of size 3 to the left of the square </s>===<s> row ( a ) ^ width ( a , 3 ) ^ square ( b ) ^ left ( a , b ) </s>
+<s> Make sure that the horizontal line 's right end is next to the square 's lower left corner </s>===<s> row ( a ) ^ square ( b ) ^ block ( c ) ^ location ( w1 ) ^ block-location ( c , w1 ) ^ enum ( a , c , 2 ) ^ block ( d ) ^ location ( w2 ) ^ block-location ( d , w2 ) ^ enum ( b , d , 6 ) ^ spatial-rel ( west , 0 , w2 , w1 ) </s>
+<s> Finally , build a 4 by 4 square to the left of the horizontal line </s>===<s> square ( a ) ^ size ( a , 4 ) ^ row ( b ) ^ left ( a , b ) </s>
+<s> Make sure that the third row of the new square is adjacent to the horizontal line 's left end </s>===<s> square ( a ) ^ row ( b ) ^ block ( c ) ^ location ( w1 ) ^ block-location ( c , w1 ) ^ enum ( a , c , 11 ) ^ block ( d ) ^ location ( w2 ) ^ block-location ( d , w2 ) ^ enum ( b , d , 0 ) ^ spatial-rel ( west , 0 , w2 , w1 ) </s>
+
+<s> Construct a vertical line using 4 blocks </s>===<s> column ( a ) ^ height ( a , 4 ) </s>
+
+<s> First , form a horizontal line using 4 blocks </s>===<s> row ( a ) ^ width ( a , 4 ) </s>
+<s> Then , create a vertical line using 5 blocks to the right of the horizontal line </s>===<s> column ( a ) ^ height ( a , 5 ) ^ row ( b ) ^ right ( a , b ) </s>
+<s> Make sure that the bottom end of the vertical line is next to the horizontal line 's right end </s>===<s> column ( a ) ^ row ( b ) ^ block ( c ) ^ location ( w1 ) ^ block-location ( c , w1 ) ^ enum ( a , c , 4 ) ^ block ( d ) ^ location ( w2 ) ^ block-location ( d , w2 ) ^ enum ( b , d , 3 ) ^ spatial-rel ( east , 0 , w2 , w1 ) </s>
+<s> Finally , create a column of size 4 to the top of the vertical line </s>===<s> column ( a ) ^ height ( a , 4 ) ^ column ( b ) ^ top ( a , b ) </s>
+<s> Make sure that the bottom end of the column is in line with the top end of the vertical line </s>===<s> column ( a ) ^ column ( b ) ^ block ( c ) ^ location ( w1 ) ^ block-location ( c , w1 ) ^ enum ( a , c , 3 ) ^ block ( d ) ^ location ( w2 ) ^ block-location ( d , w2 ) ^ enum ( b , d , 0 ) ^ spatial-rel ( north , 0 , w2 , w1 ) </s>
+
+<s> Construct a rectangle that is 2 blocks wide and 3 blocks tall </s>===<s> rectangle ( a ) ^ height ( a , 3 ) ^ width ( a , 2 ) </s>
+
+<s> First , construct a rectangle with a height of 4 blocks and a width of 3 blocks </s>===<s> rectangle ( a ) ^ height ( a , 4 ) ^ width ( a , 3 ) </s>
+<s> Then , build a column using 5 blocks to the left of the rectangle </s>===<s> column ( a ) ^ height ( a , 5 ) ^ rectangle ( b ) ^ left ( a , b ) </s>
+<s> Make sure that the column 's bottom end is next to the second row of the rectangle </s>===<s> column ( a ) ^ rectangle ( b ) ^ block ( c ) ^ location ( w1 ) ^ block-location ( c , w1 ) ^ enum ( a , c , 4 ) ^ block ( d ) ^ location ( w2 ) ^ block-location ( d , w2 ) ^ enum ( b , d , 3 ) ^ spatial-rel ( west , 0 , w2 , w1 ) </s>
+<s> Finally , create a column of size 3 to the left of the first column </s>===<s> column ( a ) ^ height ( a , 3 ) ^ column ( b ) ^ left ( a , b ) </s>
+<s> Make sure that this column 's bottom end is next to the first column 's top end </s>===<s> column ( a ) ^ column ( b ) ^ block ( c ) ^ location ( w1 ) ^ block-location ( c , w1 ) ^ enum ( a , c , 2 ) ^ block ( d ) ^ location ( w2 ) ^ block-location ( d , w2 ) ^ enum ( b , d , 0 ) ^ spatial-rel ( west , 0 , w2 , w1 ) </s>
+
+<s> Create a rectangle with a height of 2 blocks and a width of 4 blocks </s>===<s> rectangle ( a ) ^ height ( a , 2 ) ^ width ( a , 4 ) </s>
+
+<s> Create a column using 3 blocks </s>===<s> column ( a ) ^ height ( a , 3 ) </s>
+<s> After that , form a row using 5 blocks to the right of the column </s>===<s> row ( a ) ^ width ( a , 5 ) ^ column ( b ) ^ right ( a , b ) </s>
+<s> Ensure that the row 's left end is next to the second row of the column </s>===<s> row ( a ) ^ column ( b ) ^ block ( c ) ^ location ( w1 ) ^ block-location ( c , w1 ) ^ enum ( a , c , 0 ) ^ block ( d ) ^ location ( w2 ) ^ block-location ( d , w2 ) ^ enum ( b , d , 1 ) ^ spatial-rel ( east , 0 , w2 , w1 ) </s>
+
+<s> Build a row using 5 blocks </s>===<s> row ( a ) ^ width ( a , 5 ) </s>
+<s> After that , construct a column of size 3 to the bottom of the row </s>===<s> column ( a ) ^ height ( a , 3 ) ^ row ( b ) ^ bottom ( a , b ) </s>
+<s> Ensure that the column 's top end is adjacent to the fourth column of the row </s>===<s> column ( a ) ^ row ( b ) ^ block ( c ) ^ location ( w1 ) ^ block-location ( c , w1 ) ^ enum ( a , c , 0 ) ^ block ( d ) ^ location ( w2 ) ^ block-location ( d , w2 ) ^ enum ( b , d , 3 ) ^ spatial-rel ( south , 0 , w2 , w1 ) </s>
+
+<s> Create a row with 3 blocks </s>===<s> row ( a ) ^ width ( a , 3 ) </s>
+<s> After that , construct a vertical line using 5 blocks to the right of the row </s>===<s> column ( a ) ^ height ( a , 5 ) ^ row ( b ) ^ right ( a , b ) </s>
+<s> Ensure that the second row of the vertical line is next to the right end of the row </s>===<s> column ( a ) ^ row ( b ) ^ block ( c ) ^ location ( w1 ) ^ block-location ( c , w1 ) ^ enum ( a , c , 1 ) ^ block ( d ) ^ location ( w2 ) ^ block-location ( d , w2 ) ^ enum ( b , d , 2 ) ^ spatial-rel ( east , 0 , w2 , w1 ) </s>
+
+<s> First , create a vertical line of height 5 </s>===<s> column ( a ) ^ height ( a , 5 ) </s>
+<s> Then , construct a vertical line using 5 blocks to the right of the vertical line </s>===<s> column ( a ) ^ height ( a , 5 ) ^ column ( b ) ^ right ( a , b ) </s>
+<s> Make sure that this vertical line 's bottom end is adjacent to the first vertical line 's top end </s>===<s> column ( a ) ^ column ( b ) ^ block ( c ) ^ location ( w1 ) ^ block-location ( c , w1 ) ^ enum ( a , c , 4 ) ^ block ( d ) ^ location ( w2 ) ^ block-location ( d , w2 ) ^ enum ( b , d , 0 ) ^ spatial-rel ( east , 0 , w2 , w1 ) </s>
+<s> Finally , create a vertical line of height 5 to the bottom of the second vertical line </s>===<s> column ( a ) ^ height ( a , 5 ) ^ column ( b ) ^ bottom ( a , b ) </s>
+<s> Make sure that the top end of this vertical line is in line with the bottom end of the first vertical line </s>===<s> column ( a ) ^ column ( b ) ^ block ( c ) ^ location ( w1 ) ^ block-location ( c , w1 ) ^ enum ( a , c , 0 ) ^ block ( d ) ^ location ( w2 ) ^ block-location ( d , w2 ) ^ enum ( b , d , 4 ) ^ spatial-rel ( south , 0 , w2 , w1 ) </s>
+
+<s> Build a column with 5 blocks </s>===<s> column ( a ) ^ height ( a , 5 ) </s>
+<s> Then , build a 4 block by 4 block square to the left of the column </s>===<s> square ( a ) ^ size ( a , 4 ) ^ column ( b ) ^ left ( a , b ) </s>
+<s> Ensure that the square 's lower right corner is adjacent to the top end of the column </s>===<s> square ( a ) ^ column ( b ) ^ block ( c ) ^ location ( w1 ) ^ block-location ( c , w1 ) ^ enum ( a , c , 15 ) ^ block ( d ) ^ location ( w2 ) ^ block-location ( d , w2 ) ^ enum ( b , d , 0 ) ^ spatial-rel ( west , 0 , w2 , w1 ) </s>
+
+<s> Build a vertical line using 5 blocks </s>===<s> column ( a ) ^ height ( a , 5 ) </s>
+
+<s> Create a rectangle that is 2 blocks wide and 3 blocks tall </s>===<s> rectangle ( a ) ^ height ( a , 3 ) ^ width ( a , 2 ) </s>
+<s> Next , construct a row of length 5 to the bottom of the rectangle </s>===<s> row ( a ) ^ width ( a , 5 ) ^ rectangle ( b ) ^ bottom ( a , b ) </s>
+<s> Ensure that the left end of the row is adjacent to the rectangle 's lower left corner </s>===<s> row ( a ) ^ rectangle ( b ) ^ block ( c ) ^ location ( w1 ) ^ block-location ( c , w1 ) ^ enum ( a , c , 0 ) ^ block ( d ) ^ location ( w2 ) ^ block-location ( d , w2 ) ^ enum ( b , d , 4 ) ^ spatial-rel ( south , 0 , w2 , w1 ) </s>
+
+<s> Construct a square with sides of block length 3 </s>===<s> square ( a ) ^ size ( a , 3 ) </s>
+
+<s> Construct a vertical line with 3 blocks </s>===<s> column ( a ) ^ height ( a , 3 ) </s>
+<s> Then , build a 4 by 4 square to the top of the vertical line </s>===<s> square ( a ) ^ size ( a , 4 ) ^ column ( b ) ^ top ( a , b ) </s>
+<s> Ensure that the third column of the square is next to the vertical line 's top end </s>===<s> square ( a ) ^ column ( b ) ^ block ( c ) ^ location ( w1 ) ^ block-location ( c , w1 ) ^ enum ( a , c , 14 ) ^ block ( d ) ^ location ( w2 ) ^ block-location ( d , w2 ) ^ enum ( b , d , 0 ) ^ spatial-rel ( north , 0 , w2 , w1 ) </s>
+
+<s> First , build a vertical line of height 4 </s>===<s> column ( a ) ^ height ( a , 4 ) </s>
+<s> Next , build a column of height 5 to the right of the vertical line </s>===<s> column ( a ) ^ height ( a , 5 ) ^ column ( b ) ^ right ( a , b ) </s>
+<s> Make sure that the column 's bottom end is next to the second row of the vertical line </s>===<s> column ( a ) ^ column ( b ) ^ block ( c ) ^ location ( w1 ) ^ block-location ( c , w1 ) ^ enum ( a , c , 4 ) ^ block ( d ) ^ location ( w2 ) ^ block-location ( d , w2 ) ^ enum ( b , d , 1 ) ^ spatial-rel ( east , 0 , w2 , w1 ) </s>
+<s> Finally , form a vertical line using 5 blocks to the top of the column </s>===<s> column ( a ) ^ height ( a , 5 ) ^ column ( b ) ^ top ( a , b ) </s>
+<s> Make sure that the bottom end of the new vertical line is adjacent to the column 's top end </s>===<s> column ( a ) ^ column ( b ) ^ block ( c ) ^ location ( w1 ) ^ block-location ( c , w1 ) ^ enum ( a , c , 4 ) ^ block ( d ) ^ location ( w2 ) ^ block-location ( d , w2 ) ^ enum ( b , d , 0 ) ^ spatial-rel ( north , 0 , w2 , w1 ) </s>
+
+<s> First , create a square with sides of block length 4 </s>===<s> square ( a ) ^ size ( a , 4 ) </s>
+<s> After that , build a 2 by 2 square to the right of the square </s>===<s> square ( a ) ^ size ( a , 2 ) ^ square ( b ) ^ right ( a , b ) </s>
+<s> Make sure that the upper left corner of the new square is adjacent to the third row of the first square </s>===<s> square ( a ) ^ square ( b ) ^ block ( c ) ^ location ( w1 ) ^ block-location ( c , w1 ) ^ enum ( a , c , 0 ) ^ block ( d ) ^ location ( w2 ) ^ block-location ( d , w2 ) ^ enum ( b , d , 11 ) ^ spatial-rel ( east , 0 , w2 , w1 ) </s>
+<s> Finally , create a rectangle that is 4 blocks tall and 3 blocks wide to the left of the second square </s>===<s> rectangle ( a ) ^ height ( a , 4 ) ^ width ( a , 3 ) ^ square ( b ) ^ left ( a , b ) </s>
+<s> Make sure that the rectangle 's upper right corner is adjacent to the first square 's lower left corner </s>===<s> rectangle ( a ) ^ square ( b ) ^ block ( c ) ^ location ( w1 ) ^ block-location ( c , w1 ) ^ enum ( a , c , 2 ) ^ block ( d ) ^ location ( w2 ) ^ block-location ( d , w2 ) ^ enum ( b , d , 12 ) ^ spatial-rel ( west , 0 , w2 , w1 ) </s>
+
+<s> Construct a horizontal line of length 3 </s>===<s> row ( a ) ^ width ( a , 3 ) </s>
+<s> Next , construct a square with sides of block length 2 to the right of the horizontal line </s>===<s> square ( a ) ^ size ( a , 2 ) ^ row ( b ) ^ right ( a , b ) </s>
+<s> Ensure that the upper left corner of the square is in line with the right end of the horizontal line </s>===<s> square ( a ) ^ row ( b ) ^ block ( c ) ^ location ( w1 ) ^ block-location ( c , w1 ) ^ enum ( a , c , 0 ) ^ block ( d ) ^ location ( w2 ) ^ block-location ( d , w2 ) ^ enum ( b , d , 2 ) ^ spatial-rel ( east , 0 , w2 , w1 ) </s>
+
+<s> Create a 4 block by 4 block square </s>===<s> square ( a ) ^ size ( a , 4 ) </s>
+<s> After that , build a vertical line using 5 blocks to the bottom of the square </s>===<s> column ( a ) ^ height ( a , 5 ) ^ square ( b ) ^ bottom ( a , b ) </s>
+<s> Ensure that the top end of the vertical line is in line with the square 's lower left corner </s>===<s> column ( a ) ^ square ( b ) ^ block ( c ) ^ location ( w1 ) ^ block-location ( c , w1 ) ^ enum ( a , c , 0 ) ^ block ( d ) ^ location ( w2 ) ^ block-location ( d , w2 ) ^ enum ( b , d , 12 ) ^ spatial-rel ( south , 0 , w2 , w1 ) </s>
+
+<s> First , form a column using 5 blocks </s>===<s> column ( a ) ^ height ( a , 5 ) </s>
+<s> Then , construct a vertical line of size 3 to the right of the column </s>===<s> column ( a ) ^ height ( a , 3 ) ^ column ( b ) ^ right ( a , b ) </s>
+<s> Make sure that the vertical line 's top end is aligned with the top end of the column </s>===<s> column ( a ) ^ column ( b ) ^ block ( c ) ^ location ( w1 ) ^ block-location ( c , w1 ) ^ enum ( a , c , 0 ) ^ block ( d ) ^ location ( w2 ) ^ block-location ( d , w2 ) ^ enum ( b , d , 0 ) ^ spatial-rel ( east , 0 , w2 , w1 ) </s>
+<s> Finally , construct a rectangle that is 2 blocks tall and 3 blocks wide to the right of the vertical line </s>===<s> rectangle ( a ) ^ height ( a , 2 ) ^ width ( a , 3 ) ^ column ( b ) ^ right ( a , b ) </s>
+<s> Make sure that the upper left corner of the rectangle is next to the bottom end of the vertical line </s>===<s> rectangle ( a ) ^ column ( b ) ^ block ( c ) ^ location ( w1 ) ^ block-location ( c , w1 ) ^ enum ( a , c , 0 ) ^ block ( d ) ^ location ( w2 ) ^ block-location ( d , w2 ) ^ enum ( b , d , 2 ) ^ spatial-rel ( east , 0 , w2 , w1 ) </s>
+
+<s> Build a vertical line of height 5 </s>===<s> column ( a ) ^ height ( a , 5 ) </s>
+<s> Then , create a 2 by 2 square to the left of the vertical line </s>===<s> square ( a ) ^ size ( a , 2 ) ^ column ( b ) ^ left ( a , b ) </s>
+<s> Ensure that the square 's upper right corner is next to the third row of the vertical line </s>===<s> square ( a ) ^ column ( b ) ^ block ( c ) ^ location ( w1 ) ^ block-location ( c , w1 ) ^ enum ( a , c , 1 ) ^ block ( d ) ^ location ( w2 ) ^ block-location ( d , w2 ) ^ enum ( b , d , 2 ) ^ spatial-rel ( west , 0 , w2 , w1 ) </s>
+
+<s> Construct a square with sides of block length 2 </s>===<s> square ( a ) ^ size ( a , 2 ) </s>
+<s> After that , create a rectangle that is 2 blocks wide and 4 blocks tall to the top of the square </s>===<s> rectangle ( a ) ^ height ( a , 4 ) ^ width ( a , 2 ) ^ square ( b ) ^ top ( a , b ) </s>
+<s> Ensure that the lower left corner of the rectangle is adjacent to the square 's upper left corner </s>===<s> rectangle ( a ) ^ square ( b ) ^ block ( c ) ^ location ( w1 ) ^ block-location ( c , w1 ) ^ enum ( a , c , 6 ) ^ block ( d ) ^ location ( w2 ) ^ block-location ( d , w2 ) ^ enum ( b , d , 0 ) ^ spatial-rel ( north , 0 , w2 , w1 ) </s>
+
+<s> Form a column of height 5 </s>===<s> column ( a ) ^ height ( a , 5 ) </s>
+<s> Next , create a vertical line of height 4 to the left of the column </s>===<s> column ( a ) ^ height ( a , 4 ) ^ column ( b ) ^ left ( a , b ) </s>
+<s> Ensure that the vertical line 's bottom end is adjacent to the third row of the column </s>===<s> column ( a ) ^ column ( b ) ^ block ( c ) ^ location ( w1 ) ^ block-location ( c , w1 ) ^ enum ( a , c , 3 ) ^ block ( d ) ^ location ( w2 ) ^ block-location ( d , w2 ) ^ enum ( b , d , 2 ) ^ spatial-rel ( west , 0 , w2 , w1 ) </s>
+
+<s> First , build a rectangle that is 2 blocks tall and 3 blocks wide </s>===<s> rectangle ( a ) ^ height ( a , 2 ) ^ width ( a , 3 ) </s>
+<s> Then , form a column with 4 blocks to the right of the rectangle </s>===<s> column ( a ) ^ height ( a , 4 ) ^ rectangle ( b ) ^ right ( a , b ) </s>
+<s> Make sure that the bottom end of the column is adjacent to the rectangle 's upper right corner </s>===<s> column ( a ) ^ rectangle ( b ) ^ block ( c ) ^ location ( w1 ) ^ block-location ( c , w1 ) ^ enum ( a , c , 3 ) ^ block ( d ) ^ location ( w2 ) ^ block-location ( d , w2 ) ^ enum ( b , d , 2 ) ^ spatial-rel ( east , 0 , w2 , w1 ) </s>
+<s> Finally , build a 4 block by 4 block square to the left of the column </s>===<s> square ( a ) ^ size ( a , 4 ) ^ rectangle ( b ) ^ left ( a , b ) </s>
+<s> Make sure that the lower right corner of the square is adjacent to the upper left corner of the rectangle </s>===<s> square ( a ) ^ rectangle ( b ) ^ block ( c ) ^ location ( w1 ) ^ block-location ( c , w1 ) ^ enum ( a , c , 15 ) ^ block ( d ) ^ location ( w2 ) ^ block-location ( d , w2 ) ^ enum ( b , d , 0 ) ^ spatial-rel ( west , 0 , w2 , w1 ) </s>
+
+<s> Construct a vertical line of height 5 </s>===<s> column ( a ) ^ height ( a , 5 ) </s>
+<s> After that , form a column using 3 blocks to the left of the vertical line </s>===<s> column ( a ) ^ height ( a , 3 ) ^ column ( b ) ^ left ( a , b ) </s>
+<s> Ensure that the bottom end of the column is adjacent to the vertical line 's top end </s>===<s> column ( a ) ^ column ( b ) ^ block ( c ) ^ location ( w1 ) ^ block-location ( c , w1 ) ^ enum ( a , c , 2 ) ^ block ( d ) ^ location ( w2 ) ^ block-location ( d , w2 ) ^ enum ( b , d , 0 ) ^ spatial-rel ( west , 0 , w2 , w1 ) </s>
+
+<s> Create a square with sides of block length 2 </s>===<s> square ( a ) ^ size ( a , 2 ) </s>
+<s> Then , construct a vertical line with 3 blocks to the bottom of the square </s>===<s> column ( a ) ^ height ( a , 3 ) ^ square ( b ) ^ bottom ( a , b ) </s>
+<s> Ensure that the vertical line 's top end is in line with the lower left corner of the square </s>===<s> column ( a ) ^ square ( b ) ^ block ( c ) ^ location ( w1 ) ^ block-location ( c , w1 ) ^ enum ( a , c , 0 ) ^ block ( d ) ^ location ( w2 ) ^ block-location ( d , w2 ) ^ enum ( b , d , 2 ) ^ spatial-rel ( south , 0 , w2 , w1 ) </s>
+
+<s> Form a column of size 4 </s>===<s> column ( a ) ^ height ( a , 4 ) </s>
+
+<s> Create a vertical line with 3 blocks </s>===<s> column ( a ) ^ height ( a , 3 ) </s>
+<s> Then , build a column of size 5 to the top of the vertical line </s>===<s> column ( a ) ^ height ( a , 5 ) ^ column ( b ) ^ top ( a , b ) </s>
+<s> Ensure that the column 's bottom end is in line with the top end of the vertical line </s>===<s> column ( a ) ^ column ( b ) ^ block ( c ) ^ location ( w1 ) ^ block-location ( c , w1 ) ^ enum ( a , c , 4 ) ^ block ( d ) ^ location ( w2 ) ^ block-location ( d , w2 ) ^ enum ( b , d , 0 ) ^ spatial-rel ( north , 0 , w2 , w1 ) </s>
+
+<s> Create a row with 3 blocks </s>===<s> row ( a ) ^ width ( a , 3 ) </s>
+<s> After that , form a rectangle with a height of 4 blocks and a width of 3 blocks to the bottom of the row </s>===<s> rectangle ( a ) ^ height ( a , 4 ) ^ width ( a , 3 ) ^ row ( b ) ^ bottom ( a , b ) </s>
+<s> Ensure that the rectangle 's upper left corner is in line with the left end of the row </s>===<s> rectangle ( a ) ^ row ( b ) ^ block ( c ) ^ location ( w1 ) ^ block-location ( c , w1 ) ^ enum ( a , c , 0 ) ^ block ( d ) ^ location ( w2 ) ^ block-location ( d , w2 ) ^ enum ( b , d , 0 ) ^ spatial-rel ( south , 0 , w2 , w1 ) </s>
+
+<s> Create a horizontal line of length 3 </s>===<s> row ( a ) ^ width ( a , 3 ) </s>
+<s> After that , create a rectangle with a width of 4 blocks and a height of 3 blocks to the top of the horizontal line </s>===<s> rectangle ( a ) ^ height ( a , 3 ) ^ width ( a , 4 ) ^ row ( b ) ^ top ( a , b ) </s>
+<s> Ensure that the lower right corner of the rectangle is adjacent to the horizontal line 's left end </s>===<s> rectangle ( a ) ^ row ( b ) ^ block ( c ) ^ location ( w1 ) ^ block-location ( c , w1 ) ^ enum ( a , c , 11 ) ^ block ( d ) ^ location ( w2 ) ^ block-location ( d , w2 ) ^ enum ( b , d , 0 ) ^ spatial-rel ( north , 0 , w2 , w1 ) </s>
+
+<s> First , build a row using 5 blocks </s>===<s> row ( a ) ^ width ( a , 5 ) </s>
+<s> Next , create a row with 3 blocks to the right of the row </s>===<s> row ( a ) ^ width ( a , 3 ) ^ row ( b ) ^ right ( a , b ) </s>
+<s> Make sure that the left end of the new row is adjacent to the right end of the first row </s>===<s> row ( a ) ^ row ( b ) ^ block ( c ) ^ location ( w1 ) ^ block-location ( c , w1 ) ^ enum ( a , c , 0 ) ^ block ( d ) ^ location ( w2 ) ^ block-location ( d , w2 ) ^ enum ( b , d , 4 ) ^ spatial-rel ( east , 0 , w2 , w1 ) </s>
+<s> Finally , form a column of size 4 to the right of the second row </s>===<s> column ( a ) ^ height ( a , 4 ) ^ row ( b ) ^ right ( a , b ) </s>
+<s> Make sure that the bottom end of the column is next to the second row 's right end </s>===<s> column ( a ) ^ row ( b ) ^ block ( c ) ^ location ( w1 ) ^ block-location ( c , w1 ) ^ enum ( a , c , 3 ) ^ block ( d ) ^ location ( w2 ) ^ block-location ( d , w2 ) ^ enum ( b , d , 2 ) ^ spatial-rel ( east , 0 , w2 , w1 ) </s>
+
+<s> Form a vertical line using 5 blocks </s>===<s> column ( a ) ^ height ( a , 5 ) </s>
+<s> Then , create a rectangle with a height of 3 blocks and a width of 4 blocks to the left of the vertical line </s>===<s> rectangle ( a ) ^ height ( a , 3 ) ^ width ( a , 4 ) ^ column ( b ) ^ left ( a , b ) </s>
+<s> Ensure that the lower right corner of the rectangle is adjacent to the top end of the vertical line </s>===<s> rectangle ( a ) ^ column ( b ) ^ block ( c ) ^ location ( w1 ) ^ block-location ( c , w1 ) ^ enum ( a , c , 11 ) ^ block ( d ) ^ location ( w2 ) ^ block-location ( d , w2 ) ^ enum ( b , d , 0 ) ^ spatial-rel ( west , 0 , w2 , w1 ) </s>
+
+<s> Create a column of size 5 </s>===<s> column ( a ) ^ height ( a , 5 ) </s>
+<s> After that , construct a 3 by 2 rectangle to the left of the column </s>===<s> rectangle ( a ) ^ height ( a , 2 ) ^ width ( a , 3 ) ^ column ( b ) ^ left ( a , b ) </s>
+<s> Ensure that the rectangle 's upper right corner is next to the bottom end of the column </s>===<s> rectangle ( a ) ^ column ( b ) ^ block ( c ) ^ location ( w1 ) ^ block-location ( c , w1 ) ^ enum ( a , c , 2 ) ^ block ( d ) ^ location ( w2 ) ^ block-location ( d , w2 ) ^ enum ( b , d , 4 ) ^ spatial-rel ( west , 0 , w2 , w1 ) </s>
+
+<s> Build a rectangle with a width of 2 blocks and a height of 3 blocks </s>===<s> rectangle ( a ) ^ height ( a , 3 ) ^ width ( a , 2 ) </s>
+<s> Next , construct a row using 4 blocks to the left of the rectangle </s>===<s> row ( a ) ^ width ( a , 4 ) ^ rectangle ( b ) ^ left ( a , b ) </s>
+<s> Ensure that the right end of the row is next to the second row of the rectangle </s>===<s> row ( a ) ^ rectangle ( b ) ^ block ( c ) ^ location ( w1 ) ^ block-location ( c , w1 ) ^ enum ( a , c , 3 ) ^ block ( d ) ^ location ( w2 ) ^ block-location ( d , w2 ) ^ enum ( b , d , 2 ) ^ spatial-rel ( west , 0 , w2 , w1 ) </s>
+
+<s> First , construct a horizontal line using 5 blocks </s>===<s> row ( a ) ^ width ( a , 5 ) </s>
+<s> Next , form a 4 by 4 square to the bottom of the horizontal line </s>===<s> square ( a ) ^ size ( a , 4 ) ^ row ( b ) ^ bottom ( a , b ) </s>
+<s> Make sure that the square 's upper right corner is next to the third column of the horizontal line </s>===<s> square ( a ) ^ row ( b ) ^ block ( c ) ^ location ( w1 ) ^ block-location ( c , w1 ) ^ enum ( a , c , 3 ) ^ block ( d ) ^ location ( w2 ) ^ block-location ( d , w2 ) ^ enum ( b , d , 2 ) ^ spatial-rel ( south , 0 , w2 , w1 ) </s>
+<s> Finally , form a vertical line of height 5 to the right of the square </s>===<s> column ( a ) ^ height ( a , 5 ) ^ row ( b ) ^ right ( a , b ) </s>
+<s> Make sure that the fourth row of the vertical line is adjacent to the right end of the horizontal line </s>===<s> column ( a ) ^ row ( b ) ^ block ( c ) ^ location ( w1 ) ^ block-location ( c , w1 ) ^ enum ( a , c , 3 ) ^ block ( d ) ^ location ( w2 ) ^ block-location ( d , w2 ) ^ enum ( b , d , 4 ) ^ spatial-rel ( east , 0 , w2 , w1 ) </s>
+
+<s> First , create a vertical line of size 5 </s>===<s> column ( a ) ^ height ( a , 5 ) </s>
+<s> After that , build a rectangle that is 2 blocks wide and 4 blocks tall to the right of the vertical line </s>===<s> rectangle ( a ) ^ height ( a , 4 ) ^ width ( a , 2 ) ^ column ( b ) ^ right ( a , b ) </s>
+<s> Make sure that the lower left corner of the rectangle is adjacent to the top end of the vertical line </s>===<s> rectangle ( a ) ^ column ( b ) ^ block ( c ) ^ location ( w1 ) ^ block-location ( c , w1 ) ^ enum ( a , c , 6 ) ^ block ( d ) ^ location ( w2 ) ^ block-location ( d , w2 ) ^ enum ( b , d , 0 ) ^ spatial-rel ( east , 0 , w2 , w1 ) </s>
+<s> Finally , build a 4 by 3 rectangle to the right of the first rectangle </s>===<s> rectangle ( a ) ^ height ( a , 3 ) ^ width ( a , 4 ) ^ rectangle ( b ) ^ right ( a , b ) </s>
+<s> Make sure that the new rectangle 's upper left corner is next to the second row of the first rectangle </s>===<s> rectangle ( a ) ^ rectangle ( b ) ^ block ( c ) ^ location ( w1 ) ^ block-location ( c , w1 ) ^ enum ( a , c , 0 ) ^ block ( d ) ^ location ( w2 ) ^ block-location ( d , w2 ) ^ enum ( b , d , 3 ) ^ spatial-rel ( east , 0 , w2 , w1 ) </s>
+
+<s> First , create a rectangle that is 2 blocks tall and 4 blocks wide </s>===<s> rectangle ( a ) ^ height ( a , 2 ) ^ width ( a , 4 ) </s>
+<s> Next , build a rectangle with a height of 3 blocks and a width of 2 blocks to the bottom of the rectangle </s>===<s> rectangle ( a ) ^ height ( a , 3 ) ^ width ( a , 2 ) ^ rectangle ( b ) ^ bottom ( a , b ) </s>
+<s> Make sure that this rectangle 's upper right corner is adjacent to the lower left corner of the first rectangle </s>===<s> rectangle ( a ) ^ rectangle ( b ) ^ block ( c ) ^ location ( w1 ) ^ block-location ( c , w1 ) ^ enum ( a , c , 1 ) ^ block ( d ) ^ location ( w2 ) ^ block-location ( d , w2 ) ^ enum ( b , d , 4 ) ^ spatial-rel ( south , 0 , w2 , w1 ) </s>
+<s> Finally , create a square with sides of block length 3 to the left of the second rectangle </s>===<s> square ( a ) ^ size ( a , 3 ) ^ rectangle ( b ) ^ left ( a , b ) </s>
+<s> Make sure that the square 's upper right corner is aligned with the second rectangle 's upper left corner </s>===<s> square ( a ) ^ rectangle ( b ) ^ block ( c ) ^ location ( w1 ) ^ block-location ( c , w1 ) ^ enum ( a , c , 2 ) ^ block ( d ) ^ location ( w2 ) ^ block-location ( d , w2 ) ^ enum ( b , d , 0 ) ^ spatial-rel ( west , 0 , w2 , w1 ) </s>
+
+<s> Construct a 3 by 3 square </s>===<s> square ( a ) ^ size ( a , 3 ) </s>
+<s> Next , construct a horizontal line using 3 blocks to the top of the square </s>===<s> row ( a ) ^ width ( a , 3 ) ^ square ( b ) ^ top ( a , b ) </s>
+<s> Ensure that the left end of the horizontal line is adjacent to the second column of the square </s>===<s> row ( a ) ^ square ( b ) ^ block ( c ) ^ location ( w1 ) ^ block-location ( c , w1 ) ^ enum ( a , c , 0 ) ^ block ( d ) ^ location ( w2 ) ^ block-location ( d , w2 ) ^ enum ( b , d , 1 ) ^ spatial-rel ( north , 0 , w2 , w1 ) </s>
+
+<s> First , build a square with sides of block length 4 </s>===<s> square ( a ) ^ size ( a , 4 ) </s>
+<s> Then , form a rectangle that is 3 blocks tall and 4 blocks wide to the bottom of the square </s>===<s> rectangle ( a ) ^ height ( a , 3 ) ^ width ( a , 4 ) ^ square ( b ) ^ bottom ( a , b ) </s>
+<s> Make sure that the rectangle 's upper right corner is next to the third column of the square </s>===<s> rectangle ( a ) ^ square ( b ) ^ block ( c ) ^ location ( w1 ) ^ block-location ( c , w1 ) ^ enum ( a , c , 3 ) ^ block ( d ) ^ location ( w2 ) ^ block-location ( d , w2 ) ^ enum ( b , d , 14 ) ^ spatial-rel ( south , 0 , w2 , w1 ) </s>
+<s> Finally , form a horizontal line of size 3 to the top of the rectangle </s>===<s> row ( a ) ^ width ( a , 3 ) ^ square ( b ) ^ top ( a , b ) </s>
+<s> Make sure that the left end of the horizontal line is adjacent to the upper left corner of the square </s>===<s> row ( a ) ^ square ( b ) ^ block ( c ) ^ location ( w1 ) ^ block-location ( c , w1 ) ^ enum ( a , c , 0 ) ^ block ( d ) ^ location ( w2 ) ^ block-location ( d , w2 ) ^ enum ( b , d , 0 ) ^ spatial-rel ( north , 0 , w2 , w1 ) </s>
+
+<s> Form a vertical line with 3 blocks </s>===<s> column ( a ) ^ height ( a , 3 ) </s>
+
+<s> Create a row with 3 blocks </s>===<s> row ( a ) ^ width ( a , 3 ) </s>
+<s> Next , form a rectangle that is 2 blocks tall and 4 blocks wide to the right of the row </s>===<s> rectangle ( a ) ^ height ( a , 2 ) ^ width ( a , 4 ) ^ row ( b ) ^ right ( a , b ) </s>
+<s> Ensure that the lower left corner of the rectangle is adjacent to the right end of the row </s>===<s> rectangle ( a ) ^ row ( b ) ^ block ( c ) ^ location ( w1 ) ^ block-location ( c , w1 ) ^ enum ( a , c , 4 ) ^ block ( d ) ^ location ( w2 ) ^ block-location ( d , w2 ) ^ enum ( b , d , 2 ) ^ spatial-rel ( east , 0 , w2 , w1 ) </s>
+
+<s> Create a vertical line of size 3 </s>===<s> column ( a ) ^ height ( a , 3 ) </s>
+<s> Next , create a vertical line of height 3 to the right of the first vertical line </s>===<s> column ( a ) ^ height ( a , 3 ) ^ column ( b ) ^ right ( a , b ) </s>
+<s> Ensure that the new vertical line 's top end is next to the second row of the first vertical line </s>===<s> column ( a ) ^ column ( b ) ^ block ( c ) ^ location ( w1 ) ^ block-location ( c , w1 ) ^ enum ( a , c , 0 ) ^ block ( d ) ^ location ( w2 ) ^ block-location ( d , w2 ) ^ enum ( b , d , 1 ) ^ spatial-rel ( east , 0 , w2 , w1 ) </s>
+
+<s> First , construct a row with 4 blocks </s>===<s> row ( a ) ^ width ( a , 4 ) </s>
+<s> Next , construct a column with 3 blocks to the left of the row </s>===<s> column ( a ) ^ height ( a , 3 ) ^ row ( b ) ^ left ( a , b ) </s>
+<s> Make sure that the second row of the column is adjacent to the left end of the row </s>===<s> column ( a ) ^ row ( b ) ^ block ( c ) ^ location ( w1 ) ^ block-location ( c , w1 ) ^ enum ( a , c , 1 ) ^ block ( d ) ^ location ( w2 ) ^ block-location ( d , w2 ) ^ enum ( b , d , 0 ) ^ spatial-rel ( west , 0 , w2 , w1 ) </s>
+<s> Finally , create a square with sides of block length 3 to the bottom of the column </s>===<s> square ( a ) ^ size ( a , 3 ) ^ column ( b ) ^ bottom ( a , b ) </s>
+<s> Make sure that the second column of the square is adjacent to the bottom end of the column </s>===<s> square ( a ) ^ column ( b ) ^ block ( c ) ^ location ( w1 ) ^ block-location ( c , w1 ) ^ enum ( a , c , 1 ) ^ block ( d ) ^ location ( w2 ) ^ block-location ( d , w2 ) ^ enum ( b , d , 2 ) ^ spatial-rel ( south , 0 , w2 , w1 ) </s>
+
+<s> Build a rectangle that is 4 blocks wide and 2 blocks tall </s>===<s> rectangle ( a ) ^ height ( a , 2 ) ^ width ( a , 4 ) </s>
+
+<s> Build a vertical line of size 3 </s>===<s> column ( a ) ^ height ( a , 3 ) </s>
+<s> Next , construct a horizontal line using 5 blocks to the bottom of the vertical line </s>===<s> row ( a ) ^ width ( a , 5 ) ^ column ( b ) ^ bottom ( a , b ) </s>
+<s> Ensure that the third column of the horizontal line is adjacent to the vertical line 's bottom end </s>===<s> row ( a ) ^ column ( b ) ^ block ( c ) ^ location ( w1 ) ^ block-location ( c , w1 ) ^ enum ( a , c , 2 ) ^ block ( d ) ^ location ( w2 ) ^ block-location ( d , w2 ) ^ enum ( b , d , 2 ) ^ spatial-rel ( south , 0 , w2 , w1 ) </s>
+
+<s> First , form a column using 5 blocks </s>===<s> column ( a ) ^ height ( a , 5 ) </s>
+<s> Then , build a row with 3 blocks to the right of the column </s>===<s> row ( a ) ^ width ( a , 3 ) ^ column ( b ) ^ right ( a , b ) </s>
+<s> Make sure that the left end of the row is adjacent to the column 's top end </s>===<s> row ( a ) ^ column ( b ) ^ block ( c ) ^ location ( w1 ) ^ block-location ( c , w1 ) ^ enum ( a , c , 0 ) ^ block ( d ) ^ location ( w2 ) ^ block-location ( d , w2 ) ^ enum ( b , d , 0 ) ^ spatial-rel ( east , 0 , w2 , w1 ) </s>
+<s> Finally , build a rectangle with a width of 3 blocks and a height of 2 blocks to the top of the row </s>===<s> rectangle ( a ) ^ height ( a , 2 ) ^ width ( a , 3 ) ^ row ( b ) ^ top ( a , b ) </s>
+<s> Make sure that the lower left corner of the rectangle is adjacent to the second column of the row </s>===<s> rectangle ( a ) ^ row ( b ) ^ block ( c ) ^ location ( w1 ) ^ block-location ( c , w1 ) ^ enum ( a , c , 3 ) ^ block ( d ) ^ location ( w2 ) ^ block-location ( d , w2 ) ^ enum ( b , d , 1 ) ^ spatial-rel ( north , 0 , w2 , w1 ) </s>
+
+<s> First , construct a column of size 5 </s>===<s> column ( a ) ^ height ( a , 5 ) </s>
+<s> Then , form a vertical line with 5 blocks to the right of the column </s>===<s> column ( a ) ^ height ( a , 5 ) ^ column ( b ) ^ right ( a , b ) </s>
+<s> Make sure that the vertical line 's bottom end is adjacent to the third row of the column </s>===<s> column ( a ) ^ column ( b ) ^ block ( c ) ^ location ( w1 ) ^ block-location ( c , w1 ) ^ enum ( a , c , 4 ) ^ block ( d ) ^ location ( w2 ) ^ block-location ( d , w2 ) ^ enum ( b , d , 2 ) ^ spatial-rel ( east , 0 , w2 , w1 ) </s>
+<s> Finally , construct a 3 block by 3 block square to the left of the vertical line </s>===<s> square ( a ) ^ size ( a , 3 ) ^ column ( b ) ^ left ( a , b ) </s>
+<s> Make sure that the square 's lower right corner is adjacent to the second row of the column </s>===<s> square ( a ) ^ column ( b ) ^ block ( c ) ^ location ( w1 ) ^ block-location ( c , w1 ) ^ enum ( a , c , 8 ) ^ block ( d ) ^ location ( w2 ) ^ block-location ( d , w2 ) ^ enum ( b , d , 1 ) ^ spatial-rel ( west , 0 , w2 , w1 ) </s>
+
+<s> First , form a column of height 5 </s>===<s> column ( a ) ^ height ( a , 5 ) </s>
+<s> Then , create a rectangle with a height of 3 blocks and a width of 4 blocks to the top of the column </s>===<s> rectangle ( a ) ^ height ( a , 3 ) ^ width ( a , 4 ) ^ column ( b ) ^ top ( a , b ) </s>
+<s> Make sure that the lower left corner of the rectangle is next to the top end of the column </s>===<s> rectangle ( a ) ^ column ( b ) ^ block ( c ) ^ location ( w1 ) ^ block-location ( c , w1 ) ^ enum ( a , c , 8 ) ^ block ( d ) ^ location ( w2 ) ^ block-location ( d , w2 ) ^ enum ( b , d , 0 ) ^ spatial-rel ( north , 0 , w2 , w1 ) </s>
+<s> Finally , form a rectangle with a width of 4 blocks and a height of 2 blocks to the left of the first rectangle </s>===<s> rectangle ( a ) ^ height ( a , 2 ) ^ width ( a , 4 ) ^ rectangle ( b ) ^ left ( a , b ) </s>
+<s> Make sure that the new rectangle 's upper right corner is aligned with the second row of the first rectangle </s>===<s> rectangle ( a ) ^ rectangle ( b ) ^ block ( c ) ^ location ( w1 ) ^ block-location ( c , w1 ) ^ enum ( a , c , 3 ) ^ block ( d ) ^ location ( w2 ) ^ block-location ( d , w2 ) ^ enum ( b , d , 4 ) ^ spatial-rel ( west , 0 , w2 , w1 ) </s>
+
+<s> First , construct a 4 block by 4 block square </s>===<s> square ( a ) ^ size ( a , 4 ) </s>
+<s> Next , build a column of height 4 to the bottom of the square </s>===<s> column ( a ) ^ height ( a , 4 ) ^ square ( b ) ^ bottom ( a , b ) </s>
+<s> Make sure that the column 's top end is next to the third column of the square </s>===<s> column ( a ) ^ square ( b ) ^ block ( c ) ^ location ( w1 ) ^ block-location ( c , w1 ) ^ enum ( a , c , 0 ) ^ block ( d ) ^ location ( w2 ) ^ block-location ( d , w2 ) ^ enum ( b , d , 14 ) ^ spatial-rel ( south , 0 , w2 , w1 ) </s>
+<s> Finally , form a row using 5 blocks to the top of the column </s>===<s> row ( a ) ^ width ( a , 5 ) ^ square ( b ) ^ top ( a , b ) </s>
+<s> Make sure that the left end of the row is in line with the square 's upper left corner </s>===<s> row ( a ) ^ square ( b ) ^ block ( c ) ^ location ( w1 ) ^ block-location ( c , w1 ) ^ enum ( a , c , 0 ) ^ block ( d ) ^ location ( w2 ) ^ block-location ( d , w2 ) ^ enum ( b , d , 0 ) ^ spatial-rel ( north , 0 , w2 , w1 ) </s>
+
+<s> Construct a horizontal line of length 5 </s>===<s> row ( a ) ^ width ( a , 5 ) </s>
+<s> Next , build a row of length 5 to the right of the horizontal line </s>===<s> row ( a ) ^ width ( a , 5 ) ^ row ( b ) ^ right ( a , b ) </s>
+<s> Ensure that the left end of the row is in line with the horizontal line 's right end </s>===<s> row ( a ) ^ row ( b ) ^ block ( c ) ^ location ( w1 ) ^ block-location ( c , w1 ) ^ enum ( a , c , 0 ) ^ block ( d ) ^ location ( w2 ) ^ block-location ( d , w2 ) ^ enum ( b , d , 4 ) ^ spatial-rel ( east , 0 , w2 , w1 ) </s>
+
+<s> Form a vertical line with 5 blocks </s>===<s> column ( a ) ^ height ( a , 5 ) </s>
+<s> Next , build a column of size 5 to the right of the vertical line </s>===<s> column ( a ) ^ height ( a , 5 ) ^ column ( b ) ^ right ( a , b ) </s>
+<s> Ensure that the column 's bottom end is next to the top end of the vertical line </s>===<s> column ( a ) ^ column ( b ) ^ block ( c ) ^ location ( w1 ) ^ block-location ( c , w1 ) ^ enum ( a , c , 4 ) ^ block ( d ) ^ location ( w2 ) ^ block-location ( d , w2 ) ^ enum ( b , d , 0 ) ^ spatial-rel ( east , 0 , w2 , w1 ) </s>
+
+<s> Create a row of size 3 </s>===<s> row ( a ) ^ width ( a , 3 ) </s>
+
+<s> Create a rectangle that is 2 blocks tall and 4 blocks wide </s>===<s> rectangle ( a ) ^ height ( a , 2 ) ^ width ( a , 4 ) </s>
+<s> After that , construct a rectangle with a width of 3 blocks and a height of 2 blocks to the left of the first rectangle </s>===<s> rectangle ( a ) ^ height ( a , 2 ) ^ width ( a , 3 ) ^ rectangle ( b ) ^ left ( a , b ) </s>
+<s> Ensure that the upper right corner of the new rectangle is in line with the upper left corner of the first rectangle </s>===<s> rectangle ( a ) ^ rectangle ( b ) ^ block ( c ) ^ location ( w1 ) ^ block-location ( c , w1 ) ^ enum ( a , c , 2 ) ^ block ( d ) ^ location ( w2 ) ^ block-location ( d , w2 ) ^ enum ( b , d , 0 ) ^ spatial-rel ( west , 0 , w2 , w1 ) </s>
+
+<s> Form a row of size 4 </s>===<s> row ( a ) ^ width ( a , 4 ) </s>
+<s> Next , construct a square with sides of block length 2 to the right of the row </s>===<s> square ( a ) ^ size ( a , 2 ) ^ row ( b ) ^ right ( a , b ) </s>
+<s> Ensure that the square 's lower left corner is adjacent to the row 's right end </s>===<s> square ( a ) ^ row ( b ) ^ block ( c ) ^ location ( w1 ) ^ block-location ( c , w1 ) ^ enum ( a , c , 2 ) ^ block ( d ) ^ location ( w2 ) ^ block-location ( d , w2 ) ^ enum ( b , d , 3 ) ^ spatial-rel ( east , 0 , w2 , w1 ) </s>
+
+<s> First , form a horizontal line with 5 blocks </s>===<s> row ( a ) ^ width ( a , 5 ) </s>
+<s> Next , form a row of size 3 to the right of the horizontal line </s>===<s> row ( a ) ^ width ( a , 3 ) ^ row ( b ) ^ right ( a , b ) </s>
+<s> Make sure that the row 's left end is aligned with the right end of the horizontal line </s>===<s> row ( a ) ^ row ( b ) ^ block ( c ) ^ location ( w1 ) ^ block-location ( c , w1 ) ^ enum ( a , c , 0 ) ^ block ( d ) ^ location ( w2 ) ^ block-location ( d , w2 ) ^ enum ( b , d , 4 ) ^ spatial-rel ( east , 0 , w2 , w1 ) </s>
+<s> Finally , create a horizontal line of size 4 to the top of the row </s>===<s> row ( a ) ^ width ( a , 4 ) ^ row ( b ) ^ top ( a , b ) </s>
+<s> Make sure that the right end of this horizontal line is adjacent to the right end of the row </s>===<s> row ( a ) ^ row ( b ) ^ block ( c ) ^ location ( w1 ) ^ block-location ( c , w1 ) ^ enum ( a , c , 3 ) ^ block ( d ) ^ location ( w2 ) ^ block-location ( d , w2 ) ^ enum ( b , d , 2 ) ^ spatial-rel ( north , 0 , w2 , w1 ) </s>
+
+<s> First , construct a 3 by 3 square </s>===<s> square ( a ) ^ size ( a , 3 ) </s>
+<s> Then , construct a 2 by 2 square to the right of the square </s>===<s> square ( a ) ^ size ( a , 2 ) ^ square ( b ) ^ right ( a , b ) </s>
+<s> Make sure that the upper left corner of the new square is next to the second row of the first square </s>===<s> square ( a ) ^ square ( b ) ^ block ( c ) ^ location ( w1 ) ^ block-location ( c , w1 ) ^ enum ( a , c , 0 ) ^ block ( d ) ^ location ( w2 ) ^ block-location ( d , w2 ) ^ enum ( b , d , 5 ) ^ spatial-rel ( east , 0 , w2 , w1 ) </s>
+<s> Finally , build a horizontal line of size 5 to the left of the second square </s>===<s> row ( a ) ^ width ( a , 5 ) ^ square ( b ) ^ left ( a , b ) </s>
+<s> Make sure that the right end of the horizontal line is aligned with the first square 's upper left corner </s>===<s> row ( a ) ^ square ( b ) ^ block ( c ) ^ location ( w1 ) ^ block-location ( c , w1 ) ^ enum ( a , c , 4 ) ^ block ( d ) ^ location ( w2 ) ^ block-location ( d , w2 ) ^ enum ( b , d , 0 ) ^ spatial-rel ( west , 0 , w2 , w1 ) </s>
+
+<s> Construct a horizontal line with 5 blocks </s>===<s> row ( a ) ^ width ( a , 5 ) </s>
+<s> Next , create a row with 3 blocks to the right of the horizontal line </s>===<s> row ( a ) ^ width ( a , 3 ) ^ row ( b ) ^ right ( a , b ) </s>
+<s> Ensure that the row 's left end is next to the horizontal line 's right end </s>===<s> row ( a ) ^ row ( b ) ^ block ( c ) ^ location ( w1 ) ^ block-location ( c , w1 ) ^ enum ( a , c , 0 ) ^ block ( d ) ^ location ( w2 ) ^ block-location ( d , w2 ) ^ enum ( b , d , 4 ) ^ spatial-rel ( east , 0 , w2 , w1 ) </s>
+
+<s> First , form a rectangle with a height of 3 blocks and a width of 4 blocks </s>===<s> rectangle ( a ) ^ height ( a , 3 ) ^ width ( a , 4 ) </s>
+<s> Then , create a vertical line of size 5 to the top of the rectangle </s>===<s> column ( a ) ^ height ( a , 5 ) ^ rectangle ( b ) ^ top ( a , b ) </s>
+<s> Make sure that the bottom end of the vertical line is adjacent to the upper left corner of the rectangle </s>===<s> column ( a ) ^ rectangle ( b ) ^ block ( c ) ^ location ( w1 ) ^ block-location ( c , w1 ) ^ enum ( a , c , 4 ) ^ block ( d ) ^ location ( w2 ) ^ block-location ( d , w2 ) ^ enum ( b , d , 0 ) ^ spatial-rel ( north , 0 , w2 , w1 ) </s>
+<s> Finally , form a 2 by 2 square to the top of the vertical line </s>===<s> square ( a ) ^ size ( a , 2 ) ^ column ( b ) ^ top ( a , b ) </s>
+<s> Make sure that the square 's lower left corner is in line with the vertical line 's top end </s>===<s> square ( a ) ^ column ( b ) ^ block ( c ) ^ location ( w1 ) ^ block-location ( c , w1 ) ^ enum ( a , c , 2 ) ^ block ( d ) ^ location ( w2 ) ^ block-location ( d , w2 ) ^ enum ( b , d , 0 ) ^ spatial-rel ( north , 0 , w2 , w1 ) </s>
+
+<s> Form a rectangle that is 2 blocks tall and 3 blocks wide </s>===<s> rectangle ( a ) ^ height ( a , 2 ) ^ width ( a , 3 ) </s>
+<s> Next , create a vertical line with 3 blocks to the right of the rectangle </s>===<s> column ( a ) ^ height ( a , 3 ) ^ rectangle ( b ) ^ right ( a , b ) </s>
+<s> Ensure that the bottom end of the vertical line is next to the rectangle 's upper right corner </s>===<s> column ( a ) ^ rectangle ( b ) ^ block ( c ) ^ location ( w1 ) ^ block-location ( c , w1 ) ^ enum ( a , c , 2 ) ^ block ( d ) ^ location ( w2 ) ^ block-location ( d , w2 ) ^ enum ( b , d , 2 ) ^ spatial-rel ( east , 0 , w2 , w1 ) </s>
+
+<s> Form a horizontal line using 3 blocks </s>===<s> row ( a ) ^ width ( a , 3 ) </s>
+<s> Next , construct a row of size 5 to the left of the horizontal line </s>===<s> row ( a ) ^ width ( a , 5 ) ^ row ( b ) ^ left ( a , b ) </s>
+<s> Ensure that the right end of the row is aligned with the left end of the horizontal line </s>===<s> row ( a ) ^ row ( b ) ^ block ( c ) ^ location ( w1 ) ^ block-location ( c , w1 ) ^ enum ( a , c , 4 ) ^ block ( d ) ^ location ( w2 ) ^ block-location ( d , w2 ) ^ enum ( b , d , 0 ) ^ spatial-rel ( west , 0 , w2 , w1 ) </s>
+
+<s> First , create a vertical line with 3 blocks </s>===<s> column ( a ) ^ height ( a , 3 ) </s>
+<s> After that , build a row of size 5 to the bottom of the vertical line </s>===<s> row ( a ) ^ width ( a , 5 ) ^ column ( b ) ^ bottom ( a , b ) </s>
+<s> Make sure that the second column of the row is next to the bottom end of the vertical line </s>===<s> row ( a ) ^ column ( b ) ^ block ( c ) ^ location ( w1 ) ^ block-location ( c , w1 ) ^ enum ( a , c , 1 ) ^ block ( d ) ^ location ( w2 ) ^ block-location ( d , w2 ) ^ enum ( b , d , 2 ) ^ spatial-rel ( south , 0 , w2 , w1 ) </s>
+<s> Finally , form a square with sides of block length 4 to the left of the row </s>===<s> square ( a ) ^ size ( a , 4 ) ^ row ( b ) ^ left ( a , b ) </s>
+<s> Make sure that the upper right corner of the square is next to the left end of the row </s>===<s> square ( a ) ^ row ( b ) ^ block ( c ) ^ location ( w1 ) ^ block-location ( c , w1 ) ^ enum ( a , c , 3 ) ^ block ( d ) ^ location ( w2 ) ^ block-location ( d , w2 ) ^ enum ( b , d , 0 ) ^ spatial-rel ( west , 0 , w2 , w1 ) </s>
+
+

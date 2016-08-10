@@ -37,7 +37,8 @@ parser.add_argument('domain', choices=['geo', 'blocks'],
 FLAGS = parser.parse_args()
 
 GEO_BUCKETS = [(10,15), (15,20), (20,25), (40,70)] 
-BLOCKS_BUCKETS = [(15,25),(50,100),(100,200)]
+#BLOCKS_BUCKETS = [(15,25),(50,100),(100,200)]
+BLOCKS_BUCKETS = [(30,75)]
 
 if FLAGS.domain == 'geo':
     _buckets = GEO_BUCKETS
@@ -45,7 +46,8 @@ elif FLAGS.domain == 'blocks':
     _buckets = BLOCKS_BUCKETS
 
 def load_data():
-    train_data, test_data, vocab_size = data_utils.load_raw_text(FLAGS.data_dir)
+    train_data, test_data, vocab_size = data_utils.load_raw_text(FLAGS.data_dir, True)
+    print(len(train_data))
     folds = []
     fold_size = int(len(train_data)/FLAGS.num_folds)
     for i in xrange(FLAGS.num_folds - 1):
@@ -56,14 +58,16 @@ def load_data():
 def data2buckets(data):
     bucket_data = [[] for _ in _buckets]
     for entry in data:
+        max_sent_length = max(map(lambda x: len(x[0]), entry))
+        max_logic_length = max(map(lambda x: len(x[1]), entry))
         found = False
         for bucket_id, (source_size, target_size) in enumerate(_buckets):
-            if len(entry[0]) < source_size and len(entry[1]) < target_size:
+            if max_sent_length < source_size and max_logic_length < target_size:
                 bucket_data[bucket_id].append(entry)
                 found = True
                 break
         if not found:
-            raise Exception("BUCKETS NOT LARGE ENOUGH: (%d, %d)"%(len(entry[0]), len(entry[1])))
+            raise Exception("BUCKETS NOT LARGE ENOUGH: (%d, %d)"%(max_sent_length, max_logic_length))
     return bucket_data
 
 def find_bucket(data):
@@ -71,7 +75,9 @@ def find_bucket(data):
     for i, (source_size, target_size) in enumerate(_buckets):
         works = True
         for entry in data:
-            if len(entry[0]) >= source_size and len(entry[1]) >= target_size:
+            max_sent_length = max(map(lambda x: len(x[0]), entry))
+            max_logic_length = max(map(lambda x: len(x[1]), entry))
+            if max_sent_length >= source_size and max_logic_length >= target_size:
                 works = False
                 break
         if works:
@@ -122,7 +128,7 @@ def train(sess, train_data, validation_data, conf, num_steps = None):
         start_time = time.time()
         entries, encoder_inputs, decoder_inputs, target_weights = model.get_batch(
             train_buckets, bucket_id, False)
-        _, step_loss, step_outputs = model.step(sess, encoder_inputs, decoder_inputs,
+        step_loss, step_outputs = model.step(sess, encoder_inputs, decoder_inputs,
                                      target_weights, bucket_id, False)
         step_time += (time.time() - start_time) / FLAGS.steps_per_checkpoint
         loss += step_loss / FLAGS.steps_per_checkpoint
@@ -134,19 +140,17 @@ def train(sess, train_data, validation_data, conf, num_steps = None):
             if not num_steps:
                 # Check early stopping condition
                 #print("LAST BATCH:")
-                temp_loss, temp_acc = test(sess, entries, model)
+                temp_loss, temp_total_acc, temp_sentence_acc = test(sess, entries, model)
                 #print("VALIDATION:")
-                validation_loss, validation_acc = test(sess, validation_data, model)
+                validation_loss, validation_total_acc, validation_sentence_acc = test(sess, validation_data, model)
 
-                print("TEST: PREV LOSS=%.2f, NEW LOSS=%.2f, acc=%.2f"%(step_loss, temp_loss, temp_acc))
-                print("global step %s learning rate %.4f step-time %.2f training loss %.2f" %
+                print("global step %s learning rate %.4f step-time %.2f training loss %.4f validation loss %.4f validation total acc %.4f validation sent acc %.4f" %
                     (model.global_step.eval(), model.learning_rate.eval(),
-                     step_time, step_loss))
-                print("               validation loss %.2f validaiton acc %.2f"%(validation_loss, validation_acc))
-                if validation_acc > best_validation_acc or (validation_acc == best_validation_acc and validation_loss < best_validation_loss):
+                     step_time, step_loss, validation_loss, validation_total_acc, validation_sentence_acc))
+                if validation_loss < best_validation_loss or (validation_loss == best_validation_loss and validation_total_acc > best_validation_acc):
                     best_validation_loss = validation_loss
                     best_validation_step = current_step
-                    best_validation_acc = validation_acc
+                    best_validation_acc = validation_total_acc
                     model.saver.save(sess, checkpoint_path, global_step=model.global_step)
                 if current_step - best_validation_step >= FLAGS.early_stopping_patience:
                     print("Early stopping triggered. Restoring previous model")
@@ -168,19 +172,26 @@ def test(sess, test_data, model, dump_results=False):
     test_bucket = find_bucket(test_data)
     _, encoder_inputs, decoder_inputs, target_weights = model.get_batch(
             test_data, test_bucket, True)
-    _, loss, output_logits = model.step(sess, encoder_inputs, decoder_inputs,
+    loss, output_logits = model.step(sess, encoder_inputs, decoder_inputs,
                                   target_weights, test_bucket, True)
-    return loss, evaluate_logits(output_logits, test_data, dump_results)
+    total_acc, sentence_acc = evaluate_logits(output_logits, test_data, dump_results)
+    return loss, total_acc, sentence_acc
 
 def evaluate_logits(output_logits, test_data, dump_results=False):
-    temp_outputs = [[int(np.argmax(logit)) for logit in output_logit] for output_logit in output_logits]
+    total_outputs = []
+    for sent_ind in xrange(len(output_logits)):
+        temp_outputs = [[int(np.argmax(logit)) for logit in output_logit] for output_logit in output_logits[sent_ind]]
 
-    #Reshape outputs
-    outputs = np.array(temp_outputs).T.tolist()
+        #Reshape outputs
+        outputs = np.array(temp_outputs).T.tolist()
   
-    for i in xrange(len(outputs)):
-        if data_utils.LOGIC_EOS_ID in outputs[i]:
-            outputs[i] = outputs[i][:outputs[i].index(data_utils.LOGIC_EOS_ID)]
+        for i in xrange(len(outputs)):
+            if outputs[i][0] == data_utils.PAD_ID:
+                outputs[i] = None
+            elif data_utils.LOGIC_EOS_ID in outputs[i]:
+                outputs[i] = outputs[i][:outputs[i].index(data_utils.LOGIC_EOS_ID)]
+        total_outputs.append(outputs)
+    total_outputs = zip(*total_outputs)
     
     #print("CORRECT OUTPUTS:")
     #print(data_utils.ids_to_logics(test_data[0][1][1:-1]))
@@ -188,15 +199,27 @@ def evaluate_logits(output_logits, test_data, dump_results=False):
     #print(data_utils.ids_to_logics(outputs[0]))
     if dump_results:
         print("==============TEST FAILURES====================")
-    correct = 0.0
-    for i in xrange(len(test_data)):
-        if test_data[i][1][1:-1] == outputs[i]: #TODO: make sure this is correct
-            correct += 1.0
-        if dump_results:
-            print(' '.join(data_utils.ids_to_words(test_data[i][0])))
-            print("\tCorrect: "+''.join(data_utils.ids_to_logics(test_data[i][1][1:-1])))
-            print("\tFound:   "+''.join(data_utils.ids_to_logics(outputs[0])))
-    return correct/len(test_data)
+    total_correct = 0.0
+    sentence_correct = 0.0
+    num_sentences = 0.0
+    num_entries = 0.0
+    for entry_ind in xrange(len(test_data)):
+        num_entries += 1.0
+        all_correct = True
+        for sent_ind in xrange(len(test_data[entry_ind])):
+            num_sentences += 1.0
+            if test_data[entry_ind][sent_ind][1][1:-1] != total_outputs[entry_ind][sent_ind]: #TODO: make sure this is correct
+                all_correct = False
+            else:
+                sentence_correct += 1.0
+        if all_correct:
+            total_correct += 1.0
+        elif dump_results:
+            for sent_ind in xrange(len(test_data[entry_ind])):
+                print(' '.join(data_utils.ids_to_words(test_data[entry_ind][sent_ind][0])))
+                print("\tCorrect: "+''.join(data_utils.ids_to_logics(test_data[entry_ind][sent_ind][1][1:-1])))
+                print("\tFound:   "+''.join(data_utils.ids_to_logics(total_outputs[entry_ind][sent_ind])))
+    return all_correct/num_entries, sentence_correct/num_sentences
 
 
 def cross_validate(splits, conf):
@@ -208,7 +231,7 @@ def cross_validate(splits, conf):
         validation_data = splits[i]
         with tf.Session() as sess:
             model,_ = train(sess, train_data, validation_data, conf)
-            loss, acc = test(sess, validation_data, model)
+            loss, total_acc, sentence_acc = test(sess, validation_data, model)
             performance += loss
         tf.reset_default_graph()
     return performance/len(splits)
@@ -232,7 +255,9 @@ def main_train():
     folds, test_data, (source_vocab_size, target_vocab_size) = load_data()
     train_data = sum(folds[:-1],[])
     validation_data = folds[-1]
-    conf = parameter_tuning(folds, source_vocab_size, target_vocab_size)
+    #conf = parameter_tuning(folds, source_vocab_size, target_vocab_size)
+    conf = list(config.config_beam_search(source_vocab_size, target_vocab_size, FLAGS.num_layers, FLAGS.batch_size, _buckets, FLAGS.learning_rate, FLAGS.learning_rate_decay_factor))[0]
+    
 
     #First, train with held-out data to find number of iterations
     with tf.Session() as sess:
@@ -248,10 +273,11 @@ def main_train():
         conf_out = open(os.path.join(FLAGS.train_dir, 'final_model.conf'), 'w')
         pickle.dump(conf, conf_out)
         conf_out.close()
-        loss, acc = test(sess, test_data, model)
+        loss, total_acc, sentence_acc = test(sess, test_data, model)
         print("FINAL RESULTS:")
-        print("  loss = %0.4f"%loss)
-        print("  acc  = %0.4f"%acc)
+        print("  loss         = %0.4f"%loss)
+        print("  total_acc    = %0.4f"%total_acc)
+        print("  sentence_acc = %0.4f"%sentence_acc)
 
 def main_test():
     _, test_data, (source_vocab_size, target_vocab_size) = load_data()
@@ -262,10 +288,11 @@ def main_test():
     with tf.Session() as sess:
         model = create_model(sess, conf)
         model.saver.restore(sess, os.path.join(FLAGS.train_dir, 'final_model'))
-        loss, acc = test(sess, test_data, model, True)
+        loss, total_acc, sentence_acc = test(sess, test_data, model, True)
         print("FINAL RESULTS:")
-        print("  loss = %0.4f"%loss)
-        print("  acc  = %0.4f"%acc)
+        print("  loss         = %0.4f"%loss)
+        print("  total_acc    = %0.4f"%total_acc)
+        print("  sentence_acc = %0.4f"%sentence_acc)
 
 
 def main(_):

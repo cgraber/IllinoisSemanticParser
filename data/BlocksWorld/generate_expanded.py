@@ -579,7 +579,6 @@ class CompositeShape(object):
             fout.write("\n")
             fout.write(description[i])
             fout.write("\n")
-        fout.write("\n")
 
     def draw_to_file(self, file_path):
         shape = self.draw()
