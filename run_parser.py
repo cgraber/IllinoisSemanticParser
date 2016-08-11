@@ -160,9 +160,11 @@ def train(sess, train_data, validation_data, conf, num_steps = None):
             else:
                 print("\tIteration %d of %d"%(current_step, num_steps))
             # Decrease learning rate if no improvement was seen over last 3 times.
-            #if len(previous_losses) > 2 and loss > max(previous_losses[-3:]):
-            #    sess.run(model.learning_rate_decay_op)
+            if len(previous_losses) > 2 and loss > max(previous_losses[-3:]):
+                sess.run(model.learning_rate_decay_op)
             previous_losses.append(loss)
+            if len(previous_losses) > 3:
+                del previous_losses[0]
             # Save checkpoint and zero timer and loss
             step_time, loss = 0.0, 0.0
             sys.stdout.flush()
