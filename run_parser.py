@@ -221,7 +221,7 @@ def evaluate_logits(output_logits, test_data, dump_results=False):
                 print(' '.join(data_utils.ids_to_words(test_data[entry_ind][sent_ind][0])))
                 print("\tCorrect: "+''.join(data_utils.ids_to_logics(test_data[entry_ind][sent_ind][1][1:-1])))
                 print("\tFound:   "+''.join(data_utils.ids_to_logics(total_outputs[entry_ind][sent_ind])))
-    return all_correct/num_entries, sentence_correct/num_sentences
+    return total_correct/num_entries, sentence_correct/num_sentences
 
 
 def cross_validate(splits, conf):
