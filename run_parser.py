@@ -183,7 +183,6 @@ def evaluate_logits(output_logits, test_data, dump_results=False):
     total_outputs = []
     for sent_ind in xrange(len(output_logits)):
         temp_outputs = [[int(np.argmax(logit)) for logit in output_logit] for output_logit in output_logits[sent_ind]]
-
         #Reshape outputs
         outputs = np.array(temp_outputs).T.tolist()
   
@@ -206,10 +205,12 @@ def evaluate_logits(output_logits, test_data, dump_results=False):
     num_sentences = 0.0
     num_entries = 0.0
     for entry_ind in xrange(len(test_data)):
+        #print("ENTRY: %d"%entry_ind)
         num_entries += 1.0
         all_correct = True
         for sent_ind in xrange(len(test_data[entry_ind])):
             num_sentences += 1.0
+            
             if test_data[entry_ind][sent_ind][1][1:-1] != total_outputs[entry_ind][sent_ind]: #TODO: make sure this is correct
                 all_correct = False
             else:

@@ -1,7 +1,7 @@
 import numpy as np
 import tensorflow as tf
 import data_utils
-import random
+import random, sys
 
 class ParseModel(object):
 
@@ -143,28 +143,28 @@ class ParseModel(object):
             batch = []
             for _ in xrange(batch_size):
                 batch.append(random.choice(data[bucket_id]))
-
         num_sentences = max(map(len, batch))
-        encoder_inputs, decoder_inputs = [[]]*num_sentences, [[]]*num_sentences
+        encoder_inputs, decoder_inputs = [], []
+        for i in xrange(num_sentences):
+            encoder_inputs.append([])
+            decoder_inputs.append([])
 
         # pad entries if needed, reverse encoder inputs
         for entry in batch:
-            for i in xrange(num_sentences):
-                if i < len(entry):
-                    encoder_input = entry[i][0]
-                    decoder_input = entry[i][1]
-
+            for sent_ind in xrange(num_sentences):
+                if sent_ind < len(entry):
+                    encoder_input = entry[sent_ind][0]
+                    decoder_input = entry[sent_ind][1]
                     # Encoder inputs are padded and then reversed
                     encoder_pad = [data_utils.PAD_ID] * (encoder_size - len(encoder_input))
-                    encoder_inputs[i].append(list(reversed(encoder_input + encoder_pad)))
+                    encoder_inputs[sent_ind].append(list(reversed(encoder_input + encoder_pad)))
 
                     decoder_pad = [data_utils.PAD_ID] * (decoder_size - len(decoder_input))
-                    decoder_inputs[i].append(decoder_input + decoder_pad)
+                    decoder_inputs[sent_ind].append(decoder_input + decoder_pad)
                 else:
                     # No sentence here. PAD EVERYTHING
-                    encoder_inputs[i].append([data_utils.PAD_ID] * encoder_size)
-                    decoder_inputs[i].append([data_utils.PAD_ID] * decoder_size)
-
+                    encoder_inputs[sent_ind].append([data_utils.PAD_ID] * encoder_size)
+                    decoder_inputs[sent_ind].append([data_utils.PAD_ID] * decoder_size)
 
         # Now we create batch-major vectors from the data selected above
         final_encoder_inputs, final_decoder_inputs, final_weights = [], [], []

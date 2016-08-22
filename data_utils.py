@@ -1,4 +1,4 @@
-import os, collections
+import os, collections, sys
 from nltk.stem.snowball import SnowballStemmer
 
 PAD = "<PAD>"
