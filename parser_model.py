@@ -1,7 +1,7 @@
 import numpy as np
 import tensorflow as tf
 import data_utils
-import random
+import random, sys
 
 class ParseModel(object):
 
@@ -82,46 +82,49 @@ class ParseModel(object):
         """
         Run a step of the model feeding the given inputs
         """
-
         # Check if the sizes match
         encoder_size, decoder_size = self.buckets[bucket_id]
-        if len(encoder_inputs) != encoder_size:
+        if len(encoder_inputs[0]) != encoder_size:
             raise ValueError("Encoder length must be equal to the one in bucket,"
-                             " %d != %d." % (len(encoder_inputs), encoder_size))
-        if len(decoder_inputs) != decoder_size:
+                             " %d != %d." % (len(encoder_inputs[0]), encoder_size))
+        if len(decoder_inputs[0]) != decoder_size:
             raise ValueError("Decoder length must be equal to the one in bucket,"
-                             " %d != %d." % (len(decoder_inputs), decoder_size))
-        if len(target_weights) != decoder_size:
+                             " %d != %d." % (len(decoder_inputs[0]), decoder_size))
+        if len(target_weights[0]) != decoder_size:
             raise ValueError("Weights length must be equal to the one in bucket,"
-                             " %d != %d." % (len(target_weights), decoder_size))
+                             " %d != %d." % (len(target_weights[0]), decoder_size))
+        outputs = []
+        for sent_ind in xrange(len(encoder_inputs)):
+            input_feed = {}
+            for l in xrange(encoder_size):
+                input_feed[self.encoder_inputs[l].name] = encoder_inputs[sent_ind][l]
+            for l in xrange(decoder_size):
+                input_feed[self.decoder_inputs[l].name] = decoder_inputs[sent_ind][l]
+                input_feed[self.target_weights[l].name] = target_weights[sent_ind][l]
 
-        input_feed = {}
-        for l in xrange(encoder_size):
-            input_feed[self.encoder_inputs[l].name] = encoder_inputs[l]
-        for l in xrange(decoder_size):
-            input_feed[self.decoder_inputs[l].name] = decoder_inputs[l]
-            input_feed[self.target_weights[l].name] = target_weights[l]
+            last_target = self.decoder_inputs[decoder_size].name
+            input_feed[last_target] = np.zeros([len(decoder_inputs[0][0])], dtype=np.int32)
+            input_feed[self.is_test] = is_test
 
-        last_target = self.decoder_inputs[decoder_size].name
-        input_feed[last_target] = np.zeros([len(decoder_inputs[0])], dtype=np.int32)
-        input_feed[self.is_test] = is_test
+            if is_test:
+                output_feed = [self.losses[bucket_id]]   #Loss for this batch
+                for l in xrange(decoder_size):  # Output logits
+                    output_feed.append(self.outputs[bucket_id][l])
+                input_feed[self.keep_prob_input] = 1.0
 
+            else: 
+                output_feed = [self.updates[bucket_id],  #Update Op that does RMSProp
+                               self.gradient_norms[bucket_id],   # Gradient norm
+                               self.losses[bucket_id]]   #Loss for this batch
+                input_feed[self.keep_prob_input] = self.keep_prob
+            outputs.append(session.run(output_feed, input_feed))
         if is_test:
-            output_feed = [self.losses[bucket_id]]   #Loss for this batch
-            for l in xrange(decoder_size):  # Output logits
-                output_feed.append(self.outputs[bucket_id][l])
-            input_feed[self.keep_prob_input] = 1.0
-
-        else: 
-            output_feed = [self.updates[bucket_id],  #Update Op that does RMSProp
-                           self.gradient_norms[bucket_id],   # Gradient norm
-                           self.losses[bucket_id]]   #Loss for this batch
-            input_feed[self.keep_prob_input] = self.keep_prob
-        outputs = session.run(output_feed, input_feed)
-        if is_test:
-            return None, outputs[0], outputs[1:] #No gradient norm, loss, outputs
+            total_loss = sum(map(lambda x: x[0], outputs))
+            logits = map(lambda x: x[1:], outputs)
+            return total_loss, logits #No gradient norm, loss, outputs
         else:
-            return outputs[1], outputs[2], None  # Gradient norm, loss, no outputs
+            total_loss = sum(map(lambda x: x[2], outputs))
+            return total_loss, None  # Gradient norm, loss, no outputs
 
     def get_batch(self, data, bucket_id, is_test):
         """ Gets batch, formats it in correct way.
@@ -131,7 +134,6 @@ class ParseModel(object):
         Otherwise, the data is sampled from the specified bucket
         """
         encoder_size, decoder_size = self.buckets[bucket_id]
-        encoder_inputs, decoder_inputs = [], []
 
         if is_test:
             batch_size = len(data)
@@ -141,40 +143,57 @@ class ParseModel(object):
             batch = []
             for _ in xrange(batch_size):
                 batch.append(random.choice(data[bucket_id]))
+        num_sentences = max(map(len, batch))
+        encoder_inputs, decoder_inputs = [], []
+        for i in xrange(num_sentences):
+            encoder_inputs.append([])
+            decoder_inputs.append([])
 
         # pad entries if needed, reverse encoder inputs
-        for encoder_input, decoder_input in batch:
+        for entry in batch:
+            for sent_ind in xrange(num_sentences):
+                if sent_ind < len(entry):
+                    encoder_input = entry[sent_ind][0]
+                    decoder_input = entry[sent_ind][1]
+                    # Encoder inputs are padded and then reversed
+                    encoder_pad = [data_utils.PAD_ID] * (encoder_size - len(encoder_input))
+                    encoder_inputs[sent_ind].append(list(reversed(encoder_input + encoder_pad)))
 
-            # Encoder inputs are padded and then reversed
-            encoder_pad = [data_utils.PAD_ID] * (encoder_size - len(encoder_input))
-            encoder_inputs.append(list(reversed(encoder_input + encoder_pad)))
-
-            decoder_pad = [data_utils.PAD_ID] * (decoder_size - len(decoder_input))
-            decoder_inputs.append(decoder_input + decoder_pad)
+                    decoder_pad = [data_utils.PAD_ID] * (decoder_size - len(decoder_input))
+                    decoder_inputs[sent_ind].append(decoder_input + decoder_pad)
+                else:
+                    # No sentence here. PAD EVERYTHING
+                    encoder_inputs[sent_ind].append([data_utils.PAD_ID] * encoder_size)
+                    decoder_inputs[sent_ind].append([data_utils.PAD_ID] * decoder_size)
 
         # Now we create batch-major vectors from the data selected above
-        batch_encoder_inputs, batch_decoder_inputs, batch_weights = [], [], []
+        final_encoder_inputs, final_decoder_inputs, final_weights = [], [], []
+        for sent_ind in xrange(num_sentences):
+            batch_encoder_inputs, batch_decoder_inputs, batch_weights = [], [], []
+            final_encoder_inputs.append(batch_encoder_inputs)
+            final_decoder_inputs.append(batch_decoder_inputs)
+            final_weights.append(batch_weights)
 
-        # Batch encoder inputs are just re-indexed encoder_inputs.
-        for length_idx in xrange(encoder_size):
-            batch_encoder_inputs.append(
-                np.array([encoder_inputs[batch_idx][length_idx]
-                        for batch_idx in xrange(batch_size)], dtype=np.int32))
+            # Batch encoder inputs are just re-indexed encoder_inputs.
+            for length_idx in xrange(encoder_size):
+                batch_encoder_inputs.append(
+                    np.array([encoder_inputs[sent_ind][batch_idx][length_idx]
+                            for batch_idx in xrange(batch_size)], dtype=np.int32))
 
-        # Batch decoder inputs are re-indexed decoder inputs. We also create weights!
-        for length_idx in xrange(decoder_size):
-            batch_decoder_inputs.append(
-                np.array([decoder_inputs[batch_idx][length_idx]
-                          for batch_idx in xrange(batch_size)], dtype=np.int32))
+            # Batch decoder inputs are re-indexed decoder inputs. We also create weights!
+            for length_idx in xrange(decoder_size):
+                batch_decoder_inputs.append(
+                    np.array([decoder_inputs[sent_ind][batch_idx][length_idx]
+                              for batch_idx in xrange(batch_size)], dtype=np.int32))
 
-            # Create target_weights to be 0 for targets that are padding
-            batch_weight = np.ones(batch_size, dtype=np.float32)
-            for batch_idx in xrange(batch_size):
-                # We set weight to 0 if the corresponding target is a PAD symbol.
-                # The corresponding target is decoder_input shifted by 1 forward.
-                if length_idx < decoder_size - 1:
-                    target = decoder_inputs[batch_idx][length_idx+1]
-                if length_idx == decoder_size - 1 or target == data_utils.PAD_ID:
-                    batch_weight[batch_idx] = 0.0
-            batch_weights.append(batch_weight)
-        return batch, batch_encoder_inputs, batch_decoder_inputs, batch_weights
+                # Create target_weights to be 0 for targets that are padding
+                batch_weight = np.ones(batch_size, dtype=np.float32)
+                for batch_idx in xrange(batch_size):
+                    # We set weight to 0 if the corresponding target is a PAD symbol.
+                    # The corresponding target is decoder_input shifted by 1 forward.
+                    if length_idx < decoder_size - 1:
+                        target = decoder_inputs[sent_ind][batch_idx][length_idx+1]
+                    if length_idx == decoder_size - 1 or target == data_utils.PAD_ID:
+                        batch_weight[batch_idx] = 0.0
+                batch_weights.append(batch_weight)
+        return batch, final_encoder_inputs, final_decoder_inputs, final_weights

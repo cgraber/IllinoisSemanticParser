@@ -9,6 +9,7 @@ from random import randint, shuffle
 
 COMMANDS = ["Create", "Construct", "Build", "Form"]
 CONNECTORS = ["and", "with"]
+NEXT = ["Next", "Then", "After that",]
 
 ROW = 0
 COL = 1
@@ -485,25 +486,27 @@ class CompositeShape(object):
             
 
     def getDescription(self):
+        
         if self.description:
             return self.description
 
-        self.description = random.choice(COMMANDS) + " "
         if len(self.shapes) == 1:
+            self.description = random.choice(COMMANDS) + " "
             self.description += self.shapes[0].description + "."
         elif len(self.shapes) == 2:
-            self.description += self.shapes[0].description + " "
-            self.description += random.choice(CONNECTORS) + " "
-            self.description += self.shapes[1].description + " "
-            self.description += "to its %s where "%DIRECTIONS[self.relations[0].direction]
-            self.description += self.relations[0].description + "."
+            self.description = random.choice(COMMANDS) + " "
+            self.description += self.shapes[0].description + ". "
+            self.description += "To its %s, add %s "%(DIRECTIONS[self.relations[0].direction], self.shapes[1].description)
+            self.description += "where %s."%self.relations[0].description
         else:
-            self.description += "a structure consisting of "
-            self.description += self.shapes[0].description + ", "
+            self.description = "First, %s %s. "%(random.choice(COMMANDS).lower(), self.shapes[0].description)
             counts = {}
             for i in xrange(len(self.shapes)-1):
                 if i == len(self.shapes)-2:
-                    self.description += "and "
+                    self.description += "Finally, "
+                else:
+                    self.description += "%s, "%random.choice(NEXT)
+                self.description += "%s "%random.choice(COMMANDS).lower()
                 if i == 0:
                     self.description += self.shapes[i+1].description + " to its %s where "%DIRECTIONS[self.relations[i].direction]
                 else:
@@ -512,9 +515,9 @@ class CompositeShape(object):
                     else:
                         name = "the %s %s"%(ORDINALS[self.shapes[i].ind], self.shapes[i].name)
                     self.description += self.shapes[i+1].description + " to the %s of %s where "%(DIRECTIONS[self.relations[i].direction], name)
+                self.description += self.relations[i].description + "."
                 if i < len(self.shapes) - 2:
-                    self.description += self.relations[i].description + ", "
-            self.description += self.relations[-1].description + "."
+                    self.description += " "
         return self.description
 
 
@@ -649,8 +652,10 @@ while len(shapes) < TRAIN_SIZE + TEST_SIZE:
 
 train_dir = os.path.join(sys.argv[3], "train")
 test_dir = os.path.join(sys.argv[3], "test")
-os.makedirs(train_dir)
-os.makedirs(test_dir)
+if not os.path.exists(train_dir):
+    os.makedirs(train_dir)
+if not os.path.exists(test_dir):
+    os.makedirs(test_dir)
 with open(sys.argv[1], "w") as fout:
     for i in xrange(TRAIN_SIZE):
         shape = shapes[i]
