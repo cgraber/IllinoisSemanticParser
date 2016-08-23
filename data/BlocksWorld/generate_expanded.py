@@ -339,6 +339,7 @@ class CompositeShape(object):
                 newLogic += shape.getCondensedLogic()
                 newLogic += old.getCondensedLogic()
                 self.logic.append(newLogic)
+
                 # Additional Logic
                 if offset >= 0:
                     newEnumVal = shape.getEnum(0, shape.width - 1)
@@ -384,6 +385,7 @@ class CompositeShape(object):
                 newLogic += shape.getCondensedLogic()
                 newLogic += old.getCondensedLogic()
                 self.logic.append(newLogic)
+
                 # Additional Logic
                 if offset >= 0:
                     newEnumVal = shape.getEnum(0, 0)
@@ -473,6 +475,7 @@ class CompositeShape(object):
                 newLogic += shape.getCondensedLogic()
                 newLogic += old.getCondensedLogic()
                 self.logic.append(newLogic)
+
                 # Additional Logic
                 if offset >= 0:
                     newEnumVal = shape.getEnum(0, 0)
