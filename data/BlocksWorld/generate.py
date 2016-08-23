@@ -2,11 +2,14 @@ TRAIN_SIZE = 500
 TEST_SIZE = 200
 maxNumShapes = 3
 
-import random, sys
+
+import random, sys, os
+import gen_images
 from random import randint, shuffle
 
 COMMANDS = ["Create", "Construct", "Build", "Form"]
 CONNECTORS = ["and", "with"]
+NEXT = ["Next", "Then", "After that",]
 
 ROW = 0
 COL = 1
@@ -466,49 +469,60 @@ class CompositeShape(object):
         yShift = -1 * self.minY
         self.minY += yShift
         self.maxY += yShift
+
+        if self.maxX >= gen_images.GRID_WIDTH or self.maxY >= gen_images.GRID_HEIGHT:
+            return False
+        if self.maxX < gen_images.GRID_WIDTH - 1:
+            xShift += (gen_images.GRID_WIDTH - self.maxX - 1) / 2
+        if self.maxY < gen_images.GRID_HEIGHT - 1:
+            yShift += (gen_images.GRID_HEIGHT - self.maxY - 1) / 2
+
         for shape in self.shapes:
             shape.left += xShift
             shape.right += xShift
             shape.top += yShift
             shape.bottom += yShift
+        return True
+            
 
     def getDescription(self):
+        
         if self.description:
             return self.description
 
-        self.description = random.choice(COMMANDS) + " "
         if len(self.shapes) == 1:
+            self.description = random.choice(COMMANDS) + " "
             self.description += self.shapes[0].description + "."
         elif len(self.shapes) == 2:
-            self.description += self.shapes[0].description + " "
-            self.description += random.choice(CONNECTORS) + " "
-            self.description += self.shapes[1].description + " "
-            self.description += "to its %s where "%DIRECTIONS[self.relations[0].direction]
-            self.description += self.relations[0].description + "."
+            self.description = random.choice(COMMANDS) + " "
+            self.description += self.shapes[0].description + ". "
+            self.description += "To its %s, add %s "%(DIRECTIONS[self.relations[0].direction], self.shapes[1].description)
+            self.description += "where %s."%self.relations[0].description
         else:
-            self.description += "a structure consisting of "
-            self.description += self.shapes[0].description + ", "
+            self.description = "First, %s %s. "%(random.choice(COMMANDS).lower(), self.shapes[0].description)
             counts = {}
             for i in xrange(len(self.shapes)-1):
                 if i == len(self.shapes)-2:
-                    self.description += "and "
+                    self.description += "Finally, "
+                else:
+                    self.description += "%s, "%random.choice(NEXT)
+                self.description += "%s "%random.choice(COMMANDS).lower()
                 if i == 0:
                     self.description += self.shapes[i+1].description + " to its %s where "%DIRECTIONS[self.relations[i].direction]
                 else:
-                    if self.shapes[i-1].ind == 0:
-                        name = "the %s"%self.shapes[i-1].name
+                    if self.shapes[i].ind == 0:
+                        name = "the %s"%self.shapes[i].name
                     else:
-                        name = "the %s %s"%(ORDINALS[self.shapes[i-1].ind], self.shapes[i-1].name)
+                        name = "the %s %s"%(ORDINALS[self.shapes[i].ind], self.shapes[i].name)
                     self.description += self.shapes[i+1].description + " to the %s of %s where "%(DIRECTIONS[self.relations[i].direction], name)
+                self.description += self.relations[i].description + "."
                 if i < len(self.shapes) - 2:
-                    self.description += self.relations[i].description + ", "
-            self.description += self.relations[-1].description + "."
+                    self.description += " "
         return self.description
 
 
     def draw(self):
-        self.normalize()
-        result = [['O']*(self.maxX + 1) for i in xrange(self.maxY + 1)]
+        result = [['O']*(gen_images.GRID_WIDTH) for i in xrange(gen_images.GRID_HEIGHT)]
         for shape in self.shapes:
             shape.fillIn(result)
         return result
@@ -523,6 +537,10 @@ class CompositeShape(object):
         fout.write("\n")
         fout.write(self.getDescription())
         fout.write("\n")
+
+    def draw_to_file(self, file_path):
+        shape = self.draw()
+        gen_images.draw_shape_to_file(shape, file_path)
 
 
 class Row(Shape):
@@ -613,8 +631,8 @@ genShape = [randRow, randCol, randSquare, randRect]
 
 configs = []
 descriptions = []
-if len(sys.argv) != 3:
-    print "Usage: python generate.py <train output name> <test output name>"
+if len(sys.argv) != 4:
+    print "Usage: python generate.py <train output name> <test output name> <image dir>"
     sys.exit(1)
 
 shapes = []
@@ -627,15 +645,26 @@ while len(shapes) < TRAIN_SIZE + TEST_SIZE:
         newShape = genShape[randint(0,3)]()
         direction = randint(0,3)
         composite.addShape(newShape, direction)
-    if composite.getDescription() not in descriptions:
+    if composite.getDescription() not in descriptions and composite.normalize():
         descriptions.add(composite.getDescription())
         shapes.append(composite)
+    
 
+train_dir = os.path.join(sys.argv[3], "train")
+test_dir = os.path.join(sys.argv[3], "test")
+if not os.path.exists(train_dir):
+    os.makedirs(train_dir)
+if not os.path.exists(test_dir):
+    os.makedirs(test_dir)
 with open(sys.argv[1], "w") as fout:
-    for shape in shapes[:TRAIN_SIZE]:
+    for i in xrange(TRAIN_SIZE):
+        shape = shapes[i]
         shape.write(fout)
         fout.write("\n")
+        shape.draw_to_file(os.path.join(train_dir, "train_%d.png"%i))
 with open(sys.argv[2], "w") as fout:
-    for shape in shapes[TRAIN_SIZE:]:
+    for i in xrange(TRAIN_SIZE, len(shapes)):
+        shape = shapes[i]
         shape.write(fout)
         fout.write("\n")
+        shape.draw_to_file(os.path.join(test_dir, "test_%d.png"%(i-TRAIN_SIZE)))
