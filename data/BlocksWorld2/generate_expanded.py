@@ -59,7 +59,7 @@ class Shape:
         self.right = width - 1
         self.top = 0
         self.bottom = height - 1
-        #self.var = getVar()
+        self.var = getVar()
         self.ind = 0
 
     def getLowerLeftDescription(self):
@@ -296,7 +296,6 @@ class CompositeShape(object):
             self.minY = 0
             self.logic.append(shape.getLogic())
         else:
-            resetVars()
             finalInd = 1
             for oldShape in self.shapes:
                 if oldShape.name == shape.name: 
@@ -334,7 +333,6 @@ class CompositeShape(object):
                     self.shapesOnSides[BOTTOM] = shape
                 newLogic.append("left(%s, %s)"%(shape.var, old.var))
                 newLogic = []
-                resetVars()
                 newLogic += shape.getCondensedLogic()
                 newLogic += old.getCondensedLogic()
                 self.logic.append(newLogic)
@@ -392,7 +390,6 @@ class CompositeShape(object):
                     self.shapesOnSides[BOTTOM] = shape
                 newLogic.append("right(%s, %s)"%(shape.var, old.var))
                 newLogic = []
-                resetVars()
                 newLogic += shape.getCondensedLogic()
                 newLogic += old.getCondensedLogic()
                 self.logic.append(newLogic)
@@ -449,7 +446,6 @@ class CompositeShape(object):
                     self.shapesOnSides[TOP] = shape
                 newLogic.append("top(%s, %s)"%(shape.var, old.var))
                 newLogic = []
-                resetVars()
                 newLogic += shape.getCondensedLogic()
                 newLogic += old.getCondensedLogic()
                 self.logic.append(newLogic)
@@ -506,7 +502,6 @@ class CompositeShape(object):
 
                 newLogic.append("bottom(%s, %s)"%(shape.var, old.var))
                 newLogic = []
-                resetVars()
                 newLogic += shape.getCondensedLogic()
                 newLogic += old.getCondensedLogic()
                 self.logic.append(newLogic)
@@ -654,11 +649,9 @@ class Row(Shape):
         return random.choice(Row.RIGHT_CHOICES)
 
     def getLogic(self):
-        self.var = getVar()
         return ['row(%s)'%self.var, 'width(%s, %d)'%(self.var, self.width)]
 
     def getCondensedLogic(self):
-        self.var = getVar()
         return ['row(%s)'%self.var]
 
 
@@ -683,10 +676,8 @@ class Col(Shape):
         return random.choice(Col.TOP_CHOICES)
 
     def getLogic(self):
-        self.var = getVar()
         return ['column(%s)'%self.var, 'height(%s, %d)'%(self.var, self.height)]
     def getCondensedLogic(self):
-        self.var = getVar()
         return ['column(%s)'%self.var]
 
 class Square(Shape):
@@ -699,10 +690,8 @@ class Square(Shape):
         Shape.__init__(self, "square", dim, dim, description)
 
     def getLogic(self):
-        self.var = getVar()
         return ['square(%s)'%self.var, 'size(%s, %d)'%(self.var, self.width)]
     def getCondensedLogic(self):
-        self.var = getVar()
         return ['square(%s)'%self.var]
 
 class Rect(Shape):
@@ -717,10 +706,8 @@ class Rect(Shape):
         Shape.__init__(self, "rectangle", width, height, description)
 
     def getLogic(self):
-        self.var = getVar()
         return ['rectangle(%s)'%self.var, 'height(%s, %d)'%(self.var, self.height), 'width(%s, %d)'%(self.var, self.width)]
     def getCondensedLogic(self):
-        self.var = getVar()
         return ['rectangle(%s)'%self.var]
 
 def randRow():
