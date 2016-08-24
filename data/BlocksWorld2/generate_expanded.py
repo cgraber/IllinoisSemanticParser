@@ -346,6 +346,8 @@ class CompositeShape(object):
                     oldEnumVal = old.getEnum(offset, 0)
                     if offset == 0:
                         oldEnumLogic = "upper_left(%s, %s)"
+                    elif shape.top == old.bottom:
+                        oldEnumLogic = "lower_left(%s, %s)"
                     else:
                         oldEnumLogic = "left_side(%s, %s, "+str(offset)+")"
                 elif shape.bottom > old.bottom:
@@ -360,6 +362,8 @@ class CompositeShape(object):
                     oldEnumVal = old.getEnum(shape.bottom - old.top, 0)
                     if shape.bottom == old.bottom:
                         oldEnumLogic = "lower_left(%s, %s)"
+                    elif shape.bottom == old.top:
+                        oldEnumLogic = "upper_left(%s, %s)"
                     else:
                         oldEnumLogic = "left_side(%s, %s, "+str(shape.bottom-old.top) + ")"
                 newSpaceVar = getSpaceVar()
@@ -404,6 +408,8 @@ class CompositeShape(object):
                     oldEnumVal = old.getEnum(offset, old.width-1)
                     if offset == 0:
                         oldEnumLogic = "upper_right(%s, %s)"
+                    elif shape.top == old.bottom:
+                        oldEnumLogic = "lower_right(%s, %s)"
                     else:
                         oldEnumLogic = "right_side(%s, %s, "+str(offset) +")"
                 elif shape.bottom > old.bottom:
@@ -418,6 +424,8 @@ class CompositeShape(object):
                     oldEnumVal = old.getEnum(shape.bottom - old.top, old.width-1)
                     if shape.bottom == old.bottom:
                         oldEnumLogic = "lower_right(%s, %s)"
+                    elif shape.bottom == old.top:
+                        oldEnumLogic = "upper_right(%s, %s)"
                     else:
                         oldEnumLogic = "right_side(%s, %s, "+str(shape.bottom-old.top)+")"
                 newSpaceVar = getSpaceVar()
@@ -461,6 +469,8 @@ class CompositeShape(object):
                     oldEnumVal = old.getEnum(0, offset)
                     if offset == 0:
                         oldEnumLogic = "upper_left(%s, %s)"
+                    elif shape.left == old.right:
+                        oldEnumLogic = "upper_right(%s, %s)"
                     else:
                         oldEnumLogic = "top_side(%s, %s, "+str(offset)+")"
                 elif shape.right > old.right:
@@ -474,6 +484,8 @@ class CompositeShape(object):
                     oldEnumVal = old.getEnum(0, shape.right - old.left)
                     if old.right == shape.right:
                         oldEnumLogic = "upper_right(%s, %s)"
+                    elif shape.right == old.left:
+                        oldEnumLogic = "upper_left(%s, %s)"
                     else:
                         oldEnumLogic = "top_side(%s, %s, "+str(shape.right - old.left)+")"
                 newSpaceVar = getSpaceVar()
@@ -518,6 +530,8 @@ class CompositeShape(object):
                     oldEnumVal = old.getEnum(old.height - 1, offset)
                     if offset == 0:
                         oldEnumLogic = "lower_left(%s, %s)"
+                    elif shape.left == old.right:
+                        oldEnumLogic = "lower_right(%s, %s)"
                     else:
                         oldEnumLogic = "bottom_side(%s, %s, "+str(offset)+")"
                 elif shape.right > old.right:
@@ -531,6 +545,8 @@ class CompositeShape(object):
                     oldEnumVal = old.getEnum(old.height - 1, shape.right - old.left)
                     if old.right == shape.right:
                         oldEnumLogic = "lower_right(%s, %s)"
+                    elif shape.right == old.left:
+                        oldEnumLogic = "lower_left(%s, %s)"
                     else:
                         oldEnumLogic = "bottom_side(%s, %s, "+str(shape.right - old.left)+")"
                 newSpaceVar = getSpaceVar()
