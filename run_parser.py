@@ -114,6 +114,7 @@ def train(sess, train_data, validation_data, conf, num_steps = None):
     previous_losses = []
     best_validation_loss = float("inf")
     best_validation_acc = 0.0
+    best_validation_sentence_acc = 0.0
     best_validation_step = 0
     print("Starting training")
     sys.stdout.flush()
@@ -147,10 +148,11 @@ def train(sess, train_data, validation_data, conf, num_steps = None):
                 print("global step %s learning rate %.4f step-time %.2f training loss %.4f validation loss %.4f validation total acc %.4f validation sent acc %.4f" %
                     (model.global_step.eval(), model.learning_rate.eval(),
                      step_time, step_loss, validation_loss, validation_total_acc, validation_sentence_acc))
-                if validation_loss < best_validation_loss or (validation_loss == best_validation_loss and validation_total_acc > best_validation_acc):
+                if validation_sentence_acc > best_validation_sentence_acc or (validation_sentence_acc == best_validation_sentence_acc and validation_loss < best_validation_loss):
                     best_validation_loss = validation_loss
                     best_validation_step = current_step
                     best_validation_acc = validation_total_acc
+                    best_validation_sentence_acc = validation_sentence_acc
                     model.saver.save(sess, checkpoint_path, global_step=model.global_step)
                 if current_step - best_validation_step >= FLAGS.early_stopping_patience:
                     print("Early stopping triggered. Restoring previous model")
