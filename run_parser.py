@@ -86,7 +86,7 @@ def find_bucket(data):
 
 def create_model(session, conf):
     """Create model and initialize or load parameters in session."""
-    model = parser_model.ParseModel(conf)
+    model = parser_model.MultiSentParseModel(conf)
     print("Created model with fresh parameters.")
     session.run(tf.initialize_all_variables())
     return model
