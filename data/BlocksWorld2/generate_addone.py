@@ -589,7 +589,7 @@ class CompositeShape(object):
             description += self.shapes[0].description + "."
             self.description.append(description)
             description = "%s, add another one "%random.choice(NEXT)
-            description += self.shapes[1].size_description + " to the %s of the first %s." %(DIRECTIONS[self.relations[0].direction], self.shapes[0].name)
+            description += self.shapes[1].size_description + " to the %s of the first one." %(DIRECTIONS[self.relations[0].direction])
             self.description.append(description)
             #self.description.append("Ensure that %s."%self.relations[0].description)
 

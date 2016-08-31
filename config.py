@@ -8,7 +8,7 @@ class Config(object):
 
 
     def __init__(self, source_vocab_size, target_vocab_size, num_layers, dropout, layer_size, batch_size, 
-                 buckets, learning_rate, learning_rate_decay_factor, fold=None):
+                 learning_rate, learning_rate_decay_factor, source_max_len, target_max_len, fold=None):
         self.max_gradient = 5
         self.batch_size = batch_size
         self.initialize_width = 0.08
@@ -18,9 +18,10 @@ class Config(object):
         self.target_vocab_size = target_vocab_size
         self.num_layers = num_layers
         self.directory = "dropout_%.1f_vector_%d"%(dropout, layer_size)
-        self.buckets = buckets
         self.learning_rate = learning_rate
         self.learning_rate_decay_factor = learning_rate_decay_factor
+        self.source_max_len = source_max_len
+        self.target_max_len = target_max_len
         self.fold = fold
 
     def get_dir(self):
@@ -29,8 +30,8 @@ class Config(object):
         else:
             return self.directory+"/"
 
-def config_beam_search(source_vocab_size, target_vocab_size, num_layers, batch_size, buckets, 
-                       learning_rate, learning_rate_decay_factor):
+def config_beam_search(source_vocab_size, target_vocab_size, num_layers, batch_size, 
+                       learning_rate, learning_rate_decay_factor, source_max_len, target_max_len):
     for dropout, layer_size in itertools.product(dropout_beam, vector_beam):
-        yield Config(source_vocab_size, target_vocab_size, num_layers, dropout, layer_size, batch_size, buckets, 
-                     learning_rate, learning_rate_decay_factor)
+        yield Config(source_vocab_size, target_vocab_size, num_layers, dropout, layer_size, batch_size, 
+                     learning_rate, learning_rate_decay_factor, source_max_len, target_max_len)
