@@ -4,14 +4,16 @@ import data_utils
 import random, sys
 
 class BaseParseModel(object):
-    def __init__(self, config):
+    def __init__(self, config, train_data):
         '''
         Builds the computation graph for the parsing model used
         '''
         self.source_vocab_size = config.source_vocab_size
         self.target_vocab_size = config.target_vocab_size
-        self.buckets = config.buckets
+        self.encoder_size = config.source_max_len
+        self.decoder_size = config.target_max_len
         self.batch_size = config.batch_size
+        self.train_data = train_data
         self.learning_rate = tf.Variable(float(config.learning_rate), trainable=False)
         self.is_test = tf.placeholder(tf.bool)
         self.learning_rate_decay_op = self.learning_rate.assign(
@@ -19,6 +21,7 @@ class BaseParseModel(object):
         self.global_step = tf.Variable(0, trainable=False)
         self.keep_prob = 1 - config.dropout_rate
         self.keep_prob_input= tf.placeholder(tf.float32) #For dropout control
+        self.batch_ind = 0
 
         # Create LSTM cell
         print("\tCreating Cell")
@@ -33,10 +36,10 @@ class BaseParseModel(object):
         self.decoder_inputs = []
         self.target_weights = []
         print("\tCreating input feeds")
-        for i in xrange(self.buckets[-1][0]):
+        for i in xrange(self.encoder_size):
             self.encoder_inputs.append(tf.placeholder(tf.int32, shape=[None],
                                                       name="encoder{0}".format(i)))
-        for i in xrange(self.buckets[-1][1] + 1):
+        for i in xrange(self.decoder_size):
             self.decoder_inputs.append(tf.placeholder(tf.int32, shape=[None],
                                                       name="decoder{0}".format(i)))
             self.target_weights.append(tf.placeholder(tf.float32, shape=[None],
@@ -47,43 +50,45 @@ class BaseParseModel(object):
         targets = [self.decoder_inputs[i + 1]
                    for i in xrange(len(self.decoder_inputs) - 1)]
 
-        self.outputs, self.encoder_initial_state, self.encoder_states, decoder_states, self.losses = model_with_states_buckets(
-            self.encoder_inputs, self.decoder_inputs, targets, self.target_weights, self.batch_size, self.buckets, cell,
-            self.source_vocab_size, self.target_vocab_size, config.layer_size, feed_previous=self.is_test)
-        self.train_decoder_states = map(lambda x: x[1], decoder_states)
-        self.test_decoder_states = map(lambda x: x[0], decoder_states)
+        self.outputs, self.encoder_initial_state, self.encoder_final_state, decoder_states = embedding_attention_seq2seq_states(
+            self.encoder_inputs, self.decoder_inputs, cell, self.source_vocab_size, self.target_vocab_size, 
+            config.layer_size, feed_previous=self.is_test)
+        self.train_decoder_states = decoder_states[1]
+        self.test_decoder_states = decoder_states[0]
+
+        self.loss = tf.nn.seq2seq.sequence_loss(self.outputs[:-1], targets, self.target_weights[:-1])
 
         params = tf.trainable_variables()
-        self.gradient_norms = []
-        self.updates = []
         opt = tf.train.AdagradOptimizer(self.learning_rate) 
+
         print("\tCreating gradients")
-        for b in xrange(len(self.buckets)):
-            gradients = tf.gradients(self.losses[b], params)
-            clipped_gradients, norm = tf.clip_by_global_norm(gradients,
-                                                             config.max_gradient)
-            self.gradient_norms.append(norm)
-            self.updates.append(opt.apply_gradients(
-                zip(clipped_gradients, params), global_step=self.global_step))
+        gradients = tf.gradients(self.loss, params)
+        clipped_gradients, self.gradient_norm = tf.clip_by_global_norm(gradients, config.max_gradient)
+        self.update = opt.apply_gradients(zip(clipped_gradients, params))
         self.saver = tf.train.Saver(tf.all_variables())
 
-    def get_batch(self, data, bucket_id, is_test):
+    def get_batch(self, is_test, test_data=None):
         """ Gets batch, formats it in correct way.
 
         If is_test=True, data is assumed to be a 1D list of (input,output) pairs.
            All of this data is added to the final batch.
         Otherwise, the data is sampled from the specified bucket
         """
-        encoder_size, decoder_size = self.buckets[bucket_id]
 
         if is_test:
-            batch_size = len(data)
-            batch = data
+            batch_size = len(test_data)
+            batch = test_data
+            if test_data == None:
+                raise Exception("In test mode, data must be provided!")
         else:
             batch_size = self.batch_size
             batch = []
             for _ in xrange(batch_size):
-                batch.append(random.choice(data[bucket_id]))
+                if self.batch_ind == len(self.train_data):
+                    self.batch_ind = 0
+                    random.shuffle(self.train_data)
+                batch.append(self.train_data[self.batch_ind])
+                self.batch_ind += 1
         num_sentences = max(map(len, batch))
         encoder_inputs, decoder_inputs = [], []
         for i in xrange(num_sentences):
@@ -97,15 +102,15 @@ class BaseParseModel(object):
                     encoder_input = entry[sent_ind][0]
                     decoder_input = entry[sent_ind][1]
                     # Encoder inputs are padded and then reversed
-                    encoder_pad = [data_utils.PAD_ID] * (encoder_size - len(encoder_input))
+                    encoder_pad = [data_utils.PAD_ID] * (self.encoder_size - len(encoder_input))
                     encoder_inputs[sent_ind].append(list(reversed(encoder_input + encoder_pad)))
 
-                    decoder_pad = [data_utils.PAD_ID] * (decoder_size - len(decoder_input))
+                    decoder_pad = [data_utils.PAD_ID] * (self.decoder_size - len(decoder_input))
                     decoder_inputs[sent_ind].append(decoder_input + decoder_pad)
                 else:
                     # No sentence here. PAD EVERYTHING
-                    encoder_inputs[sent_ind].append([data_utils.PAD_ID] * encoder_size)
-                    decoder_inputs[sent_ind].append([data_utils.PAD_ID] * decoder_size)
+                    encoder_inputs[sent_ind].append([data_utils.PAD_ID] * self.encoder_size)
+                    decoder_inputs[sent_ind].append([data_utils.PAD_ID] * self.decoder_size)
 
         # Now we create batch-major vectors from the data selected above
         final_encoder_inputs, final_decoder_inputs, final_weights = [], [], []
@@ -116,13 +121,13 @@ class BaseParseModel(object):
             final_weights.append(batch_weights)
 
             # Batch encoder inputs are just re-indexed encoder_inputs.
-            for length_idx in xrange(encoder_size):
+            for length_idx in xrange(self.encoder_size):
                 batch_encoder_inputs.append(
                     np.array([encoder_inputs[sent_ind][batch_idx][length_idx]
                             for batch_idx in xrange(batch_size)], dtype=np.int32))
 
             # Batch decoder inputs are re-indexed decoder inputs. We also create weights!
-            for length_idx in xrange(decoder_size):
+            for length_idx in xrange(self.decoder_size):
                 batch_decoder_inputs.append(
                     np.array([decoder_inputs[sent_ind][batch_idx][length_idx]
                               for batch_idx in xrange(batch_size)], dtype=np.int32))
@@ -132,9 +137,9 @@ class BaseParseModel(object):
                 for batch_idx in xrange(batch_size):
                     # We set weight to 0 if the corresponding target is a PAD symbol.
                     # The corresponding target is decoder_input shifted by 1 forward.
-                    if length_idx < decoder_size - 1:
+                    if length_idx < self.decoder_size - 1:
                         target = decoder_inputs[sent_ind][batch_idx][length_idx+1]
-                    if length_idx == decoder_size - 1 or target == data_utils.PAD_ID:
+                    if length_idx == self.decoder_size - 1 or target == data_utils.PAD_ID:
                         batch_weight[batch_idx] = 0.0
                 batch_weights.append(batch_weight)
         return batch, final_encoder_inputs, final_decoder_inputs, final_weights
@@ -145,55 +150,54 @@ handled completely separately
 '''
 class ParseModel(BaseParseModel):
 
-    def step(self, session, encoder_inputs, decoder_inputs, target_weights,
-             bucket_id, is_test):
+    def step(self, session, is_test, test_data=None):
         """
         Run a step of the model feeding the given inputs
         """
+        # First, get data in correct format
+        batch, encoder_inputs, decoder_inputs, target_weights = self.get_batch(is_test, test_data)
+
         # Check if the sizes match
-        encoder_size, decoder_size = self.buckets[bucket_id]
-        if len(encoder_inputs[0]) != encoder_size:
+        if len(encoder_inputs[0]) != self.encoder_size:
             raise ValueError("Encoder length must be equal to the one in bucket,"
-                             " %d != %d." % (len(encoder_inputs[0]), encoder_size))
-        if len(decoder_inputs[0]) != decoder_size:
+                             " %d != %d." % (len(encoder_inputs[0]), self.encoder_size))
+        if len(decoder_inputs[0]) != self.decoder_size:
             raise ValueError("Decoder length must be equal to the one in bucket,"
-                             " %d != %d." % (len(decoder_inputs[0]), decoder_size))
-        if len(target_weights[0]) != decoder_size:
+                             " %d != %d." % (len(decoder_inputs[0]), self.decoder_size))
+        if len(target_weights[0]) != self.decoder_size:
             raise ValueError("Weights length must be equal to the one in bucket,"
-                             " %d != %d." % (len(target_weights[0]), decoder_size))
+                             " %d != %d." % (len(target_weights[0]), self.decoder_size))
         outputs = []
         for sent_ind in xrange(len(encoder_inputs)):
             input_feed = {}
-            for l in xrange(encoder_size):
+            for l in xrange(self.encoder_size):
                 input_feed[self.encoder_inputs[l].name] = encoder_inputs[sent_ind][l]
-            for l in xrange(decoder_size):
+            for l in xrange(self.decoder_size):
                 input_feed[self.decoder_inputs[l].name] = decoder_inputs[sent_ind][l]
                 input_feed[self.target_weights[l].name] = target_weights[sent_ind][l]
 
-            last_target = self.decoder_inputs[decoder_size].name
-            input_feed[last_target] = np.zeros([len(decoder_inputs[0][0])], dtype=np.int32)
             input_feed[self.is_test] = is_test
             input_feed[self.encoder_initial_state.name] = tf.zeros([len(encoder_inputs[sent_ind][0]), self.cell.state_size]).eval()
 
             if is_test:
-                output_feed = [self.losses[bucket_id]]   #Loss for this batch
-                for l in xrange(decoder_size):  # Output logits
-                    output_feed.append(self.outputs[bucket_id][l])
+                output_feed = [self.loss]   #Loss for this batch
+                for l in xrange(self.decoder_size):  # Output logits
+                    output_feed.append(self.outputs[l])
                 input_feed[self.keep_prob_input] = 1.0
 
             else: 
-                output_feed = [self.updates[bucket_id],  #Update Op that does RMSProp
-                               self.gradient_norms[bucket_id],   # Gradient norm
-                               self.losses[bucket_id]]   #Loss for this batch
+                output_feed = [self.update,  #Update Op that does RMSProp
+                               self.gradient_norm,   # Gradient norm
+                               self.loss]   #Loss for this batch
                 input_feed[self.keep_prob_input] = self.keep_prob
             outputs.append(session.run(output_feed, input_feed))
         if is_test:
             total_loss = sum(map(lambda x: x[0], outputs))
             logits = map(lambda x: x[1:], outputs)
-            return total_loss, logits #No gradient norm, loss, outputs
+            return batch, total_loss, logits #No gradient norm, loss, outputs
         else:
             total_loss = sum(map(lambda x: x[2], outputs))
-            return total_loss, None  # Gradient norm, loss, no outputs
+            return batch, total_loss, None  # Gradient norm, loss, no outputs
 
 '''
 This parser model passes the final hidden states of previous sentences
@@ -201,61 +205,61 @@ into the model for the next sentence.
 '''
 class MultiSentParseModel(BaseParseModel):
 
-    def step(self, session, encoder_inputs, decoder_inputs, target_weights,
-             bucket_id, is_test):
+    def step(self, session, is_test, test_data=None):
         """
         Run a step of the model feeding the given inputs
         """
+
+        # First, get data in correct format
+        batch, encoder_inputs, decoder_inputs, target_weights = self.get_batch(is_test, test_data)
+
         # Check if the sizes match
-        encoder_size, decoder_size = self.buckets[bucket_id]
-        if len(encoder_inputs[0]) != encoder_size:
+        if len(encoder_inputs[0]) != self.encoder_size:
             raise ValueError("Encoder length must be equal to the one in bucket,"
-                             " %d != %d." % (len(encoder_inputs[0]), encoder_size))
-        if len(decoder_inputs[0]) != decoder_size:
+                             " %d != %d." % (len(encoder_inputs[0]), self.encoder_size))
+        if len(decoder_inputs[0]) != self.decoder_size:
             raise ValueError("Decoder length must be equal to the one in bucket,"
-                             " %d != %d." % (len(decoder_inputs[0]), decoder_size))
-        if len(target_weights[0]) != decoder_size:
+                             " %d != %d." % (len(decoder_inputs[0]), self.decoder_size))
+        if len(target_weights[0]) != self.decoder_size:
             raise ValueError("Weights length must be equal to the one in bucket,"
-                             " %d != %d." % (len(target_weights[0]), decoder_size))
+                             " %d != %d." % (len(target_weights[0]), self.decoder_size))
         outputs = []
         prev_encoder_state = None
         for sent_ind in xrange(len(encoder_inputs)):
             input_feed = {}
-            for l in xrange(encoder_size):
+            for l in xrange(self.encoder_size):
                 input_feed[self.encoder_inputs[l].name] = encoder_inputs[sent_ind][l]
-            for l in xrange(decoder_size):
+            for l in xrange(self.decoder_size):
                 input_feed[self.decoder_inputs[l].name] = decoder_inputs[sent_ind][l]
                 input_feed[self.target_weights[l].name] = target_weights[sent_ind][l]
 
-            last_target = self.decoder_inputs[decoder_size].name
-            input_feed[last_target] = np.zeros([len(decoder_inputs[0][0])], dtype=np.int32)
             input_feed[self.is_test] = is_test
             if prev_encoder_state != None:
                 input_feed[self.encoder_initial_state] = prev_encoder_state
             else:
                 input_feed[self.encoder_initial_state] = tf.zeros([len(encoder_inputs[sent_ind][0]), self.cell.state_size]).eval()
             if is_test:
-                output_feed = [self.encoder_states[bucket_id], 
-                               self.losses[bucket_id]]   #Loss for this batch
-                for l in xrange(decoder_size):  # Output logits
-                    output_feed.append(self.outputs[bucket_id][l])
+                output_feed = [self.encoder_final_state, 
+                               self.loss]   #Loss for this batch
+                for l in xrange(self.decoder_size):  # Output logits
+                    output_feed.append(self.outputs[l])
                 input_feed[self.keep_prob_input] = 1.0
 
             else: 
-                output_feed = [self.encoder_states[bucket_id],
-                               self.updates[bucket_id],  #Update Op that does RMSProp
-                               self.gradient_norms[bucket_id],   # Gradient norm
-                               self.losses[bucket_id]]   #Loss for this batch
+                output_feed = [self.encoder_final_state,
+                               self.update,  #Update Op that does RMSProp
+                               self.gradient_norm,   # Gradient norm
+                               self.loss]   #Loss for this batch
                 input_feed[self.keep_prob_input] = self.keep_prob
             outputs.append(session.run(output_feed, input_feed))
             prev_encoder_state = outputs[-1][0]
         if is_test:
             total_loss = sum(map(lambda x: x[1], outputs))
             logits = map(lambda x: x[2:], outputs)
-            return total_loss, logits #No gradient norm, loss, outputs
+            return batch, total_loss, logits #No gradient norm, loss, outputs
         else:
             total_loss = sum(map(lambda x: x[3], outputs))
-            return total_loss, None  # Gradient norm, loss, no outputs
+            return batch, total_loss, None  # Gradient norm, loss, no outputs
 
 """
 The following is adapted from https://github.com/tensorflow/tensorflow/blob/master/tensorflow/python/ops/seq2seq.py
@@ -275,16 +279,16 @@ def embedding_attention_seq2seq_states(encoder_inputs,
                                        num_encoder_symbols,
                                        num_decoder_symbols,
                                        embedding_size,
-                                       encoder_initial_state,
                                        num_heads = 1,
                                        output_projection=None,
                                        feed_previous=False,
-                                       dtype=None,
+                                       dtype=tf.float32,
                                        scope=None,
                                        initial_state_attention=False):
     with variable_scope.variable_scope(
             scope or "embedding_attention_seq2seq_states") as scope:
         # Encoder.
+        encoder_initial_state = tf.placeholder(dtype, [None, cell.state_size], "encoder_initial_state")
         encoder_cell = rnn_cell.EmbeddingWrapper(
             cell, embedding_classes=num_encoder_symbols,
             embedding_size=embedding_size)

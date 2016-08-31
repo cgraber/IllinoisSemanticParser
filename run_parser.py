@@ -47,67 +47,33 @@ elif FLAGS.domain == 'blocks':
 
 def load_data():
     train_data, test_data, vocab_size = data_utils.load_raw_text(FLAGS.data_dir, True)
-    print(len(train_data))
+    source_max_len, target_max_len = 0,0
+    for entry in train_data+test_data:
+        for sent in entry:
+            source_max_len = max(source_max_len, len(sent[0]))
+            target_max_len = max(target_max_len, len(sent[1]))
     folds = []
     fold_size = int(len(train_data)/FLAGS.num_folds)
     for i in xrange(FLAGS.num_folds - 1):
         folds.append(train_data[i*fold_size:(i+1)*fold_size])
     folds.append(train_data[(FLAGS.num_folds-1)*fold_size:])
-    return folds, test_data, vocab_size
+    return folds, test_data, vocab_size, source_max_len, target_max_len
 
-def data2buckets(data):
-    bucket_data = [[] for _ in _buckets]
-    for entry in data:
-        max_sent_length = max(map(lambda x: len(x[0]), entry))
-        max_logic_length = max(map(lambda x: len(x[1]), entry))
-        found = False
-        for bucket_id, (source_size, target_size) in enumerate(_buckets):
-            if max_sent_length < source_size and max_logic_length < target_size:
-                bucket_data[bucket_id].append(entry)
-                found = True
-                break
-        if not found:
-            raise Exception("BUCKETS NOT LARGE ENOUGH: (%d, %d)"%(max_sent_length, max_logic_length))
-    return bucket_data
-
-def find_bucket(data):
-    """Find the smallest bucket holding all of the given data"""
-    for i, (source_size, target_size) in enumerate(_buckets):
-        works = True
-        for entry in data:
-            max_sent_length = max(map(lambda x: len(x[0]), entry))
-            max_logic_length = max(map(lambda x: len(x[1]), entry))
-            if max_sent_length >= source_size and max_logic_length >= target_size:
-                works = False
-                break
-        if works:
-            return i
-    raise Exception("NO BUCKET COULD HOLD ALL OF THE DATA")
-
-def create_model(session, conf):
+def create_model(session, conf, train_data):
     """Create model and initialize or load parameters in session."""
-    model = parser_model.ParseModel(conf)
+    model = parser_model.MultiSentParseModel(conf, train_data)
     print("Created model with fresh parameters.")
     session.run(tf.initialize_all_variables())
     return model
 
 def train(sess, train_data, validation_data, conf, num_steps = None):
     print("Preparing model...")
-    model = create_model(sess, conf)    
-    train_buckets = data2buckets(train_data)
-    train_bucket_sizes = [len(train_buckets[b]) for b in xrange(len(_buckets))]
-    train_total_size = float(sum(train_bucket_sizes))
+    model = create_model(sess, conf, train_data)    
     checkpoint_dir = os.path.join(FLAGS.train_dir, conf.get_dir())
     checkpoint_path = os.path.join(checkpoint_dir, "parse.ckpt")
     if not os.path.exists(checkpoint_dir):
         os.makedirs(checkpoint_dir)
 
-    # A bucket scale is a list of increasing numbers from 0 to 1 that we'll use
-    # to select a bucket. Length of [scale[i], scale[i+1]] is proportional to
-    # the size of i-th training bucket, as used later.
-    train_buckets_scale = [sum(train_bucket_sizes[:i + 1]) / train_total_size
-                           for i in xrange(len(train_bucket_sizes))]
-    print(train_buckets_scale)
     # The training loop.
     step_time, loss = 0.0, 0.0
     current_step = 0
@@ -119,18 +85,10 @@ def train(sess, train_data, validation_data, conf, num_steps = None):
     print("Starting training")
     sys.stdout.flush()
     while not num_steps or current_step < num_steps:
-        # Choose a bucket according to data distribution. We pick a random number
-        # in [0, 1] and use the corresponding interval in train_buckets_scale.
-        random_number_01 = np.random.random_sample()
-        bucket_id = min([i for i in xrange(len(train_buckets_scale))
-                         if train_buckets_scale[i] > random_number_01])
 
         # Get a batch and make a step.
         start_time = time.time()
-        entries, encoder_inputs, decoder_inputs, target_weights = model.get_batch(
-            train_buckets, bucket_id, False)
-        step_loss, step_outputs = model.step(sess, encoder_inputs, decoder_inputs,
-                                     target_weights, bucket_id, False)
+        entries, step_loss, step_outputs = model.step(sess, False)
         step_time += (time.time() - start_time) / FLAGS.steps_per_checkpoint
         loss += step_loss / FLAGS.steps_per_checkpoint
         current_step += 1
@@ -146,7 +104,7 @@ def train(sess, train_data, validation_data, conf, num_steps = None):
                 validation_loss, validation_total_acc, validation_sentence_acc = test(sess, validation_data, model)
 
                 print("global step %s learning rate %.4f step-time %.2f training loss %.4f validation loss %.4f validation total acc %.4f validation sent acc %.4f" %
-                    (model.global_step.eval(), model.learning_rate.eval(),
+                    (current_step, model.learning_rate.eval(),
                      step_time, step_loss, validation_loss, validation_total_acc, validation_sentence_acc))
                 if validation_sentence_acc > best_validation_sentence_acc or (validation_sentence_acc == best_validation_sentence_acc and validation_loss < best_validation_loss):
                     best_validation_loss = validation_loss
@@ -173,11 +131,7 @@ def train(sess, train_data, validation_data, conf, num_steps = None):
     return model, num_steps
 
 def test(sess, test_data, model, dump_results=False):
-    test_bucket = find_bucket(test_data)
-    _, encoder_inputs, decoder_inputs, target_weights = model.get_batch(
-            test_data, test_bucket, True)
-    loss, output_logits = model.step(sess, encoder_inputs, decoder_inputs,
-                                  target_weights, test_bucket, True)
+    _, loss, output_logits = model.step(sess, True, test_data)
     total_acc, sentence_acc = evaluate_logits(output_logits, test_data, dump_results)
     return loss, total_acc, sentence_acc
 
@@ -241,10 +195,10 @@ def cross_validate(splits, conf):
         tf.reset_default_graph()
     return performance/len(splits)
 
-def parameter_tuning(folds, source_vocab_size, target_vocab_size):
+def parameter_tuning(folds, source_vocab_size, target_vocab_size, source_max_len, target_max_len):
     best_loss = None
     best_config = None
-    for conf in config.config_beam_search(source_vocab_size, target_vocab_size, FLAGS.num_layers, FLAGS.batch_size, _buckets, FLAGS.learning_rate, FLAGS.learning_rate_decay_factor):
+    for conf in config.config_beam_search(source_vocab_size, target_vocab_size, FLAGS.num_layers, FLAGS.batch_size, FLAGS.learning_rate, FLAGS.learning_rate_decay_factor, source_max_len, target_max_len):
         print("+++++++++++++++++++++++Beginning cross-validation with dropout_rate = %0.1f, vector_size=%d++++++++++++++++++"%
                (conf.dropout_rate, conf.layer_size))
         loss = cross_validate(folds, conf)
@@ -257,11 +211,11 @@ def parameter_tuning(folds, source_vocab_size, target_vocab_size):
     return best_config
 
 def main_train():
-    folds, test_data, (source_vocab_size, target_vocab_size) = load_data()
+    folds, test_data, (source_vocab_size, target_vocab_size), source_max_len, target_max_len = load_data()
     train_data = sum(folds[:-1],[])
     validation_data = folds[-1]
     #conf = parameter_tuning(folds, source_vocab_size, target_vocab_size)
-    conf = list(config.config_beam_search(source_vocab_size, target_vocab_size, FLAGS.num_layers, FLAGS.batch_size, _buckets, FLAGS.learning_rate, FLAGS.learning_rate_decay_factor))[0]
+    conf = list(config.config_beam_search(source_vocab_size, target_vocab_size, FLAGS.num_layers, FLAGS.batch_size, FLAGS.learning_rate, FLAGS.learning_rate_decay_factor, source_max_len, target_max_len))[0]
 
     #First, train with held-out data to find number of iterations
     with tf.Session() as sess:
