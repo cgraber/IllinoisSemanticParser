@@ -588,8 +588,14 @@ class CompositeShape(object):
             description = random.choice(COMMANDS) + " "
             description += self.shapes[0].description + "."
             self.description.append(description)
-            description = "%s, add another one "%random.choice(NEXT)
-            description += self.shapes[1].size_description + " to the %s of the first one." %(DIRECTIONS[self.relations[0].direction])
+            description = "%s, "%random.choice(NEXT)
+            description += "%s "%random.choice(COMMANDS).lower()
+            if self.shapes[0].__class__ == self.shapes[1].__class__:
+                description += "another one "
+                description += self.shapes[1].size_description + " to the %s of the first one." %(DIRECTIONS[self.relations[0].direction])
+            else:
+                name = "the %s"%self.shapes[0].name
+                description += self.shapes[1].description + " to the %s of %s." %(DIRECTIONS[self.relations[0].direction], name)
             self.description.append(description)
             #self.description.append("Ensure that %s."%self.relations[0].description)
 
@@ -739,12 +745,8 @@ while len(shapes) < TRAIN_SIZE + TEST_SIZE:
     resetVars()
     numShapes = randint(1, 2)
     composite = CompositeShape()
-    newShapeInd = randint(0,3)
-    newShape = genShape[newShapeInd]()
-    composite.addShape(newShape,0)
-
-    if numShapes > 1:
-        newShape = genShape[newShapeInd]()
+    for j in xrange(numShapes):
+        newShape = genShape[randint(0,3)]()
         direction = randint(0,3)
         composite.addShape(newShape, direction)
     if ''.join(composite.getDescription()) not in descriptions and composite.normalize():

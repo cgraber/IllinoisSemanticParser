@@ -230,13 +230,12 @@ def main_train():
         print("  loss         = %0.4f"%loss)
         print("  total_acc    = %0.4f"%total_acc)
         print("  sentence_acc = %0.4f"%sentence_acc)
-    sys.exit(0)
 
-    #Now train on full data set
-    tf.reset_default_graph()
-    train_data += validation_data
-    with tf.Session() as sess:
-        model, _ = train(sess, train_data, None, conf, num_steps)
+        #Now train on full data set
+        #tf.reset_default_graph()
+        #train_data += validation_data
+        #with tf.Session() as sess:
+        #model, _ = train(sess, train_data, None, conf, num_steps)
         model_path = os.path.join(FLAGS.train_dir, 'final_model')
         model.saver.save(sess, model_path)
         conf_out = open(os.path.join(FLAGS.train_dir, 'final_model.conf'), 'w')
