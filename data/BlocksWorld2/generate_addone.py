@@ -597,7 +597,7 @@ class CompositeShape(object):
                 name = "the %s"%self.shapes[0].name
                 description += self.shapes[1].description + " to the %s of %s." %(DIRECTIONS[self.relations[0].direction], name)
             self.description.append(description)
-            #self.description.append("Ensure that %s."%self.relations[0].description)
+            self.description.append("Ensure that %s."%self.relations[0].description)
 
         return self.description
 
@@ -743,7 +743,7 @@ shapes = []
 descriptions = set()
 while len(shapes) < TRAIN_SIZE + TEST_SIZE:
     resetVars()
-    numShapes = randint(1, 2)
+    numShapes = 2#randint(1, 2)
     composite = CompositeShape()
     for j in xrange(numShapes):
         newShape = genShape[randint(0,3)]()
