@@ -311,7 +311,8 @@ class CompositeShape(object):
             self.shapes.append(shape)
             newLogic = []
             self.logic.append(newLogic)
-            newLogic += shape.getLogic()
+            #newLogic += shape.getLogic()
+            newLogic += shape.getCondensedLogic() #TODO: THIS IS WHAT YOU CHANGED
             if direction == LEFT:
                 old = self.shapesOnSides[LEFT]
                 newLogic += old.getCondensedLogic()
@@ -592,12 +593,14 @@ class CompositeShape(object):
             description += "%s "%random.choice(COMMANDS).lower()
             if self.shapes[0].__class__ == self.shapes[1].__class__:
                 description += "another one "
-                description += self.shapes[1].size_description + " to the %s of the first one." %(DIRECTIONS[self.relations[0].direction])
+                description += "to the %s of the first one." %(DIRECTIONS[self.relations[0].direction])
+                #description += self.shapes[1].size_description + " to the %s of the first one." %(DIRECTIONS[self.relations[0].direction])
             else:
                 name = "the %s"%self.shapes[0].name
-                description += self.shapes[1].description + " to the %s of %s." %(DIRECTIONS[self.relations[0].direction], name)
+                description += "a %s to the %s of %s."%(self.shapes[1].name, DIRECTIONS[self.relations[0].direction], name)
+                #description += self.shapes[1].description + " to the %s of %s." %(DIRECTIONS[self.relations[0].direction], name)
             self.description.append(description)
-            self.description.append("Ensure that %s."%self.relations[0].description)
+            #self.description.append("Ensure that %s."%self.relations[0].description)
 
         return self.description
 
