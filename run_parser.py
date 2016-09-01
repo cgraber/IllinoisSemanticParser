@@ -84,6 +84,7 @@ def train(sess, train_data, validation_data, conf, num_steps = None):
     best_validation_step = 0
     print("Starting training")
     sys.stdout.flush()
+    perfect_count = 0
     while not num_steps or current_step < num_steps:
 
         # Get a batch and make a step.
@@ -102,6 +103,10 @@ def train(sess, train_data, validation_data, conf, num_steps = None):
                 temp_loss, temp_total_acc, temp_sentence_acc = test(sess, entries, model)
                 #print("VALIDATION:")
                 validation_loss, validation_total_acc, validation_sentence_acc = test(sess, validation_data, model)
+                if validation_sentence_acc == 1.0:
+                    perfect_count += 1
+                else:
+                    perfect_count = 0
 
                 print("global step %s learning rate %.4f step-time %.2f training loss %.4f validation loss %.4f validation total acc %.4f validation sent acc %.4f" %
                     (current_step, model.learning_rate.eval(),
@@ -112,7 +117,7 @@ def train(sess, train_data, validation_data, conf, num_steps = None):
                     best_validation_acc = validation_total_acc
                     best_validation_sentence_acc = validation_sentence_acc
                     model.saver.save(sess, checkpoint_path, global_step=model.global_step)
-                if current_step - best_validation_step >= FLAGS.early_stopping_patience:
+                if current_step - best_validation_step >= FLAGS.early_stopping_patience or perfect_count == 5:
                     print("Early stopping triggered. Restoring previous model")
                     ckpt = tf.train.get_checkpoint_state(checkpoint_dir)
                     model.saver.restore(sess, ckpt.model_checkpoint_path)
@@ -220,6 +225,12 @@ def main_train():
     #First, train with held-out data to find number of iterations
     with tf.Session() as sess:
         model, num_steps = train(sess, train_data, validation_data, conf)
+	loss, total_acc, sentence_acc = test(sess, test_data, model)
+        print("INTERMEDIATE RESULTS:")
+        print("  loss         = %0.4f"%loss)
+        print("  total_acc    = %0.4f"%total_acc)
+        print("  sentence_acc = %0.4f"%sentence_acc)
+    sys.exit(0)
 
     #Now train on full data set
     tf.reset_default_graph()
