@@ -238,13 +238,13 @@ def main_train():
         print("  sentence_acc = %0.4f"%sentence_acc)
 
 def main_test():
-    _, test_data, (source_vocab_size, target_vocab_size) = load_data()
+    _, test_data, (source_vocab_size, target_vocab_size), _, _ = load_data()
     test_conf_path = os.path.join(FLAGS.train_dir, 'final_model.conf')
     conf_in = open(test_conf_path, 'r')
     conf = pickle.load(conf_in)
     conf_in.close()
     with tf.Session() as sess:
-        model = create_model(sess, conf)
+        model = create_model(sess, conf, None)
         model.saver.restore(sess, os.path.join(FLAGS.train_dir, 'final_model'))
         loss, total_acc, sentence_acc = test(sess, test_data, model, True)
         print("FINAL RESULTS:")
