@@ -6,7 +6,9 @@ PAD_ID = 0
 EOS = "</s>"
 LOGIC_EOS_ID = None
 stemmer = SnowballStemmer("english")
+logic_to_id = None
 id_to_logic = None
+words_to_id = None
 id_to_words = None
 
 def _read_words(filename):
@@ -41,7 +43,7 @@ def _build_vocab(train_path, test_path):
     logic_counter = collections.Counter(logic_tokens)
     logic_to_id = {word:ind+1 for ind,word in enumerate(logic_counter.keys())}
     logic_to_id[PAD] = PAD_ID
-    global id_to_logic, LOGIC_EOS_ID, id_to_words
+    global id_to_logic, LOGIC_EOS_ID, id_to_words, logic_to_id, words_to_id
     id_to_logic = [None]*len(logic_to_id)
     id_to_words = [None]*len(words_to_id)
     for key in logic_to_id:

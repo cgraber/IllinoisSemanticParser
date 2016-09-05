@@ -1,5 +1,8 @@
 import numpy as np
 import tensorflow as tf
+import nltk.data
+from nltk.stem.snowball import SnowballStemmer
+from nltk import word_tokenize
 import data_utils
 import random, sys
 
@@ -22,6 +25,9 @@ class BaseParseModel(object):
         self.keep_prob = 1 - config.dropout_rate
         self.keep_prob_input= tf.placeholder(tf.float32) #For dropout control
         self.batch_ind = 0
+        self.words_to_id = config.words_to_id
+        self.id_to_words = config.id_to_words
+        self.id_to_logic = config.id_to_logic
 
         # Create LSTM cell
         print("\tCreating Cell")
@@ -143,6 +149,43 @@ class BaseParseModel(object):
                         batch_weight[batch_idx] = 0.0
                 batch_weights.append(batch_weight)
         return batch, final_encoder_inputs, final_decoder_inputs, final_weights
+
+    def step(self, session, is_test, test_data):
+        raise NotImplementedError
+
+    def logits2sentences(self, output_logits):
+        total_outputs = []
+        for sent_ind in xrange(len(output_logits)):
+            temp_outputs = [[int(np.argmax(logit)) for logit in output_logit] for output_logit in output_logits[sent_ind]]
+            #Reshape outputs
+            outputs = np.array(temp_outputs).T.tolist()
+      
+            for i in xrange(len(outputs)):
+                if outputs[i][0] == data_utils.PAD_ID:
+                    outputs[i] = None
+                elif data_utils.LOGIC_EOS_ID in outputs[i]:
+                    outputs[i] = outputs[i][:outputs[i].index(data_utils.LOGIC_EOS_ID)]
+            total_outputs.append(outputs)
+        total_outputs =  zip(*total_outputs)
+        for entry_ind in xrange(len(total_outputs)):
+            total_outputs[entry_ind] = list(total_outputs[entry_ind])
+            for sent_ind in xrange(len(total_outputs[entry_ind])):
+                total_outputs[entry_ind][sent_ind] = map(lambda x: self.id_to_logic[x], total_outputs[entry_ind][sent_ind])
+        return total_outputs
+        
+    def parse(self, session, text):
+        sent_splitter = nltk.data.load('tokenizers/punkt/english.pickle')
+        stemmer = SnowballStemmer("english")
+        sentences = sent_splitter.tokenize(text)
+        for sent_ind in xrange(len(sentences)):
+            sentences[sent_ind] = word_tokenize(sentences[sent_ind])
+            sentences[sent_ind].insert(0, '<s>')
+            sentences[sent_ind][-1] = '</s>'
+            for word_ind in xrange(len(sentences[sent_ind])):
+                sentences[sent_ind][word_ind] = self.words_to_id[stemmer.stem(sentences[sent_ind][word_ind])]
+        _, _, logits = self.step(session, True, [zip(sentences, [[]]*len(sentences))])
+        return self.logits2sentences(logits)
+
 
 '''
 This parser model doesn't do anything special - every sentence is
