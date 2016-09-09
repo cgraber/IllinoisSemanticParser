@@ -554,6 +554,14 @@ class CompositeShape(object):
                 newLogic += ["block(%s)"%oldBlockVar, "location(%s)"%oldSpaceVar]
                 newLogic += ["block-location(%s, %s)"%(oldBlockVar, oldSpaceVar), oldEnumLogic%(old.var, oldBlockVar)]
                 newLogic.append("spatial-rel(south, 0, %s, %s)"%(oldSpaceVar, newSpaceVar))
+
+    def addRandomConstraint(self):
+        xConst = randint(0,10)
+        yConst = randint(0,10)
+        self.logic.append(["restricted(%d, %d)"%(xConst, yConst)])
+        self.getDescription()
+        self.description.append("Do not put a block in the space at row %d and column %d."%(yConst, xConst))
+
     def normalize(self):
         xShift = -1 * self.minX
         self.minX += xShift
@@ -767,6 +775,8 @@ while len(shapes) < TRAIN_SIZE + TEST_SIZE:
         composite.addShape(newShape, direction)
         prevShapeNum = newShapeNum
         prevShape = newShape
+    if randint(0,1) == 1:
+        composite.addRandomConstraint()
     if ''.join(composite.getDescription()) not in descriptions and composite.normalize():
         descriptions.add(''.join(composite.getDescription()))
         shapes.append(composite)
