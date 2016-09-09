@@ -315,7 +315,7 @@ class CompositeShape(object):
             #newLogic += shape.getCondensedLogic() #TODO: THIS IS WHAT YOU CHANGED
             if direction == LEFT:
                 old = self.shapesOnSides[LEFT]
-                newLogic += old.getCondensedLogic()
+                #newLogic += old.getCondensedLogic()
                 offset = randint(-1*(shape.height - 1), old.height - 1)
                 shape.right = old.left - 1
                 shape.left = old.left - shape.width
@@ -377,7 +377,7 @@ class CompositeShape(object):
 
             elif direction == RIGHT:
                 old = self.shapesOnSides[RIGHT]
-                newLogic += old.getCondensedLogic()
+                #newLogic += old.getCondensedLogic()
                 offset = randint(-1*(shape.height - 1), old.height - 1)
                 shape.left = old.right + 1
                 shape.right = old.right + shape.width
@@ -437,7 +437,7 @@ class CompositeShape(object):
                 newLogic.append("spatial-rel(east, 0, %s, %s)"%(oldSpaceVar, newSpaceVar))
             elif direction == TOP:
                 old = self.shapesOnSides[TOP]
-                newLogic += old.getCondensedLogic()
+                #newLogic += old.getCondensedLogic()
                 offset = randint(-1*(shape.width-1), old.width - 1)
                 shape.bottom = old.top - 1
                 shape.top = old.top - shape.height
@@ -496,7 +496,7 @@ class CompositeShape(object):
                 newLogic.append("spatial-rel(north, 0, %s, %s)"%(oldSpaceVar, newSpaceVar))
             elif direction == BOTTOM:
                 old = self.shapesOnSides[BOTTOM]
-                newLogic += old.getCondensedLogic()
+                #newLogic += old.getCondensedLogic()
                 offset = randint(-1*(shape.width-1), old.width - 1)
                 shape.top = old.bottom + 1
                 shape.bottom = old.bottom + shape.height
@@ -734,7 +734,7 @@ def randRect():
         height = randint(2,10)
     return Rect(length, height)
 
-genShape = [randRow, randCol, randSquare, randRect]
+genShape = {ROW:randRow, COL:randCol, SQUARE:randSquare, RECT:randRect}
 
 configs = []
 descriptions = []
@@ -762,7 +762,7 @@ while len(shapes) < TRAIN_SIZE + TEST_SIZE:
             else:
                 newShape = Rect(prevShape.width, prevShape.height)
         else:
-            newShape = genShape[randint(0,3)]()
+            newShape = genShape[newShapeNum]()
         direction = randint(0,3)
         composite.addShape(newShape, direction)
         prevShapeNum = newShapeNum
