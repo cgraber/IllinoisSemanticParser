@@ -311,8 +311,8 @@ class CompositeShape(object):
             self.shapes.append(shape)
             newLogic = []
             self.logic.append(newLogic)
-            #newLogic += shape.getLogic()
-            newLogic += shape.getCondensedLogic() #TODO: THIS IS WHAT YOU CHANGED
+            newLogic += shape.getLogic()
+            #newLogic += shape.getCondensedLogic() #TODO: THIS IS WHAT YOU CHANGED
             if direction == LEFT:
                 old = self.shapesOnSides[LEFT]
                 newLogic += old.getCondensedLogic()
@@ -334,8 +334,8 @@ class CompositeShape(object):
                     self.shapesOnSides[BOTTOM] = shape
                 newLogic.append("left(%s, %s)"%(shape.var, old.var))
                 newLogic = []
-                newLogic += shape.getCondensedLogic()
-                newLogic += old.getCondensedLogic()
+                #newLogic += shape.getCondensedLogic()
+                #newLogic += old.getCondensedLogic()
                 self.logic.append(newLogic)
 
                 # Additional Logic
@@ -395,8 +395,8 @@ class CompositeShape(object):
                     self.shapesOnSides[BOTTOM] = shape
                 newLogic.append("right(%s, %s)"%(shape.var, old.var))
                 newLogic = []
-                newLogic += shape.getCondensedLogic()
-                newLogic += old.getCondensedLogic()
+                #newLogic += shape.getCondensedLogic()
+                #newLogic += old.getCondensedLogic()
                 self.logic.append(newLogic)
 
                 # Additional Logic
@@ -455,8 +455,8 @@ class CompositeShape(object):
                     self.shapesOnSides[TOP] = shape
                 newLogic.append("top(%s, %s)"%(shape.var, old.var))
                 newLogic = []
-                newLogic += shape.getCondensedLogic()
-                newLogic += old.getCondensedLogic()
+                #newLogic += shape.getCondensedLogic()
+                #newLogic += old.getCondensedLogic()
                 self.logic.append(newLogic)
 
                 # Additional Logic
@@ -515,8 +515,8 @@ class CompositeShape(object):
 
                 newLogic.append("bottom(%s, %s)"%(shape.var, old.var))
                 newLogic = []
-                newLogic += shape.getCondensedLogic()
-                newLogic += old.getCondensedLogic()
+                #newLogic += shape.getCondensedLogic()
+                #newLogic += old.getCondensedLogic()
                 self.logic.append(newLogic)
 
                 # Additional Logic
@@ -597,10 +597,10 @@ class CompositeShape(object):
                 #description += self.shapes[1].size_description + " to the %s of the first one." %(DIRECTIONS[self.relations[0].direction])
             else:
                 name = "the %s"%self.shapes[0].name
-                description += "a %s to the %s of %s."%(self.shapes[1].name, DIRECTIONS[self.relations[0].direction], name)
-                #description += self.shapes[1].description + " to the %s of %s." %(DIRECTIONS[self.relations[0].direction], name)
+                #description += "a %s to the %s of %s."%(self.shapes[1].name, DIRECTIONS[self.relations[0].direction], name)
+                description += self.shapes[1].description + " to the %s of %s." %(DIRECTIONS[self.relations[0].direction], name)
             self.description.append(description)
-            #self.description.append("Ensure that %s."%self.relations[0].description)
+            self.description.append("Ensure that %s."%self.relations[0].description)
 
         return self.description
 
@@ -746,12 +746,27 @@ shapes = []
 descriptions = set()
 while len(shapes) < TRAIN_SIZE + TEST_SIZE:
     resetVars()
-    numShapes = 2#randint(1, 2)
+    numShapes = randint(1, 2)
     composite = CompositeShape()
+    prevShapeNum = None
     for j in xrange(numShapes):
-        newShape = genShape[randint(0,3)]()
+        newShapeNum = randint(0,3)
+        if newShapeNum == prevShapeNum:
+            # We want the other shape to have the same size
+            if newShapeNum == ROW:
+                newShape = Row(prevShape.width)
+            elif newShapeNum == COL:
+                newShape = Col(prevShape.height)
+            elif newShapeNum == SQUARE:
+                newShape = Square(prevShape.width)
+            else:
+                newShape = Rect(prevShape.width, prevShape.height)
+        else:
+            newShape = genShape[randint(0,3)]()
         direction = randint(0,3)
         composite.addShape(newShape, direction)
+        prevShapeNum = newShapeNum
+        prevShape = newShape
     if ''.join(composite.getDescription()) not in descriptions and composite.normalize():
         descriptions.add(''.join(composite.getDescription()))
         shapes.append(composite)
