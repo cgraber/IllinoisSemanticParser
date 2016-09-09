@@ -4,7 +4,6 @@ from nltk.stem.snowball import SnowballStemmer
 PAD = "<PAD>"
 PAD_ID = 0
 EOS = "</s>"
-LOGIC_EOS_ID = None
 stemmer = SnowballStemmer("english")
 logic_to_id = None
 id_to_logic = None

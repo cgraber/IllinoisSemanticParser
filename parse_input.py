@@ -16,11 +16,19 @@ with tf.Session() as sess:
     model = parser_model.MultiSentParseModel(conf, None)
     sess.run(tf.initialize_all_variables())
     model.saver.restore(sess, test_model_path)
-    result = model.parse(sess, sys.argv[4])
-    
-result = "".join(sum(result[0], []))
+    itWorked, result = model.parse(sess, sys.argv[4])
 
-with open(output_path, "w") as fout:
-    fout.write(result)
+if itWorked:
+    result = map(lambda x:"".join(x), result[0])
+    result = "^".join(result)
+    with open(output_path, "w") as fout:
+        fout.write("0\n")
+        fout.write(result)
+
+else:
+    with open(output_path, "w") as fout:
+        fout.write("1\n")
+        fout.write("\n".join(result))
+
 
 

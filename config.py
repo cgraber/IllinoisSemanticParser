@@ -9,7 +9,7 @@ class Config(object):
 
     def __init__(self, source_vocab_size, target_vocab_size, num_layers, dropout, layer_size, batch_size, 
                  learning_rate, learning_rate_decay_factor, source_max_len, target_max_len, 
-                 words_to_id, id_to_words, id_to_logic, fold=None):
+                 words_to_id, logic_to_id, id_to_words, id_to_logic, fold=None):
         self.max_gradient = 5
         self.batch_size = batch_size
         self.initialize_width = 0.08
@@ -25,6 +25,7 @@ class Config(object):
         self.target_max_len = target_max_len
         self.fold = fold
         self.words_to_id = words_to_id
+        self.logic_to_id = logic_to_id
         self.id_to_words = id_to_words
         self.id_to_logic = id_to_logic
 
@@ -36,8 +37,8 @@ class Config(object):
 
 def config_beam_search(source_vocab_size, target_vocab_size, num_layers, batch_size, 
                        learning_rate, learning_rate_decay_factor, source_max_len, target_max_len,
-                       words_to_id, id_to_words, id_to_logic):
+                       words_to_id, logic_to_id, id_to_words, id_to_logic):
     for dropout, layer_size in itertools.product(dropout_beam, vector_beam):
         yield Config(source_vocab_size, target_vocab_size, num_layers, dropout, layer_size, batch_size, 
                      learning_rate, learning_rate_decay_factor, source_max_len, target_max_len,
-                     words_to_id, id_to_words, id_to_logic)
+                     words_to_id, logic_to_id, id_to_words, id_to_logic)

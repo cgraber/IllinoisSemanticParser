@@ -26,6 +26,7 @@ class BaseParseModel(object):
         self.keep_prob_input= tf.placeholder(tf.float32) #For dropout control
         self.batch_ind = 0
         self.words_to_id = config.words_to_id
+        self.logic_to_id = config.logic_to_id
         self.id_to_words = config.id_to_words
         self.id_to_logic = config.id_to_logic
 
@@ -163,8 +164,8 @@ class BaseParseModel(object):
             for i in xrange(len(outputs)):
                 if outputs[i][0] == data_utils.PAD_ID:
                     outputs[i] = None
-                elif data_utils.LOGIC_EOS_ID in outputs[i]:
-                    outputs[i] = outputs[i][:outputs[i].index(data_utils.LOGIC_EOS_ID)]
+                elif self.logic_to_id[data_utils.EOS] in outputs[i]:
+                    outputs[i] = outputs[i][:outputs[i].index(self.logic_to_id[data_utils.EOS])]
             total_outputs.append(outputs)
         total_outputs =  zip(*total_outputs)
         for entry_ind in xrange(len(total_outputs)):
@@ -177,14 +178,21 @@ class BaseParseModel(object):
         sent_splitter = nltk.data.load('tokenizers/punkt/english.pickle')
         stemmer = SnowballStemmer("english")
         sentences = sent_splitter.tokenize(text)
+        bad_list = []
         for sent_ind in xrange(len(sentences)):
             sentences[sent_ind] = word_tokenize(sentences[sent_ind])
             sentences[sent_ind].insert(0, '<s>')
             sentences[sent_ind][-1] = '</s>'
             for word_ind in xrange(len(sentences[sent_ind])):
-                sentences[sent_ind][word_ind] = self.words_to_id[stemmer.stem(sentences[sent_ind][word_ind])]
+                stemmed = stemmer.stem(sentences[sent_ind][word_ind])
+                if stemmed not in self.words_to_id:
+                    bad_list.append(sentences[sent_ind][word_ind])
+                else:
+                    sentences[sent_ind][word_ind] = self.words_to_id[stemmed]
+        if len(bad_list) > 0:
+            return False, bad_list
         _, _, logits = self.step(session, True, [zip(sentences, [[]]*len(sentences))])
-        return self.logits2sentences(logits)
+        return True, self.logits2sentences(logits)
 
 
 '''
