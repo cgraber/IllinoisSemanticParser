@@ -191,7 +191,7 @@ class BaseParseModel(object):
                     sentences[sent_ind][word_ind] = self.words_to_id[stemmed]
         if len(bad_list) > 0:
             return False, bad_list
-        _, _, logits = self.step(session, True, [zip(sentences, [[]]*len(sentences))])
+        _, _, logits = self.step(session, True, [zip(sentences, [[self.logic_to_id["<s>"]]]*len(sentences))])
         return True, self.logits2sentences(logits)
 
 
