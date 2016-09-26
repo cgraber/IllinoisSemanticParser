@@ -612,11 +612,80 @@ class CompositeShape(object):
                 newLogic.append("spatial-rel(south, 0, %s, %s)"%(oldSpaceVar, newSpaceVar))
 
     def addRandomConstraint(self):
-        xConst = randint(0,10)
-        yConst = randint(0,10)
-        self.logic.append(["restricted(%d, %d)"%(xConst, yConst)])
+        num = randint(1,3)
+        restricted = []
+        new_formula = []
+        for i in xrange(num):
+            xConst = randint(0,10)
+            yConst = randint(0,10)
+            while [xConst, yConst] in restricted:
+                xConst = randint(0,10)
+                yConst = randint(0,10)
+            restricted.append([xConst, yConst])
+            new_formula.append("restricted(%d, %d)"%(xConst, yConst))
         self.getDescription()
-        self.description.append("Do not put a block in the space at row %d and column %d."%(yConst, xConst))
+        self.logic.append(new_formula)
+        if num == 1:
+            self.description.append("Do not put a block in the space at row %d and column %d."%(restricted[0][1], restricted[0][0]))
+        elif num == 2:
+            self.description.append("Do not put blocks in the spaces at row %d and column %d and at row %d and column %d."%(restricted[0][1], restricted[0][0], restricted[1][1], restricted[1][0]))
+        else:
+            result = "Do not put blocks in "
+            for i in xrange(num-1):
+                result += "the space at row %d and column %d, "%(restricted[i][1], restricted[i][0])
+            result += "and the space at row %d and column %d."%(restricted[-1][1], restricted[-1][0])
+            self.description.append(result)
+
+
+    def addStartBlocks(self):
+        num = randint(1,3)
+        restricted = []
+        new_formula = []
+        for i in xrange(num):
+            xConst = randint(0,10)
+            yConst = randint(0,10)
+            while [xConst, yConst] in restricted:
+                xConst = randint(0,10)
+                yConst = randint(0,10)
+            restricted.append([xConst, yConst])
+            new_formula.append("starting_block(%d, %d)"%(xConst, yConst))
+        self.logic.append(new_formula)
+        self.getDescription()
+        if num == 1:
+            self.description.append("There is already a block at row %d and column %d."%(restricted[0][1], restricted[0][0]))
+        elif num == 2:
+            self.description.append("There are already blocks at row %d and column %d and at row %d and column %d."%(restricted[0][1], restricted[0][0], restricted[1][1], restricted[1][0]))
+        else:
+            result = "There are already blocks "
+            for i in xrange(num-1):
+                result += "at row %d and column %d, "%(restricted[i][1], restricted[i][0])
+            result += "and at row %d and column %d."%(restricted[-1][1], restricted[-1][0])
+            self.description.append(result)
+
+    def addImmobileBlocks(self):
+        num = randint(1,3)
+        restricted = []
+        new_formula = []
+        for i in xrange(num):
+            xConst = randint(0,10)
+            yConst = randint(0,10)
+            while [xConst, yConst] in restricted:
+                xConst = randint(0,10)
+                yConst = randint(0,10)
+            restricted.append([xConst, yConst])
+            new_formula.append("immobile_block(%d, %d)"%(xConst, yConst))
+        self.logic.append(new_formula)
+        self.getDescription()
+        if num == 1:
+            self.description.append("There is an immobile block at row %d and column %d."%(restricted[0][1], restricted[0][0]))
+        elif num == 2:
+            self.description.append("There are immobile blocks at row %d and column %d and at row %d and column %d."%(restricted[0][1], restricted[0][0], restricted[1][1], restricted[1][0]))
+        else:
+            result = "There are immobile blocks "
+            for i in xrange(num-1):
+                result += "at row %d and column %d, "%(restricted[i][1], restricted[i][0])
+            result += "and at row %d and column %d."%(restricted[-1][1], restricted[-1][0])
+            self.description.append(result)
 
     def normalize(self):
         xShift = -1 * self.minX
@@ -831,8 +900,13 @@ while len(shapes) < TRAIN_SIZE + TEST_SIZE:
         composite.addShape(newShape, direction)
         prevShapeNum = newShapeNum
         prevShape = newShape
-    if randint(0,1) == 1:
+    constr = randint(0,3)
+    if constr == 1:
         composite.addRandomConstraint()
+    elif constr == 2:
+        composite.addStartBlocks()
+    elif constr == 3:
+        composite.addImmobileBlocks()
     if ''.join(composite.getDescription()) not in descriptions and composite.normalize():
         descriptions.add(''.join(composite.getDescription()))
         shapes.append(composite)
