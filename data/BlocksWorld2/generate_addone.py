@@ -343,7 +343,7 @@ class CompositeShape(object):
                     #newEnumVal = shape.getEnum(0, shape.width - 1)
                     newRow = 0
                     newCol = shape.width-1
-                    #newEnumLogic = "upper_right(%s, %s)"
+                    newEnumLogic = "upper_right(%s, %s)"
                     #oldEnumVal = old.getEnum(offset, 0)
                     oldRow = offset
                     oldCol = 0
@@ -383,10 +383,12 @@ class CompositeShape(object):
                 oldBlockVar = getVar()
                 newLogic += ["block(%s)"%newBlockVar, "location(%s)"%newSpaceVar]
                 newLogic += ["block-location(%s, %s)"%(newBlockVar, newSpaceVar)]
-                newLogic += ["row-ind(%s, %s, %d)"%(shape.var, newBlockVar, newRow), "col-ind(%s, %s, %d)"%(shape.var, newBlockVar, newCol)]
+                newLogic += [newEnumLogic%(shape.var, newBlockVar)]
+                #newLogic += ["row-ind(%s, %s, %d)"%(shape.var, newBlockVar, newRow), "col-ind(%s, %s, %d)"%(shape.var, newBlockVar, newCol)]
                 newLogic += ["block(%s)"%oldBlockVar, "location(%s)"%oldSpaceVar]
                 newLogic += ["block-location(%s, %s)"%(oldBlockVar, oldSpaceVar)]
-                newLogic += ["row-ind(%s, %s, %d)"%(old.var, oldBlockVar, oldRow), "col-ind(%s, %s, %d)"%(old.var, oldBlockVar, oldCol)]
+                newLogic += [oldEnumLogic%(old.var,oldBlockVar)]
+                #newLogic += ["row-ind(%s, %s, %d)"%(old.var, oldBlockVar, oldRow), "col-ind(%s, %s, %d)"%(old.var, oldBlockVar, oldCol)]
                 newLogic.append("spatial-rel(west, 0, %s, %s)"%(oldSpaceVar, newSpaceVar))
 
             elif direction == RIGHT:
@@ -458,10 +460,12 @@ class CompositeShape(object):
                 oldBlockVar = getVar()
                 newLogic += ["block(%s)"%newBlockVar, "location(%s)"%newSpaceVar]
                 newLogic += ["block-location(%s, %s)"%(newBlockVar, newSpaceVar)]
-                newLogic += ["row-ind(%s, %s, %d)"%(shape.var, newBlockVar, newRow), "col-ind(%s, %s, %d)"%(shape.var, newBlockVar, newCol)]
+                newLogic += [newEnumLogic%(shape.var, newBlockVar)]
+                #newLogic += ["row-ind(%s, %s, %d)"%(shape.var, newBlockVar, newRow), "col-ind(%s, %s, %d)"%(shape.var, newBlockVar, newCol)]
                 newLogic += ["block(%s)"%oldBlockVar, "location(%s)"%oldSpaceVar]
                 newLogic += ["block-location(%s, %s)"%(oldBlockVar, oldSpaceVar)]
-                newLogic += ["row-ind(%s, %s, %d)"%(old.var, oldBlockVar, oldRow), "col-ind(%s, %s, %d)"%(old.var, oldBlockVar, oldCol)]
+                newLogic += [oldEnumLogic%(old.var,oldBlockVar)]
+                #newLogic += ["row-ind(%s, %s, %d)"%(old.var, oldBlockVar, oldRow), "col-ind(%s, %s, %d)"%(old.var, oldBlockVar, oldCol)]
                 newLogic.append("spatial-rel(east, 0, %s, %s)"%(oldSpaceVar, newSpaceVar))
             elif direction == TOP:
                 old = self.shapesOnSides[TOP]
@@ -531,10 +535,12 @@ class CompositeShape(object):
                 oldBlockVar = getVar()
                 newLogic += ["block(%s)"%newBlockVar, "location(%s)"%newSpaceVar]
                 newLogic += ["block-location(%s, %s)"%(newBlockVar, newSpaceVar)]
-                newLogic += ["row-ind(%s, %s, %d)"%(shape.var, newBlockVar, newRow), "col-ind(%s, %s, %d)"%(shape.var, newBlockVar, newCol)]
+                newLogic += [newEnumLogic%(shape.var, newBlockVar)]
+                #newLogic += ["row-ind(%s, %s, %d)"%(shape.var, newBlockVar, newRow), "col-ind(%s, %s, %d)"%(shape.var, newBlockVar, newCol)]
                 newLogic += ["block(%s)"%oldBlockVar, "location(%s)"%oldSpaceVar]
                 newLogic += ["block-location(%s, %s)"%(oldBlockVar, oldSpaceVar)]
-                newLogic += ["row-ind(%s, %s, %d)"%(old.var, oldBlockVar, oldRow), "col-ind(%s, %s, %d)"%(old.var, oldBlockVar, oldCol)]
+                newLogic += [oldEnumLogic%(old.var,oldBlockVar)]
+                #newLogic += ["row-ind(%s, %s, %d)"%(old.var, oldBlockVar, oldRow), "col-ind(%s, %s, %d)"%(old.var, oldBlockVar, oldCol)]
                 newLogic.append("spatial-rel(north, 0, %s, %s)"%(oldSpaceVar, newSpaceVar))
             elif direction == BOTTOM:
                 old = self.shapesOnSides[BOTTOM]
@@ -605,10 +611,12 @@ class CompositeShape(object):
                 oldBlockVar = getVar()
                 newLogic += ["block(%s)"%newBlockVar, "location(%s)"%newSpaceVar]
                 newLogic += ["block-location(%s, %s)"%(newBlockVar, newSpaceVar)]
-                newLogic += ["row-ind(%s, %s, %d)"%(shape.var, newBlockVar, newRow), "col-ind(%s, %s, %d)"%(shape.var, newBlockVar, newCol)]
+                newLogic += [newEnumLogic%(shape.var, newBlockVar)]
+                #newLogic += ["row-ind(%s, %s, %d)"%(shape.var, newBlockVar, newRow), "col-ind(%s, %s, %d)"%(shape.var, newBlockVar, newCol)]
                 newLogic += ["block(%s)"%oldBlockVar, "location(%s)"%oldSpaceVar]
                 newLogic += ["block-location(%s, %s)"%(oldBlockVar, oldSpaceVar), oldEnumLogic%(old.var, oldBlockVar)]
-                newLogic += ["row-ind(%s, %s, %d)"%(old.var, oldBlockVar, oldRow), "col-ind(%s, %s, %d)"%(old.var, oldBlockVar, oldCol)]
+                newLogic += [oldEnumLogic%(old.var,oldBlockVar)]
+                #newLogic += ["row-ind(%s, %s, %d)"%(old.var, oldBlockVar, oldRow), "col-ind(%s, %s, %d)"%(old.var, oldBlockVar, oldCol)]
                 newLogic.append("spatial-rel(south, 0, %s, %s)"%(oldSpaceVar, newSpaceVar))
 
     def addRandomConstraint(self):
