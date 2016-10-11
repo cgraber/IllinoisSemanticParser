@@ -2,7 +2,7 @@ import sys
 from nltk import word_tokenize
 
 if len(sys.argv) != 3:
-    print "Usage: python convertBlocks.py <input file> <output file>"
+    print "Usage: python convertGeo.py <input file> <output file>"
     sys.exit(1)
 
 with open(sys.argv[1], "r") as fin:

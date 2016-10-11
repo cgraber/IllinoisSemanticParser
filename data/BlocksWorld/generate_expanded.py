@@ -2,14 +2,13 @@ TRAIN_SIZE = 500
 TEST_SIZE = 200
 maxNumShapes = 3
 
-
 import random, sys, os
 import gen_images
 from random import randint, shuffle
 
 COMMANDS = ["Create", "Construct", "Build", "Form"]
 CONNECTORS = ["and", "with"]
-NEXT = ["Next", "Then", "After that",]
+NEXT = ["Next", "Then", "After that"]
 
 ROW = 0
 COL = 1
@@ -60,7 +59,7 @@ class Shape:
         self.right = width - 1
         self.top = 0
         self.bottom = height - 1
-        #self.var = getVar()
+        self.var = getVar()
         self.ind = 0
 
     def getLowerLeftDescription(self):
@@ -297,7 +296,6 @@ class CompositeShape(object):
             self.minY = 0
             self.logic.append(shape.getLogic())
         else:
-            resetVars()
             finalInd = 1
             for oldShape in self.shapes:
                 if oldShape.name == shape.name: 
@@ -335,7 +333,6 @@ class CompositeShape(object):
                     self.shapesOnSides[BOTTOM] = shape
                 newLogic.append("left(%s, %s)"%(shape.var, old.var))
                 newLogic = []
-                resetVars()
                 newLogic += shape.getCondensedLogic()
                 newLogic += old.getCondensedLogic()
                 self.logic.append(newLogic)
@@ -343,22 +340,38 @@ class CompositeShape(object):
                 # Additional Logic
                 if offset >= 0:
                     newEnumVal = shape.getEnum(0, shape.width - 1)
+                    newEnumLogic = "upper_right(%s, %s)"
                     oldEnumVal = old.getEnum(offset, 0)
+                    if offset == 0:
+                        oldEnumLogic = "upper_left(%s, %s)"
+                    elif shape.top == old.bottom:
+                        oldEnumLogic = "lower_left(%s, %s)"
+                    else:
+                        oldEnumLogic = "left_side(%s, %s, "+str(offset)+")"
                 elif shape.bottom > old.bottom:
                     #In this case, use the corner of the old shape
                     oldEnumVal = old.getEnum(0, 0)
+                    oldEnumLogic = "upper_left(%s, %s)"
                     newEnumVal = shape.getEnum(-1*offset, shape.width-1)
+                    newEnumLogic = "right_side(%s, %s, "+str(-1*offset)+")"
                 else:
                     newEnumVal = shape.getEnum(shape.height - 1, shape.width - 1)
+                    newEnumLogic = "lower_right(%s, %s)"
                     oldEnumVal = old.getEnum(shape.bottom - old.top, 0)
+                    if shape.bottom == old.bottom:
+                        oldEnumLogic = "lower_left(%s, %s)"
+                    elif shape.bottom == old.top:
+                        oldEnumLogic = "upper_left(%s, %s)"
+                    else:
+                        oldEnumLogic = "left_side(%s, %s, "+str(shape.bottom-old.top) + ")"
                 newSpaceVar = getSpaceVar()
                 oldSpaceVar = getSpaceVar()
                 newBlockVar = getVar()
                 oldBlockVar = getVar()
                 newLogic += ["block(%s)"%newBlockVar, "location(%s)"%newSpaceVar]
-                newLogic += ["block-location(%s, %s)"%(newBlockVar, newSpaceVar), "enum(%s, %s, %d)"%(shape.var, newBlockVar, newEnumVal)]
+                newLogic += ["block-location(%s, %s)"%(newBlockVar, newSpaceVar), newEnumLogic%(shape.var, newBlockVar)]
                 newLogic += ["block(%s)"%oldBlockVar, "location(%s)"%oldSpaceVar]
-                newLogic += ["block-location(%s, %s)"%(oldBlockVar, oldSpaceVar), "enum(%s, %s, %d)"%(old.var, oldBlockVar, oldEnumVal)]
+                newLogic += ["block-location(%s, %s)"%(oldBlockVar, oldSpaceVar), oldEnumLogic%(old.var, oldBlockVar)]
                 newLogic.append("spatial-rel(west, 0, %s, %s)"%(oldSpaceVar, newSpaceVar))
 
             elif direction == RIGHT:
@@ -381,7 +394,6 @@ class CompositeShape(object):
                     self.shapesOnSides[BOTTOM] = shape
                 newLogic.append("right(%s, %s)"%(shape.var, old.var))
                 newLogic = []
-                resetVars()
                 newLogic += shape.getCondensedLogic()
                 newLogic += old.getCondensedLogic()
                 self.logic.append(newLogic)
@@ -389,22 +401,38 @@ class CompositeShape(object):
                 # Additional Logic
                 if offset >= 0:
                     newEnumVal = shape.getEnum(0, 0)
+                    newEnumLogic = "upper_left(%s, %s)"
                     oldEnumVal = old.getEnum(offset, old.width-1)
+                    if offset == 0:
+                        oldEnumLogic = "upper_right(%s, %s)"
+                    elif shape.top == old.bottom:
+                        oldEnumLogic = "lower_right(%s, %s)"
+                    else:
+                        oldEnumLogic = "right_side(%s, %s, "+str(offset) +")"
                 elif shape.bottom > old.bottom:
                     #In this case, use the corner of the old shape
                     oldEnumVal = old.getEnum(0, old.width-1)
+                    oldEnumLogic = "upper_right(%s, %s)"
                     newEnumVal = shape.getEnum(-1*offset, 0)
+                    newEnumLogic = "left_side(%s, %s, "+str(-1*offset)+")"
                 else:
                     newEnumVal = shape.getEnum(shape.height - 1, 0)
+                    newEnumLogic = "lower_left(%s, %s)"
                     oldEnumVal = old.getEnum(shape.bottom - old.top, old.width-1)
+                    if shape.bottom == old.bottom:
+                        oldEnumLogic = "lower_right(%s, %s)"
+                    elif shape.bottom == old.top:
+                        oldEnumLogic = "upper_right(%s, %s)"
+                    else:
+                        oldEnumLogic = "right_side(%s, %s, "+str(shape.bottom-old.top)+")"
                 newSpaceVar = getSpaceVar()
                 oldSpaceVar = getSpaceVar()
                 newBlockVar = getVar()
                 oldBlockVar = getVar()
                 newLogic += ["block(%s)"%newBlockVar, "location(%s)"%newSpaceVar]
-                newLogic += ["block-location(%s, %s)"%(newBlockVar, newSpaceVar), "enum(%s, %s, %d)"%(shape.var, newBlockVar, newEnumVal)]
+                newLogic += ["block-location(%s, %s)"%(newBlockVar, newSpaceVar), newEnumLogic%(shape.var, newBlockVar)]
                 newLogic += ["block(%s)"%oldBlockVar, "location(%s)"%oldSpaceVar]
-                newLogic += ["block-location(%s, %s)"%(oldBlockVar, oldSpaceVar), "enum(%s, %s, %d)"%(old.var, oldBlockVar, oldEnumVal)]
+                newLogic += ["block-location(%s, %s)"%(oldBlockVar, oldSpaceVar), oldEnumLogic%(old.var, oldBlockVar)]
                 newLogic.append("spatial-rel(east, 0, %s, %s)"%(oldSpaceVar, newSpaceVar))
             elif direction == TOP:
                 old = self.shapesOnSides[TOP]
@@ -426,7 +454,6 @@ class CompositeShape(object):
                     self.shapesOnSides[TOP] = shape
                 newLogic.append("top(%s, %s)"%(shape.var, old.var))
                 newLogic = []
-                resetVars()
                 newLogic += shape.getCondensedLogic()
                 newLogic += old.getCondensedLogic()
                 self.logic.append(newLogic)
@@ -434,21 +461,37 @@ class CompositeShape(object):
                 # Additional Logic
                 if offset >= 0:
                     newEnumVal = shape.getEnum(shape.height - 1, 0)
+                    newEnumLogic = "lower_left(%s, %s)"
                     oldEnumVal = old.getEnum(0, offset)
+                    if offset == 0:
+                        oldEnumLogic = "upper_left(%s, %s)"
+                    elif shape.left == old.right:
+                        oldEnumLogic = "upper_right(%s, %s)"
+                    else:
+                        oldEnumLogic = "top_side(%s, %s, "+str(offset)+")"
                 elif shape.right > old.right:
                     oldEnumVal = old.getEnum(0, 0)
+                    oldEnumLogic = "upper_left(%s, %s)"
                     newEnumVal = shape.getEnum(shape.height-1, -1*offset)
+                    newEnumLogic = "bottom_side(%s, %s, "+str(-1*offset)+")"
                 else:
                     newEnumVal = shape.getEnum(shape.height - 1, shape.width - 1)
+                    newEnumLogic = "lower_right(%s, %s)"
                     oldEnumVal = old.getEnum(0, shape.right - old.left)
+                    if old.right == shape.right:
+                        oldEnumLogic = "upper_right(%s, %s)"
+                    elif shape.right == old.left:
+                        oldEnumLogic = "upper_left(%s, %s)"
+                    else:
+                        oldEnumLogic = "top_side(%s, %s, "+str(shape.right - old.left)+")"
                 newSpaceVar = getSpaceVar()
                 oldSpaceVar = getSpaceVar()
                 newBlockVar = getVar()
                 oldBlockVar = getVar()
                 newLogic += ["block(%s)"%newBlockVar, "location(%s)"%newSpaceVar]
-                newLogic += ["block-location(%s, %s)"%(newBlockVar, newSpaceVar), "enum(%s, %s, %d)"%(shape.var, newBlockVar, newEnumVal)]
+                newLogic += ["block-location(%s, %s)"%(newBlockVar, newSpaceVar), newEnumLogic%(shape.var, newBlockVar)]
                 newLogic += ["block(%s)"%oldBlockVar, "location(%s)"%oldSpaceVar]
-                newLogic += ["block-location(%s, %s)"%(oldBlockVar, oldSpaceVar), "enum(%s, %s, %d)"%(old.var, oldBlockVar, oldEnumVal)]
+                newLogic += ["block-location(%s, %s)"%(oldBlockVar, oldSpaceVar), oldEnumLogic%(old.var, oldBlockVar)]
                 newLogic.append("spatial-rel(north, 0, %s, %s)"%(oldSpaceVar, newSpaceVar))
             elif direction == BOTTOM:
                 old = self.shapesOnSides[BOTTOM]
@@ -471,7 +514,6 @@ class CompositeShape(object):
 
                 newLogic.append("bottom(%s, %s)"%(shape.var, old.var))
                 newLogic = []
-                resetVars()
                 newLogic += shape.getCondensedLogic()
                 newLogic += old.getCondensedLogic()
                 self.logic.append(newLogic)
@@ -479,21 +521,37 @@ class CompositeShape(object):
                 # Additional Logic
                 if offset >= 0:
                     newEnumVal = shape.getEnum(0, 0)
+                    newEnumLogic = "upper_left(%s, %s)"
                     oldEnumVal = old.getEnum(old.height - 1, offset)
+                    if offset == 0:
+                        oldEnumLogic = "lower_left(%s, %s)"
+                    elif shape.left == old.right:
+                        oldEnumLogic = "lower_right(%s, %s)"
+                    else:
+                        oldEnumLogic = "bottom_side(%s, %s, "+str(offset)+")"
                 elif shape.right > old.right:
                     oldEnumVal = old.getEnum(old.height-1, 0)
+                    oldEnumLogic = "lower_left(%s, %s)"
                     newEnumVal = shape.getEnum(0, -1*offset)
+                    newEnumLogic = "top_side(%s, %s, "+str(-1*offset)+")"
                 else:
                     newEnumVal = shape.getEnum(0, shape.width - 1)
+                    newEnumLogic = "upper_right(%s, %s)"
                     oldEnumVal = old.getEnum(old.height - 1, shape.right - old.left)
+                    if old.right == shape.right:
+                        oldEnumLogic = "lower_right(%s, %s)"
+                    elif shape.right == old.left:
+                        oldEnumLogic = "lower_left(%s, %s)"
+                    else:
+                        oldEnumLogic = "bottom_side(%s, %s, "+str(shape.right - old.left)+")"
                 newSpaceVar = getSpaceVar()
                 oldSpaceVar = getSpaceVar()
                 newBlockVar = getVar()
                 oldBlockVar = getVar()
                 newLogic += ["block(%s)"%newBlockVar, "location(%s)"%newSpaceVar]
-                newLogic += ["block-location(%s, %s)"%(newBlockVar, newSpaceVar), "enum(%s, %s, %d)"%(shape.var, newBlockVar, newEnumVal)]
+                newLogic += ["block-location(%s, %s)"%(newBlockVar, newSpaceVar), newEnumLogic%(shape.var, newBlockVar)]
                 newLogic += ["block(%s)"%oldBlockVar, "location(%s)"%oldSpaceVar]
-                newLogic += ["block-location(%s, %s)"%(oldBlockVar, oldSpaceVar), "enum(%s, %s, %d)"%(old.var, oldBlockVar, oldEnumVal)]
+                newLogic += ["block-location(%s, %s)"%(oldBlockVar, oldSpaceVar), oldEnumLogic%(old.var, oldBlockVar)]
                 newLogic.append("spatial-rel(south, 0, %s, %s)"%(oldSpaceVar, newSpaceVar))
     def normalize(self):
         xShift = -1 * self.minX
@@ -516,12 +574,11 @@ class CompositeShape(object):
             shape.top += yShift
             shape.bottom += yShift
         return True
-            
 
     def getDescription(self):
-        
         if self.description:
             return self.description
+
         self.description = []
         if len(self.shapes) == 1:
             description = random.choice(COMMANDS) + " "
@@ -539,9 +596,8 @@ class CompositeShape(object):
                 name = "the %s %s"%(ORDINALS[self.shapes[0].ind], self.shapes[0].name)
             description += self.shapes[1].description + " to the %s of %s." %(DIRECTIONS[self.relations[0].direction], name)
             self.description.append(description)
-            
-            #self.description.append("To its %s, add %s."%(DIRECTIONS[self.relations[0].direction], self.shapes[1].description))
             self.description.append("Ensure that %s."%self.relations[0].description)
+
         else:
             self.description.append("First, %s %s."%(random.choice(COMMANDS).lower(), self.shapes[0].description))
             counts = {}
@@ -552,7 +608,7 @@ class CompositeShape(object):
                     description = "%s, "%random.choice(NEXT)
                 description += "%s "%random.choice(COMMANDS).lower()
                 if i == 0:
-                    description += self.shapes[i+1].description + " to the %s of the %s. "%(DIRECTIONS[self.relations[i].direction], self.shapes[i].name)
+                    description += self.shapes[i+1].description + " to the %s of the %s."%(DIRECTIONS[self.relations[i].direction], self.shapes[i].name)
                 else:
                     if self.shapes[i].ind == 0:
                         name = "the %s"%self.shapes[i].name
@@ -609,11 +665,9 @@ class Row(Shape):
         return random.choice(Row.RIGHT_CHOICES)
 
     def getLogic(self):
-        self.var = getVar()
         return ['row(%s)'%self.var, 'width(%s, %d)'%(self.var, self.width)]
 
     def getCondensedLogic(self):
-        self.var = getVar()
         return ['row(%s)'%self.var]
 
 
@@ -638,12 +692,9 @@ class Col(Shape):
         return random.choice(Col.TOP_CHOICES)
 
     def getLogic(self):
-        self.var = getVar()
         return ['column(%s)'%self.var, 'height(%s, %d)'%(self.var, self.height)]
     def getCondensedLogic(self):
-        self.var = getVar()
         return ['column(%s)'%self.var]
-        
 
 class Square(Shape):
     def __init__(self, dim):
@@ -655,10 +706,8 @@ class Square(Shape):
         Shape.__init__(self, "square", dim, dim, description)
 
     def getLogic(self):
-        self.var = getVar()
         return ['square(%s)'%self.var, 'size(%s, %d)'%(self.var, self.width)]
     def getCondensedLogic(self):
-        self.var = getVar()
         return ['square(%s)'%self.var]
 
 class Rect(Shape):
@@ -673,13 +722,9 @@ class Rect(Shape):
         Shape.__init__(self, "rectangle", width, height, description)
 
     def getLogic(self):
-        self.var = getVar()
         return ['rectangle(%s)'%self.var, 'height(%s, %d)'%(self.var, self.height), 'width(%s, %d)'%(self.var, self.width)]
     def getCondensedLogic(self):
-        self.var = getVar()
         return ['rectangle(%s)'%self.var]
-        
-        
 
 def randRow():
     length = randint(3,5)
@@ -721,7 +766,6 @@ while len(shapes) < TRAIN_SIZE + TEST_SIZE:
     if ''.join(composite.getDescription()) not in descriptions and composite.normalize():
         descriptions.add(''.join(composite.getDescription()))
         shapes.append(composite)
-    
 
 train_dir = os.path.join(sys.argv[3], "train")
 test_dir = os.path.join(sys.argv[3], "test")
@@ -729,6 +773,7 @@ if not os.path.exists(train_dir):
     os.makedirs(train_dir)
 if not os.path.exists(test_dir):
     os.makedirs(test_dir)
+
 with open(sys.argv[1], "w") as fout:
     for i in xrange(TRAIN_SIZE):
         shape = shapes[i]
