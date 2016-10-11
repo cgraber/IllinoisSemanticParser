@@ -46,7 +46,7 @@ elif FLAGS.domain == 'blocks':
     _buckets = BLOCKS_BUCKETS
 
 def load_data():
-    train_data, test_data, vocab_size = data_utils.load_raw_text(FLAGS.data_dir, True)
+    train_data, test_data, vocab_size = data_utils.load_raw_text(FLAGS.data_dir)
     source_max_len, target_max_len = 0,0
     for entry in train_data+test_data:
         for sent in entry:

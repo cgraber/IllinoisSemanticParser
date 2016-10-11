@@ -62,7 +62,7 @@ def _file_to_ids(filename, token_to_id):
                 data[i][j][1][k] = token_to_id[1][data[i][j][1][k]]
     return data
 
-def load_raw_text(path, is_expanded):
+def load_raw_text(path):
     """
     Loads data from directory provided by argument "path"
 
@@ -71,12 +71,8 @@ def load_raw_text(path, is_expanded):
     where the sentences/logical form tokens are separated by a single space.
 
     """
-    if is_expanded:
-        train_path = os.path.join(path, "train.expanded.txt")
-        test_path = os.path.join(path, "test.expanded.txt")
-    else:
-        train_path = os.path.join(path, "train.txt")
-        test_path = os.path.join(path, "test.txt")
+    train_path = os.path.join(path, "train.txt")
+    test_path = os.path.join(path, "test.txt")
 
     word_to_id = _build_vocab(train_path, test_path)
     train_data = _file_to_ids(train_path, word_to_id)
