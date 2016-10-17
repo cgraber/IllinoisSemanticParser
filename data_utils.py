@@ -28,7 +28,10 @@ def _read_words(filename):
     for i in xrange(len(result)):
         for j in xrange(len(result[i])):
             for k in xrange(len(result[i][j][0])):
-                result[i][j][0][k] = stemmer.stem(result[i][j][0][k]).lower()
+                try:
+                    result[i][j][0][k] = stemmer.stem(result[i][j][0][k]).lower()
+                except:
+                    result[i][j][0][k] = result[i][j][0][k].lower()
     return result
 
 def _build_vocab(train_path, test_path):
