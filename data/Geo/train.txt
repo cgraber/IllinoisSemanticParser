@@ -1,600 +1,1200 @@
 <s> what is the highest point in florida </s>===<s> argmax $0 ( and ( place:t $0 ) ( loc:t $0 florida:s ) ) ( elevation:i $0 ) </s>
+
 <s> what are the high points of states surrounding mississippi </s>===<s> lambda $0 e ( exists $1 ( and ( state:t $1 ) ( next_to:t $1 mississippi:s ) ( high_point:t $1 $0 ) ) ) </s>
+
 <s> what state has the shortest river </s>===<s> lambda $0 e ( and ( state:t $0 ) ( loc:t ( argmin $1 ( river:t $1 ) ( len:i $1 ) ) $0 ) ) </s>
+
 <s> what is the tallest mountain in the united states </s>===<s> argmax $0 ( and ( mountain:t $0 ) ( loc:t $0 usa:co ) ) ( elevation:i $0 ) </s>
+
 <s> what is the capital of maine </s>===<s> capital:c maine:s </s>
+
 <s> what are the populations of states through which the mississippi river run </s>===<s> lambda $0 e ( exists $1 ( and ( state:t $1 ) ( loc:t mississippi_river:r $1 ) ( population:t $1 $0 ) ) ) </s>
+
 <s> name all the lakes of us </s>===<s> lambda $0 e ( and ( lake:t $0 ) ( loc:t $0 usa:co ) ) </s>
+
 <s> which states border states through which the mississippi traverses </s>===<s> lambda $0 e ( and ( state:t $0 ) ( exists $1 ( and ( state:t $1 ) ( loc:t mississippi_river:r $1 ) ( next_to:t $0 $1 ) ) ) ) </s>
+
 <s> what is the highest mountain in alaska </s>===<s> argmax $0 ( and ( mountain:t $0 ) ( loc:t $0 alaska:s ) ) ( elevation:i $0 ) </s>
+
 <s> what is the population of illinois </s>===<s> population:i illinois:s </s>
+
 <s> name all the rivers in colorado </s>===<s> lambda $0 e ( and ( river:t $0 ) ( loc:t $0 colorado:s ) ) </s>
+
 <s> in which state does the highest point in usa exist </s>===<s> lambda $0 e ( and ( state:t $0 ) ( loc:t ( argmax $1 ( and ( place:t $1 ) ( loc:t $1 usa:co ) ) ( elevation:i $1 ) ) $0 ) ) </s>
+
 <s> which state is the city denver located in </s>===<s> lambda $0 e ( and ( state:t $0 ) ( loc:t denver_co:c $0 ) ) </s>
+
 <s> what is the lowest point in texas </s>===<s> argmin $0 ( and ( place:t $0 ) ( loc:t $0 texas:s ) ) ( elevation:i $0 ) </s>
+
 <s> how many states have a city called rochester </s>===<s> count $0 ( and ( state:t $0 ) ( exists $1 ( and ( city:t $1 ) ( named:t $1 rochester:n ) ( loc:t $1 $0 ) ) ) ) </s>
+
 <s> which capitals are in the states that border texas </s>===<s> lambda $0 e ( and ( capital:t $0 ) ( exists $1 ( and ( state:t $1 ) ( next_to:t $1 texas:s ) ( loc:t $0 $1 ) ) ) ) </s>
+
 <s> how many people live in austin </s>===<s> population:i austin_tx:c </s>
+
 <s> what states have rivers named colorado </s>===<s> lambda $0 e ( and ( state:t $0 ) ( exists $1 ( and ( named:t $1 colorado:n ) ( river:t $1 ) ( loc:t $1 $0 ) ) ) ) </s>
+
 <s> what is the size of texas </s>===<s> size:i texas:s </s>
+
 <s> what is the shortest river in the usa </s>===<s> argmin $0 ( and ( river:t $0 ) ( loc:t $0 usa:co ) ) ( len:i $0 ) </s>
+
 <s> what are the major cities of the us </s>===<s> lambda $0 e ( and ( major:t $0 ) ( city:t $0 ) ( loc:t $0 usa:co ) ) </s>
+
 <s> which state border kentucky </s>===<s> lambda $0 e ( and ( state:t $0 ) ( next_to:t $0 kentucky:s ) ) </s>
+
 <s> what is the population of oregon </s>===<s> population:i oregon:s </s>
+
 <s> what states have a city named austin </s>===<s> lambda $0 e ( and ( state:t $0 ) ( exists $1 ( and ( city:t $1 ) ( named:t $1 austin:n ) ( loc:t $1 $0 ) ) ) ) </s>
+
 <s> what is the highest elevation in south carolina </s>===<s> argmax $0 ( and ( place:t $0 ) ( loc:t $0 south_carolina:s ) ) ( elevation:i $0 ) </s>
+
 <s> how many people live in austin texas </s>===<s> population:i austin_tx:c </s>
+
 <s> what are the rivers in the state of texas </s>===<s> lambda $0 e ( and ( river:t $0 ) ( loc:t $0 texas:s ) ) </s>
+
 <s> what is the lowest point of colorado </s>===<s> argmin $0 ( and ( place:t $0 ) ( loc:t $0 colorado:s ) ) ( elevation:i $0 ) </s>
+
 <s> what is the population of atlanta </s>===<s> population:i atlanta_ga:c </s>
+
 <s> what rivers are in utah </s>===<s> lambda $0 e ( and ( river:t $0 ) ( loc:t $0 utah:s ) ) </s>
+
 <s> what river runs through the most states </s>===<s> argmax $0 ( river:t $0 ) ( count $1 ( and ( state:t $1 ) ( loc:t $0 $1 ) ) ) </s>
+
 <s> what is the population of sacramento </s>===<s> population:i sacramento_ca:c </s>
+
 <s> could you tell me what is the highest point in the state of oregon </s>===<s> argmax $0 ( and ( place:t $0 ) ( loc:t $0 oregon:s ) ) ( elevation:i $0 ) </s>
+
 <s> which states does the mississippi river run through </s>===<s> lambda $0 e ( and ( state:t $0 ) ( loc:t mississippi_river:r $0 ) ) </s>
+
 <s> what are the major cities in the smallest state in the us </s>===<s> lambda $0 e ( and ( major:t $0 ) ( city:t $0 ) ( loc:t $0 ( argmin $1 ( and ( state:t $1 ) ( loc:t $1 usa:co ) ) ( size:i $1 ) ) ) ) </s>
+
 <s> how high is guadalupe peak </s>===<s> elevation:i guadalupe_peak:m </s>
+
 <s> what river runs through illinois </s>===<s> lambda $0 e ( and ( river:t $0 ) ( loc:t $0 illinois:s ) ) </s>
+
 <s> how long is the mississippi river </s>===<s> len:i mississippi_river:r </s>
+
 <s> how high is the highest point in the largest state </s>===<s> elevation:i ( argmax $0 ( and ( place:t $0 ) ( loc:t $0 ( argmax $1 ( state:t $1 ) ( size:i $1 ) ) ) ) ( elevation:i $0 ) ) </s>
+
 <s> what is the area of south carolina </s>===<s> area:i south_carolina:s </s>
+
 <s> what are the states through which the longest river runs </s>===<s> lambda $0 e ( and ( state:t $0 ) ( loc:t ( argmax $1 ( river:t $1 ) ( len:i $1 ) ) $0 ) ) </s>
+
 <s> where is new orleans </s>===<s> lambda $0 e ( loc:t new_orleans_la:c $0 ) </s>
+
 <s> in what state is mount mckinley </s>===<s> lambda $0 e ( and ( state:t $0 ) ( loc:t mount_mckinley:m $0 ) ) </s>
+
 <s> what state has highest elevation </s>===<s> lambda $0 e ( and ( state:t $0 ) ( loc:t ( argmax $1 ( place:t $1 ) ( elevation:i $1 ) ) $0 ) ) </s>
+
 <s> what is the size of california </s>===<s> size:i california:s </s>
+
 <s> what is the smallest state that borders texas </s>===<s> argmin $0 ( and ( state:t $0 ) ( next_to:t $0 texas:s ) ) ( size:i $0 ) </s>
+
 <s> how many citizens in alabama </s>===<s> population:i alabama:s </s>
+
 <s> in which state is rochester </s>===<s> lambda $0 e ( and ( state:t $0 ) ( loc:t rochester_ny:c $0 ) ) </s>
+
 <s> how many states in the us does the shortest river run through </s>===<s> count $0 ( and ( state:t $0 ) ( loc:t $0 usa:co ) ( loc:t ( argmin $1 ( river:t $1 ) ( len:i $1 ) ) $0 ) ) </s>
+
 <s> what is the biggest state in continental us </s>===<s> argmax $0 ( and ( state:t $0 ) ( loc:t $0 usa:co ) ) ( size:i $0 ) </s>
+
 <s> what is the area of the largest state </s>===<s> area:i ( argmax $0 ( state:t $0 ) ( size:i $0 ) ) </s>
+
 <s> where is mount whitney </s>===<s> lambda $0 e ( loc:t mount_whitney:m $0 ) </s>
+
 <s> how many states does iowa border </s>===<s> count $0 ( and ( state:t $0 ) ( next_to:t iowa:s $0 ) ) </s>
+
 <s> which states does the longest river cross </s>===<s> lambda $0 e ( and ( state:t $0 ) ( loc:t ( argmax $1 ( river:t $1 ) ( len:i $1 ) ) $0 ) ) </s>
+
 <s> what river flows through kansas </s>===<s> lambda $0 e ( and ( river:t $0 ) ( loc:t $0 kansas:s ) ) </s>
+
 <s> what is the population of austin texas </s>===<s> population:i austin_tx:c </s>
+
 <s> what is the capital of vermont </s>===<s> capital:c vermont:s </s>
+
 <s> which states border colorado </s>===<s> lambda $0 e ( and ( state:t $0 ) ( next_to:t $0 colorado:s ) ) </s>
+
 <s> how long is the mississippi </s>===<s> len:i mississippi_river:r </s>
+
 <s> what state has the largest population density </s>===<s> argmax $0 ( state:t $0 ) ( density:i $0 ) </s>
+
 <s> what states border georgia </s>===<s> lambda $0 e ( and ( state:t $0 ) ( next_to:t $0 georgia:s ) ) </s>
+
 <s> what is the capital of pennsylvania </s>===<s> capital:c pennsylvania:s </s>
+
 <s> what are the biggest rivers in texas </s>===<s> argmax $0 ( and ( river:t $0 ) ( loc:t $0 texas:s ) ) ( size:i $0 ) </s>
+
 <s> what is the longest river in the united states </s>===<s> argmax $0 ( and ( river:t $0 ) ( loc:t $0 usa:co ) ) ( len:i $0 ) </s>
+
 <s> what is the capital of utah </s>===<s> capital:c utah:s </s>
+
 <s> what state has the smallest population density </s>===<s> argmin $0 ( state:t $0 ) ( density:i $0 ) </s>
+
 <s> which capitals are not major cities </s>===<s> lambda $0 e ( and ( capital:t $0 ) ( not ( and ( major:t $0 ) ( city:t $0 ) ) ) ) </s>
+
 <s> what is the biggest city in nebraska </s>===<s> argmax $0 ( and ( city:t $0 ) ( loc:t $0 nebraska:s ) ) ( size:i $0 ) </s>
+
 <s> what is the population of texas </s>===<s> population:i texas:s </s>
+
 <s> what is the shortest river in the united states </s>===<s> argmin $0 ( and ( river:t $0 ) ( loc:t $0 usa:co ) ) ( len:i $0 ) </s>
+
 <s> what is the population of rhode island </s>===<s> population:i rhode_island:s </s>
+
 <s> what is the state with the lowest point </s>===<s> lambda $0 e ( and ( state:t $0 ) ( loc:t ( argmin $1 ( place:t $1 ) ( elevation:i $1 ) ) $0 ) ) </s>
+
 <s> what is the longest river in new york </s>===<s> argmax $0 ( and ( river:t $0 ) ( loc:t $0 new_york:s ) ) ( len:i $0 ) </s>
+
 <s> what is the longest river that runs through a state that borders tennessee </s>===<s> argmax $0 ( and ( river:t $0 ) ( exists $1 ( and ( state:t $1 ) ( next_to:t $1 tennessee:s ) ( loc:t $0 $1 ) ) ) ) ( len:i $0 ) </s>
+
 <s> how many major cities are in arizona </s>===<s> count $0 ( and ( major:t $0 ) ( city:t $0 ) ( loc:t $0 arizona:s ) ) </s>
+
 <s> what are the neighboring states for michigan </s>===<s> lambda $0 e ( and ( state:t $0 ) ( next_to:t $0 michigan:s ) ) </s>
+
 <s> what state that borders texas is the largest </s>===<s> argmax $0 ( and ( state:t $0 ) ( next_to:t $0 texas:s ) ) ( size:i $0 ) </s>
+
 <s> what is the shortest river </s>===<s> argmin $0 ( river:t $0 ) ( len:i $0 ) </s>
+
 <s> how many states border the state that borders the most states </s>===<s> count $0 ( and ( state:t $0 ) ( next_to:t $0 ( argmax $1 ( state:t $1 ) ( count $2 ( and ( state:t $2 ) ( next_to:t $1 $2 ) ) ) ) ) ) </s>
+
 <s> which state is the largest city in montana in </s>===<s> lambda $0 e ( and ( state:t $0 ) ( loc:t ( argmax $1 ( and ( city:t $1 ) ( loc:t $1 montana:s ) ) ( size:i $1 ) ) $0 ) ) </s>
+
 <s> what is the population of washington dc </s>===<s> population:i washington_dc:c </s>
+
 <s> what is the most populous city in texas </s>===<s> argmax $0 ( and ( city:t $0 ) ( loc:t $0 texas:s ) ) ( population:i $0 ) </s>
+
 <s> what is the capital of hawaii </s>===<s> capital:c hawaii:s </s>
+
 <s> what is capital of iowa </s>===<s> capital:c iowa:s </s>
+
 <s> where is san diego </s>===<s> lambda $0 e ( loc:t san_diego_ca:c $0 ) </s>
+
 <s> what are the major cities in delaware </s>===<s> lambda $0 e ( and ( major:t $0 ) ( city:t $0 ) ( loc:t $0 delaware:s ) ) </s>
+
 <s> what is the lowest point in louisiana </s>===<s> argmin $0 ( and ( place:t $0 ) ( loc:t $0 louisiana:s ) ) ( elevation:i $0 ) </s>
+
 <s> which state has the highest peak in the country </s>===<s> lambda $0 e ( and ( state:t $0 ) ( loc:t ( argmax $1 ( and ( mountain:t $1 ) ( loc:t $1 usa:co ) ) ( elevation:i $1 ) ) $0 ) ) </s>
+
 <s> what texas city has the largest population </s>===<s> argmax $0 ( and ( city:t $0 ) ( loc:t $0 texas:s ) ) ( population:i $0 ) </s>
+
 <s> what capital is the largest in the us </s>===<s> argmax $0 ( and ( capital:t $0 ) ( loc:t $0 usa:co ) ) ( size:i $0 ) </s>
+
 <s> what is the population of new york </s>===<s> population:i new_york:s </s>
+
 <s> what is the population of the capital of the smallest state </s>===<s> population:i ( capital:c ( argmin $1 ( state:t $1 ) ( size:i $1 ) ) ) </s>
+
 <s> what is the area of alaska </s>===<s> area:i alaska:s </s>
+
 <s> what is the population of california </s>===<s> population:i california:s </s>
+
 <s> which state has the longest river </s>===<s> lambda $0 e ( and ( state:t $0 ) ( loc:t ( argmax $1 ( river:t $1 ) ( len:i $1 ) ) $0 ) ) </s>
+
 <s> what is the capital of texas </s>===<s> capital:c texas:s </s>
+
 <s> give me the cities which are in texas </s>===<s> lambda $0 e ( and ( city:t $0 ) ( loc:t $0 texas:s ) ) </s>
+
 <s> what states border kentucky </s>===<s> lambda $0 e ( and ( state:t $0 ) ( next_to:t $0 kentucky:s ) ) </s>
+
 <s> how high is the highest point of florida </s>===<s> elevation:i ( argmax $0 ( and ( place:t $0 ) ( loc:t $0 florida:s ) ) ( elevation:i $0 ) ) </s>
+
 <s> what are the major cities in north carolina </s>===<s> lambda $0 e ( and ( major:t $0 ) ( city:t $0 ) ( loc:t $0 north_carolina:s ) ) </s>
+
 <s> what is the highest point in the state with capital des moines </s>===<s> argmax $0 ( and ( place:t $0 ) ( loc:t $0 ( the $1 ( and ( state:t $1 ) ( capital:t $1 des_moines_ia:c ) ) ) ) ) ( elevation:i $0 ) </s>
+
 <s> what is the lowest point in california </s>===<s> argmin $0 ( and ( place:t $0 ) ( loc:t $0 california:s ) ) ( elevation:i $0 ) </s>
+
 <s> what is the biggest city in wyoming </s>===<s> argmax $0 ( and ( city:t $0 ) ( loc:t $0 wyoming:s ) ) ( size:i $0 ) </s>
+
 <s> what is the largest state bordering texas </s>===<s> argmax $0 ( and ( state:t $0 ) ( next_to:t $0 texas:s ) ) ( size:i $0 ) </s>
+
 <s> what is the smallest city in hawaii </s>===<s> argmin $0 ( and ( city:t $0 ) ( loc:t $0 hawaii:s ) ) ( size:i $0 ) </s>
+
 <s> what is the area of the states </s>===<s> area:i usa:co </s>
+
 <s> what is the area of idaho </s>===<s> area:i idaho:s </s>
+
 <s> what state has the most rivers running through it </s>===<s> argmax $0 ( state:t $0 ) ( count $1 ( and ( river:t $1 ) ( loc:t $1 $0 ) ) ) </s>
+
 <s> what is the population of springfield missouri </s>===<s> population:i springfield_mo:c </s>
+
 <s> what is the most populated state bordering oklahoma </s>===<s> argmax $0 ( and ( state:t $0 ) ( next_to:t $0 oklahoma:s ) ) ( population:i $0 ) </s>
+
 <s> what is the number of neighboring states for kentucky </s>===<s> count $0 ( and ( state:t $0 ) ( next_to:t $0 kentucky:s ) ) </s>
+
 <s> what is the average population per square km in pennsylvania </s>===<s> density:i pennsylvania:s </s>
+
 <s> what state has the highest population density </s>===<s> argmax $0 ( state:t $0 ) ( density:i $0 ) </s>
+
 <s> what is the tallest mountain in america </s>===<s> argmax $0 ( and ( mountain:t $0 ) ( loc:t $0 usa:co ) ) ( elevation:i $0 ) </s>
+
 <s> what is the highest point of the state with the largest area </s>===<s> argmax $0 ( and ( place:t $0 ) ( loc:t $0 ( argmax $1 ( state:t $1 ) ( area:i $1 ) ) ) ) ( elevation:i $0 ) </s>
+
 <s> what are the states </s>===<s> lambda $0 e ( state:t $0 ) </s>
+
 <s> how many rivers in washington </s>===<s> count $0 ( and ( river:t $0 ) ( loc:t $0 washington:s ) ) </s>
+
 <s> what are the populations of the states through which the mississippi river run </s>===<s> lambda $0 e ( exists $1 ( and ( state:t $1 ) ( loc:t mississippi_river:r $1 ) ( population:t $1 $0 ) ) ) </s>
+
 <s> what is the biggest river in illinois </s>===<s> argmax $0 ( and ( river:t $0 ) ( loc:t $0 illinois:s ) ) ( size:i $0 ) </s>
+
 <s> what is the capital of michigan </s>===<s> capital:c michigan:s </s>
+
 <s> what is the total population of the states that border texas </s>===<s> sum $0 ( and ( state:t $0 ) ( next_to:t $0 texas:s ) ) ( population:i $0 ) </s>
+
 <s> what states border rhode island </s>===<s> lambda $0 e ( and ( state:t $0 ) ( next_to:t $0 rhode_island:s ) ) </s>
+
 <s> what is the biggest city in oregon </s>===<s> argmax $0 ( and ( city:t $0 ) ( loc:t $0 oregon:s ) ) ( size:i $0 ) </s>
+
 <s> what is the lowest point in wisconsin </s>===<s> argmin $0 ( and ( place:t $0 ) ( loc:t $0 wisconsin:s ) ) ( elevation:i $0 ) </s>
+
 <s> what are the rivers in the state of indiana </s>===<s> lambda $0 e ( and ( river:t $0 ) ( loc:t $0 indiana:s ) ) </s>
+
 <s> what is the population of austin </s>===<s> population:i austin_tx:c </s>
+
 <s> what is the smallest city in arkansas </s>===<s> argmin $0 ( and ( city:t $0 ) ( loc:t $0 arkansas:s ) ) ( size:i $0 ) </s>
+
 <s> give me the longest river that passes through the us </s>===<s> argmax $0 ( and ( river:t $0 ) ( loc:t $0 usa:co ) ) ( len:i $0 ) </s>
+
 <s> how long is the missouri river </s>===<s> len:i missouri_river:r </s>
+
 <s> which state has the largest city </s>===<s> lambda $0 e ( and ( state:t $0 ) ( loc:t ( argmax $1 ( city:t $1 ) ( size:i $1 ) ) $0 ) ) </s>
+
 <s> what is the lowest elevation in pennsylvania </s>===<s> argmin $0 ( and ( place:t $0 ) ( loc:t $0 pennsylvania:s ) ) ( elevation:i $0 ) </s>
+
 <s> what is the longest river in the state with the highest point </s>===<s> argmax $0 ( and ( river:t $0 ) ( loc:t $0 ( the $1 ( and ( state:t $1 ) ( loc:t ( argmax $2 ( place:t $2 ) ( elevation:i $2 ) ) $1 ) ) ) ) ) ( len:i $0 ) </s>
+
 <s> what states does the colorado river run through </s>===<s> lambda $0 e ( and ( state:t $0 ) ( loc:t colorado_river:r $0 ) ) </s>
+
 <s> what are the states that the potomac run through </s>===<s> lambda $0 e ( and ( state:t $0 ) ( loc:t potomac_river:r $0 ) ) </s>
+
 <s> what is the biggest city in the usa </s>===<s> argmax $0 ( and ( city:t $0 ) ( loc:t $0 usa:co ) ) ( size:i $0 ) </s>
+
 <s> what state has no rivers </s>===<s> lambda $0 e ( and ( state:t $0 ) ( not ( exists $1 ( and ( river:t $1 ) ( loc:t $1 $0 ) ) ) ) ) </s>
+
 <s> what is the highest point in rhode island </s>===<s> argmax $0 ( and ( place:t $0 ) ( loc:t $0 rhode_island:s ) ) ( elevation:i $0 ) </s>
+
 <s> name the states which have no surrounding states </s>===<s> lambda $0 e ( and ( state:t $0 ) ( not ( exists $1 ( and ( state:t $1 ) ( next_to:t $0 $1 ) ) ) ) ) </s>
+
 <s> what is the population of atlanta ga </s>===<s> population:i atlanta_ga:c </s>
+
 <s> how many square kilometers in the us </s>===<s> size:i usa:co </s>
+
 <s> what is the population of idaho </s>===<s> population:i idaho:s </s>
+
 <s> what is the adjacent state of california </s>===<s> lambda $0 e ( and ( state:t $0 ) ( next_to:t $0 california:s ) ) </s>
+
 <s> what is the smallest state through which the longest river runs </s>===<s> argmin $0 ( and ( state:t $0 ) ( loc:t ( argmax $1 ( river:t $1 ) ( len:i $1 ) ) $0 ) ) ( size:i $0 ) </s>
+
 <s> what are the names of the major cities in illinois </s>===<s> lambda $0 e ( exists $1 ( and ( major:t $1 ) ( city:t $1 ) ( loc:t $1 illinois:s ) ( named:t $1 $0 ) ) ) </s>
+
 <s> how many states does the colorado river run through </s>===<s> count $0 ( and ( state:t $0 ) ( loc:t colorado_river:r $0 ) ) </s>
+
 <s> how many states does the colorado river flow through </s>===<s> count $0 ( and ( state:t $0 ) ( loc:t colorado_river:r $0 ) ) </s>
+
 <s> what are the major cities in kansas </s>===<s> lambda $0 e ( and ( major:t $0 ) ( city:t $0 ) ( loc:t $0 kansas:s ) ) </s>
+
 <s> which states border texas </s>===<s> lambda $0 e ( and ( state:t $0 ) ( next_to:t $0 texas:s ) ) </s>
+
 <s> how many people live in new york </s>===<s> population:i new_york:s </s>
+
 <s> what are the largest cities in the states that border the largest state </s>===<s> argmax $0 ( and ( city:t $0 ) ( exists $1 ( and ( state:t $1 ) ( next_to:t $1 ( argmax $2 ( state:t $2 ) ( size:i $2 ) ) ) ( loc:t $0 $1 ) ) ) ) ( size:i $0 ) </s>
+
 <s> which states have points that are higher than the highest point in texas </s>===<s> lambda $0 e ( and ( state:t $0 ) ( exists $1 ( and ( place:t $1 ) ( > ( elevation:i $1 ) ( elevation:i ( argmax $2 ( and ( place:t $2 ) ( loc:t $2 texas:s ) ) ( elevation:i $2 ) ) ) ) ) ) ) </s>
+
 <s> what is the river that cross over ohio </s>===<s> lambda $0 e ( and ( river:t $0 ) ( loc:t $0 ohio:s ) ) </s>
+
 <s> what is the largest city in michigan </s>===<s> argmax $0 ( and ( city:t $0 ) ( loc:t $0 michigan:s ) ) ( size:i $0 ) </s>
+
 <s> how many rivers are in the state with the highest point </s>===<s> count $0 ( and ( river:t $0 ) ( loc:t $0 ( the $1 ( and ( state:t $1 ) ( loc:t ( argmax $2 ( place:t $2 ) ( elevation:i $2 ) ) $1 ) ) ) ) ) </s>
+
 <s> what cities are located in pennsylvania </s>===<s> lambda $0 e ( and ( city:t $0 ) ( loc:t $0 pennsylvania:s ) ) </s>
+
 <s> what is the state with the lowest population </s>===<s> argmin $0 ( state:t $0 ) ( population:i $0 ) </s>
+
 <s> what is the highest point in each state whose lowest point is sea level </s>===<s> lambda $0 e ( equals:t $0 ( argmax $1 ( and ( place:t $1 ) ( exists $2 ( and ( state:t $2 ) ( equals:t ( elevation:i ( argmin $3 ( and ( place:t $3 ) ( loc:t $3 $2 ) ) ( elevation:i $3 ) ) ) 0:i ) ( loc:t $0 $2 ) ) ) ) ( elevation:i $1 ) ) ) </s>
+
 <s> give me the cities in usa </s>===<s> lambda $0 e ( and ( city:t $0 ) ( loc:t $0 usa:co ) ) </s>
+
 <s> how many states does the missouri river run through </s>===<s> count $0 ( and ( state:t $0 ) ( loc:t missouri_river:r $0 ) ) </s>
+
 <s> what state has the city with the largest population </s>===<s> lambda $0 e ( and ( state:t $0 ) ( loc:t ( argmax $1 ( city:t $1 ) ( population:i $1 ) ) $0 ) ) </s>
+
 <s> which is the shortest river </s>===<s> argmin $0 ( river:t $0 ) ( len:i $0 ) </s>
+
 <s> how many states border alaska </s>===<s> count $0 ( and ( state:t $0 ) ( next_to:t $0 alaska:s ) ) </s>
+
 <s> what is the population of dallas </s>===<s> population:i dallas_tx:c </s>
+
 <s> where is san jose </s>===<s> lambda $0 e ( loc:t san_jose_ca:c $0 ) </s>
+
 <s> what states border states that border colorado </s>===<s> lambda $0 e ( and ( state:t $0 ) ( exists $1 ( and ( state:t $1 ) ( next_to:t $1 colorado:s ) ( next_to:t $0 $1 ) ) ) ) </s>
+
 <s> what rivers flow through the state with the largest population </s>===<s> lambda $0 e ( and ( river:t $0 ) ( loc:t $0 ( argmax $1 ( state:t $1 ) ( population:i $1 ) ) ) ) </s>
+
 <s> whats the largest city </s>===<s> argmax $0 ( city:t $0 ) ( size:i $0 ) </s>
+
 <s> what is the capital of the alabama state </s>===<s> capital:c alabama:s </s>
+
 <s> what states border arkansas </s>===<s> lambda $0 e ( and ( state:t $0 ) ( next_to:t $0 arkansas:s ) ) </s>
+
 <s> what is the population of denver </s>===<s> population:i denver_co:c </s>
+
 <s> what is the longest river in america </s>===<s> argmax $0 ( and ( river:t $0 ) ( loc:t $0 usa:co ) ) ( len:i $0 ) </s>
+
 <s> where is massachusetts </s>===<s> lambda $0 e ( loc:t massachusetts:s $0 ) </s>
+
 <s> what state has the smallest area </s>===<s> argmin $0 ( state:t $0 ) ( area:i $0 ) </s>
+
 <s> what major rivers run through illinois </s>===<s> lambda $0 e ( and ( major:t $0 ) ( river:t $0 ) ( loc:t $0 illinois:s ) ) </s>
+
 <s> how many cities does the usa have </s>===<s> count $0 ( and ( city:t $0 ) ( loc:t $0 usa:co ) ) </s>
+
 <s> how many people live in california </s>===<s> population:i california:s </s>
+
 <s> what are the major rivers in the us </s>===<s> lambda $0 e ( and ( major:t $0 ) ( river:t $0 ) ( loc:t $0 usa:co ) ) </s>
+
 <s> how many states does the mississippi river run through </s>===<s> count $0 ( and ( state:t $0 ) ( loc:t mississippi_river:r $0 ) ) </s>
+
 <s> what is the area of texas </s>===<s> area:i texas:s </s>
+
 <s> what is the length of the river that traverses the most states </s>===<s> len:i ( argmax $0 ( river:t $0 ) ( count $1 ( and ( state:t $1 ) ( loc:t $0 $1 ) ) ) ) </s>
+
 <s> what is the length of the longest river in the usa </s>===<s> len:i ( argmax $0 ( and ( river:t $0 ) ( loc:t $0 usa:co ) ) ( len:i $0 ) ) </s>
+
 <s> can you tell me the capital of texas </s>===<s> capital:c texas:s </s>
+
 <s> what is the largest city in minnesota by population </s>===<s> argmax $0 ( and ( city:t $0 ) ( loc:t $0 minnesota:s ) ) ( population:i $0 ) </s>
+
 <s> what is the smallest state in the usa </s>===<s> argmin $0 ( and ( state:t $0 ) ( loc:t $0 usa:co ) ) ( size:i $0 ) </s>
+
 <s> what states neighbor maine </s>===<s> lambda $0 e ( and ( state:t $0 ) ( next_to:t $0 maine:s ) ) </s>
+
 <s> what states high point are higher than that of colorado </s>===<s> lambda $0 e ( and ( state:t $0 ) ( > ( elevation:i ( argmax $1 ( and ( place:t $1 ) ( loc:t $1 $0 ) ) ( elevation:i $1 ) ) ) ( elevation:i ( argmax $1 ( and ( place:t $1 ) ( loc:t $1 colorado:s ) ) ( elevation:i $1 ) ) ) ) ) </s>
+
 <s> what is the highest mountain in texas </s>===<s> argmax $0 ( and ( mountain:t $0 ) ( loc:t $0 texas:s ) ) ( elevation:i $0 ) </s>
+
 <s> what are the major cities in texas </s>===<s> lambda $0 e ( and ( major:t $0 ) ( city:t $0 ) ( loc:t $0 texas:s ) ) </s>
+
 <s> what are the states that border the state with the greatest population </s>===<s> lambda $0 e ( and ( state:t $0 ) ( next_to:t $0 ( argmax $1 ( state:t $1 ) ( population:i $1 ) ) ) ) </s>
+
 <s> what rivers run through colorado </s>===<s> lambda $0 e ( and ( river:t $0 ) ( loc:t $0 colorado:s ) ) </s>
+
 <s> how many rivers are there in us </s>===<s> count $0 ( and ( river:t $0 ) ( loc:t $0 usa:co ) ) </s>
+
 <s> how many rivers are in new york </s>===<s> count $0 ( and ( river:t $0 ) ( loc:t $0 new_york:s ) ) </s>
+
 <s> which rivers are in alaska </s>===<s> lambda $0 e ( and ( river:t $0 ) ( loc:t $0 alaska:s ) ) </s>
+
 <s> what is the longest river flowing through new york </s>===<s> argmax $0 ( and ( river:t $0 ) ( loc:t $0 new_york:s ) ) ( len:i $0 ) </s>
+
 <s> what rivers run through west virginia </s>===<s> lambda $0 e ( and ( river:t $0 ) ( loc:t $0 west_virginia:s ) ) </s>
+
 <s> what are the capitals of the states that border texas </s>===<s> lambda $0 e ( and ( capital:t $0 ) ( exists $1 ( and ( state:t $1 ) ( next_to:t $1 texas:s ) ( loc:t $0 $1 ) ) ) ) </s>
+
 <s> what is the area of california </s>===<s> area:i california:s </s>
+
 <s> how many states have a city named springfield </s>===<s> count $0 ( and ( state:t $0 ) ( exists $1 ( and ( city:t $1 ) ( named:t $1 springfield:n ) ( loc:t $1 $0 ) ) ) ) </s>
+
 <s> what is the biggest city in texas </s>===<s> argmax $0 ( and ( city:t $0 ) ( loc:t $0 texas:s ) ) ( size:i $0 ) </s>
+
 <s> how many cities named austin are there in the usa </s>===<s> count $0 ( and ( city:t $0 ) ( named:t $0 austin:n ) ( loc:t $0 usa:co ) ) </s>
+
 <s> what are the major cities in the largest state </s>===<s> lambda $0 e ( and ( major:t $0 ) ( city:t $0 ) ( loc:t $0 ( argmax $1 ( state:t $1 ) ( size:i $1 ) ) ) ) </s>
+
 <s> which states does the colorado river run through </s>===<s> lambda $0 e ( and ( state:t $0 ) ( loc:t colorado_river:r $0 ) ) </s>
+
 <s> what is the largest city in wisconsin </s>===<s> argmax $0 ( and ( city:t $0 ) ( loc:t $0 wisconsin:s ) ) ( size:i $0 ) </s>
+
 <s> how big is alaska </s>===<s> size:i alaska:s </s>
+
 <s> what state contains the highest point in the us </s>===<s> lambda $0 e ( and ( state:t $0 ) ( loc:t ( argmax $1 ( and ( place:t $1 ) ( loc:t $1 usa:co ) ) ( elevation:i $1 ) ) $0 ) ) </s>
+
 <s> how big is north dakota </s>===<s> size:i north_dakota:s </s>
+
 <s> which rivers flow through alaska </s>===<s> lambda $0 e ( and ( river:t $0 ) ( loc:t $0 alaska:s ) ) </s>
+
 <s> what is the highest point in the us </s>===<s> argmax $0 ( and ( place:t $0 ) ( loc:t $0 usa:co ) ) ( elevation:i $0 ) </s>
+
 <s> what is the shortest river in texas </s>===<s> argmin $0 ( and ( river:t $0 ) ( loc:t $0 texas:s ) ) ( len:i $0 ) </s>
+
 <s> what are the major cities in the states through which the major river in virginia runs </s>===<s> lambda $0 e ( and ( major:t $0 ) ( city:t $0 ) ( exists $1 ( and ( state:t $1 ) ( loc:t $0 $1 ) ( loc:t ( the $2 ( and ( river:t $2 ) ( major:t $2 ) ( loc:t $2 virginia:s ) ) ) $1 ) ) ) ) </s>
+
 <s> what rivers are in oregon </s>===<s> lambda $0 e ( and ( river:t $0 ) ( loc:t $0 oregon:s ) ) </s>
+
 <s> what is the lowest point in the united states </s>===<s> argmin $0 ( and ( place:t $0 ) ( loc:t $0 usa:co ) ) ( elevation:i $0 ) </s>
+
 <s> how many states have cities or towns named springfield </s>===<s> count $0 ( and ( state:t $0 ) ( exists $1 ( and ( or ( town:t $1 ) ( city:t $1 ) ) ( named:t $1 springfield:n ) ( loc:t $1 $0 ) ) ) ) </s>
+
 <s> what is the population of south dakota </s>===<s> population:i south_dakota:s </s>
+
 <s> what is the capital of the state with the highest point </s>===<s> capital:c ( the $1 ( and ( state:t $1 ) ( loc:t ( argmax $2 ( place:t $2 ) ( elevation:i $2 ) ) $1 ) ) ) </s>
+
 <s> what state has the highest elevation </s>===<s> argmax $1 ( state:t $1 ) ( elevation:i $1 ) </s>
+
 <s> what states are next to texas </s>===<s> lambda $0 e ( and ( state:t $0 ) ( next_to:t $0 texas:s ) ) </s>
+
 <s> what is the longest river that passes the states that border the state that borders the most states </s>===<s> argmax $0 ( and ( river:t $0 ) ( exists $1 ( and ( state:t $1 ) ( next_to:t $1 ( argmax $2 ( state:t $2 ) ( count $3 ( and ( state:t $3 ) ( next_to:t $2 $3 ) ) ) ) ) ) ) ) ( len:i $0 ) </s>
+
 <s> which states border hawaii </s>===<s> lambda $0 e ( and ( state:t $0 ) ( next_to:t $0 hawaii:s ) ) </s>
+
 <s> how many major cities are there in oregon </s>===<s> count $0 ( and ( major:t $0 ) ( city:t $0 ) ( loc:t $0 oregon:s ) ) </s>
+
 <s> what is the population of springfield south dakota </s>===<s> population:i springfield_sd:c </s>
+
 <s> how many rivers run through texas </s>===<s> count $0 ( and ( river:t $0 ) ( loc:t $0 texas:s ) ) </s>
+
 <s> what state has the most major rivers running through it </s>===<s> argmax $0 ( state:t $0 ) ( count $1 ( and ( river:t $1 ) ( major:t $1 ) ( loc:t $1 $0 ) ) ) </s>
+
 <s> what are the lakes in states bordering texas </s>===<s> lambda $0 e ( and ( lake:t $0 ) ( exists $1 ( and ( state:t $1 ) ( next_to:t $1 texas:s ) ( loc:t $0 $1 ) ) ) ) </s>
+
 <s> people in boulder </s>===<s> population:i boulder_co:c </s>
+
 <s> what rivers are in nevada </s>===<s> lambda $0 e ( and ( river:t $0 ) ( loc:t $0 nevada:s ) ) </s>
+
 <s> where is fort wayne </s>===<s> lambda $0 e ( loc:t fort_wayne_in:c $0 ) </s>
+
 <s> where is indianapolis </s>===<s> lambda $0 e ( loc:t indianapolis_in:c $0 ) </s>
+
 <s> what states border states that border states that border states that border texas </s>===<s> lambda $0 e ( and ( state:t $0 ) ( exists $1 ( and ( state:t $1 ) ( exists $2 ( and ( state:t $2 ) ( exists $3 ( and ( state:t $3 ) ( next_to:t $3 texas:s ) ( next_to:t $2 $3 ) ( next_to:t $1 $2 ) ( next_to:t $0 $1 ) ) ) ) ) ) ) ) </s>
+
 <s> population of boulder </s>===<s> population:i boulder_co:c </s>
+
 <s> what are the major cities of the united states </s>===<s> lambda $0 e ( and ( major:t $0 ) ( city:t $0 ) ( loc:t $0 usa:co ) ) </s>
+
 <s> show major cities in colorado </s>===<s> lambda $0 e ( and ( major:t $0 ) ( city:t $0 ) ( loc:t $0 colorado:s ) ) </s>
+
 <s> what state is columbus the capital of </s>===<s> lambda $0 e ( and ( state:t $0 ) ( capital:t $0 columbus_oh:c ) ) </s>
+
 <s> what is the area of all the states combined </s>===<s> sum $0 ( state:t $0 ) ( area:i $0 ) </s>
+
 <s> what is the average population per square km in the us </s>===<s> density:i usa:co </s>
+
 <s> what is the largest state that borders california </s>===<s> argmax $0 ( and ( state:t $0 ) ( next_to:t $0 california:s ) ) ( size:i $0 ) </s>
+
 <s> what is the population of montana </s>===<s> population:i montana:s </s>
+
 <s> what are the populations of all the major cities in montana </s>===<s> lambda $0 e ( exists $1 ( and ( major:t $1 ) ( city:t $1 ) ( loc:t $1 montana:s ) ( population:t $1 $0 ) ) ) </s>
+
 <s> which rivers run through the state with the lowest elevation in the usa </s>===<s> lambda $0 e ( and ( river:t $0 ) ( loc:t $0 ( argmin $1 ( and ( state:t $1 ) ( loc:t $1 usa:co ) ) ( elevation:i $1 ) ) ) ) </s>
+
 <s> what rivers flow through the largest state </s>===<s> lambda $0 e ( and ( river:t $0 ) ( loc:t $0 ( argmax $1 ( state:t $1 ) ( size:i $1 ) ) ) ) </s>
+
 <s> what is the area of maine </s>===<s> area:i maine:s </s>
+
 <s> what are major rivers in texas </s>===<s> lambda $0 e ( and ( major:t $0 ) ( river:t $0 ) ( loc:t $0 texas:s ) ) </s>
+
 <s> what is the population density of the state with the smallest population </s>===<s> density:i ( argmin $0 ( state:t $0 ) ( population:i $0 ) ) </s>
+
 <s> what is the highest point in wyoming </s>===<s> argmax $0 ( and ( place:t $0 ) ( loc:t $0 wyoming:s ) ) ( elevation:i $0 ) </s>
+
 <s> what states border delaware </s>===<s> lambda $0 e ( and ( state:t $0 ) ( next_to:t $0 delaware:s ) ) </s>
+
 <s> which state has the most rivers running through it </s>===<s> argmax $0 ( state:t $0 ) ( count $1 ( and ( river:t $1 ) ( loc:t $1 $0 ) ) ) </s>
+
 <s> what is largest capital </s>===<s> argmax $0 ( capital:t $0 ) ( size:i $0 ) </s>
+
 <s> what is the state with the largest population density </s>===<s> argmax $0 ( state:t $0 ) ( density:i $0 ) </s>
+
 <s> what states have towns named springfield </s>===<s> lambda $0 e ( and ( state:t $0 ) ( exists $1 ( and ( town:t $1 ) ( named:t $1 springfield:n ) ( loc:t $1 $0 ) ) ) ) </s>
+
 <s> what is the smallest city in the largest state </s>===<s> argmin $0 ( and ( city:t $0 ) ( loc:t $0 ( argmax $1 ( state:t $1 ) ( size:i $1 ) ) ) ) ( size:i $0 ) </s>
+
 <s> what mountains are in alaska </s>===<s> lambda $0 e ( and ( mountain:t $0 ) ( loc:t $0 alaska:s ) ) </s>
+
 <s> what rivers flow through colorado </s>===<s> lambda $0 e ( and ( river:t $0 ) ( loc:t $0 colorado:s ) ) </s>
+
 <s> which state has the least population density </s>===<s> argmin $0 ( state:t $0 ) ( density:i $0 ) </s>
+
 <s> how many inhabitants does montgomery have </s>===<s> population:i montgomery_al:c </s>
+
 <s> what city has the largest population </s>===<s> argmax $0 ( city:t $0 ) ( population:i $0 ) </s>
+
 <s> what is the largest state </s>===<s> argmax $0 ( state:t $0 ) ( size:i $0 ) </s>
+
 <s> of the states washed by the mississippi river which has the lowest point </s>===<s> lambda $0 e ( and ( state:t $0 ) ( loc:t mississippi_river:r $0 ) ( loc:t ( argmin $1 ( and ( place:t $1 ) ( exists $2 ( and ( state:t $2 ) ( loc:t mississippi_river:r $2 ) ( loc:t $1 $2 ) ) ) ) ( elevation:i $1 ) ) $0 ) ) </s>
+
 <s> what is the area of the state with the smallest population density </s>===<s> area:i ( argmin $0 ( state:t $0 ) ( density:i $0 ) ) </s>
+
 <s> which state contains most rivers </s>===<s> argmax $0 ( state:t $0 ) ( count $1 ( and ( river:t $1 ) ( loc:t $1 $0 ) ) ) </s>
+
 <s> what is the longest river in mississippi </s>===<s> argmax $0 ( and ( river:t $0 ) ( loc:t $0 mississippi:s ) ) ( len:i $0 ) </s>
+
 <s> what is the capital of the largest state </s>===<s> capital:c ( argmax $1 ( state:t $1 ) ( size:i $1 ) ) </s>
+
 <s> what state has the largest population </s>===<s> argmax $0 ( state:t $0 ) ( population:i $0 ) </s>
+
 <s> name the rivers in arkansas </s>===<s> lambda $0 e ( and ( river:t $0 ) ( loc:t $0 arkansas:s ) ) </s>
+
 <s> what are the populations of states through which the mississippi run </s>===<s> lambda $0 e ( exists $1 ( and ( state:t $1 ) ( loc:t mississippi_river:r $1 ) ( population:t $1 $0 ) ) ) </s>
+
 <s> what is the population of arizona </s>===<s> population:i arizona:s </s>
+
 <s> what state borders the state with the smallest population </s>===<s> lambda $0 e ( and ( state:t $0 ) ( next_to:t $0 ( argmin $1 ( state:t $1 ) ( population:i $1 ) ) ) ) </s>
+
 <s> what is the total area of the usa </s>===<s> area:i usa:co </s>
+
 <s> what is the population of seattle washington </s>===<s> population:i seattle_wa:c </s>
+
 <s> what is the size of the largest state in the usa </s>===<s> size:i ( argmax $0 ( and ( state:t $0 ) ( loc:t $0 usa:co ) ) ( size:i $0 ) ) </s>
+
 <s> what state has the capital salem </s>===<s> lambda $0 e ( and ( state:t $0 ) ( capital:t $0 salem_or:c ) ) </s>
+
 <s> which is the lowest point of the states that the mississippi runs through </s>===<s> argmin $0 ( and ( place:t $0 ) ( exists $1 ( and ( state:t $1 ) ( loc:t mississippi_river:r $1 ) ( loc:t $0 $1 ) ) ) ) ( elevation:i $0 ) </s>
+
 <s> how many major cities are in texas </s>===<s> count $0 ( and ( major:t $0 ) ( city:t $0 ) ( loc:t $0 texas:s ) ) </s>
+
 <s> what is the capital city of the largest state in the us </s>===<s> capital:c ( argmax $1 ( and ( state:t $1 ) ( loc:t $1 usa:co ) ) ( size:i $1 ) ) </s>
+
 <s> what are the major cities in rhode island </s>===<s> lambda $0 e ( and ( major:t $0 ) ( city:t $0 ) ( loc:t $0 rhode_island:s ) ) </s>
+
 <s> what state has the most people </s>===<s> argmax $0 ( state:t $0 ) ( population:i $0 ) </s>
+
 <s> what is the largest city of kansas </s>===<s> argmax $0 ( and ( city:t $0 ) ( loc:t $0 kansas:s ) ) ( size:i $0 ) </s>
+
 <s> what is the area of the state with the capital albany </s>===<s> area:i ( the $0 ( and ( state:t $0 ) ( capital:t $0 albany:c ) ) ) </s>
+
 <s> what is the longest river that flows through colorado </s>===<s> argmax $0 ( and ( river:t $0 ) ( loc:t $0 colorado:s ) ) ( len:i $0 ) </s>
+
 <s> how many rivers does alaska have </s>===<s> count $0 ( and ( river:t $0 ) ( loc:t $0 alaska:s ) ) </s>
+
 <s> how big is massachusetts </s>===<s> size:i massachusetts:s </s>
+
 <s> how large is the largest city in alaska </s>===<s> size:i ( argmax $0 ( and ( city:t $0 ) ( loc:t $0 alaska:s ) ) ( size:i $0 ) ) </s>
+
 <s> how many cities are there in usa </s>===<s> count $0 ( and ( city:t $0 ) ( loc:t $0 usa:co ) ) </s>
+
 <s> what states capital is dover </s>===<s> lambda $0 e ( and ( state:t $0 ) ( capital:t $0 dover_de:c ) ) </s>
+
 <s> what states border new hampshire </s>===<s> lambda $0 e ( and ( state:t $0 ) ( next_to:t $0 new_hampshire:s ) ) </s>
+
 <s> what is the shortest river in nebraska </s>===<s> argmin $0 ( and ( river:t $0 ) ( loc:t $0 nebraska:s ) ) ( len:i $0 ) </s>
+
 <s> how many states border hawaii </s>===<s> count $0 ( and ( state:t $0 ) ( next_to:t $0 hawaii:s ) ) </s>
+
 <s> what state is dallas in </s>===<s> lambda $0 e ( and ( state:t $0 ) ( loc:t dallas_tx:c $0 ) ) </s>
+
 <s> what city has the least population </s>===<s> argmin $0 ( city:t $0 ) ( population:i $0 ) </s>
+
 <s> how many people stay in utah </s>===<s> population:i utah:s </s>
+
 <s> what state has the sparsest population density </s>===<s> argmin $0 ( state:t $0 ) ( density:i $0 ) </s>
+
 <s> what is the largest state that borders the state with the lowest point in the usa </s>===<s> argmax $0 ( and ( state:t $0 ) ( next_to:t $0 ( the $1 ( and ( state:t $1 ) ( loc:t ( argmin $2 ( and ( place:t $2 ) ( loc:t $2 usa:co ) ) ( elevation:i $2 ) ) $1 ) ) ) ) ) ( size:i $0 ) </s>
+
 <s> what is the largest city in texas </s>===<s> argmax $0 ( and ( city:t $0 ) ( loc:t $0 texas:s ) ) ( size:i $0 ) </s>
+
 <s> what is the largest state in the us </s>===<s> argmax $0 ( and ( state:t $0 ) ( loc:t $0 usa:co ) ) ( size:i $0 ) </s>
+
 <s> which state has the most people </s>===<s> argmax $0 ( state:t $0 ) ( population:i $0 ) </s>
+
 <s> what rivers are in new mexico </s>===<s> lambda $0 e ( and ( river:t $0 ) ( loc:t $0 new_mexico:s ) ) </s>
+
 <s> what is the area of maryland in square kilometers </s>===<s> area:i maryland:s </s>
+
 <s> how many states are there in united states </s>===<s> count $0 ( and ( state:t $0 ) ( loc:t $0 usa:co ) ) </s>
+
 <s> how many major cities are in states bordering nebraska </s>===<s> count $0 ( and ( major:t $0 ) ( city:t $0 ) ( exists $1 ( and ( state:t $1 ) ( next_to:t $1 nebraska:s ) ( loc:t $0 $1 ) ) ) ) </s>
+
 <s> what is the population of the largest state </s>===<s> population:i ( argmax $0 ( state:t $0 ) ( size:i $0 ) ) </s>
+
 <s> what is the size of florida </s>===<s> size:i florida:s </s>
+
 <s> how many rivers are in missouri </s>===<s> count $0 ( and ( river:t $0 ) ( loc:t $0 missouri:s ) ) </s>
+
 <s> how many rivers are there in texas </s>===<s> count $0 ( and ( river:t $0 ) ( loc:t $0 texas:s ) ) </s>
+
 <s> what is the highest point in the state with the capital des moines </s>===<s> argmax $0 ( and ( place:t $0 ) ( loc:t $0 ( the $1 ( and ( state:t $1 ) ( capital:t $1 des_moines_ia:c ) ) ) ) ) ( elevation:i $0 ) </s>
+
 <s> what is the population of seattle </s>===<s> population:i seattle_wa:c </s>
+
 <s> what is the highest point in colorado </s>===<s> argmax $0 ( and ( place:t $0 ) ( loc:t $0 colorado:s ) ) ( elevation:i $0 ) </s>
+
 <s> which states border arizona </s>===<s> lambda $0 e ( and ( state:t $0 ) ( next_to:t $0 arizona:s ) ) </s>
+
 <s> what rivers run through the state with the lowest point in the usa </s>===<s> lambda $0 e ( and ( river:t $0 ) ( loc:t $0 ( the $1 ( and ( state:t $1 ) ( loc:t ( argmin $2 ( and ( place:t $2 ) ( loc:t $2 usa:co ) ) ( elevation:i $2 ) ) $1 ) ) ) ) ) </s>
+
 <s> what is the population of minnesota </s>===<s> population:i minnesota:s </s>
+
 <s> what state has the city with the most population </s>===<s> lambda $0 e ( and ( state:t $0 ) ( loc:t ( argmax $1 ( city:t $1 ) ( population:i $1 ) ) $0 ) ) </s>
+
 <s> which states have a major city named austin </s>===<s> lambda $0 e ( and ( state:t $0 ) ( exists $1 ( and ( major:t $1 ) ( city:t $1 ) ( named:t $1 austin:n ) ( loc:t $1 $0 ) ) ) ) </s>
+
 <s> which states have points higher than the highest point in colorado </s>===<s> lambda $0 e ( and ( state:t $0 ) ( exists $1 ( and ( place:t $1 ) ( > ( elevation:i $1 ) ( elevation:i ( argmax $2 ( and ( place:t $2 ) ( loc:t $2 colorado:s ) ) ( elevation:i $2 ) ) ) ) ) ) ) </s>
+
 <s> what is the highest point in the state with the smallest population </s>===<s> argmax $0 ( and ( place:t $0 ) ( loc:t $0 ( argmin $1 ( state:t $1 ) ( population:i $1 ) ) ) ) ( elevation:i $0 ) </s>
+
 <s> where is new hampshire </s>===<s> lambda $0 e ( loc:t new_hampshire:s $0 ) </s>
+
 <s> which state borders florida </s>===<s> lambda $0 e ( and ( state:t $0 ) ( next_to:t $0 florida:s ) ) </s>
+
 <s> how many rivers in texas are longer than the red </s>===<s> count $0 ( and ( river:t $0 ) ( loc:t $0 texas:s ) ( > ( len:i $0 ) ( len:i red_river:r ) ) ) </s>
+
 <s> how many rivers do not traverse the state with the capital albany </s>===<s> count $0 ( and ( river:t $0 ) ( not ( loc:t $0 ( the $1 ( and ( state:t $1 ) ( capital:t $1 albany_ny:c ) ) ) ) ) ) </s>
+
 <s> what are the populations of the states through which the mississippi run </s>===<s> lambda $0 e ( exists $1 ( and ( state:t $1 ) ( loc:t mississippi_river:r $1 ) ( population:t $1 $0 ) ) ) </s>
+
 <s> through which states does the mississippi run </s>===<s> lambda $0 e ( and ( state:t $0 ) ( loc:t mississippi_river:r $0 ) ) </s>
+
 <s> what states are next to the mississippi </s>===<s> lambda $0 e ( and ( state:t $0 ) ( next_to:t $0 mississippi_river:r ) ) </s>
+
 <s> give me the cities in virginia </s>===<s> lambda $0 e ( and ( city:t $0 ) ( loc:t $0 virginia:s ) ) </s>
+
 <s> what are the capital cities of the states which border texas </s>===<s> lambda $0 e ( and ( capital:t $0 ) ( city:t $0 ) ( exists $1 ( and ( state:t $1 ) ( next_to:t $1 texas:s ) ( loc:t $0 $1 ) ) ) ) </s>
+
 <s> what state that borders texas has the highest population </s>===<s> argmax $0 ( and ( state:t $0 ) ( next_to:t $0 texas:s ) ) ( population:i $0 ) </s>
+
 <s> what state is the state with the most rivers </s>===<s> lambda $0 e ( and ( state:t $0 ) ( equals:t $0 ( argmax $1 ( state:t $1 ) ( count $2 ( and ( river:t $2 ) ( loc:t $2 $1 ) ) ) ) ) ) </s>
+
 <s> what state has the least population density </s>===<s> argmin $0 ( state:t $0 ) ( density:i $0 ) </s>
+
 <s> what are the major cities in ohio </s>===<s> lambda $0 e ( and ( major:t $0 ) ( city:t $0 ) ( loc:t $0 ohio:s ) ) </s>
+
 <s> which states does the missouri river run through </s>===<s> lambda $0 e ( and ( state:t $0 ) ( loc:t missouri_river:r $0 ) ) </s>
+
 <s> what is the biggest city in arizona </s>===<s> argmax $0 ( and ( city:t $0 ) ( loc:t $0 arizona:s ) ) ( size:i $0 ) </s>
+
 <s> how many people live in hawaii </s>===<s> population:i hawaii:s </s>
+
 <s> how many people live in the smallest state bordering wyoming </s>===<s> population:i ( argmin $0 ( and ( state:t $0 ) ( next_to:t $0 wyoming:s ) ) ( size:i $0 ) ) </s>
+
 <s> what is the name of the state with the lowest point </s>===<s> lambda $2 e ( named:t ( the $0 ( and ( state:t $0 ) ( loc:t ( argmin $1 ( place:t $1 ) ( elevation:i $1 ) ) $0 ) ) ) $2 ) </s>
+
 <s> what rivers flow through missouri </s>===<s> lambda $0 e ( and ( river:t $0 ) ( loc:t $0 missouri:s ) ) </s>
+
 <s> what is the elevation of death valley </s>===<s> elevation:i death_valley:lo </s>
+
 <s> what river flows through texas </s>===<s> lambda $0 e ( and ( river:t $0 ) ( loc:t $0 texas:s ) ) </s>
+
 <s> how high are the highest points of all the states </s>===<s> lambda $0 e ( exists $1 ( and ( state:t $1 ) ( elevation:t ( argmax $2 ( and ( place:t $2 ) ( loc:t $2 $1 ) ) ( elevation:i $2 ) ) $0 ) ) ) </s>
+
 <s> what is the capital of new hampshire </s>===<s> capital:c new_hampshire:s </s>
+
 <s> how long is the rio grande river </s>===<s> len:i rio_grande_river:r </s>
+
 <s> which state borders most states </s>===<s> argmax $0 ( state:t $0 ) ( count $1 ( and ( state:t $1 ) ( next_to:t $0 $1 ) ) ) </s>
+
 <s> how many states does missouri border </s>===<s> count $0 ( and ( state:t $0 ) ( next_to:t missouri:s $0 ) ) </s>
+
 <s> where is austin </s>===<s> lambda $0 e ( loc:t austin_tx:c $0 ) </s>
+
 <s> how high is the highest point of delaware </s>===<s> elevation:i ( argmax $0 ( and ( place:t $0 ) ( loc:t $0 delaware:s ) ) ( elevation:i $0 ) ) </s>
+
 <s> where is the highest point in montana </s>===<s> lambda $0 e ( loc:t ( argmax $1 ( and ( place:t $1 ) ( loc:t $1 montana:s ) ) ( elevation:i $1 ) ) $0 ) </s>
+
 <s> what states border states that border the state with the largest population </s>===<s> lambda $0 e ( and ( state:t $0 ) ( exists $1 ( and ( state:t $1 ) ( next_to:t $1 ( argmax $2 ( state:t $2 ) ( population:i $2 ) ) ) ( next_to:t $0 $1 ) ) ) ) </s>
+
 <s> what is the height of the highest mountain in texas </s>===<s> elevation:i ( argmax $0 ( and ( mountain:t $0 ) ( loc:t $0 texas:s ) ) ( elevation:i $0 ) ) </s>
+
 <s> what state has the city flint </s>===<s> lambda $0 e ( and ( state:t $0 ) ( loc:t flint_mi:c $0 ) ) </s>
+
 <s> what is the state with the largest density in usa </s>===<s> argmax $0 ( and ( state:t $0 ) ( loc:t $0 usa:co ) ) ( area:i $0 ) </s>
+
 <s> what cities in texas have the highest number of citizens </s>===<s> argmax $0 ( and ( city:t $0 ) ( loc:t $0 texas:s ) ) ( population:i $0 ) </s>
+
 <s> what states border missouri </s>===<s> lambda $0 e ( and ( state:t $0 ) ( next_to:t $0 missouri:s ) ) </s>
+
 <s> give me the largest state </s>===<s> argmax $0 ( state:t $0 ) ( size:i $0 ) </s>
+
 <s> which state has the sparsest population density </s>===<s> argmin $0 ( state:t $0 ) ( density:i $0 ) </s>
+
 <s> which states border alabama </s>===<s> lambda $0 e ( and ( state:t $0 ) ( next_to:t $0 alabama:s ) ) </s>
+
 <s> what rivers flow through states that alabama borders </s>===<s> lambda $0 e ( and ( river:t $0 ) ( exists $1 ( and ( state:t $1 ) ( next_to:t alabama:s $1 ) ( loc:t $0 $1 ) ) ) ) </s>
+
 <s> what are the major cities in wyoming </s>===<s> lambda $0 e ( and ( major:t $0 ) ( city:t $0 ) ( loc:t $0 wyoming:s ) ) </s>
+
 <s> what are the highest points of states surrounding mississippi </s>===<s> argmax $0 ( and ( place:t $0 ) ( exists $1 ( and ( state:t $1 ) ( next_to:t $1 mississippi:s ) ( loc:t $0 $1 ) ) ) ) ( elevation:i $0 ) </s>
+
 <s> through which states does the mississippi flow </s>===<s> lambda $0 e ( and ( state:t $0 ) ( loc:t mississippi_river:r $0 ) ) </s>
+
 <s> where is scotts valley </s>===<s> lambda $0 e ( loc:t scotts_valley_ca:c $0 ) </s>
+
 <s> what are the major lakes in united states </s>===<s> lambda $0 e ( and ( major:t $0 ) ( lake:t $0 ) ( loc:t $0 usa:co ) ) </s>
+
 <s> what is the largest city in missouri </s>===<s> argmax $0 ( and ( city:t $0 ) ( loc:t $0 missouri:s ) ) ( size:i $0 ) </s>
+
 <s> what states border alaska </s>===<s> lambda $0 e ( and ( state:t $0 ) ( next_to:t $0 alaska:s ) ) </s>
+
 <s> what state has the largest city </s>===<s> lambda $0 e ( and ( state:t $0 ) ( loc:t ( argmax $1 ( city:t $1 ) ( size:i $1 ) ) $0 ) ) </s>
+
 <s> what rivers run through maine </s>===<s> lambda $0 e ( and ( river:t $0 ) ( loc:t $0 maine:s ) ) </s>
+
 <s> give me the lakes in california </s>===<s> lambda $0 e ( and ( lake:t $0 ) ( loc:t $0 california:s ) ) </s>
+
 <s> what is the combined population of all 50 states </s>===<s> sum $0 ( state:t $0 ) ( population:i $0 ) </s>
+
 <s> how high is the highest point of louisiana </s>===<s> elevation:i ( argmax $0 ( and ( place:t $0 ) ( loc:t $0 louisiana:s ) ) ( elevation:i $0 ) ) </s>
+
 <s> what is the longest river in pennsylvania </s>===<s> argmax $0 ( and ( river:t $0 ) ( loc:t $0 pennsylvania:s ) ) ( len:i $0 ) </s>
+
 <s> what is the capital of maryland </s>===<s> capital:c maryland:s </s>
+
 <s> what state is the biggest </s>===<s> argmax $0 ( state:t $0 ) ( size:i $0 ) </s>
+
 <s> which states border iowa </s>===<s> lambda $0 e ( and ( state:t $0 ) ( next_to:t $0 iowa:s ) ) </s>
+
 <s> which states border alaska </s>===<s> lambda $0 e ( and ( state:t $0 ) ( next_to:t $0 alaska:s ) ) </s>
+
 <s> what is the largest state in usa </s>===<s> argmax $0 ( and ( state:t $0 ) ( loc:t $0 usa:co ) ) ( size:i $0 ) </s>
+
 <s> what are the major cities in california </s>===<s> lambda $0 e ( and ( major:t $0 ) ( city:t $0 ) ( loc:t $0 california:s ) ) </s>
+
 <s> what is the largest state traversed by the mississippi river </s>===<s> argmax $0 ( and ( state:t $0 ) ( loc:t mississippi_river:r $0 ) ) ( size:i $0 ) </s>
+
 <s> which rivers run through states bordering new mexico </s>===<s> lambda $0 e ( and ( river:t $0 ) ( exists $1 ( and ( state:t $1 ) ( next_to:t $1 new_mexico:s ) ( loc:t $0 $1 ) ) ) ) </s>
+
 <s> what is the lowest point in the state of texas </s>===<s> argmin $0 ( and ( place:t $0 ) ( loc:t $0 texas:s ) ) ( elevation:i $0 ) </s>
+
 <s> what is the smallest state bordering ohio </s>===<s> argmin $0 ( and ( state:t $0 ) ( next_to:t $0 ohio:s ) ) ( size:i $0 ) </s>
+
 <s> how many states are next to major rivers </s>===<s> count $0 ( and ( state:t $0 ) ( exists $1 ( and ( river:t $1 ) ( major:t $1 ) ( next_to:t $0 $1 ) ) ) ) </s>
+
 <s> what is the lowest point of the us </s>===<s> argmin $0 ( and ( place:t $0 ) ( loc:t $0 usa:co ) ) ( elevation:i $0 ) </s>
+
 <s> which state has the greatest density </s>===<s> argmax $0 ( state:t $0 ) ( density:i $0 ) </s>
+
 <s> how many states border the largest state </s>===<s> count $0 ( and ( state:t $0 ) ( next_to:t $0 ( argmax $1 ( state:t $1 ) ( size:i $1 ) ) ) ) </s>
+
 <s> what is the longest river that does not run through texas </s>===<s> argmax $0 ( and ( river:t $0 ) ( not ( loc:t $0 texas:s ) ) ) ( len:i $0 ) </s>
+
 <s> give me all the states of usa </s>===<s> lambda $0 e ( and ( state:t $0 ) ( loc:t $0 usa:co ) ) </s>
+
 <s> what is the density of texas </s>===<s> density:i texas:s </s>
+
 <s> what is the smallest city of the smallest state in the us </s>===<s> argmin $0 ( and ( city:t $0 ) ( loc:t $0 ( argmin $1 ( and ( state:t $1 ) ( loc:t $1 usa:co ) ) ( size:i $1 ) ) ) ) ( size:i $0 ) </s>
+
 <s> what is the highest point in kansas </s>===<s> argmax $0 ( and ( place:t $0 ) ( loc:t $0 kansas:s ) ) ( elevation:i $0 ) </s>
+
 <s> what is the population in boston </s>===<s> population:i boston_ma:c </s>
+
 <s> how many people are in the state of nevada </s>===<s> population:i nevada:s </s>
+
 <s> what is the population density of texas </s>===<s> density:i texas:s </s>
+
 <s> how many people live in washington dc </s>===<s> population:i washington_dc:c </s>
+
 <s> give me the cities in texas </s>===<s> lambda $0 e ( and ( city:t $0 ) ( loc:t $0 texas:s ) ) </s>
+
 <s> how long is the shortest river in the usa </s>===<s> len:i ( argmin $0 ( and ( river:t $0 ) ( loc:t $0 usa:co ) ) ( len:i $0 ) ) </s>
+
 <s> how many states have major rivers </s>===<s> count $0 ( and ( state:t $0 ) ( exists $1 ( and ( major:t $1 ) ( river:t $1 ) ( loc:t $1 $0 ) ) ) ) </s>
+
 <s> what is the population density of the smallest state </s>===<s> density:i ( argmin $0 ( state:t $0 ) ( size:i $0 ) ) </s>
+
 <s> which states border michigan </s>===<s> lambda $0 e ( and ( state:t $0 ) ( next_to:t $0 michigan:s ) ) </s>
+
 <s> what cities in texas have the highest populations </s>===<s> argmax $0 ( and ( city:t $0 ) ( loc:t $0 texas:s ) ) ( population:i $0 ) </s>
+
 <s> what rivers run through the states that border the state with the capital atlanta </s>===<s> lambda $0 e ( and ( river:t $0 ) ( exists $1 ( and ( state:t $1 ) ( loc:t $0 $1 ) ( next_to:t $1 ( the $2 ( and ( state:t $2 ) ( capital:t $2 atlanta_ga:c ) ) ) ) ) ) ) </s>
+
 <s> what is the highest point in the country </s>===<s> argmax $0 ( and ( place:t $0 ) ( loc:t $0 usa:co ) ) ( elevation:i $0 ) </s>
+
 <s> how many people live in kalamazoo </s>===<s> population:i kalamazoo_mi:c </s>
+
 <s> how many major cities are in florida </s>===<s> count $0 ( and ( major:t $0 ) ( city:t $0 ) ( loc:t $0 florida:s ) ) </s>
+
 <s> what state has the greatest population density </s>===<s> argmax $0 ( state:t $0 ) ( density:i $0 ) </s>
+
 <s> how many rivers are found in colorado </s>===<s> count $0 ( and ( river:t $0 ) ( loc:t $0 colorado:s ) ) </s>
+
 <s> what is the lowest point of the state with the largest area </s>===<s> argmin $0 ( and ( place:t $0 ) ( loc:t $0 ( argmax $1 ( state:t $1 ) ( area:i $1 ) ) ) ) ( elevation:i $0 ) </s>
+
 <s> what states border texas </s>===<s> lambda $0 e ( and ( state:t $0 ) ( next_to:t $0 texas:s ) ) </s>
+
 <s> how many states border at least one other state </s>===<s> count $0 ( and ( state:t $0 ) ( > ( count $1 ( and ( state:t $1 ) ( next_to:t $0 $1 ) ) ) 0:i ) ) </s>
+
 <s> which states border no other states </s>===<s> lambda $0 e ( and ( state:t $0 ) ( not ( exists $1 ( and ( state:t $1 ) ( next_to:t $0 $1 ) ) ) ) ) </s>
+
 <s> what rivers run through austin texas </s>===<s> lambda $0 e ( and ( river:t $0 ) ( loc:t $0 austin_tx:c ) ) </s>
+
 <s> how many people live in new hampshire </s>===<s> population:i new_hampshire:s </s>
+
 <s> what is the capital of indiana </s>===<s> capital:c indiana:s </s>
+
 <s> what states border the states with the most cities </s>===<s> lambda $0 e ( and ( state:t $0 ) ( next_to:t $0 ( argmax $1 ( state:t $1 ) ( count $2 ( and ( city:t $2 ) ( loc:t $2 $1 ) ) ) ) ) ) </s>
+
 <s> what is the area of the smallest state </s>===<s> area:i ( argmin $0 ( state:t $0 ) ( size:i $0 ) ) </s>
+
 <s> which states border new york </s>===<s> lambda $0 e ( and ( state:t $0 ) ( next_to:t $0 new_york:s ) ) </s>
+
 <s> what is the population of maine </s>===<s> population:i maine:s </s>
+
 <s> what is the biggest city in the smallest state </s>===<s> argmax $0 ( and ( city:t $0 ) ( loc:t $0 ( argmin $1 ( state:t $1 ) ( size:i $1 ) ) ) ) ( size:i $0 ) </s>
+
 <s> what is the elevation of the highest point in the usa </s>===<s> elevation:i ( argmax $0 ( and ( place:t $0 ) ( loc:t $0 usa:co ) ) ( elevation:i $0 ) ) </s>
+
 <s> what state borders the least states excluding alaska and excluding hawaii </s>===<s> argmin $0 ( and ( state:t $0 ) ( not ( equals:t $0 alaska:s ) ) ( not ( equals:t $0 hawaii:s ) ) ) ( count $1 ( and ( state:t $1 ) ( next_to:t $0 $1 ) ) ) </s>
+
 <s> what is the highest point in new mexico </s>===<s> argmax $0 ( and ( place:t $0 ) ( loc:t $0 new_mexico:s ) ) ( elevation:i $0 ) </s>
+
 <s> what is the biggest state </s>===<s> argmax $0 ( state:t $0 ) ( size:i $0 ) </s>
+
 <s> how many people live in spokane washington </s>===<s> population:i spokane_wa:c </s>
+
 <s> what states does the shortest river run through </s>===<s> lambda $0 e ( and ( state:t $0 ) ( loc:t ( argmin $1 ( river:t $1 ) ( len:i $1 ) ) $0 ) ) </s>
+
 <s> how long is rio grande </s>===<s> len:i rio_grande_river:r </s>
+
 <s> how many people live in texas </s>===<s> population:i texas:s </s>
+
 <s> where is the lowest spot in iowa </s>===<s> lambda $0 e ( loc:t ( argmin $1 ( and ( place:t $1 ) ( loc:t $1 iowa:s ) ) ( elevation:i $1 ) ) $0 ) </s>
+
 <s> what are the populations of the states through which the mississippi river runs </s>===<s> lambda $0 e ( exists $1 ( and ( state:t $1 ) ( loc:t mississippi_river:r $1 ) ( population:t $1 $0 ) ) ) </s>
+
 <s> what is the lowest point in oregon </s>===<s> argmin $0 ( and ( place:t $0 ) ( loc:t $0 oregon:s ) ) ( elevation:i $0 ) </s>
+
 <s> what is the shortest river in alaska </s>===<s> argmin $0 ( and ( river:t $0 ) ( loc:t $0 alaska:s ) ) ( len:i $0 ) </s>
+
 <s> how many states border the mississippi river </s>===<s> count $0 ( and ( state:t $0 ) ( next_to:t $0 mississippi_river:r ) ) </s>
+
 <s> what is the most populated capital in the usa </s>===<s> argmax $0 ( and ( capital:t $0 ) ( loc:t $0 usa:co ) ) ( population:i $0 ) </s>
+
 <s> what is the highest point in ohio </s>===<s> argmax $0 ( and ( place:t $0 ) ( loc:t $0 ohio:s ) ) ( elevation:i $0 ) </s>
+
 <s> what states border wisconsin </s>===<s> lambda $0 e ( and ( state:t $0 ) ( next_to:t $0 wisconsin:s ) ) </s>
+
 <s> what states have a capital that is the highest point in the state </s>===<s> lambda $0 e ( and ( state:t $0 ) ( exists $1 ( and ( capital:t $1 ) ( loc:t $1 $0 ) ( equals:t $1 ( argmax $2 ( and ( place:t $2 ) ( loc:t $2 $0 ) ) ( elevation:i $2 ) ) ) ) ) ) </s>
+
 <s> how many states border colorado and border new mexico </s>===<s> count $0 ( and ( state:t $0 ) ( next_to:t $0 colorado:s ) ( next_to:t $0 new_mexico:s ) ) </s>
+
 <s> what are the major cities in missouri </s>===<s> lambda $0 e ( and ( major:t $0 ) ( city:t $0 ) ( loc:t $0 missouri:s ) ) </s>
+
 <s> what are the major cities of texas </s>===<s> lambda $0 e ( and ( major:t $0 ) ( city:t $0 ) ( loc:t $0 texas:s ) ) </s>
+
 <s> how many rivers are called colorado </s>===<s> count $0 ( and ( river:t $0 ) ( named:t $0 colorado:n ) ) </s>
+
 <s> how high is the highest point in montana </s>===<s> elevation:i ( argmax $0 ( and ( place:t $0 ) ( loc:t $0 montana:s ) ) ( elevation:i $0 ) ) </s>
+
 <s> how many states have cities named austin </s>===<s> count $0 ( and ( state:t $0 ) ( exists $1 ( and ( city:t $1 ) ( named:t $1 austin:n ) ( loc:t $1 $0 ) ) ) ) </s>
+
 <s> which states does the missouri river pass through </s>===<s> lambda $0 e ( and ( state:t $0 ) ( loc:t missouri_river:r $0 ) ) </s>
+
 <s> what is the biggest city in the us </s>===<s> argmax $0 ( and ( city:t $0 ) ( loc:t $0 usa:co ) ) ( size:i $0 ) </s>
+
 <s> how big is new mexico </s>===<s> size:i new_mexico:s </s>
+
 <s> how many people live in south dakota </s>===<s> population:i south_dakota:s </s>
+
 <s> what state is pittsburgh in </s>===<s> lambda $0 e ( and ( state:t $0 ) ( loc:t pittsburgh_pa:c $0 ) ) </s>
+
 <s> what rivers run through arizona </s>===<s> lambda $0 e ( and ( river:t $0 ) ( loc:t $0 arizona:s ) ) </s>
+
 <s> how many major rivers cross ohio </s>===<s> count $0 ( and ( major:t $0 ) ( river:t $0 ) ( loc:t $0 ohio:s ) ) </s>
+
 <s> how many people in boulder </s>===<s> population:i boulder_co:c </s>
+
 <s> how many rivers are there in idaho </s>===<s> count $0 ( and ( river:t $0 ) ( loc:t $0 idaho:s ) ) </s>
+
 <s> sacramento is the capital of which state </s>===<s> lambda $0 e ( and ( state:t $0 ) ( capital:t $0 sacramento_ca:c ) ) </s>
+
 <s> how many cities are there in us </s>===<s> count $0 ( and ( city:t $0 ) ( loc:t $0 usa:co ) ) </s>
+
 <s> how many citizens live in california </s>===<s> population:i california:s </s>
+
 <s> what state has the largest urban population </s>===<s> argmax $0 ( state:t $0 ) ( population:i $0 ) </s>
+
 <s> what states border the mississippi river </s>===<s> lambda $0 e ( and ( state:t $0 ) ( next_to:t $0 mississippi_river:r ) ) </s>
+
 <s> what can you tell me about the population of missouri </s>===<s> population:i missouri:s </s>
+
 <s> what rivers do not run through tennessee </s>===<s> lambda $0 e ( and ( river:t $0 ) ( not ( loc:t $0 tennessee:s ) ) ) </s>
+
 <s> what is the largest city in a state that borders texas </s>===<s> argmax $0 ( and ( city:t $0 ) ( exists $1 ( and ( state:t $1 ) ( next_to:t $1 texas:s ) ( loc:t $0 $1 ) ) ) ) ( size:i $0 ) </s>
+
 <s> name the longest river in us </s>===<s> argmax $0 ( and ( river:t $0 ) ( loc:t $0 usa:co ) ) ( len:i $0 ) </s>
+
 <s> how many states does the mississippi run through </s>===<s> count $0 ( and ( state:t $0 ) ( loc:t mississippi_river:r $0 ) ) </s>
+
 <s> what is the largest of the state that the rio grande runs through </s>===<s> argmax $0 ( and ( state:t $0 ) ( loc:t rio_grande_river:r $0 ) ) ( size:i $0 ) </s>
+
 <s> what is the size of the capital of texas </s>===<s> size:i ( capital:c texas:s ) </s>
+
 <s> what states have rivers running through them </s>===<s> lambda $0 e ( and ( state:t $0 ) ( exists $1 ( and ( river:t $1 ) ( loc:t $1 $0 ) ) ) ) </s>
+
 <s> what states border hawaii </s>===<s> lambda $0 e ( and ( state:t $0 ) ( next_to:t $0 hawaii:s ) ) </s>
+
 <s> how many citizens in boulder </s>===<s> population:i boulder_co:c </s>
+
 <s> what states border states that border states that border florida </s>===<s> lambda $0 e ( and ( state:t $0 ) ( exists $1 ( and ( state:t $1 ) ( exists $2 ( and ( state:t $2 ) ( next_to:t $2 florida:s ) ( next_to:t $1 $2 ) ( next_to:t $0 $1 ) ) ) ) ) ) </s>
+
 <s> which states border the longest river in the usa </s>===<s> lambda $0 e ( and ( state:t $0 ) ( next_to:t $0 ( argmax $1 ( and ( river:t $1 ) ( loc:t $1 usa:co ) ) ( len:i $1 ) ) ) ) </s>
+
 <s> what is the population density of wyoming </s>===<s> density:i wyoming:s </s>
+
 <s> how many people are there in iowa </s>===<s> population:i iowa:s </s>
+
 <s> what is the highest point in the state with the most rivers </s>===<s> argmax $0 ( and ( place:t $0 ) ( loc:t $0 ( argmax $1 ( state:t $1 ) ( count $2 ( and ( river:t $2 ) ( loc:t $2 $1 ) ) ) ) ) ) ( elevation:i $0 ) </s>
+
 <s> number of citizens in boulder </s>===<s> population:i boulder_co:c </s>
+
 <s> what are the rivers of montana </s>===<s> lambda $0 e ( and ( river:t $0 ) ( loc:t $0 montana:s ) ) </s>
+
 <s> how many states border on the state whose capital is boston </s>===<s> count $0 ( and ( state:t $0 ) ( next_to:t $0 ( the $1 ( and ( state:t $1 ) ( capital:t $1 boston_ma:c ) ) ) ) ) </s>
+
 <s> how many people live in washington </s>===<s> population:i washington:s </s>
+
 <s> what is the largest state capital in population </s>===<s> argmax $0 ( capital:t $0 ) ( population:i $0 ) </s>
+
 <s> what is the largest city in states that border california </s>===<s> argmax $0 ( and ( city:t $0 ) ( exists $1 ( and ( state:t $1 ) ( next_to:t $1 california:s ) ( loc:t $0 $1 ) ) ) ) ( size:i $0 ) </s>
+
 <s> what is the most populous city in wyoming </s>===<s> argmax $0 ( and ( city:t $0 ) ( loc:t $0 wyoming:s ) ) ( population:i $0 ) </s>
+
 <s> what is the population density in the state with capital austin </s>===<s> density:i ( the $0 ( and ( state:t $0 ) ( capital:t $0 austin_tx:c ) ) ) </s>
+
 <s> what is the population of portland maine </s>===<s> population:i portland_me:c </s>
+
 <s> which state is kalamazoo in </s>===<s> lambda $0 e ( and ( state:t $0 ) ( loc:t kalamazoo_mi:c $0 ) ) </s>
+
 <s> what is the population of the largest state that borders texas </s>===<s> population:i ( argmax $0 ( and ( state:t $0 ) ( next_to:t $0 texas:s ) ) ( size:i $0 ) ) </s>
+
 <s> what states border ohio </s>===<s> lambda $0 e ( and ( state:t $0 ) ( next_to:t $0 ohio:s ) ) </s>
+
 <s> what river is the longest one in the united states </s>===<s> argmax $0 ( river:t $0 ) ( len:i $0 ) </s>
+
 <s> what is the population density of the state with the smallest area </s>===<s> density:i ( argmin $0 ( state:t $0 ) ( area:i $0 ) ) </s>
+
 <s> what is the largest capital </s>===<s> argmax $0 ( capital:t $0 ) ( size:i $0 ) </s>
+
 <s> what state has the smallest capital </s>===<s> lambda $0 e ( and ( state:t $0 ) ( loc:t ( argmin $1 ( capital:t $1 ) ( size:i $1 ) ) $0 ) ) </s>
+
 <s> how many big cities are in pennsylvania </s>===<s> count $0 ( and ( major:t $0 ) ( city:t $0 ) ( loc:t $0 pennsylvania:s ) ) </s>
+
 <s> which states lie on the largest river in the united states </s>===<s> lambda $0 e ( and ( state:t $0 ) ( loc:t ( argmax $1 ( and ( river:t $1 ) ( loc:t $1 usa:co ) ) ( size:i $1 ) ) $0 ) ) </s>
+
 <s> where is houston </s>===<s> lambda $0 e ( loc:t houston_tx:c $0 ) </s>
+
 <s> what rivers flow through states that border the state with the largest population </s>===<s> lambda $0 e ( and ( river:t $0 ) ( exists $1 ( and ( state:t $1 ) ( next_to:t $1 ( argmax $2 ( state:t $2 ) ( population:i $2 ) ) ) ( loc:t $0 $1 ) ) ) ) </s>
+
 <s> what is the highest point in the smallest state </s>===<s> argmax $0 ( and ( place:t $0 ) ( loc:t $0 ( argmin $1 ( state:t $1 ) ( size:i $1 ) ) ) ) ( elevation:i $0 ) </s>
+
 <s> what river runs through virginia </s>===<s> lambda $0 e ( and ( river:t $0 ) ( loc:t $0 virginia:s ) ) </s>
+
 <s> what state borders michigan </s>===<s> lambda $0 e ( and ( state:t $0 ) ( next_to:t $0 michigan:s ) ) </s>
+
 <s> name the major lakes in michigan </s>===<s> lambda $0 e ( and ( major:t $0 ) ( lake:t $0 ) ( loc:t $0 michigan:s ) ) </s>
+
 <s> give me the cities in virginia </s>===<s> lambda $0 e ( and ( city:t $0 ) ( loc:t $0 virginia:s ) ) </s>
+
 <s> which river runs through the most states </s>===<s> argmax $0 ( river:t $0 ) ( count $1 ( and ( state:t $1 ) ( loc:t $0 $1 ) ) ) </s>
+
 <s> how many people live in new mexico </s>===<s> population:i new_mexico:s </s>
+
 <s> what is the largest city in alabama </s>===<s> argmax $0 ( and ( city:t $0 ) ( loc:t $0 alabama:s ) ) ( size:i $0 ) </s>
+
 <s> how many people live in san francisco </s>===<s> population:i san_francisco_ca:c </s>
+
 <s> what is the population of the capital of the largest state </s>===<s> population:i ( capital:c ( argmax $1 ( state:t $1 ) ( size:i $1 ) ) ) </s>
+
 <s> what is the longest river in the us </s>===<s> argmax $0 ( and ( river:t $0 ) ( loc:t $0 usa:co ) ) ( len:i $0 ) </s>
+
 <s> what is the largest state that borders the state with the highest population </s>===<s> argmax $0 ( and ( state:t $0 ) ( next_to:t $0 ( argmax $1 ( state:t $1 ) ( population:i $1 ) ) ) ) ( size:i $0 ) </s>
+
 <s> show me all the major lakes in the us </s>===<s> lambda $0 e ( and ( major:t $0 ) ( lake:t $0 ) ( loc:t $0 usa:co ) ) </s>
+
 <s> where is springfield </s>===<s> lambda $0 e ( loc:t springfield_il:c $0 ) </s>
+
 <s> what state is des moines located in </s>===<s> lambda $0 e ( and ( state:t $0 ) ( loc:t des_moines_ia:c $0 ) ) </s>
+
 <s> how many cities does texas have </s>===<s> count $0 ( and ( city:t $0 ) ( loc:t $0 texas:s ) ) </s>
+
 <s> what state is boston in </s>===<s> lambda $0 e ( and ( state:t $0 ) ( loc:t boston_ma:c $0 ) ) </s>
+
 <s> which rivers run through the state with the largest city in the us </s>===<s> lambda $0 e ( and ( river:t $0 ) ( loc:t $0 ( the $1 ( and ( state:t $1 ) ( loc:t ( argmax $2 ( and ( city:t $2 ) ( loc:t $2 usa:co ) ) ( size:i $2 ) ) $1 ) ) ) ) ) </s>
+
 <s> states bordering iowa </s>===<s> lambda $0 e ( and ( state:t $0 ) ( next_to:t $0 iowa:s ) ) </s>
+
 <s> what states have no bordering state </s>===<s> lambda $0 e ( and ( state:t $0 ) ( not ( exists $1 ( and ( state:t $1 ) ( next_to:t $0 $1 ) ) ) ) ) </s>
+
 <s> where is the lowest point in the us </s>===<s> lambda $0 e ( loc:t ( argmin $1 ( and ( place:t $1 ) ( loc:t $1 usa:co ) ) ( elevation:i $1 ) ) $0 ) </s>
+
 <s> what are the major cities in oklahoma </s>===<s> lambda $0 e ( and ( major:t $0 ) ( city:t $0 ) ( loc:t $0 oklahoma:s ) ) </s>
+
 <s> which state has the smallest area that borders texas </s>===<s> argmin $0 ( and ( state:t $0 ) ( next_to:t $0 texas:s ) ) ( area:i $0 ) </s>
+
 <s> what is the capital of the state with the highest elevation </s>===<s> capital:c ( argmax $1 ( state:t $1 ) ( elevation:i $1 ) ) </s>
+
 <s> what states does the mississippi run through </s>===<s> lambda $0 e ( and ( state:t $0 ) ( loc:t mississippi_river:r $0 ) ) </s>
+
 <s> where is mount whitney located </s>===<s> lambda $0 e ( loc:t mount_whitney:m $0 ) </s>
+
 <s> which state has the largest density </s>===<s> argmax $0 ( state:t $0 ) ( density:i $0 ) </s>
+
 <s> what is the smallest city in washington </s>===<s> argmin $0 ( and ( city:t $0 ) ( loc:t $0 washington:s ) ) ( size:i $0 ) </s>
+
 <s> what are the major cities in new mexico </s>===<s> lambda $0 e ( and ( major:t $0 ) ( city:t $0 ) ( loc:t $0 new_mexico:s ) ) </s>
+
 <s> how many people live in the capital of georgia </s>===<s> population:i ( capital:c georgia:s ) </s>
+
 <s> what state which the mississippi runs through has the largest population </s>===<s> argmax $0 ( and ( state:t $0 ) ( loc:t mississippi_river:r $0 ) ) ( population:i $0 ) </s>
+
 <s> state the state with the largest area </s>===<s> argmax $0 ( state:t $0 ) ( area:i $0 ) </s>
+
 <s> how many people live in riverside </s>===<s> population:i riverside_ca:c </s>
+
 <s> what is the area of seattle </s>===<s> area:i seattle_wa:c </s>
+
 <s> what capital has the largest population </s>===<s> argmax $0 ( capital:t $0 ) ( population:i $0 ) </s>
+
 <s> what is the capital of the state that borders the most states </s>===<s> capital:c ( argmax $1 ( state:t $1 ) ( count $2 ( and ( state:t $2 ) ( next_to:t $1 $2 ) ) ) ) </s>
+
 <s> how many rivers run through the states bordering colorado </s>===<s> count $0 ( and ( river:t $0 ) ( exists $1 ( and ( state:t $1 ) ( next_to:t $1 colorado:s ) ( loc:t $0 $1 ) ) ) ) </s>
+
 <s> what are the cities in california </s>===<s> lambda $0 e ( and ( city:t $0 ) ( loc:t $0 california:s ) ) </s>
+
 <s> what state is austin the capital of </s>===<s> lambda $0 e ( and ( state:t $0 ) ( capital:t $0 austin_tx:c ) ) </s>
+
 <s> how many people live in kansas </s>===<s> population:i kansas:s </s>
+
 <s> what state borders the least states </s>===<s> argmin $0 ( state:t $0 ) ( count $1 ( and ( state:t $1 ) ( next_to:t $0 $1 ) ) ) </s>
+
 <s> which states border south dakota </s>===<s> lambda $0 e ( and ( state:t $0 ) ( next_to:t $0 south_dakota:s ) ) </s>
+
 <s> name the rivers in arkansas </s>===<s> lambda $0 e ( and ( river:t $0 ) ( loc:t $0 arkansas:s ) ) </s>
+
 <s> how long is the mississippi river in miles </s>===<s> len:i mississippi_river:r </s>
+
 <s> what is the shortest river in the us </s>===<s> argmin $0 ( and ( river:t $0 ) ( loc:t $0 usa:co ) ) ( len:i $0 ) </s>
+
 <s> what is the biggest city in usa </s>===<s> argmax $0 ( and ( city:t $0 ) ( loc:t $0 usa:co ) ) ( size:i $0 ) </s>
+
 <s> what is the capital of washington </s>===<s> capital:c washington:s </s>
+
 <s> how many cities are in montana </s>===<s> count $0 ( and ( city:t $0 ) ( loc:t $0 montana:s ) ) </s>
+
 <s> what is the capital of the state texas </s>===<s> capital:c texas:s </s>
+
 <s> what is the height of mount mckinley </s>===<s> elevation:i mount_mckinley:m </s>
+
 <s> what is the city with the smallest population </s>===<s> argmin $0 ( city:t $0 ) ( population:i $0 ) </s>
+
 <s> what is the biggest state in the usa </s>===<s> argmax $0 ( and ( state:t $0 ) ( loc:t $0 usa:co ) ) ( size:i $0 ) </s>
+
 <s> how many major cities are in states bordering utah </s>===<s> count $0 ( and ( major:t $0 ) ( city:t $0 ) ( exists $1 ( and ( state:t $1 ) ( next_to:t $1 utah:s ) ( loc:t $0 $1 ) ) ) ) </s>
+
 <s> how many states border tennessee </s>===<s> count $0 ( and ( state:t $0 ) ( next_to:t $0 tennessee:s ) ) </s>
+
 <s> what states does the ohio river go through </s>===<s> lambda $0 e ( and ( state:t $0 ) ( loc:t ohio_river:r $0 ) ) </s>
+
 <s> what is the longest river in the smallest state in the usa </s>===<s> argmax $0 ( and ( river:t $0 ) ( loc:t $0 ( argmin $1 ( and ( state:t $1 ) ( loc:t $1 usa:co ) ) ( size:i $1 ) ) ) ) ( len:i $0 ) </s>
+
 <s> what is the smallest state by area </s>===<s> argmin $0 ( state:t $0 ) ( area:i $0 ) </s>
+
 <s> what is the population of the capital of the largest state through which the mississippi runs </s>===<s> population:i ( capital:c ( argmax $1 ( and ( state:t $1 ) ( loc:t mississippi_river:r $1 ) ) ( size:i $1 ) ) ) </s>
+
 <s> what is the population of boston massachusetts </s>===<s> population:i boston_ma:c </s>
+
 <s> what cities in california </s>===<s> lambda $0 e ( and ( city:t $0 ) ( loc:t $0 california:s ) ) </s>
+
 <s> how big is the city of new york </s>===<s> size:i new_york_ny:c </s>
+
 <s> what state has the most cities </s>===<s> argmax $0 ( state:t $0 ) ( count $1 ( and ( city:t $1 ) ( loc:t $1 $0 ) ) ) </s>
+
 <s> what is the longest river </s>===<s> argmax $0 ( river:t $0 ) ( len:i $0 ) </s>
+
 <s> name the 50 capitals in the usa </s>===<s> lambda $0 e ( and ( capital:t $0 ) ( loc:t $0 usa:co ) ) </s>
+
 <s> what is the capital of the state that borders the state that borders texas </s>===<s> capital:c ( the $1 ( and ( state:t $1 ) ( next_to:t ( the $2 ( and ( state:t $2 ) ( next_to:t $2 texas:s ) ) ) $1 ) ) ) </s>
+
 <s> which state has the red river </s>===<s> lambda $0 e ( and ( state:t $0 ) ( loc:t red_river:r $0 ) ) </s>
+
 <s> how many people live in chicago </s>===<s> population:i chicago_il:c </s>
+
 <s> what is the smallest city in alaska </s>===<s> argmin $0 ( and ( city:t $0 ) ( loc:t $0 alaska:s ) ) ( size:i $0 ) </s>
+
 <s> list the states </s>===<s> lambda $0 e ( state:t $0 ) </s>
+
 <s> what is the biggest city in georgia </s>===<s> argmax $0 ( and ( city:t $0 ) ( loc:t $0 georgia:s ) ) ( size:i $0 ) </s>
+
 <s> what states border states which the mississippi runs through </s>===<s> lambda $0 e ( and ( state:t $0 ) ( exists $1 ( and ( state:t $1 ) ( loc:t mississippi_river:r $1 ) ( next_to:t $0 $1 ) ) ) ) </s>
+
 <s> how many cities are there in the us </s>===<s> count $0 ( and ( city:t $0 ) ( loc:t $0 usa:co ) ) </s>
+
 <s> how big is texas </s>===<s> size:i texas:s </s>
+
 <s> what is the height of the highest point in the usa </s>===<s> elevation:i ( argmax $0 ( and ( place:t $0 ) ( loc:t $0 usa:co ) ) ( elevation:i $0 ) ) </s>
+
 <s> what are the populations of the states through which the mississippi runs </s>===<s> lambda $0 e ( exists $1 ( and ( state:t $1 ) ( loc:t mississippi_river:r $1 ) ( population:t $1 $0 ) ) ) </s>
+
 <s> what state has the smallest population </s>===<s> argmin $0 ( state:t $0 ) ( population:i $0 ) </s>
+
 <s> how many states border texas </s>===<s> count $0 ( and ( state:t $0 ) ( next_to:t $0 texas:s ) ) </s>
+
 <s> which states do colorado river flow through </s>===<s> lambda $0 e ( and ( state:t $0 ) ( loc:t colorado_river:r $0 ) ) </s>
+
 <s> what is the highest point in texas </s>===<s> argmax $0 ( and ( place:t $0 ) ( loc:t $0 texas:s ) ) ( elevation:i $0 ) </s>
+
 <s> what is the longest river in california </s>===<s> argmax $0 ( and ( river:t $0 ) ( loc:t $0 california:s ) ) ( len:i $0 ) </s>
+
 <s> what is the length of the river that runs through the most number of states </s>===<s> len:i ( argmax $0 ( river:t $0 ) ( count $1 ( and ( state:t $1 ) ( loc:t $0 $1 ) ) ) ) </s>
+
 <s> what is the most populous state in the us </s>===<s> argmax $0 ( and ( state:t $0 ) ( loc:t $0 usa:co ) ) ( population:i $0 ) </s>
+
 <s> what is the capital of georgia </s>===<s> capital:c georgia:s </s>
+
 <s> what is the average population of the us by state </s>===<s> density:i usa:co </s>
+
 <s> what is the area of new mexico </s>===<s> area:i new_mexico:s </s>
+
 <s> what is the longest river in texas </s>===<s> argmax $0 ( and ( river:t $0 ) ( loc:t $0 texas:s ) ) ( len:i $0 ) </s>
+
 <s> how many major cities are there </s>===<s> count $0 ( and ( major:t $0 ) ( city:t $0 ) ) </s>
+
 <s> how many rivers are in the state with the largest population </s>===<s> count $0 ( and ( river:t $0 ) ( loc:t $0 ( argmax $1 ( state:t $1 ) ( population:i $1 ) ) ) ) </s>
+
 <s> what is the major cities in montana </s>===<s> lambda $0 e ( and ( major:t $0 ) ( city:t $0 ) ( loc:t $0 montana:s ) ) </s>
+
 <s> what is the population of the major cities in wisconsin </s>===<s> population:i ( the $0 ( and ( major:t $0 ) ( loc:t $0 wisconsin:s ) ( city:t $0 ) ) ) </s>
+
 <s> which states does not border texas </s>===<s> lambda $0 e ( and ( state:t $0 ) ( not ( next_to:t $0 texas:s ) ) ) </s>
+
 <s> what river traverses the most states </s>===<s> argmax $0 ( river:t $0 ) ( count $1 ( and ( state:t $1 ) ( loc:t $0 $1 ) ) ) </s>
+
 <s> what is the state with the lowest population density </s>===<s> argmin $0 ( state:t $0 ) ( density:i $0 ) </s>
+
 <s> what states does the missouri river run through </s>===<s> lambda $0 e ( and ( state:t $0 ) ( loc:t missouri_river:r $0 ) ) </s>
+
 <s> how many rivers are in colorado </s>===<s> count $0 ( and ( river:t $0 ) ( loc:t $0 colorado:s ) ) </s>
+
 <s> what is the shortest river in iowa </s>===<s> argmin $0 ( and ( river:t $0 ) ( loc:t $0 iowa:s ) ) ( len:i $0 ) </s>
+
 <s> what states border states that the mississippi runs through </s>===<s> lambda $0 e ( and ( state:t $0 ) ( exists $1 ( and ( state:t $1 ) ( loc:t mississippi_river:r $1 ) ( next_to:t $0 $1 ) ) ) ) </s>
+
 <s> how many people are there in new york </s>===<s> population:i new_york:s </s>
+
 <s> what is the city in texas with the largest population </s>===<s> argmax $0 ( and ( city:t $0 ) ( loc:t $0 texas:s ) ) ( population:i $0 ) </s>
+
 <s> what is the highest elevation in new mexico </s>===<s> argmax $0 ( and ( place:t $0 ) ( loc:t $0 new_mexico:s ) ) ( elevation:i $0 ) </s>
+
 <s> what is the highest point in the united states </s>===<s> argmax $0 ( and ( place:t $0 ) ( loc:t $0 usa:co ) ) ( elevation:i $0 ) </s>
+
 <s> what is the population of the state with the largest area </s>===<s> population:i ( argmax $0 ( state:t $0 ) ( area:i $0 ) ) </s>
+
 <s> where is baton rouge </s>===<s> lambda $0 e ( loc:t baton_rouge_la:c $0 ) </s>
+
 <s> what states in the united states have a city of springfield </s>===<s> lambda $0 e ( and ( state:t $0 ) ( loc:t $0 usa:co ) ( exists $1 ( and ( city:t $1 ) ( named:t $1 springfield:n ) ( loc:t $1 $0 ) ) ) ) </s>
+
 <s> how many cities are in louisiana </s>===<s> count $0 ( and ( city:t $0 ) ( loc:t $0 louisiana:s ) ) </s>
+
 <s> how many states are in the united states </s>===<s> count $0 ( and ( state:t $0 ) ( loc:t $0 usa:co ) ) </s>
+
 <s> what rivers run through louisiana </s>===<s> lambda $0 e ( and ( river:t $0 ) ( loc:t $0 louisiana:s ) ) </s>
+
 <s> how many people live in the state with the largest population density </s>===<s> population:i ( argmax $0 ( state:t $0 ) ( density:i $0 ) ) </s>
+
 <s> what is the state with the highest elevation in the united states </s>===<s> lambda $0 e ( and ( state:t $0 ) ( loc:t ( argmax $1 ( and ( place:t $1 ) ( loc:t $1 usa:co ) ) ( elevation:i $1 ) ) $0 ) ) </s>
+
 <s> what state borders most other states </s>===<s> argmax $0 ( state:t $0 ) ( count $1 ( and ( state:t $1 ) ( next_to:t $0 $1 ) ) ) </s>
+
 <s> which states adjoin alabama </s>===<s> lambda $0 e ( and ( state:t $0 ) ( next_to:t $0 alabama:s ) ) </s>
+
 <s> what is the length of the colorado river in texas </s>===<s> len:i colorado_river:r </s>
+
 <s> what state has the highest population </s>===<s> argmax $0 ( state:t $0 ) ( population:i $0 ) </s>
+
 <s> what is the state that contains the highest point </s>===<s> lambda $0 e ( and ( state:t $0 ) ( loc:t ( argmax $1 ( place:t $1 ) ( elevation:i $1 ) ) $0 ) ) </s>
+
 <s> what is the population density of south dakota </s>===<s> density:i south_dakota:s </s>
+
 <s> what states have cities named austin </s>===<s> lambda $0 e ( and ( state:t $0 ) ( exists $1 ( and ( city:t $1 ) ( named:t $1 austin:n ) ( loc:t $1 $0 ) ) ) ) </s>
+
 <s> how many people live in montana </s>===<s> population:i montana:s </s>
+
