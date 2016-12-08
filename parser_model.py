@@ -32,7 +32,7 @@ class BaseParseModel(object):
 
         # Create LSTM cell
         print("\tCreating Cell")
-        single_cell = tf.nn.rnn_cell.LSTMCell(config.layer_size, initializer=tf.random_uniform_initializer(minval=-1*config.initialize_width,maxval=config.initialize_width))
+        single_cell = tf.nn.rnn_cell.LSTMCell(config.layer_size, initializer=tf.random_uniform_initializer(minval=-1*config.initialize_width,maxval=config.initialize_width), state_is_tuple=False)
         single_cell = tf.nn.rnn_cell.DropoutWrapper(single_cell, output_keep_prob=self.keep_prob_input)
         cell = single_cell
         if config.num_layers > 1:
