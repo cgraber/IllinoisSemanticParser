@@ -10,7 +10,7 @@ import config, data_utils, parser_model
 parser = argparse.ArgumentParser()
 parser.add_argument('-lr', '--learning_rate', type=float, default=0.5,
                     help='Learning rate.')
-parser.add_argument('-lrdf', '--learning_rate_decay_factor', type=float, default=0.99,
+parser.add_argument('-lrdf', '--learning_rate_decay_factor', type=float, default=0.9,
                     help='Learning rate decays by this much.')
 parser.add_argument('-mgn', '--max_gradient-norm', type=float, default=5.0,
                     help='Clip gradients to this norm.')
@@ -24,10 +24,8 @@ parser.add_argument('-td', '--train_dir', default="./tmp",
                     help='Training directory')
 parser.add_argument('-mtds', '--max_train_data_size', type=int, default=0,
                     help='Limit on the size of training data (0: no limit).')
-parser.add_argument('-spc', '--steps_per_checkpoint', type=int, default=50,
-                    help='How many training steps to do per checkpoint.')
-parser.add_argument('-esp', '--early_stopping_patience', type=int, default=500,
-                    help='How many rounds to wait until early stopping is enforced.')
+parser.add_argument('-esp', '--early_stopping_patience', type=int, default=5,
+                    help='How many epochs to wait until early stopping is enforced.')
 parser.add_argument('-nf', '--num_folds', type=int, default=10,
                     help='Number of folds for cross-validation')
 parser.add_argument('mode', choices=['train', 'test'],
@@ -56,7 +54,7 @@ def create_model(session, conf, train_data):
     session.run(tf.initialize_all_variables())
     return model
 
-def train(sess, train_data, validation_data, conf, num_steps = None):
+def train(sess, train_data, validation_data, conf, num_epochs = None):
     print("Preparing model...")
     model = create_model(sess, conf, train_data)    
     checkpoint_dir = os.path.join(FLAGS.train_dir, conf.get_dir())
@@ -71,22 +69,22 @@ def train(sess, train_data, validation_data, conf, num_steps = None):
     best_validation_loss = float("inf")
     best_validation_acc = 0.0
     best_validation_sentence_acc = 0.0
-    best_validation_step = 0
+    best_validation_epoch = 0
     print("Starting training")
     sys.stdout.flush()
     perfect_count = 0
-    while not num_steps or current_step < num_steps:
+    epoch_count = 0
+    while not num_epochs or current_epoch < num_epochs:
 
         # Get a batch and make a step.
-        start_time = time.time()
         entries, step_loss, step_outputs = model.step(sess, False)
-        step_time += (time.time() - start_time) / FLAGS.steps_per_checkpoint
-        loss += step_loss / FLAGS.steps_per_checkpoint
+        loss += step_loss
         current_step += 1
 
         # Once in a while, we save checkpoint, print statistics, and run evals
-        if current_step % FLAGS.steps_per_checkpoint == 0:
-
+        if model.complete_epoch:
+            epoch_count += 1
+            model.complete_epoch = False
             if not num_steps:
                 # Check early stopping condition
                 #print("LAST BATCH:")
@@ -98,22 +96,22 @@ def train(sess, train_data, validation_data, conf, num_steps = None):
                 else:
                     perfect_count = 0
 
-                print("global step %s learning rate %.4f step-time %.2f training loss %.4f validation loss %.4f validation total acc %.4f validation sent acc %.4f" %
-                    (current_step, model.learning_rate.eval(),
-                     step_time, step_loss, validation_loss, validation_total_acc, validation_sentence_acc))
+                print("Epoch %s learning rate %.4f training loss %.4f validation loss %.4f validation total acc %.4f validation sent acc %.4f" %
+                    (epoch_count, model.learning_rate.eval(),
+                     step_loss, validation_loss, validation_total_acc, validation_sentence_acc))
                 if validation_sentence_acc > best_validation_sentence_acc or (validation_sentence_acc == best_validation_sentence_acc and validation_loss < best_validation_loss):
                     best_validation_loss = validation_loss
-                    best_validation_step = current_step
+                    best_validation_epoch = epoch_count
                     best_validation_acc = validation_total_acc
                     best_validation_sentence_acc = validation_sentence_acc
                     model.saver.save(sess, checkpoint_path, global_step=model.global_step)
-                if current_step - best_validation_step >= FLAGS.early_stopping_patience or perfect_count == 5:
+                if epoch_count - best_validation_epoch >= FLAGS.early_stopping_patience or perfect_count == 5:
                     print("Early stopping triggered. Restoring previous model")
                     ckpt = tf.train.get_checkpoint_state(checkpoint_dir)
                     model.saver.restore(sess, ckpt.model_checkpoint_path)
-                    return model, best_validation_step
+                    return model, best_validation_epoch
             else:
-                print("\tIteration %d of %d"%(current_step, num_steps))
+                print("\tEpoch %d of %d"%(current_epoch, num_epochs))
             # Decrease learning rate if no improvement was seen over last 3 times.
             if len(previous_losses) > 2 and loss > max(previous_losses[-3:]):
                 sess.run(model.learning_rate_decay_op)
@@ -123,7 +121,7 @@ def train(sess, train_data, validation_data, conf, num_steps = None):
             # Save checkpoint and zero timer and loss
             step_time, loss = 0.0, 0.0
             sys.stdout.flush()
-    return model, num_steps
+    return model, num_epochs
 
 def test(sess, test_data, model, dump_results=False):
     _, loss, output_logits = model.step(sess, True, test_data)

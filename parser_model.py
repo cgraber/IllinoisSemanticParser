@@ -29,6 +29,7 @@ class BaseParseModel(object):
         self.logic_to_id = config.logic_to_id
         self.id_to_words = config.id_to_words
         self.id_to_logic = config.id_to_logic
+        self.complete_epoch = False
 
         # Create LSTM cell
         print("\tCreating Cell")
@@ -94,6 +95,9 @@ class BaseParseModel(object):
                 if self.batch_ind == len(self.train_data):
                     self.batch_ind = 0
                     random.shuffle(self.train_data)
+                    batch_size = len(batch)
+                    self.complete_epoch = True
+                    break
                 batch.append(self.train_data[self.batch_ind])
                 self.batch_ind += 1
         num_sentences = max(map(len, batch))
