@@ -100,6 +100,10 @@ class BaseParseModel(object):
                     break
                 batch.append(self.train_data[self.batch_ind])
                 self.batch_ind += 1
+            if self.batch_ind == len(self.train_data):
+                self.batch_ind = 0
+                random.shuffle(self.train_data)
+                self.complete_epoch = True
         num_sentences = max(map(len, batch))
         encoder_inputs, decoder_inputs = [], []
         for i in xrange(num_sentences):

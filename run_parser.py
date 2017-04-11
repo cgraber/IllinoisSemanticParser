@@ -85,7 +85,7 @@ def train(sess, train_data, validation_data, conf, num_epochs = None):
         if model.complete_epoch:
             epoch_count += 1
             model.complete_epoch = False
-            if not num_steps:
+            if not num_epochs:
                 # Check early stopping condition
                 #print("LAST BATCH:")
                 temp_loss, temp_total_acc, temp_sentence_acc = test(sess, entries, model)
