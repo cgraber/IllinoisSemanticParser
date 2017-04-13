@@ -614,7 +614,7 @@ class CompositeShape(object):
                 newLogic += [newEnumLogic%(shape.var, newBlockVar)]
                 #newLogic += ["row-ind(%s, %s, %d)"%(shape.var, newBlockVar, newRow), "col-ind(%s, %s, %d)"%(shape.var, newBlockVar, newCol)]
                 newLogic += ["block(%s)"%oldBlockVar, "location(%s)"%oldSpaceVar]
-                newLogic += ["block-location(%s, %s)"%(oldBlockVar, oldSpaceVar), oldEnumLogic%(old.var, oldBlockVar)]
+                newLogic += ["block-location(%s, %s)"%(oldBlockVar, oldSpaceVar)]
                 newLogic += [oldEnumLogic%(old.var,oldBlockVar)]
                 #newLogic += ["row-ind(%s, %s, %d)"%(old.var, oldBlockVar, oldRow), "col-ind(%s, %s, %d)"%(old.var, oldBlockVar, oldCol)]
                 newLogic.append("spatial-rel(south, 0, %s, %s)"%(oldSpaceVar, newSpaceVar))
