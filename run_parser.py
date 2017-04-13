@@ -74,7 +74,7 @@ def train(sess, train_data, validation_data, conf, num_epochs = None):
     sys.stdout.flush()
     perfect_count = 0
     epoch_count = 0
-    while not num_epochs or current_epoch < num_epochs:
+    while not num_epochs or epoch_count < num_epochs:
 
         # Get a batch and make a step.
         entries, step_loss, step_outputs = model.step(sess, False)
@@ -98,7 +98,7 @@ def train(sess, train_data, validation_data, conf, num_epochs = None):
 
                 print("Epoch %s learning rate %.4f training loss %.4f validation loss %.4f validation total acc %.4f validation sent acc %.4f" %
                     (epoch_count, model.learning_rate.eval(),
-                     step_loss, validation_loss, validation_total_acc, validation_sentence_acc))
+                     loss, validation_loss, validation_total_acc, validation_sentence_acc))
                 if validation_sentence_acc > best_validation_sentence_acc or (validation_sentence_acc == best_validation_sentence_acc and validation_loss < best_validation_loss):
                     best_validation_loss = validation_loss
                     best_validation_epoch = epoch_count
@@ -111,7 +111,7 @@ def train(sess, train_data, validation_data, conf, num_epochs = None):
                     model.saver.restore(sess, ckpt.model_checkpoint_path)
                     return model, best_validation_epoch
             else:
-                print("\tEpoch %d of %d"%(current_epoch, num_epochs))
+                print("\tEpoch %d of %d"%(epoch_count, num_epochs))
             # Decrease learning rate if no improvement was seen over last 3 times.
             if len(previous_losses) > 2 and loss > max(previous_losses[-3:]):
                 sess.run(model.learning_rate_decay_op)
@@ -121,7 +121,7 @@ def train(sess, train_data, validation_data, conf, num_epochs = None):
             # Save checkpoint and zero timer and loss
             step_time, loss = 0.0, 0.0
             sys.stdout.flush()
-    return model, num_epochs
+    return model, epoch_count
 
 def test(sess, test_data, model, dump_results=False):
     _, loss, output_logits = model.step(sess, True, test_data)
