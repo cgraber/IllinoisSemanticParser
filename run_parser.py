@@ -5,7 +5,7 @@ from __future__ import print_function
 import numpy as np
 import tensorflow as tf
 import os, sys, time, random, argparse, pickle
-import config, data_utils, parser_model
+import config, data_utils, parser_model, pointer_parser_model
 
 parser = argparse.ArgumentParser()
 parser.add_argument('-lr', '--learning_rate', type=float, default=0.5,
