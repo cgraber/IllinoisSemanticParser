@@ -68,7 +68,10 @@ def _file_to_ids(filename, token_to_id):
             for k in xrange(len(data[i][j][0])):
                 data[i][j][0][k] = token_to_id[0][data[i][j][0][k]]
             for k in xrange(len(data[i][j][1])):
-                data[i][j][1][k] = token_to_id[1][data[i][j][1][k]]
+                if data[i][j][1][k] in token_to_id[1]:
+                    data[i][j][1][k] = token_to_id[1][data[i][j][1][k]]
+                else:
+                    data[i][j][1][k] = len(token_to_id[1])+k
     return data
 
 def load_raw_text(path):
