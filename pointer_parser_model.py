@@ -102,6 +102,8 @@ class BasePointerParseModel(object):
                 self.batch_ind = 0
                 random.shuffle(self.train_data)
                 self.complete_epoch = True
+        print "\tBatch ind: %d out of %d"%(self.batch_ind,
+                len(self.train_data))
         num_sentences = max(map(len, batch))
         encoder_inputs, decoder_inputs = [], []
         for i in xrange(num_sentences):
@@ -403,28 +405,11 @@ def embedding_attention_pointer_seq2seq_states(encoder_inputs,
         return outputs, encoder_initial_state, encoder_state, (true_decoder_state, false_decoder_state)
 
 def _embed_decoder(inp, embedding, attention_states):
-    batch_size = tf.shape(inp)[0]
-    embedding_size = tf.shape(embedding)[0]
-    i = tf.constant(0)
-    result_list = tf.TensorArray(tf.float32, size=batch_size)
-    while_cond = lambda i,_: tf.less(i, batch_size)
-
-    def while_body(i, result_list):
-        ind = tf.slice(inp, [i], [1])[0]
-        def f1():
-            # Note that gradients will not propagate through the second
-            # parameter of embedding_lookup
-            emb_prev = embedding_ops.embedding_lookup(embedding, ind)
-            return emb_prev
-        def f2():
-            new_ind = tf.to_int32(tf.sub(ind, embedding_size))
-            return tf.squeeze(tf.slice(attention_states, [i, new_ind, 0],
-                [1,1,-1]))
-        
-        result_list = result_list.write(i, tf.cond(ind < embedding_size, f1, f2))
-        return [tf.add(i, 1), result_list]
-    final_i, final_list = tf.while_loop(while_cond, while_body, [i, result_list])
-    return final_list.pack()
+    def map_body(data):
+        inp, attention_states = data
+        return tf.nn.embedding_lookup(tf.concat(0, [embedding, attention_states]),
+                inp)
+    return tf.map_fn(map_body, (inp, attention_states),dtype=tf.float32)
 
 
 
@@ -437,30 +422,7 @@ def _extract_argmax_and_embed_ptr(embedding, attention_states, output_projection
                     prev, output_projection[0], output_projection[1])
         #prev = tf.reshape(prev, [20, 193])
         prev_symbol = math_ops.argmax(prev, 1)
-        batch_size = tf.shape(prev_symbol)[0]
-        embedding_size = tf.to_int64(tf.shape(embedding))[0]
-        i = tf.constant(0)
-        result_list = tf.TensorArray(tf.float32, size=batch_size)
-        while_cond = lambda i,_: tf.less(i, batch_size)
-
-        def while_body(i, result_list):
-            ind = tf.slice(prev_symbol, [i], [1])[0]
-            def f1():
-                # Note that gradients will not propagate through the second
-                # parameter of embedding_lookup
-                emb_prev = embedding_ops.embedding_lookup(embedding, ind)
-                if not update_embedding:
-                    emb_prev = array_ops.stop_gradient(emb_prev)
-                return emb_prev
-            def f2():
-                new_ind = tf.to_int32(tf.sub(ind, embedding_size))
-                return tf.squeeze(tf.slice(attention_states, [i, new_ind, 0],
-                    [1,1,-1]))
-            
-            result_list = result_list.write(i, tf.cond(ind < embedding_size, f1, f2))
-            return [tf.add(i, 1), result_list]
-        final_i, final_list = tf.while_loop(while_cond, while_body, [i, result_list])
-        return final_list.pack()
+        return _embed_decoder(prev_symbol, embedding, attention_states)
     return loop_function
 
 def embedding_attention_decoder_ptr(decoder_inputs,
