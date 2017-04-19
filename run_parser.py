@@ -49,7 +49,7 @@ def load_data():
 
 def create_model(session, conf, train_data):
     """Create model and initialize or load parameters in session."""
-    model = parser_model.MultiSentParseModel(conf, train_data)
+    model = pointer_parser_model.MultiSentPointerParseModel(conf, train_data)
     print("Created model with fresh parameters.")
     session.run(tf.initialize_all_variables())
     return model

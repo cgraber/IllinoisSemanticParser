@@ -122,8 +122,8 @@ class BasePointerParseModel(object):
                     # modified input
                     decoder_pad = [data_utils.PAD_ID] * (self.decoder_size - len(decoder_input))
                     ind = len(data_utils.logic_to_id)
-                    decoder_input = map(lambda x: ind + self.encoder_size - (x - ind) - 1 : x if x >= ind
-                            else decoder_input)
+                    decoder_input = map(lambda x: ind + self.encoder_size - (x - ind) - 1  if x >= ind
+                            else x, decoder_input)
                     decoder_inputs[sent_ind].append(decoder_input + decoder_pad)
                 else:
                     # No sentence here. PAD EVERYTHING
@@ -402,6 +402,33 @@ def embedding_attention_pointer_seq2seq_states(encoder_inputs,
                                         lambda: false_outputs)
         return outputs, encoder_initial_state, encoder_state, (true_decoder_state, false_decoder_state)
 
+def _embed_decoder(inp, embedding, attention_states):
+    batch_size = tf.shape(inp)[0]
+    embedding_size = tf.shape(embedding)[0]
+    i = tf.constant(0)
+    result_list = tf.TensorArray(tf.float32, size=batch_size)
+    while_cond = lambda i,_: tf.less(i, batch_size)
+
+    def while_body(i, result_list):
+        ind = tf.slice(inp, [i], [1])[0]
+        def f1():
+            # Note that gradients will not propagate through the second
+            # parameter of embedding_lookup
+            emb_prev = embedding_ops.embedding_lookup(embedding, ind)
+            return emb_prev
+        def f2():
+            new_ind = tf.to_int32(tf.sub(ind, embedding_size))
+            return tf.squeeze(tf.slice(attention_states, [i, new_ind, 0],
+                [1,1,-1]))
+        
+        result_list = result_list.write(i, tf.cond(ind < embedding_size, f1, f2))
+        return [tf.add(i, 1), result_list]
+    final_i, final_list = tf.while_loop(while_cond, while_body, [i, result_list])
+    return final_list.pack()
+
+
+
+
 def _extract_argmax_and_embed_ptr(embedding, attention_states, output_projection=None,
                                   update_embedding = True):
     def loop_function(prev, _):
@@ -464,7 +491,7 @@ def embedding_attention_decoder_ptr(decoder_inputs,
                 embedding, attention_states, output_projection,
                 update_embedding_for_previous) if feed_previous else None
         emb_inp = [
-                embedding_ops.embedding_lookup(embedding, i) for i in
+                _embed_decoder(inp, embedding, attention_states) for inp in
                 decoder_inputs]
         return attention_decoder_ptr(
                 emb_inp,
