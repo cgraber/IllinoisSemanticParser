@@ -56,19 +56,22 @@ class BasePointerParseModel(object):
         targets = [self.decoder_inputs[i + 1]
                    for i in xrange(len(self.decoder_inputs) - 1)]
 
-        self.outputs, self.encoder_initial_state, self.encoder_final_state, decoder_states = embedding_attention_pointer_seq2seq_states(
+        outputs, self.encoder_initial_state, self.encoder_final_state, decoder_states = embedding_attention_pointer_seq2seq_states(
             self.encoder_inputs, self.decoder_inputs, cell, self.source_vocab_size, self.target_vocab_size, 
-            config.layer_size, feed_previous=self.is_test)
+            config.layer_size, self.batch_size, feed_previous=self.is_test)
         self.train_decoder_states = decoder_states[1]
         self.test_decoder_states = decoder_states[0]
+        self.train_outputs = outputs[1]
+        self.test_outputs = outputs[0]
 
-        self.loss = tf.nn.seq2seq.sequence_loss(self.outputs[:-1], targets, self.target_weights[:-1])
+        self.train_loss = tf.nn.seq2seq.sequence_loss(self.train_outputs[:-1], targets, self.target_weights[:-1])
+        self.test_loss = tf.nn.seq2seq.sequence_loss(self.test_outputs[:-1], targets, self.target_weights[:-1])
 
         params = tf.trainable_variables()
         opt = tf.train.AdagradOptimizer(self.learning_rate) 
 
         print("\tCreating gradients")
-        gradients = tf.gradients(self.loss, params)
+        gradients = tf.gradients(self.train_loss, params)
         clipped_gradients, self.gradient_norm = tf.clip_by_global_norm(gradients, config.max_gradient)
         self.update = opt.apply_gradients(zip(clipped_gradients, params))
         self.saver = tf.train.Saver(tf.all_variables())
@@ -102,8 +105,8 @@ class BasePointerParseModel(object):
                 self.batch_ind = 0
                 random.shuffle(self.train_data)
                 self.complete_epoch = True
-        print "\tBatch ind: %d out of %d"%(self.batch_ind,
-                len(self.train_data))
+        #print "\tBatch ind: %d out of %d"%(self.batch_ind,
+        #        len(self.train_data))
         num_sentences = max(map(len, batch))
         encoder_inputs, decoder_inputs = [], []
         for i in xrange(num_sentences):
@@ -304,16 +307,16 @@ class MultiSentPointerParseModel(BasePointerParseModel):
                 input_feed[self.encoder_initial_state] = tf.zeros([len(encoder_inputs[sent_ind][0]), self.cell.state_size]).eval()
             if is_test:
                 output_feed = [self.encoder_final_state, 
-                               self.loss]   #Loss for this batch
+                               self.test_loss]   #Loss for this batch
                 for l in xrange(self.decoder_size):  # Output logits
-                    output_feed.append(self.outputs[l])
+                    output_feed.append(self.test_outputs[l])
                 input_feed[self.keep_prob_input] = 1.0
 
             else: 
                 output_feed = [self.encoder_final_state,
                                self.update,  #Update Op that does RMSProp
                                self.gradient_norm,   # Gradient norm
-                               self.loss]   #Loss for this batch
+                               self.train_loss]   #Loss for this batch
                 input_feed[self.keep_prob_input] = self.keep_prob
             outputs.append(session.run(output_feed, input_feed))
             prev_encoder_state = outputs[-1][0]
@@ -349,6 +352,7 @@ def embedding_attention_pointer_seq2seq_states(encoder_inputs,
                                        num_encoder_symbols,
                                        num_decoder_symbols,
                                        embedding_size,
+                                       batch_size,
                                        num_heads = 1,
                                        output_projection=None,
                                        feed_previous=False,
@@ -376,20 +380,26 @@ def embedding_attention_pointer_seq2seq_states(encoder_inputs,
             cell = rnn_cell.OutputProjectionWrapper(cell, num_decoder_symbols)
             output_size = num_decoder_symbols
 
-        if isinstance(feed_previous, bool):
-            raise Exception("feed_previous must be a tensor!")
+        #if isinstance(feed_previous, bool):
+        #    raise Exception("feed_previous must be a tensor!")
         # If feed_previous is a Tensor, we construct 2 graphs and use cond.
         def decoder(feed_previous_bool):
             reuse = None if feed_previous_bool else True
+            if not feed_previous_bool:
+                attention_states_arg = tf.reshape(attention_states, [batch_size,
+                    len(encoder_inputs),embedding_size])
+            else:
+                attention_states_arg = attention_states
             with variable_scope.variable_scope(
                     variable_scope.get_variable_scope(), reuse=reuse) as scope:
                 outputs, decoder_state = embedding_attention_decoder_ptr(
                         decoder_inputs,
                         encoder_state,
-                        attention_states,
+                        attention_states_arg,
                         cell,
                         num_decoder_symbols,
                         embedding_size,
+                        batch_size,
                         num_heads=num_heads,
                         output_size=output_size,
                         output_projection=output_projection,
@@ -399,16 +409,29 @@ def embedding_attention_pointer_seq2seq_states(encoder_inputs,
                 return outputs, decoder_state
         true_outputs, true_decoder_state = decoder(True)
         false_outputs, false_decoder_state = decoder(False)
-        outputs = tf.cond(feed_previous,
-                                        lambda: true_outputs,
-                                        lambda: false_outputs)
-        return outputs, encoder_initial_state, encoder_state, (true_decoder_state, false_decoder_state)
+        return (true_outputs, false_outputs), encoder_initial_state, encoder_state, (true_decoder_state, false_decoder_state)
+
+def _embed_decoder_total(decoder_inputs, embedding, attention_states,
+        batch_size):
+    all_inputs = tf.pack(decoder_inputs)
+
+    all_inputs.set_shape([len(decoder_inputs), batch_size])
+    all_inputs = tf.unpack(all_inputs, axis=1)
+    attention_states = tf.unpack(attention_states)
+    result = []
+    for i in xrange(20):
+        result.append(tf.nn.embedding_lookup(tf.concat(0, [embedding,
+            attention_states[i]]), all_inputs[i]))
+    result = tf.pack(result)
+    result = tf.unpack(tf.transpose(result, perm=[1,0,2]))
+    return result
 
 def _embed_decoder(inp, embedding, attention_states):
     def map_body(data):
         inp, attention_states = data
-        return tf.nn.embedding_lookup(tf.concat(0, [embedding, attention_states]),
+        result = tf.nn.embedding_lookup(tf.concat(0, [embedding, attention_states]),
                 inp)
+        return result
     return tf.map_fn(map_body, (inp, attention_states),dtype=tf.float32)
 
 
@@ -420,7 +443,6 @@ def _extract_argmax_and_embed_ptr(embedding, attention_states, output_projection
         if output_projection is not None:
             prev = nn_ops.xw_plus_b(
                     prev, output_projection[0], output_projection[1])
-        #prev = tf.reshape(prev, [20, 193])
         prev_symbol = math_ops.argmax(prev, 1)
         return _embed_decoder(prev_symbol, embedding, attention_states)
     return loop_function
@@ -431,6 +453,7 @@ def embedding_attention_decoder_ptr(decoder_inputs,
                                 cell,
                                 num_symbols,
                                 embedding_size,
+                                batch_size,
                                 num_heads=1,
                                 output_size=None,
                                 output_projection=None,
@@ -449,12 +472,18 @@ def embedding_attention_decoder_ptr(decoder_inputs,
             scope or "embedding_attention_decoder", dtype=dtype) as scope:
         embedding = variable_scope.get_variable("embedding",
                                                 [num_symbols, embedding_size])
-        loop_function = _extract_argmax_and_embed_ptr(
-                embedding, attention_states, output_projection,
-                update_embedding_for_previous) if feed_previous else None
-        emb_inp = [
-                _embed_decoder(inp, embedding, attention_states) for inp in
-                decoder_inputs]
+        if feed_previous:
+            loop_function = _extract_argmax_and_embed_ptr(
+                    embedding, attention_states, output_projection,
+                    update_embedding_for_previous)
+            emb_inp = [tf.nn.embedding_lookup(embedding, decoder_inputs[0])] + [None]*(len(decoder_inputs)-1)
+        else:
+            loop_function = None
+            emb_inp = _embed_decoder_total(decoder_inputs, embedding,
+                    attention_states, batch_size)
+        #emb_inp = [
+        #        _embed_decoder(inp, embedding, attention_states) for inp in
+        #        decoder_inputs]
         return attention_decoder_ptr(
                 emb_inp,
                 initial_state,

@@ -29,7 +29,8 @@ def _read_words(filename):
         for j in xrange(len(result[i])):
             for k in xrange(len(result[i][j][0])):
                 try:
-                    result[i][j][0][k] = stemmer.stem(result[i][j][0][k]).lower()
+                    #result[i][j][0][k] = stemmer.stem(result[i][j][0][k]).lower()
+                    result[i][j][0][k] = result[i][j][0][k].lower()
                 except:
                     result[i][j][0][k] = result[i][j][0][k].lower()
     return result
@@ -65,13 +66,17 @@ def _file_to_ids(filename, token_to_id):
     data = _read_words(filename)
     for i in xrange(len(data)):
         for j in xrange(len(data[i])):
-            for k in xrange(len(data[i][j][0])):
-                data[i][j][0][k] = token_to_id[0][data[i][j][0][k]]
             for k in xrange(len(data[i][j][1])):
                 if data[i][j][1][k] in token_to_id[1]:
                     data[i][j][1][k] = token_to_id[1][data[i][j][1][k]]
+                elif data[i][j][1][k] in data[i][j][0]:
+                    offset = data[i][j][0].index(data[i][j][1][k])
+                    data[i][j][1][k] = len(token_to_id[1])+offset
                 else:
-                    data[i][j][1][k] = len(token_to_id[1])+k
+                    raise Exception("WORD NOT FOUND IN VOCAB OR IN SENTENCE! WORD: %s; SENTENCE: %s"%(data[i][j][1][k], 
+                    " ".join(data[i][j][0])))
+            for k in xrange(len(data[i][j][0])):
+                data[i][j][0][k] = token_to_id[0][data[i][j][0][k]]
     return data
 
 def load_raw_text(path):
@@ -95,9 +100,23 @@ def load_raw_text(path):
     vocab_size = (len(word_to_id[0]), len(word_to_id[1]))
     return train_data, test_data, vocab_size
 
-def ids_to_logics(id_list):
-    global id_to_logic
-    return map(lambda x: id_to_logic[x], id_list)
+def ids_to_logics(id_list, input_sentence, source_max_len, reverse):
+    global id_to_logic, id_to_words
+    def map_fn(x):
+        if x < len(id_to_logic):
+            return id_to_logic[x]
+        else:
+            if reverse:
+                ind = source_max_len - (x - len(id_to_logic)) - 1
+            else:
+                ind = x - len(id_to_logic)
+            print "x: %d"%x
+            print "source_max_len: %d"%source_max_len
+            print "len(id_to_logic): %d"%len(id_to_logic)
+            print "FOUND IND: %d"%ind
+            return id_to_words[input_sentence[ind]]
+
+    return map(map_fn, id_list)
 
 def ids_to_words(word_list):
     global id_to_words

@@ -102,6 +102,7 @@ class BaseParseModel(object):
                 self.batch_ind = 0
                 random.shuffle(self.train_data)
                 self.complete_epoch = True
+        print "\tbatch_ind %d out of %d"%(self.batch_ind, len(self.train_data))
         num_sentences = max(map(len, batch))
         encoder_inputs, decoder_inputs = [], []
         for i in xrange(num_sentences):

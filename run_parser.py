@@ -88,9 +88,10 @@ def train(sess, train_data, validation_data, conf, num_epochs = None):
             if not num_epochs:
                 # Check early stopping condition
                 #print("LAST BATCH:")
-                temp_loss, temp_total_acc, temp_sentence_acc = test(sess, entries, model)
+                temp_loss, temp_total_acc, temp_sentence_acc = test(sess,
+                        entries, model, conf.source_max_len)
                 #print("VALIDATION:")
-                validation_loss, validation_total_acc, validation_sentence_acc = test(sess, validation_data, model)
+                validation_loss, validation_total_acc, validation_sentence_acc = test(sess, validation_data, model, conf.source_max_len)
                 if validation_sentence_acc == 1.0:
                     perfect_count += 1
                 else:
@@ -123,12 +124,13 @@ def train(sess, train_data, validation_data, conf, num_epochs = None):
             sys.stdout.flush()
     return model, epoch_count
 
-def test(sess, test_data, model, dump_results=False):
+def test(sess, test_data, model, source_max_len, dump_results=False):
     _, loss, output_logits = model.step(sess, True, test_data)
-    total_acc, sentence_acc = evaluate_logits(output_logits, test_data, dump_results)
+    total_acc, sentence_acc = evaluate_logits(output_logits, test_data,
+            source_max_len, dump_results)
     return loss, total_acc, sentence_acc
 
-def evaluate_logits(output_logits, test_data, dump_results=False):
+def evaluate_logits(output_logits, test_data, source_max_len, dump_results=False):
     total_outputs = []
     for sent_ind in xrange(len(output_logits)):
         temp_outputs = [[int(np.argmax(logit)) for logit in output_logit] for output_logit in output_logits[sent_ind]]
@@ -140,6 +142,9 @@ def evaluate_logits(output_logits, test_data, dump_results=False):
                 outputs[i] = None
             elif data_utils.LOGIC_EOS_ID in outputs[i]:
                 outputs[i] = outputs[i][:outputs[i].index(data_utils.LOGIC_EOS_ID)]
+            for ind, val in enumerate(outputs[i]):
+                if val >= len(data_utils.id_to_logic):
+                    outputs[i][ind] = len(data_utils.id_to_logic) + source_max_len - (outputs[i][ind]-len(data_utils.id_to_logic))-1
         total_outputs.append(outputs)
     total_outputs = zip(*total_outputs)
     
@@ -169,8 +174,12 @@ def evaluate_logits(output_logits, test_data, dump_results=False):
         elif dump_results:
             for sent_ind in xrange(len(test_data[entry_ind])):
                 print(' '.join(data_utils.ids_to_words(test_data[entry_ind][sent_ind][0])))
-                print("\tCorrect: "+''.join(data_utils.ids_to_logics(test_data[entry_ind][sent_ind][1][1:-1])))
-                print("\tFound:   "+''.join(data_utils.ids_to_logics(total_outputs[entry_ind][sent_ind])))
+                print("\tCorrect: "+''.join(data_utils.ids_to_logics(test_data[entry_ind][sent_ind][1][1:-1],
+                            test_data[entry_ind][sent_ind][0], source_max_len,
+                            False)))
+                print("\tFound: "+''.join(data_utils.ids_to_logics(total_outputs[entry_ind][sent_ind],
+                            test_data[entry_ind][sent_ind][0], source_max_len,
+                            False)))
     return total_correct/num_entries, sentence_correct/num_sentences
 
 
@@ -213,7 +222,8 @@ def main_train():
     #First, train with held-out data to find number of iterations
     with tf.Session() as sess:
         model, num_steps = train(sess, train_data, validation_data, conf)
-        loss, total_acc, sentence_acc = test(sess, test_data, model)
+        loss, total_acc, sentence_acc = test(sess, train_data, model,
+                source_max_len)
         print("INTERMEDIATE RESULTS:")
         print("  loss         = %0.4f"%loss)
         print("  total_acc    = %0.4f"%total_acc)
@@ -229,14 +239,15 @@ def main_train():
         conf_out = open(os.path.join(FLAGS.train_dir, 'final_model.conf'), 'w')
         pickle.dump(conf, conf_out)
         conf_out.close()
-        loss, total_acc, sentence_acc = test(sess, test_data, model)
+        loss, total_acc, sentence_acc = test(sess, test_data, model,
+                source_max_len)
         print("FINAL RESULTS:")
         print("  loss         = %0.4f"%loss)
         print("  total_acc    = %0.4f"%total_acc)
         print("  sentence_acc = %0.4f"%sentence_acc)
 
 def main_test():
-    _, test_data, (source_vocab_size, target_vocab_size), _, _ = load_data()
+    train_data, test_data, (source_vocab_size, target_vocab_size), source_max_len, _ = load_data()
     test_conf_path = os.path.join(FLAGS.train_dir, 'final_model.conf')
     conf_in = open(test_conf_path, 'r')
     conf = pickle.load(conf_in)
@@ -244,7 +255,8 @@ def main_test():
     with tf.Session() as sess:
         model = create_model(sess, conf, None)
         model.saver.restore(sess, os.path.join(FLAGS.train_dir, 'final_model'))
-        loss, total_acc, sentence_acc = test(sess, test_data, model, True)
+        loss, total_acc, sentence_acc = test(sess, test_data, model,
+                source_max_len, True)
         print("FINAL RESULTS:")
         print("  loss         = %0.4f"%loss)
         print("  total_acc    = %0.4f"%total_acc)
