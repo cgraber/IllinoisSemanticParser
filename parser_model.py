@@ -44,17 +44,17 @@ class BaseParseModel(object):
         self.decoder_inputs = []
         self.target_weights = []
         print("\tCreating input feeds")
-        for i in xrange(self.encoder_size):
+        for i in range(self.encoder_size):
             self.encoder_inputs.append(tf.placeholder(tf.int32, shape=[None],
                                                       name="encoder{0}".format(i)))
-        for i in xrange(self.decoder_size):
+        for i in range(self.decoder_size):
             self.decoder_inputs.append(tf.placeholder(tf.int32, shape=[None],
                                                       name="decoder{0}".format(i)))
             self.target_weights.append(tf.placeholder(tf.float32, shape=[None],
                                                       name="weight{0}".format(i)))
 
         targets = [self.decoder_inputs[i + 1]
-                   for i in xrange(len(self.decoder_inputs) - 1)]
+                   for i in range(len(self.decoder_inputs) - 1)]
 
         self.outputs, self.encoder_initial_state, self.encoder_final_state, decoder_states = embedding_attention_seq2seq_states(
             self.encoder_inputs, self.decoder_inputs, cell, self.source_vocab_size, self.target_vocab_size, 
@@ -89,7 +89,7 @@ class BaseParseModel(object):
         else:
             batch_size = self.batch_size
             batch = []
-            for _ in xrange(batch_size):
+            for _ in range(batch_size):
                 if self.batch_ind == len(self.train_data):
                     self.batch_ind = 0
                     random.shuffle(self.train_data)
@@ -102,16 +102,16 @@ class BaseParseModel(object):
                 self.batch_ind = 0
                 random.shuffle(self.train_data)
                 self.complete_epoch = True
-        print "\tbatch_ind %d out of %d"%(self.batch_ind, len(self.train_data))
+        print("\tbatch_ind %d out of %d"%(self.batch_ind, len(self.train_data)))
         num_sentences = max(map(len, batch))
         encoder_inputs, decoder_inputs = [], []
-        for i in xrange(num_sentences):
+        for i in range(num_sentences):
             encoder_inputs.append([])
             decoder_inputs.append([])
 
         # pad entries if needed, reverse encoder inputs
         for entry in batch:
-            for sent_ind in xrange(num_sentences):
+            for sent_ind in range(num_sentences):
                 if sent_ind < len(entry):
                     encoder_input = entry[sent_ind][0]
                     decoder_input = entry[sent_ind][1]
@@ -128,27 +128,27 @@ class BaseParseModel(object):
 
         # Now we create batch-major vectors from the data selected above
         final_encoder_inputs, final_decoder_inputs, final_weights = [], [], []
-        for sent_ind in xrange(num_sentences):
+        for sent_ind in range(num_sentences):
             batch_encoder_inputs, batch_decoder_inputs, batch_weights = [], [], []
             final_encoder_inputs.append(batch_encoder_inputs)
             final_decoder_inputs.append(batch_decoder_inputs)
             final_weights.append(batch_weights)
 
             # Batch encoder inputs are just re-indexed encoder_inputs.
-            for length_idx in xrange(self.encoder_size):
+            for length_idx in range(self.encoder_size):
                 batch_encoder_inputs.append(
                     np.array([encoder_inputs[sent_ind][batch_idx][length_idx]
-                            for batch_idx in xrange(batch_size)], dtype=np.int32))
+                            for batch_idx in range(batch_size)], dtype=np.int32))
 
             # Batch decoder inputs are re-indexed decoder inputs. We also create weights!
-            for length_idx in xrange(self.decoder_size):
+            for length_idx in range(self.decoder_size):
                 batch_decoder_inputs.append(
                     np.array([decoder_inputs[sent_ind][batch_idx][length_idx]
-                              for batch_idx in xrange(batch_size)], dtype=np.int32))
+                              for batch_idx in range(batch_size)], dtype=np.int32))
 
                 # Create target_weights to be 0 for targets that are padding
                 batch_weight = np.ones(batch_size, dtype=np.float32)
-                for batch_idx in xrange(batch_size):
+                for batch_idx in range(batch_size):
                     # We set weight to 0 if the corresponding target is a PAD symbol.
                     # The corresponding target is decoder_input shifted by 1 forward.
                     if length_idx < self.decoder_size - 1:
@@ -163,22 +163,22 @@ class BaseParseModel(object):
 
     def logits2sentences(self, output_logits):
         total_outputs = []
-        for sent_ind in xrange(len(output_logits)):
+        for sent_ind in range(len(output_logits)):
             temp_outputs = [[int(np.argmax(logit)) for logit in output_logit] for output_logit in output_logits[sent_ind]]
             #Reshape outputs
             outputs = np.array(temp_outputs).T.tolist()
       
-            for i in xrange(len(outputs)):
+            for i in range(len(outputs)):
                 if outputs[i][0] == data_utils.PAD_ID:
                     outputs[i] = None
                 elif self.logic_to_id[data_utils.EOS] in outputs[i]:
                     outputs[i] = outputs[i][:outputs[i].index(self.logic_to_id[data_utils.EOS])]
             total_outputs.append(outputs)
-        total_outputs =  zip(*total_outputs)
-        for entry_ind in xrange(len(total_outputs)):
+        total_outputs =  list(zip(*total_outputs))
+        for entry_ind in range(len(total_outputs)):
             total_outputs[entry_ind] = list(total_outputs[entry_ind])
-            for sent_ind in xrange(len(total_outputs[entry_ind])):
-                total_outputs[entry_ind][sent_ind] = map(lambda x: self.id_to_logic[x], total_outputs[entry_ind][sent_ind])
+            for sent_ind in range(len(total_outputs[entry_ind])):
+                total_outputs[entry_ind][sent_ind] = list(map(lambda x: self.id_to_logic[x], total_outputs[entry_ind][sent_ind]))
         return total_outputs
         
     def parse(self, session, text):
@@ -186,11 +186,11 @@ class BaseParseModel(object):
         stemmer = SnowballStemmer("english")
         sentences = sent_splitter.tokenize(text)
         bad_list = []
-        for sent_ind in xrange(len(sentences)):
+        for sent_ind in range(len(sentences)):
             sentences[sent_ind] = word_tokenize(sentences[sent_ind])
             sentences[sent_ind].insert(0, '<s>')
             sentences[sent_ind][-1] = '</s>'
-            for word_ind in xrange(len(sentences[sent_ind])):
+            for word_ind in range(len(sentences[sent_ind])):
                 stemmed = stemmer.stem(sentences[sent_ind][word_ind])
                 if stemmed not in self.words_to_id:
                     bad_list.append(sentences[sent_ind][word_ind])
@@ -198,7 +198,7 @@ class BaseParseModel(object):
                     sentences[sent_ind][word_ind] = self.words_to_id[stemmed]
         if len(bad_list) > 0:
             return False, bad_list
-        _, _, logits = self.step(session, True, [zip(sentences, [[self.logic_to_id["<s>"]]]*len(sentences))])
+        _, _, logits = self.step(session, True, [list(zip(sentences, [[self.logic_to_id["<s>"]]]*len(sentences)))])
         return True, self.logits2sentences(logits)
 
 
@@ -226,11 +226,11 @@ class ParseModel(BaseParseModel):
             raise ValueError("Weights length must be equal to the one in bucket,"
                              " %d != %d." % (len(target_weights[0]), self.decoder_size))
         outputs = []
-        for sent_ind in xrange(len(encoder_inputs)):
+        for sent_ind in range(len(encoder_inputs)):
             input_feed = {}
-            for l in xrange(self.encoder_size):
+            for l in range(self.encoder_size):
                 input_feed[self.encoder_inputs[l].name] = encoder_inputs[sent_ind][l]
-            for l in xrange(self.decoder_size):
+            for l in range(self.decoder_size):
                 input_feed[self.decoder_inputs[l].name] = decoder_inputs[sent_ind][l]
                 input_feed[self.target_weights[l].name] = target_weights[sent_ind][l]
 
@@ -239,7 +239,7 @@ class ParseModel(BaseParseModel):
 
             if is_test:
                 output_feed = [self.loss]   #Loss for this batch
-                for l in xrange(self.decoder_size):  # Output logits
+                for l in range(self.decoder_size):  # Output logits
                     output_feed.append(self.outputs[l])
                 input_feed[self.keep_prob_input] = 1.0
 
@@ -251,7 +251,7 @@ class ParseModel(BaseParseModel):
             outputs.append(session.run(output_feed, input_feed))
         if is_test:
             total_loss = sum(map(lambda x: x[0], outputs))
-            logits = map(lambda x: x[1:], outputs)
+            logits = list(map(lambda x: x[1:], outputs))
             return batch, total_loss, logits #No gradient norm, loss, outputs
         else:
             total_loss = sum(map(lambda x: x[2], outputs))
@@ -283,11 +283,11 @@ class MultiSentParseModel(BaseParseModel):
                              " %d != %d." % (len(target_weights[0]), self.decoder_size))
         outputs = []
         prev_encoder_state = None
-        for sent_ind in xrange(len(encoder_inputs)):
+        for sent_ind in range(len(encoder_inputs)):
             input_feed = {}
-            for l in xrange(self.encoder_size):
+            for l in range(self.encoder_size):
                 input_feed[self.encoder_inputs[l].name] = encoder_inputs[sent_ind][l]
-            for l in xrange(self.decoder_size):
+            for l in range(self.decoder_size):
                 input_feed[self.decoder_inputs[l].name] = decoder_inputs[sent_ind][l]
                 input_feed[self.target_weights[l].name] = target_weights[sent_ind][l]
 
@@ -299,7 +299,7 @@ class MultiSentParseModel(BaseParseModel):
             if is_test:
                 output_feed = [self.encoder_final_state, 
                                self.loss]   #Loss for this batch
-                for l in xrange(self.decoder_size):  # Output logits
+                for l in range(self.decoder_size):  # Output logits
                     output_feed.append(self.outputs[l])
                 input_feed[self.keep_prob_input] = 1.0
 
@@ -313,7 +313,7 @@ class MultiSentParseModel(BaseParseModel):
             prev_encoder_state = outputs[-1][0]
         if is_test:
             total_loss = sum(map(lambda x: x[1], outputs))
-            logits = map(lambda x: x[2:], outputs)
+            logits = list(map(lambda x: x[2:], outputs))
             return batch, total_loss, logits #No gradient norm, loss, outputs
         else:
             total_loss = sum(map(lambda x: x[3], outputs))
@@ -537,7 +537,7 @@ def attention_decoder(decoder_inputs,
         hidden_features = []
         v = []
         attention_vec_size = attn_size # Size of query vectors for attention.
-        for a in xrange(num_heads):
+        for a in range(num_heads):
             k = variable_scope.get_variable("AttnW_%d" % a,
                                             [1, 1, attn_size,
                                                 attention_vec_size])
@@ -559,7 +559,7 @@ def attention_decoder(decoder_inputs,
                     if ndims:
                         assert ndims == 2
                 query = array_ops.concat(1, query_list)
-            for a in xrange(num_heads):
+            for a in range(num_heads):
                 with variable_scope.variable_scope("Attention_%d" % a):
                     y = linear(query, attention_vec_size, True)
                     y = array_ops.reshape(y, [-1, 1, 1, attention_vec_size])
@@ -579,7 +579,7 @@ def attention_decoder(decoder_inputs,
         prev = None
         batch_attn_size = array_ops.pack([batch_size, attn_size])
         attns = [array_ops.zeros(batch_attn_size, dtype=dtype)
-                for _ in xrange(num_heads)]
+                for _ in range(num_heads)]
         for a in attns: # Ensure the second shape of attention vectors is set.
             a.set_shape([None, attn_size])
         if initial_state_attention:

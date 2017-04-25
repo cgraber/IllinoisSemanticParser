@@ -1,7 +1,7 @@
 from __future__ import print_function
 import tensorflow as tf
 import pickle, sys
-import config, data_utils, parser_model
+import config, data_utils, parser_model, pointer_parser_model
 
 if len(sys.argv) != 5:
     print("Usage: python parse_input.py <model file> <config file> <output file> \"[INPUT STRING]\"")
@@ -13,7 +13,7 @@ conf = pickle.load(conf_in)
 conf_in.close()
 
 with tf.Session() as sess:
-    model = parser_model.MultiSentParseModel(conf, None)
+    model = pointer_parser_model.MultiSentPointerParseModel(conf, None)
     sess.run(tf.initialize_all_variables())
     model.saver.restore(sess, test_model_path)
     itWorked, result = model.parse(sess, sys.argv[4])

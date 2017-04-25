@@ -2,7 +2,9 @@ import os, collections, sys
 from nltk.stem.snowball import SnowballStemmer
 
 PAD = "<PAD>"
+UNK = "<UNK>"
 PAD_ID = 0
+UNK_ID = 1
 EOS = "</s>"
 stemmer = SnowballStemmer("english")
 logic_to_id = None
@@ -25,14 +27,10 @@ def _read_words(filename):
                 current.append((info[0].split(), info[1].split()))
 
     # Preprocessing steps
-    for i in xrange(len(result)):
-        for j in xrange(len(result[i])):
-            for k in xrange(len(result[i][j][0])):
-                try:
-                    #result[i][j][0][k] = stemmer.stem(result[i][j][0][k]).lower()
-                    result[i][j][0][k] = result[i][j][0][k].lower()
-                except:
-                    result[i][j][0][k] = result[i][j][0][k].lower()
+    for i in range(len(result)):
+        for j in range(len(result[i])):
+            for k in range(len(result[i][j][0])):
+                result[i][j][0][k] = result[i][j][0][k].lower()
     return result
 
 def _build_vocab(train_path, test_path, target_vocab_path=None):
@@ -40,8 +38,9 @@ def _build_vocab(train_path, test_path, target_vocab_path=None):
     data = _read_words(train_path) + _read_words(test_path)
     words = sum(sum([[[word for word in entry[0]] for entry in part] for part in data], []), [])
     words_counter = collections.Counter(words)
-    words_to_id = {word:ind+1 for ind,word in enumerate(words_counter.keys())}
+    words_to_id = {word:ind+2 for ind,word in enumerate(words_counter.keys())}
     words_to_id[PAD] = PAD_ID
+    words_to_id[UNK] = UNK_ID
 
     if target_vocab_path:
         with open(target_vocab_path, "r") as fin:
@@ -64,9 +63,9 @@ def _build_vocab(train_path, test_path, target_vocab_path=None):
     
 def _file_to_ids(filename, token_to_id):
     data = _read_words(filename)
-    for i in xrange(len(data)):
-        for j in xrange(len(data[i])):
-            for k in xrange(len(data[i][j][1])):
+    for i in range(len(data)):
+        for j in range(len(data[i])):
+            for k in range(len(data[i][j][1])):
                 if data[i][j][1][k] in token_to_id[1]:
                     data[i][j][1][k] = token_to_id[1][data[i][j][1][k]]
                 elif data[i][j][1][k] in data[i][j][0]:
@@ -75,7 +74,7 @@ def _file_to_ids(filename, token_to_id):
                 else:
                     raise Exception("WORD NOT FOUND IN VOCAB OR IN SENTENCE! WORD: %s; SENTENCE: %s"%(data[i][j][1][k], 
                     " ".join(data[i][j][0])))
-            for k in xrange(len(data[i][j][0])):
+            for k in range(len(data[i][j][0])):
                 data[i][j][0][k] = token_to_id[0][data[i][j][0][k]]
     return data
 
@@ -110,17 +109,13 @@ def ids_to_logics(id_list, input_sentence, source_max_len, reverse):
                 ind = source_max_len - (x - len(id_to_logic)) - 1
             else:
                 ind = x - len(id_to_logic)
-            print "x: %d"%x
-            print "source_max_len: %d"%source_max_len
-            print "len(id_to_logic): %d"%len(id_to_logic)
-            print "FOUND IND: %d"%ind
             return id_to_words[input_sentence[ind]]
 
-    return map(map_fn, id_list)
+    return list(map(map_fn, id_list))
 
 def ids_to_words(word_list):
     global id_to_words
-    return map(lambda x: id_to_words[x], word_list)
+    return list(map(lambda x: id_to_words[x], word_list))
 
 if __name__=="__main__":
     train, test, vocab = load_raw_text("./data/PointerBlocksWorld/")

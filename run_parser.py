@@ -42,7 +42,7 @@ def load_data():
             target_max_len = max(target_max_len, len(sent[1]))
     folds = []
     fold_size = int(len(train_data)/FLAGS.num_folds)
-    for i in xrange(FLAGS.num_folds - 1):
+    for i in range(FLAGS.num_folds - 1):
         folds.append(train_data[i*fold_size:(i+1)*fold_size])
     folds.append(train_data[(FLAGS.num_folds-1)*fold_size:])
     return folds, test_data, vocab_size, source_max_len, target_max_len
@@ -132,12 +132,12 @@ def test(sess, test_data, model, source_max_len, dump_results=False):
 
 def evaluate_logits(output_logits, test_data, source_max_len, dump_results=False):
     total_outputs = []
-    for sent_ind in xrange(len(output_logits)):
+    for sent_ind in range(len(output_logits)):
         temp_outputs = [[int(np.argmax(logit)) for logit in output_logit] for output_logit in output_logits[sent_ind]]
         #Reshape outputs
         outputs = np.array(temp_outputs).T.tolist()
   
-        for i in xrange(len(outputs)):
+        for i in range(len(outputs)):
             if outputs[i][0] == data_utils.PAD_ID:
                 outputs[i] = None
             elif data_utils.LOGIC_EOS_ID in outputs[i]:
@@ -146,7 +146,7 @@ def evaluate_logits(output_logits, test_data, source_max_len, dump_results=False
                 if val >= len(data_utils.id_to_logic):
                     outputs[i][ind] = len(data_utils.id_to_logic) + source_max_len - (outputs[i][ind]-len(data_utils.id_to_logic))-1
         total_outputs.append(outputs)
-    total_outputs = zip(*total_outputs)
+    total_outputs = list(zip(*total_outputs))
     
     #print("CORRECT OUTPUTS:")
     #print(data_utils.ids_to_logics(test_data[0][1][1:-1]))
@@ -158,11 +158,11 @@ def evaluate_logits(output_logits, test_data, source_max_len, dump_results=False
     sentence_correct = 0.0
     num_sentences = 0.0
     num_entries = 0.0
-    for entry_ind in xrange(len(test_data)):
+    for entry_ind in range(len(test_data)):
         #print("ENTRY: %d"%entry_ind)
         num_entries += 1.0
         all_correct = True
-        for sent_ind in xrange(len(test_data[entry_ind])):
+        for sent_ind in range(len(test_data[entry_ind])):
             num_sentences += 1.0
             
             if test_data[entry_ind][sent_ind][1][1:-1] != total_outputs[entry_ind][sent_ind]: #TODO: make sure this is correct
@@ -172,7 +172,7 @@ def evaluate_logits(output_logits, test_data, source_max_len, dump_results=False
         if all_correct:
             total_correct += 1.0
         elif dump_results:
-            for sent_ind in xrange(len(test_data[entry_ind])):
+            for sent_ind in range(len(test_data[entry_ind])):
                 print(' '.join(data_utils.ids_to_words(test_data[entry_ind][sent_ind][0])))
                 print("\tCorrect: "+''.join(data_utils.ids_to_logics(test_data[entry_ind][sent_ind][1][1:-1],
                             test_data[entry_ind][sent_ind][0], source_max_len,
@@ -185,7 +185,7 @@ def evaluate_logits(output_logits, test_data, source_max_len, dump_results=False
 
 def cross_validate(splits, conf):
     performance = 0
-    for i in xrange(len(splits)):
+    for i in range(len(splits)):
         print("===================Beginning split %d========================"%i)
         conf.fold = i
         train_data = sum(splits[:i] + splits[i+1:], [])

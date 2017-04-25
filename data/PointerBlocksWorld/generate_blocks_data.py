@@ -1,7 +1,7 @@
-TRAIN_SIZE_SHAPES = 1260
-TRAIN_SIZE_RANDOBJ = 140
-TEST_SIZE_SHAPES = 540
-TEST_SIZE_RANDOBJ = 60
+TRAIN_SIZE_SHAPES = 700
+TRAIN_SIZE_RANDOBJ = 700
+TEST_SIZE_SHAPES = 300
+TEST_SIZE_RANDOBJ = 300
 maxNumShapes = 3
 
 import random, sys, os, string, itertools
@@ -29,7 +29,7 @@ ORDINALS = ['', "first", "second", "third", "fourth", "fifth", "sixth", "seventh
 
 RAND_VOCAB = map(lambda x: "".join(x), list(itertools.product(string.ascii_lowercase,
     string.ascii_lowercase, string.ascii_lowercase, string.ascii_lowercase,
-    string.ascii_lowercase))[:1000])
+    string.ascii_lowercase))[:(TRAIN_SIZE_RANDOBJ+TEST_SIZE_RANDOBJ)])
 
 CURRENT_VAR = 'a'
 SPACE_VAR = 1
