@@ -319,6 +319,19 @@ class CompositeShape(object):
             self.logic.append(newLogic)
             newLogic += shape.getLogic()
             #newLogic += shape.getCondensedLogic() #TODO: THIS IS WHAT YOU CHANGED
+            def getAlignmentPred(shape, pred):
+                if shape.base_name == "row":
+                    if "right" in pred:
+                        return "right-end(%s, %s)"
+                    else:
+                        return "left-end(%s, %s)"
+                elif shape.base_name == "col":
+                    if "upper" in pred:
+                        return "top-end(%s, %s)"
+                    else:
+                        return "bottom-end(%s, %s)"
+                else:
+                    return pred
             if direction == LEFT:
                 old = self.shapesOnSides[LEFT]
                 #newLogic += old.getCondensedLogic()
@@ -349,14 +362,14 @@ class CompositeShape(object):
                     #newEnumVal = shape.getEnum(0, shape.width - 1)
                     newRow = 0
                     newCol = shape.width-1
-                    newEnumLogic = "upper_right(%s, %s)"
+                    newEnumLogic = getAlignmentPred(shape, "upper_right(%s, %s)")
                     #oldEnumVal = old.getEnum(offset, 0)
                     oldRow = offset
                     oldCol = 0
                     if offset == 0:
-                        oldEnumLogic = "upper_left(%s, %s)"
+                        oldEnumLogic = getAlignmentPred(old, "upper_left(%s, %s)")
                     elif shape.top == old.bottom:
-                        oldEnumLogic = "lower_left(%s, %s)"
+                        oldEnumLogic = getAlignmentPred(old, "lower_left(%s, %s)")
                     else:
                         oldEnumLogic = "left_side(%s, %s, "+str(offset)+")"
                 elif shape.bottom > old.bottom:
@@ -364,7 +377,7 @@ class CompositeShape(object):
                     oldEnumVal = old.getEnum(0, 0)
                     oldRow = 0
                     oldCol = 0
-                    oldEnumLogic = "upper_left(%s, %s)"
+                    oldEnumLogic = getAlignmentPred(old, "upper_left(%s, %s)")
                     newEnumVal = shape.getEnum(-1*offset, shape.width-1)
                     newRow = -1*offset
                     newCol = shape.width-1
@@ -373,14 +386,15 @@ class CompositeShape(object):
                     newEnumVal = shape.getEnum(shape.height - 1, shape.width - 1)
                     newRow = shape.height-1
                     newCol = shape.width-1
-                    newEnumLogic = "lower_right(%s, %s)"
+                    newEnumLogic = getAlignmentPred(shape, "lower_right(%s, %s)")
                     oldEnumVal = old.getEnum(shape.bottom - old.top, 0)
                     oldRow = shape.bottom - old.top
                     oldCol = 0
                     if shape.bottom == old.bottom:
-                        oldEnumLogic = "lower_left(%s, %s)"
+
+                        oldEnumLogic = getAlignmentPred(old, "lower_left(%s, %s)")
                     elif shape.bottom == old.top:
-                        oldEnumLogic = "upper_left(%s, %s)"
+                        oldEnumLogic = getAlignmentPred(old, "upper_left(%s, %s)")
                     else:
                         oldEnumLogic = "left_side(%s, %s, "+str(shape.bottom-old.top) + ")"
                 newSpaceVar = getSpaceVar()
@@ -426,14 +440,14 @@ class CompositeShape(object):
                     newEnumVal = shape.getEnum(0, 0)
                     newRow = 0
                     newCol = 0
-                    newEnumLogic = "upper_left(%s, %s)"
+                    newEnumLogic = getAlignmentPred(shape, "upper_left(%s, %s)")
                     oldEnumVal = old.getEnum(offset, old.width-1)
                     oldRow = offset
                     oldCol = old.width-1
                     if offset == 0:
-                        oldEnumLogic = "upper_right(%s, %s)"
+                        oldEnumLogic = getAlignmentPred(old, "upper_right(%s, %s)")
                     elif shape.top == old.bottom:
-                        oldEnumLogic = "lower_right(%s, %s)"
+                        oldEnumLogic = getAlignmentPred(old, "lower_right(%s, %s)")
                     else:
                         oldEnumLogic = "right_side(%s, %s, "+str(offset) +")"
                 elif shape.bottom > old.bottom:
@@ -441,7 +455,7 @@ class CompositeShape(object):
                     oldEnumVal = old.getEnum(0, old.width-1)
                     oldRow = 0
                     oldCol = old.width-1
-                    oldEnumLogic = "upper_right(%s, %s)"
+                    oldEnumLogic = getAlignmentPred(old, "upper_right(%s, %s)")
                     newEnumVal = shape.getEnum(-1*offset, 0)
                     newRow = -1*offset
                     newCol = 0
@@ -450,14 +464,14 @@ class CompositeShape(object):
                     newEnumVal = shape.getEnum(shape.height - 1, 0)
                     newRow = shape.height-1
                     newCol = 0
-                    newEnumLogic = "lower_left(%s, %s)"
+                    newEnumLogic = getAlignmentPred(shape, "lower_left(%s, %s)")
                     oldEnumVal = old.getEnum(shape.bottom - old.top, old.width-1)
                     oldRow = shape.bottom - old.top
                     oldCol = old.width-1
                     if shape.bottom == old.bottom:
-                        oldEnumLogic = "lower_right(%s, %s)"
+                        oldEnumLogic = getAlignmentPred(old, "lower_right(%s, %s)")
                     elif shape.bottom == old.top:
-                        oldEnumLogic = "upper_right(%s, %s)"
+                        oldEnumLogic = getAlignmentPred(old, "upper_right(%s, %s)")
                     else:
                         oldEnumLogic = "right_side(%s, %s, "+str(shape.bottom-old.top)+")"
                 newSpaceVar = getSpaceVar()
@@ -502,21 +516,21 @@ class CompositeShape(object):
                     newEnumVal = shape.getEnum(shape.height - 1, 0)
                     newRow = shape.height-1
                     newCol = 0
-                    newEnumLogic = "lower_left(%s, %s)"
+                    newEnumLogic = getAlignmentPred(shape, "lower_left(%s, %s)")
                     oldEnumVal = old.getEnum(0, offset)
                     oldRow = 0
                     oldCol = offset
                     if offset == 0:
-                        oldEnumLogic = "upper_left(%s, %s)"
+                        oldEnumLogic = getAlignmentPred(old, "upper_left(%s, %s)")
                     elif shape.left == old.right:
-                        oldEnumLogic = "upper_right(%s, %s)"
+                        oldEnumLogic = getAlignmentPred(old, "upper_right(%s, %s)")
                     else:
                         oldEnumLogic = "top_side(%s, %s, "+str(offset)+")"
                 elif shape.right > old.right:
                     oldEnumVal = old.getEnum(0, 0)
                     oldRow = 0
                     oldCol = 0
-                    oldEnumLogic = "upper_left(%s, %s)"
+                    oldEnumLogic = getAlignmentPred(old, "upper_left(%s, %s)")
                     newEnumVal = shape.getEnum(shape.height-1, -1*offset)
                     newRow = shape.height-1
                     newCol = -1*offset
@@ -525,14 +539,14 @@ class CompositeShape(object):
                     newEnumVal = shape.getEnum(shape.height - 1, shape.width - 1)
                     newRow = shape.height-1
                     newCol = shape.width-1
-                    newEnumLogic = "lower_right(%s, %s)"
+                    newEnumLogic = getAlignmentPred(shape, "lower_right(%s, %s)")
                     oldEnumVal = old.getEnum(0, shape.right - old.left)
                     oldRow = 0
                     oldCol = shape.right-old.left
                     if old.right == shape.right:
-                        oldEnumLogic = "upper_right(%s, %s)"
+                        oldEnumLogic = getAlignmentPred(old, "upper_right(%s, %s)")
                     elif shape.right == old.left:
-                        oldEnumLogic = "upper_left(%s, %s)"
+                        oldEnumLogic = getAlignmentPred(old, "upper_left(%s, %s)")
                     else:
                         oldEnumLogic = "top_side(%s, %s, "+str(shape.right - old.left)+")"
                 newSpaceVar = getSpaceVar()
@@ -578,21 +592,21 @@ class CompositeShape(object):
                     newEnumVal = shape.getEnum(0, 0)
                     newRow = 0
                     newCol = 0
-                    newEnumLogic = "upper_left(%s, %s)"
+                    newEnumLogic = getAlignmentPred(shape, "upper_left(%s, %s)")
                     oldEnumVal = old.getEnum(old.height - 1, offset)
                     oldRow = old.height-1
                     oldCol = offset
                     if offset == 0:
-                        oldEnumLogic = "lower_left(%s, %s)"
+                        oldEnumLogic = getAlignmentPred(old, "lower_left(%s, %s)")
                     elif shape.left == old.right:
-                        oldEnumLogic = "lower_right(%s, %s)"
+                        oldEnumLogic = getAlignmentPred(old, "lower_right(%s, %s)")
                     else:
                         oldEnumLogic = "bottom_side(%s, %s, "+str(offset)+")"
                 elif shape.right > old.right:
                     oldEnumVal = old.getEnum(old.height-1, 0)
                     oldRow = old.height-1
                     oldCol = 0
-                    oldEnumLogic = "lower_left(%s, %s)"
+                    oldEnumLogic = getAlignmentPred(old, "lower_left(%s, %s)")
                     newEnumVal = shape.getEnum(0, -1*offset)
                     newRow = 0
                     newCol = -1*offset
@@ -601,14 +615,14 @@ class CompositeShape(object):
                     newEnumVal = shape.getEnum(0, shape.width - 1)
                     newRow = 0
                     newCol = shape.width-1
-                    newEnumLogic = "upper_right(%s, %s)"
+                    newEnumLogic = getAlignmentPred(shape, "upper_right(%s, %s)")
                     oldEnumVal = old.getEnum(old.height - 1, shape.right - old.left)
                     oldRow = old.height-1
                     oldCol = shape.right-old.left
                     if old.right == shape.right:
-                        oldEnumLogic = "lower_right(%s, %s)"
+                        oldEnumLogic = getAlignmentPred(old, "lower_right(%s, %s)")
                     elif shape.right == old.left:
-                        oldEnumLogic = "lower_left(%s, %s)"
+                        oldEnumLogic = getAlignmentPred(old, "lower_left(%s, %s)")
                     else:
                         oldEnumLogic = "bottom_side(%s, %s, "+str(shape.right - old.left)+")"
                 newSpaceVar = getSpaceVar()
