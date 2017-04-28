@@ -1,0 +1,2066 @@
+<s> Build a row </s>===<s> row ( a ) </s>
+<s> After that , create a square to the left of the row </s>===<s> square ( b ) ^ left ( b , a ) </s>
+<s> Then , create a rectangle to the left of the square </s>===<s> rectangle ( c ) ^ left ( c , b ) </s>
+
+<s> Construct a aaaub of height 9 </s>===<s> aaaub ( a ) ^ height ( 9 ) </s>
+
+<s> Create a row using 4 blocks </s>===<s> row ( a ) ^ width ( a , 4 ) </s>
+<s> Now , build a rectangle that is 7 blocks wide and 8 blocks tall to the right of the row </s>===<s> rectangle ( b ) ^ height ( b , 8 ) ^ width ( b , 7 ) ^ right ( b , a ) </s>
+<s> Ensure that the fifth row of the rectangle is next to the row 's right end </s>===<s> block ( c ) ^ location ( w1 ) ^ block-location ( c , w1 ) ^ left_side ( b , c , 4 ) ^ block ( d ) ^ location ( w2 ) ^ block-location ( d , w2 ) ^ upper_right ( a , d ) ^ spatial-rel ( east , 0 , w2 , w1 ) </s>
+<s> Construct a horizontal line using 9 blocks above the rectangle </s>===<s> row ( e ) ^ width ( e , 9 ) ^ top ( e , b ) </s>
+<s> Ensure that the right end of the horizontal line is next to the fourth column of the rectangle </s>===<s> block ( f ) ^ location ( w3 ) ^ block-location ( f , w3 ) ^ lower_right ( e , f ) ^ block ( g ) ^ location ( w4 ) ^ block-location ( g , w4 ) ^ top_side ( b , g , 3 ) ^ spatial-rel ( north , 0 , w4 , w3 ) </s>
+<s> There is already a block at row 3 and column 1 </s>===<s> starting_block ( 1 , 3 ) </s>
+
+<s> Construct a column </s>===<s> column ( a ) </s>
+<s> Next , construct a square to the left of the column </s>===<s> square ( b ) ^ left ( b , a ) </s>
+<s> Then , construct another one to the left of the first one </s>===<s> square ( c ) ^ left ( c , b ) </s>
+
+<s> Form a vertical line of height 4 </s>===<s> column ( a ) ^ height ( a , 4 ) </s>
+<s> Next , create a rectangle with a height of 5 blocks and a width of 6 blocks to the left of the vertical line </s>===<s> rectangle ( b ) ^ height ( b , 5 ) ^ width ( b , 6 ) ^ left ( b , a ) </s>
+<s> Make sure that the upper right corner of the rectangle is next to the second row of the vertical line </s>===<s> block ( c ) ^ location ( w1 ) ^ block-location ( c , w1 ) ^ upper_right ( b , c ) ^ block ( d ) ^ location ( w2 ) ^ block-location ( d , w2 ) ^ left_side ( a , d , 1 ) ^ spatial-rel ( west , 0 , w2 , w1 ) </s>
+<s> There are immobile blocks at row 0 and column 0 and at row 1 and column 7 </s>===<s> immobile_block ( 0 , 0 ) ^ immobile_block ( 7 , 1 ) </s>
+
+<s> Create a rectangle </s>===<s> rectangle ( a ) </s>
+<s> Then , build a vertical line to the top of the rectangle </s>===<s> column ( b ) ^ top ( b , a ) </s>
+<s> After that , construct a vertical line to the left of the rectangle </s>===<s> column ( c ) ^ left ( c , a ) </s>
+<s> After that , create a rectangle to the top of the vertical line </s>===<s> rectangle ( d ) ^ top ( d , b ) </s>
+
+<s> I want you to place a aaazt on the table </s>===<s> aaazt ( a ) </s>
+
+<s> Build a square with sides of block length 6 </s>===<s> square ( a ) ^ size ( a , 6 ) </s>
+<s> After that , construct a row of size 4 below the square </s>===<s> row ( b ) ^ width ( b , 4 ) ^ bottom ( b , a ) </s>
+<s> Make sure that the left end of the row is aligned with the square 's lower left corner </s>===<s> block ( c ) ^ location ( w1 ) ^ block-location ( c , w1 ) ^ upper_left ( b , c ) ^ block ( d ) ^ location ( w2 ) ^ block-location ( d , w2 ) ^ lower_left ( a , d ) ^ spatial-rel ( south , 0 , w2 , w1 ) </s>
+<s> Create a 6 by 6 square beneath the row </s>===<s> square ( e ) ^ size ( e , 6 ) ^ bottom ( e , b ) </s>
+<s> Make sure that the new square 's upper right corner is adjacent to the row 's left end </s>===<s> block ( f ) ^ location ( w3 ) ^ block-location ( f , w3 ) ^ upper_right ( e , f ) ^ block ( g ) ^ location ( w4 ) ^ block-location ( g , w4 ) ^ lower_left ( b , g ) ^ spatial-rel ( south , 0 , w4 , w3 ) </s>
+<s> There are immobile blocks at row 3 and column 1 , at row 1 and column 0 , and at row 2 and column 1 </s>===<s> immobile_block ( 1 , 3 ) ^ immobile_block ( 0 , 1 ) ^ immobile_block ( 1 , 2 ) </s>
+
+<s> Construct a rectangle that is 6 blocks wide and 3 blocks tall </s>===<s> rectangle ( a ) ^ height ( a , 3 ) ^ width ( a , 6 ) </s>
+<s> Then , create a row of size 7 to the left of the rectangle </s>===<s> row ( b ) ^ width ( b , 7 ) ^ left ( b , a ) </s>
+<s> Ensure that the row 's right end is adjacent to the upper left corner of the rectangle </s>===<s> block ( c ) ^ location ( w1 ) ^ block-location ( c , w1 ) ^ upper_right ( b , c ) ^ block ( d ) ^ location ( w2 ) ^ block-location ( d , w2 ) ^ upper_left ( a , d ) ^ spatial-rel ( west , 0 , w2 , w1 ) </s>
+
+<s> Construct a vertical line using 5 blocks </s>===<s> column ( a ) ^ height ( a , 5 ) </s>
+<s> Finally , form a vertical line using 5 blocks to the left of the vertical line </s>===<s> column ( b ) ^ height ( b , 5 ) ^ left ( b , a ) </s>
+<s> Ensure that this vertical line 's top end is adjacent to the top end of the first vertical line </s>===<s> block ( c ) ^ location ( w1 ) ^ block-location ( c , w1 ) ^ upper_right ( b , c ) ^ block ( d ) ^ location ( w2 ) ^ block-location ( d , w2 ) ^ upper_left ( a , d ) ^ spatial-rel ( west , 0 , w2 , w1 ) </s>
+<s> There are already blocks at row 5 and column 1 , at row 5 and column 3 , and at row 6 and column 8 </s>===<s> starting_block ( 1 , 5 ) ^ starting_block ( 3 , 5 ) ^ starting_block ( 8 , 6 ) </s>
+
+<s> Create a square </s>===<s> square ( a ) </s>
+<s> Then , form a row to the bottom of the square </s>===<s> row ( b ) ^ bottom ( b , a ) </s>
+<s> Next , construct a rectangle to the top of the square </s>===<s> rectangle ( c ) ^ top ( c , a ) </s>
+
+<s> Create a horizontal line of size 4 </s>===<s> row ( a ) ^ width ( a , 4 ) </s>
+<s> Then , build a 7 by 3 rectangle above the horizontal line </s>===<s> rectangle ( b ) ^ height ( b , 3 ) ^ width ( b , 7 ) ^ top ( b , a ) </s>
+<s> Make sure that the lower left corner of the rectangle is adjacent to the third column of the horizontal line </s>===<s> block ( c ) ^ location ( w1 ) ^ block-location ( c , w1 ) ^ lower_left ( b , c ) ^ block ( d ) ^ location ( w2 ) ^ block-location ( d , w2 ) ^ top_side ( a , d , 2 ) ^ spatial-rel ( north , 0 , w2 , w1 ) </s>
+<s> There is already a block at row 9 and column 9 </s>===<s> starting_block ( 9 , 9 ) </s>
+
+<s> You should create a aabau of width 6 and height 3 </s>===<s> aabau ( a ) ^ width ( 6 ) ^ height ( 3 ) </s>
+
+<s> Build a row with 8 blocks </s>===<s> row ( a ) ^ width ( a , 8 ) </s>
+<s> Finally , construct a row of size 8 to the bottom of the row </s>===<s> row ( b ) ^ width ( b , 8 ) ^ bottom ( b , a ) </s>
+<s> Make sure that the new row 's left end is next to the fifth column of the first row </s>===<s> block ( c ) ^ location ( w1 ) ^ block-location ( c , w1 ) ^ upper_left ( b , c ) ^ block ( d ) ^ location ( w2 ) ^ block-location ( d , w2 ) ^ bottom_side ( a , d , 4 ) ^ spatial-rel ( south , 0 , w2 , w1 ) </s>
+<s> Do not place a block in the space at row 10 and column 6 </s>===<s> restricted ( 6 , 10 ) </s>
+
+<s> Please build a aaawv of length 8 </s>===<s> aaawv ( a ) ^ width ( 8 ) </s>
+
+<s> Build a aaayh of length 2 and height 4 </s>===<s> aaayh ( a ) ^ width ( 2 ) ^ height ( 4 ) </s>
+
+<s> Create a horizontal line </s>===<s> row ( a ) </s>
+<s> After that , construct a square to the left of the horizontal line </s>===<s> square ( b ) ^ left ( b , a ) </s>
+<s> Then , construct a vertical line to the left of the square </s>===<s> column ( c ) ^ left ( c , b ) </s>
+
+<s> You should put a aaazc of height 8 on the table </s>===<s> aaazc ( a ) ^ height ( 8 ) </s>
+
+<s> Put a aaats of height 8 on the table </s>===<s> aaats ( a ) ^ height ( 8 ) </s>
+
+<s> Construct a horizontal line </s>===<s> row ( a ) </s>
+<s> After that , create another one to the top of the first one </s>===<s> row ( b ) ^ top ( b , a ) </s>
+<s> After that , form another one to the left of the first one </s>===<s> row ( c ) ^ left ( c , a ) </s>
+<s> After that , create a square to the right of the horizontal line </s>===<s> square ( d ) ^ right ( d , b ) </s>
+
+<s> Create a aabah of width 4 </s>===<s> aabah ( a ) ^ width ( 4 ) </s>
+
+<s> Construct a vertical line with 7 blocks </s>===<s> column ( a ) ^ height ( a , 7 ) </s>
+<s> Do not put a block in the space at row 9 and column 4 </s>===<s> restricted ( 4 , 9 ) </s>
+
+<s> Build a rectangle that is 2 blocks tall and 9 blocks wide </s>===<s> rectangle ( a ) ^ height ( a , 2 ) ^ width ( a , 9 ) </s>
+<s> Create another one beneath the first one </s>===<s> rectangle ( b ) ^ height ( b , 2 ) ^ width ( b , 9 ) ^ bottom ( b , a ) </s>
+<s> Ensure that the upper left corner of this rectangle is adjacent to the first rectangle 's lower left corner </s>===<s> block ( c ) ^ location ( w1 ) ^ block-location ( c , w1 ) ^ upper_left ( b , c ) ^ block ( d ) ^ location ( w2 ) ^ block-location ( d , w2 ) ^ lower_left ( a , d ) ^ spatial-rel ( south , 0 , w2 , w1 ) </s>
+<s> Build a column of size 5 above the rectangle </s>===<s> column ( e ) ^ height ( e , 5 ) ^ top ( e , a ) </s>
+<s> Ensure that the bottom end of the column is next to the third column of the first rectangle </s>===<s> block ( f ) ^ location ( w3 ) ^ block-location ( f , w3 ) ^ lower_left ( e , f ) ^ block ( g ) ^ location ( w4 ) ^ block-location ( g , w4 ) ^ top_side ( a , g , 2 ) ^ spatial-rel ( north , 0 , w4 , w3 ) </s>
+<s> There are already blocks at row 2 and column 6 and at row 3 and column 9 </s>===<s> starting_block ( 6 , 2 ) ^ starting_block ( 9 , 3 ) </s>
+
+<s> Build a vertical line </s>===<s> column ( a ) </s>
+<s> Next , create a rectangle to the bottom of the vertical line </s>===<s> rectangle ( b ) ^ bottom ( b , a ) </s>
+<s> After that , build a row to the top of the vertical line </s>===<s> row ( c ) ^ top ( c , a ) </s>
+<s> After that , create a vertical line to the right of the rectangle </s>===<s> column ( d ) ^ right ( d , b ) </s>
+
+<s> Form a column using 3 blocks </s>===<s> column ( a ) ^ height ( a , 3 ) </s>
+<s> Then , form a vertical line of size 3 to the bottom of the column </s>===<s> column ( b ) ^ height ( b , 3 ) ^ bottom ( b , a ) </s>
+<s> Ensure that the top end of the vertical line is next to the column 's bottom end </s>===<s> block ( c ) ^ location ( w1 ) ^ block-location ( c , w1 ) ^ upper_left ( b , c ) ^ block ( d ) ^ location ( w2 ) ^ block-location ( d , w2 ) ^ lower_left ( a , d ) ^ spatial-rel ( south , 0 , w2 , w1 ) </s>
+<s> There are immobile blocks at row 5 and column 9 , at row 1 and column 5 , and at row 5 and column 5 </s>===<s> immobile_block ( 9 , 5 ) ^ immobile_block ( 5 , 1 ) ^ immobile_block ( 5 , 5 ) </s>
+
+<s> You should build a aaavb of height 4 </s>===<s> aaavb ( a ) ^ height ( 4 ) </s>
+
+<s> Construct a 2 block by 2 block square </s>===<s> square ( a ) ^ size ( a , 2 ) </s>
+<s> Create another one above the first one </s>===<s> square ( b ) ^ size ( b , 2 ) ^ top ( b , a ) </s>
+<s> Ensure that the new square 's lower left corner is aligned with the first square 's upper left corner </s>===<s> block ( c ) ^ location ( w1 ) ^ block-location ( c , w1 ) ^ lower_left ( b , c ) ^ block ( d ) ^ location ( w2 ) ^ block-location ( d , w2 ) ^ upper_left ( a , d ) ^ spatial-rel ( north , 0 , w2 , w1 ) </s>
+<s> Finally , form another one to the bottom of the first one </s>===<s> square ( e ) ^ size ( e , 2 ) ^ bottom ( e , a ) </s>
+<s> Make sure that the new square 's upper left corner is next to the lower left corner of the first square </s>===<s> block ( f ) ^ location ( w3 ) ^ block-location ( f , w3 ) ^ upper_left ( e , f ) ^ block ( g ) ^ location ( w4 ) ^ block-location ( g , w4 ) ^ lower_left ( a , g ) ^ spatial-rel ( south , 0 , w4 , w3 ) </s>
+<s> There are immobile blocks at row 7 and column 0 and at row 9 and column 6 </s>===<s> immobile_block ( 0 , 7 ) ^ immobile_block ( 6 , 9 ) </s>
+
+<s> Form a column of size 7 </s>===<s> column ( a ) ^ height ( a , 7 ) </s>
+<s> Form a vertical line of height 7 to the right of the column </s>===<s> column ( b ) ^ height ( b , 7 ) ^ right ( b , a ) </s>
+<s> Ensure that the vertical line 's bottom end is adjacent to the fifth row of the column </s>===<s> block ( c ) ^ location ( w1 ) ^ block-location ( c , w1 ) ^ lower_left ( b , c ) ^ block ( d ) ^ location ( w2 ) ^ block-location ( d , w2 ) ^ right_side ( a , d , 4 ) ^ spatial-rel ( east , 0 , w2 , w1 ) </s>
+
+<s> Form a column </s>===<s> column ( a ) </s>
+<s> Then , construct a horizontal line to the top of the column </s>===<s> row ( b ) ^ top ( b , a ) </s>
+<s> Next , create another one to the left of the first one </s>===<s> row ( c ) ^ left ( c , b ) </s>
+<s> Next , create a square to the bottom of the column </s>===<s> square ( d ) ^ bottom ( d , a ) </s>
+
+<s> Form a column using 7 blocks </s>===<s> column ( a ) ^ height ( a , 7 ) </s>
+<s> Finally , construct a vertical line of height 7 to the left of the column </s>===<s> column ( b ) ^ height ( b , 7 ) ^ left ( b , a ) </s>
+<s> Make sure that the vertical line 's top end is adjacent to the third row of the column </s>===<s> block ( c ) ^ location ( w1 ) ^ block-location ( c , w1 ) ^ upper_right ( b , c ) ^ block ( d ) ^ location ( w2 ) ^ block-location ( d , w2 ) ^ left_side ( a , d , 2 ) ^ spatial-rel ( west , 0 , w2 , w1 ) </s>
+
+<s> You should place a aaavs of height 2 on the table </s>===<s> aaavs ( a ) ^ height ( 2 ) </s>
+
+<s> Construct a square </s>===<s> square ( a ) </s>
+<s> After that , construct a vertical line to the right of the square </s>===<s> column ( b ) ^ right ( b , a ) </s>
+<s> Next , form a square to the right of the vertical line </s>===<s> square ( c ) ^ right ( c , b ) </s>
+
+<s> I want you to create a aabal of length 3 </s>===<s> aabal ( a ) ^ width ( 3 ) </s>
+
+<s> Create a vertical line with 7 blocks </s>===<s> column ( a ) ^ height ( a , 7 ) </s>
+<s> There are already blocks at row 2 and column 6 , at row 3 and column 7 , and at row 6 and column 6 </s>===<s> starting_block ( 6 , 2 ) ^ starting_block ( 7 , 3 ) ^ starting_block ( 6 , 6 ) </s>
+
+<s> Form a 2 block by 2 block square </s>===<s> square ( a ) ^ size ( a , 2 ) </s>
+
+<s> Form a vertical line </s>===<s> column ( a ) </s>
+<s> Next , construct a rectangle to the right of the vertical line </s>===<s> rectangle ( b ) ^ right ( b , a ) </s>
+<s> Next , build a row to the top of the vertical line </s>===<s> row ( c ) ^ top ( c , a ) </s>
+
+<s> Construct a column </s>===<s> column ( a ) </s>
+<s> Next , build a rectangle to the top of the column </s>===<s> rectangle ( b ) ^ top ( b , a ) </s>
+<s> Then , create a row to the right of the rectangle </s>===<s> row ( c ) ^ right ( c , b ) </s>
+
+<s> Construct a rectangle </s>===<s> rectangle ( a ) </s>
+<s> Then , form another one to the bottom of the first one </s>===<s> rectangle ( b ) ^ bottom ( b , a ) </s>
+<s> After that , form a square to the left of the rectangle </s>===<s> square ( c ) ^ left ( c , a ) </s>
+
+<s> Form a square </s>===<s> square ( a ) </s>
+<s> Next , construct a rectangle to the right of the square </s>===<s> rectangle ( b ) ^ right ( b , a ) </s>
+<s> After that , create a horizontal line to the right of the rectangle </s>===<s> row ( c ) ^ right ( c , b ) </s>
+<s> Next , create a square to the top of the rectangle </s>===<s> square ( d ) ^ top ( d , b ) </s>
+
+<s> Construct a rectangle with a height of 3 blocks and a width of 9 blocks </s>===<s> rectangle ( a ) ^ height ( a , 3 ) ^ width ( a , 9 ) </s>
+<s> Build another one to the bottom of the first one </s>===<s> rectangle ( b ) ^ height ( b , 3 ) ^ width ( b , 9 ) ^ bottom ( b , a ) </s>
+<s> Ensure that the upper left corner of the new rectangle is adjacent to the seventh column of the first rectangle </s>===<s> block ( c ) ^ location ( w1 ) ^ block-location ( c , w1 ) ^ upper_left ( b , c ) ^ block ( d ) ^ location ( w2 ) ^ block-location ( d , w2 ) ^ bottom_side ( a , d , 6 ) ^ spatial-rel ( south , 0 , w2 , w1 ) </s>
+<s> There is an immobile block at row 1 and column 4 </s>===<s> immobile_block ( 4 , 1 ) </s>
+
+<s> Build a horizontal line </s>===<s> row ( a ) </s>
+<s> Then , build a vertical line to the bottom of the horizontal line </s>===<s> column ( b ) ^ bottom ( b , a ) </s>
+<s> Then , create a rectangle to the left of the horizontal line </s>===<s> rectangle ( c ) ^ left ( c , a ) </s>
+<s> After that , form another one to the top of the first one </s>===<s> rectangle ( d ) ^ top ( d , c ) </s>
+
+<s> Construct a rectangle with a width of 9 blocks and a height of 4 blocks </s>===<s> rectangle ( a ) ^ height ( a , 4 ) ^ width ( a , 9 ) </s>
+<s> Then , build another one above the first one </s>===<s> rectangle ( b ) ^ height ( b , 4 ) ^ width ( b , 9 ) ^ top ( b , a ) </s>
+<s> Ensure that the new rectangle 's lower right corner is adjacent to the eighth column of the first rectangle </s>===<s> block ( c ) ^ location ( w1 ) ^ block-location ( c , w1 ) ^ lower_right ( b , c ) ^ block ( d ) ^ location ( w2 ) ^ block-location ( d , w2 ) ^ top_side ( a , d , 7 ) ^ spatial-rel ( north , 0 , w2 , w1 ) </s>
+<s> Construct a row using 6 blocks below the rectangle </s>===<s> row ( e ) ^ width ( e , 6 ) ^ bottom ( e , a ) </s>
+<s> Ensure that the left end of the row is next to the lower left corner of the first rectangle </s>===<s> block ( f ) ^ location ( w3 ) ^ block-location ( f , w3 ) ^ upper_left ( e , f ) ^ block ( g ) ^ location ( w4 ) ^ block-location ( g , w4 ) ^ lower_left ( a , g ) ^ spatial-rel ( south , 0 , w4 , w3 ) </s>
+<s> There are already blocks at row 6 and column 6 , at row 3 and column 7 , and at row 7 and column 0 </s>===<s> starting_block ( 6 , 6 ) ^ starting_block ( 7 , 3 ) ^ starting_block ( 0 , 7 ) </s>
+
+<s> Build a column </s>===<s> column ( a ) </s>
+<s> Next , create another one to the top of the first one </s>===<s> column ( b ) ^ top ( b , a ) </s>
+<s> Next , build a horizontal line to the bottom of the column </s>===<s> row ( c ) ^ bottom ( c , a ) </s>
+
+<s> Construct a row </s>===<s> row ( a ) </s>
+<s> After that , form another one to the bottom of the first one </s>===<s> row ( b ) ^ bottom ( b , a ) </s>
+
+<s> I want you to create a aaavq of length 9 </s>===<s> aaavq ( a ) ^ width ( 9 ) </s>
+
+<s> I want you to build a aaawo of height 5 and length 3 </s>===<s> aaawo ( a ) ^ height ( 5 ) ^ width ( 3 ) </s>
+
+<s> Build a vertical line of height 7 </s>===<s> column ( a ) ^ height ( a , 7 ) </s>
+<s> Create a horizontal line using 6 blocks to the bottom of the vertical line </s>===<s> row ( b ) ^ width ( b , 6 ) ^ bottom ( b , a ) </s>
+<s> Make sure that the fifth column of the horizontal line is adjacent to the vertical line 's bottom end </s>===<s> block ( c ) ^ location ( w1 ) ^ block-location ( c , w1 ) ^ top_side ( b , c , 4 ) ^ block ( d ) ^ location ( w2 ) ^ block-location ( d , w2 ) ^ lower_left ( a , d ) ^ spatial-rel ( south , 0 , w2 , w1 ) </s>
+<s> Form a square with sides of block length 5 to the left of the horizontal line </s>===<s> square ( e ) ^ size ( e , 5 ) ^ left ( e , b ) </s>
+<s> Ensure that the square 's lower right corner is next to the horizontal line 's left end </s>===<s> block ( f ) ^ location ( w3 ) ^ block-location ( f , w3 ) ^ lower_right ( e , f ) ^ block ( g ) ^ location ( w4 ) ^ block-location ( g , w4 ) ^ lower_left ( b , g ) ^ spatial-rel ( west , 0 , w4 , w3 ) </s>
+<s> There is an immobile block at row 8 and column 9 </s>===<s> immobile_block ( 9 , 8 ) </s>
+
+<s> Build a vertical line using 4 blocks </s>===<s> column ( a ) ^ height ( a , 4 ) </s>
+<s> Form another one to the top of the first one </s>===<s> column ( b ) ^ height ( b , 4 ) ^ top ( b , a ) </s>
+<s> Ensure that the column 's bottom end is aligned with the top end of the vertical line </s>===<s> block ( c ) ^ location ( w1 ) ^ block-location ( c , w1 ) ^ lower_left ( b , c ) ^ block ( d ) ^ location ( w2 ) ^ block-location ( d , w2 ) ^ upper_left ( a , d ) ^ spatial-rel ( north , 0 , w2 , w1 ) </s>
+<s> After that , form a horizontal line using 8 blocks to the top of the column </s>===<s> row ( e ) ^ width ( e , 8 ) ^ top ( e , b ) </s>
+<s> Ensure that the third column of the horizontal line is adjacent to the column 's top end </s>===<s> block ( f ) ^ location ( w3 ) ^ block-location ( f , w3 ) ^ bottom_side ( e , f , 2 ) ^ block ( g ) ^ location ( w4 ) ^ block-location ( g , w4 ) ^ upper_left ( b , g ) ^ spatial-rel ( north , 0 , w4 , w3 ) </s>
+<s> There are already blocks at row 8 and column 9 and at row 4 and column 9 </s>===<s> starting_block ( 9 , 8 ) ^ starting_block ( 9 , 4 ) </s>
+
+<s> Build a 6 by 8 rectangle </s>===<s> rectangle ( a ) ^ height ( a , 8 ) ^ width ( a , 6 ) </s>
+<s> Form a 5 by 5 square to the left of the rectangle </s>===<s> square ( b ) ^ size ( b , 5 ) ^ left ( b , a ) </s>
+<s> Ensure that the upper right corner of the square is next to the rectangle 's lower left corner </s>===<s> block ( c ) ^ location ( w1 ) ^ block-location ( c , w1 ) ^ upper_right ( b , c ) ^ block ( d ) ^ location ( w2 ) ^ block-location ( d , w2 ) ^ lower_left ( a , d ) ^ spatial-rel ( west , 0 , w2 , w1 ) </s>
+<s> There are immobile blocks at row 3 and column 5 , at row 0 and column 3 , and at row 5 and column 1 </s>===<s> immobile_block ( 5 , 3 ) ^ immobile_block ( 3 , 0 ) ^ immobile_block ( 1 , 5 ) </s>
+
+<s> Place a aaaxc of height 2 and width 6 on the table </s>===<s> aaaxc ( a ) ^ height ( 2 ) ^ width ( 6 ) </s>
+
+<s> Create a square </s>===<s> square ( a ) </s>
+<s> Next , construct another one to the left of the first one </s>===<s> square ( b ) ^ left ( b , a ) </s>
+<s> After that , build another one to the bottom of the first one </s>===<s> square ( c ) ^ bottom ( c , b ) </s>
+
+<s> Please construct a aaawi </s>===<s> aaawi ( a ) </s>
+
+<s> Build a square </s>===<s> square ( a ) </s>
+<s> Next , form another one to the left of the first one </s>===<s> square ( b ) ^ left ( b , a ) </s>
+
+<s> You should construct a aaayk </s>===<s> aaayk ( a ) </s>
+
+<s> Create a row of length 6 </s>===<s> row ( a ) ^ width ( a , 6 ) </s>
+<s> Construct a column using 8 blocks to the right of the row </s>===<s> column ( b ) ^ height ( b , 8 ) ^ right ( b , a ) </s>
+<s> Make sure that the top end of the column is adjacent to the row 's right end </s>===<s> block ( c ) ^ location ( w1 ) ^ block-location ( c , w1 ) ^ upper_left ( b , c ) ^ block ( d ) ^ location ( w2 ) ^ block-location ( d , w2 ) ^ upper_right ( a , d ) ^ spatial-rel ( east , 0 , w2 , w1 ) </s>
+<s> Next , form a rectangle with a height of 7 blocks and a width of 3 blocks beneath the column </s>===<s> rectangle ( e ) ^ height ( e , 7 ) ^ width ( e , 3 ) ^ bottom ( e , b ) </s>
+<s> Ensure that the upper left corner of the rectangle is next to the column 's bottom end </s>===<s> block ( f ) ^ location ( w3 ) ^ block-location ( f , w3 ) ^ upper_left ( e , f ) ^ block ( g ) ^ location ( w4 ) ^ block-location ( g , w4 ) ^ lower_left ( b , g ) ^ spatial-rel ( south , 0 , w4 , w3 ) </s>
+<s> There are immobile blocks at row 0 and column 4 and at row 0 and column 2 </s>===<s> immobile_block ( 4 , 0 ) ^ immobile_block ( 2 , 0 ) </s>
+
+<s> Form a column using 3 blocks </s>===<s> column ( a ) ^ height ( a , 3 ) </s>
+
+<s> Build a rectangle </s>===<s> rectangle ( a ) </s>
+<s> After that , create a row to the left of the rectangle </s>===<s> row ( b ) ^ left ( b , a ) </s>
+<s> Then , create a horizontal line to the bottom of the rectangle </s>===<s> row ( c ) ^ bottom ( c , a ) </s>
+<s> After that , construct another one to the top of the first one </s>===<s> row ( d ) ^ top ( d , b ) </s>
+
+<s> Please put a aaayu on the table </s>===<s> aaayu ( a ) </s>
+
+<s> Construct a square </s>===<s> square ( a ) </s>
+<s> After that , construct another one to the left of the first one </s>===<s> square ( b ) ^ left ( b , a ) </s>
+<s> After that , build a vertical line to the bottom of the square </s>===<s> column ( c ) ^ bottom ( c , b ) </s>
+
+<s> Create a column </s>===<s> column ( a ) </s>
+<s> Then , construct another one to the right of the first one </s>===<s> column ( b ) ^ right ( b , a ) </s>
+<s> After that , build a row to the right of the column </s>===<s> row ( c ) ^ right ( c , b ) </s>
+<s> Then , form a square to the top of the column </s>===<s> square ( d ) ^ top ( d , a ) </s>
+
+<s> Form a column of height 6 </s>===<s> column ( a ) ^ height ( a , 6 ) </s>
+<s> Form a column with 6 blocks to the right of the column </s>===<s> column ( b ) ^ height ( b , 6 ) ^ right ( b , a ) </s>
+<s> Make sure that the top end of the new column is next to the second row of the first column </s>===<s> block ( c ) ^ location ( w1 ) ^ block-location ( c , w1 ) ^ upper_left ( b , c ) ^ block ( d ) ^ location ( w2 ) ^ block-location ( d , w2 ) ^ right_side ( a , d , 1 ) ^ spatial-rel ( east , 0 , w2 , w1 ) </s>
+
+<s> Construct a 2 block by 2 block square </s>===<s> square ( a ) ^ size ( a , 2 ) </s>
+<s> There are already blocks at row 3 and column 5 and at row 8 and column 10 </s>===<s> starting_block ( 5 , 3 ) ^ starting_block ( 10 , 8 ) </s>
+
+<s> Please create a aaaxr of length 3 and height 2 </s>===<s> aaaxr ( a ) ^ width ( 3 ) ^ height ( 2 ) </s>
+
+<s> Build a rectangle that is 2 blocks tall and 6 blocks wide </s>===<s> rectangle ( a ) ^ height ( a , 2 ) ^ width ( a , 6 ) </s>
+<s> There is already a block at row 9 and column 7 </s>===<s> starting_block ( 7 , 9 ) </s>
+
+<s> Please place a aaaxp of height 8 on the table </s>===<s> aaaxp ( a ) ^ height ( 8 ) </s>
+
+<s> Form a rectangle </s>===<s> rectangle ( a ) </s>
+<s> Then , form a square to the left of the rectangle </s>===<s> square ( b ) ^ left ( b , a ) </s>
+
+<s> Create a square with sides of block length 4 </s>===<s> square ( a ) ^ size ( a , 4 ) </s>
+<s> There is an immobile block at row 0 and column 5 </s>===<s> immobile_block ( 5 , 0 ) </s>
+
+<s> Build a aaazu </s>===<s> aaazu ( a ) </s>
+
+<s> Construct a vertical line </s>===<s> column ( a ) </s>
+<s> Then , build a square to the top of the vertical line </s>===<s> square ( b ) ^ top ( b , a ) </s>
+<s> Next , form a vertical line to the right of the square </s>===<s> column ( c ) ^ right ( c , b ) </s>
+<s> Next , build a row to the right of the vertical line </s>===<s> row ( d ) ^ right ( d , c ) </s>
+
+<s> I want you to create a aabam of length 9 </s>===<s> aabam ( a ) ^ width ( 9 ) </s>
+
+<s> I want you to place a aaava of width 2 on the table </s>===<s> aaava ( a ) ^ width ( 2 ) </s>
+
+<s> Put a aaavr of length 2 on the table </s>===<s> aaavr ( a ) ^ width ( 2 ) </s>
+
+<s> I want you to place a aaawp of width 9 on the table </s>===<s> aaawp ( a ) ^ width ( 9 ) </s>
+
+<s> Form a row of length 8 </s>===<s> row ( a ) ^ width ( a , 8 ) </s>
+<s> Next , build a horizontal line with 8 blocks to the bottom of the row </s>===<s> row ( b ) ^ width ( b , 8 ) ^ bottom ( b , a ) </s>
+<s> Make sure that the horizontal line 's left end is next to the left end of the row </s>===<s> block ( c ) ^ location ( w1 ) ^ block-location ( c , w1 ) ^ upper_left ( b , c ) ^ block ( d ) ^ location ( w2 ) ^ block-location ( d , w2 ) ^ lower_left ( a , d ) ^ spatial-rel ( south , 0 , w2 , w1 ) </s>
+<s> Finally , create a 8 block by 8 block square to the bottom of the horizontal line </s>===<s> square ( e ) ^ size ( e , 8 ) ^ bottom ( e , b ) </s>
+<s> Ensure that the square 's upper left corner is aligned with the left end of the horizontal line </s>===<s> block ( f ) ^ location ( w3 ) ^ block-location ( f , w3 ) ^ upper_left ( e , f ) ^ block ( g ) ^ location ( w4 ) ^ block-location ( g , w4 ) ^ lower_left ( b , g ) ^ spatial-rel ( south , 0 , w4 , w3 ) </s>
+
+<s> Create a horizontal line </s>===<s> row ( a ) </s>
+<s> Then , create a rectangle to the left of the horizontal line </s>===<s> rectangle ( b ) ^ left ( b , a ) </s>
+<s> Then , form a column to the top of the rectangle </s>===<s> column ( c ) ^ top ( c , b ) </s>
+<s> After that , construct a rectangle to the right of the horizontal line </s>===<s> rectangle ( d ) ^ right ( d , a ) </s>
+
+<s> Create a vertical line </s>===<s> column ( a ) </s>
+<s> Then , create a square to the bottom of the vertical line </s>===<s> square ( b ) ^ bottom ( b , a ) </s>
+<s> Next , build a horizontal line to the top of the vertical line </s>===<s> row ( c ) ^ top ( c , a ) </s>
+<s> After that , create a row to the left of the square </s>===<s> row ( d ) ^ left ( d , b ) </s>
+
+<s> Construct a column with 5 blocks </s>===<s> column ( a ) ^ height ( a , 5 ) </s>
+<s> Finally , construct a row of length 5 to the top of the column </s>===<s> row ( b ) ^ width ( b , 5 ) ^ top ( b , a ) </s>
+<s> Ensure that the second column of the row is next to the top end of the column </s>===<s> block ( c ) ^ location ( w1 ) ^ block-location ( c , w1 ) ^ bottom_side ( b , c , 1 ) ^ block ( d ) ^ location ( w2 ) ^ block-location ( d , w2 ) ^ upper_left ( a , d ) ^ spatial-rel ( north , 0 , w2 , w1 ) </s>
+
+<s> Form a row </s>===<s> row ( a ) </s>
+<s> After that , form another one to the left of the first one </s>===<s> row ( b ) ^ left ( b , a ) </s>
+<s> Then , build a square to the top of the horizontal line </s>===<s> square ( c ) ^ top ( c , b ) </s>
+
+<s> Create a square </s>===<s> square ( a ) </s>
+<s> Next , create a horizontal line to the right of the square </s>===<s> row ( b ) ^ right ( b , a ) </s>
+<s> After that , create a row to the left of the square </s>===<s> row ( c ) ^ left ( c , a ) </s>
+
+<s> Form a square </s>===<s> square ( a ) </s>
+<s> Next , build a rectangle to the top of the square </s>===<s> rectangle ( b ) ^ top ( b , a ) </s>
+<s> After that , construct a horizontal line to the right of the rectangle </s>===<s> row ( c ) ^ right ( c , b ) </s>
+<s> Then , build a row to the bottom of the square </s>===<s> row ( d ) ^ bottom ( d , a ) </s>
+
+<s> You should place a aaavx of height 8 on the table </s>===<s> aaavx ( a ) ^ height ( 8 ) </s>
+
+<s> Please create a aaavu </s>===<s> aaavu ( a ) </s>
+
+<s> Construct a column </s>===<s> column ( a ) </s>
+<s> Then , build a row to the top of the column </s>===<s> row ( b ) ^ top ( b , a ) </s>
+<s> Next , form a square to the top of the row </s>===<s> square ( c ) ^ top ( c , b ) </s>
+<s> After that , create a rectangle to the left of the square </s>===<s> rectangle ( d ) ^ left ( d , c ) </s>
+
+<s> Build a rectangle </s>===<s> rectangle ( a ) </s>
+<s> Next , build a square to the bottom of the rectangle </s>===<s> square ( b ) ^ bottom ( b , a ) </s>
+
+<s> Build a 5 block by 5 block square </s>===<s> square ( a ) ^ size ( a , 5 ) </s>
+
+<s> Create a horizontal line of size 3 </s>===<s> row ( a ) ^ width ( a , 3 ) </s>
+<s> There are immobile blocks at row 6 and column 2 , at row 5 and column 1 , and at row 1 and column 3 </s>===<s> immobile_block ( 2 , 6 ) ^ immobile_block ( 1 , 5 ) ^ immobile_block ( 3 , 1 ) </s>
+
+<s> Please build a aaaxa of height 8 </s>===<s> aaaxa ( a ) ^ height ( 8 ) </s>
+
+<s> Build a aaaud </s>===<s> aaaud ( a ) </s>
+
+<s> Please place a aabad of width 6 on the table </s>===<s> aabad ( a ) ^ width ( 6 ) </s>
+
+<s> You should build a aaaxi of height 4 </s>===<s> aaaxi ( a ) ^ height ( 4 ) </s>
+
+<s> Construct a square </s>===<s> square ( a ) </s>
+<s> After that , create a row to the bottom of the square </s>===<s> row ( b ) ^ bottom ( b , a ) </s>
+<s> Then , form another one to the right of the first one </s>===<s> row ( c ) ^ right ( c , b ) </s>
+
+<s> Form a 6 by 6 square </s>===<s> square ( a ) ^ size ( a , 6 ) </s>
+<s> Now , construct another one to the right of the first one </s>===<s> square ( b ) ^ size ( b , 6 ) ^ right ( b , a ) </s>
+<s> Ensure that the upper left corner of the new square is next to the second row of the first square </s>===<s> block ( c ) ^ location ( w1 ) ^ block-location ( c , w1 ) ^ upper_left ( b , c ) ^ block ( d ) ^ location ( w2 ) ^ block-location ( d , w2 ) ^ right_side ( a , d , 1 ) ^ spatial-rel ( east , 0 , w2 , w1 ) </s>
+<s> Construct a column with 8 blocks to the left of the square </s>===<s> column ( e ) ^ height ( e , 8 ) ^ left ( e , a ) </s>
+<s> Ensure that the column 's bottom end is adjacent to the fifth row of the first square </s>===<s> block ( f ) ^ location ( w3 ) ^ block-location ( f , w3 ) ^ lower_right ( e , f ) ^ block ( g ) ^ location ( w4 ) ^ block-location ( g , w4 ) ^ left_side ( a , g , 4 ) ^ spatial-rel ( west , 0 , w4 , w3 ) </s>
+<s> Do not place a block in the space at row 10 and column 2 </s>===<s> restricted ( 2 , 10 ) </s>
+
+<s> Form a row </s>===<s> row ( a ) </s>
+<s> After that , create a square to the left of the row </s>===<s> square ( b ) ^ left ( b , a ) </s>
+<s> Next , form a rectangle to the top of the square </s>===<s> rectangle ( c ) ^ top ( c , b ) </s>
+<s> After that , construct a column to the left of the square </s>===<s> column ( d ) ^ left ( d , b ) </s>
+
+<s> Create a aaazn of width 8 </s>===<s> aaazn ( a ) ^ width ( 8 ) </s>
+
+<s> I want you to construct a aaazh of length 9 and height 2 </s>===<s> aaazh ( a ) ^ width ( 9 ) ^ height ( 2 ) </s>
+
+<s> You should build a aaaxq of width 5 </s>===<s> aaaxq ( a ) ^ width ( 5 ) </s>
+
+<s> Build a row </s>===<s> row ( a ) </s>
+<s> After that , build a vertical line to the top of the row </s>===<s> column ( b ) ^ top ( b , a ) </s>
+<s> After that , form a rectangle to the right of the row </s>===<s> rectangle ( c ) ^ right ( c , a ) </s>
+
+<s> Build a row </s>===<s> row ( a ) </s>
+<s> After that , create a rectangle to the left of the row </s>===<s> rectangle ( b ) ^ left ( b , a ) </s>
+
+<s> Create a column with 6 blocks </s>===<s> column ( a ) ^ height ( a , 6 ) </s>
+<s> Finally , form a 6 by 6 square to the left of the column </s>===<s> square ( b ) ^ size ( b , 6 ) ^ left ( b , a ) </s>
+<s> Make sure that the square 's upper right corner is adjacent to the fifth row of the column </s>===<s> block ( c ) ^ location ( w1 ) ^ block-location ( c , w1 ) ^ upper_right ( b , c ) ^ block ( d ) ^ location ( w2 ) ^ block-location ( d , w2 ) ^ left_side ( a , d , 4 ) ^ spatial-rel ( west , 0 , w2 , w1 ) </s>
+<s> There is already a block at row 0 and column 6 </s>===<s> starting_block ( 6 , 0 ) </s>
+
+<s> I want you to place a aaazk on the table </s>===<s> aaazk ( a ) </s>
+
+<s> Form a horizontal line of size 8 </s>===<s> row ( a ) ^ width ( a , 8 ) </s>
+<s> Create another one to the bottom of the first one </s>===<s> row ( b ) ^ width ( b , 8 ) ^ bottom ( b , a ) </s>
+<s> Make sure that the right end of the row is adjacent to the sixth column of the horizontal line </s>===<s> block ( c ) ^ location ( w1 ) ^ block-location ( c , w1 ) ^ upper_right ( b , c ) ^ block ( d ) ^ location ( w2 ) ^ block-location ( d , w2 ) ^ bottom_side ( a , d , 5 ) ^ spatial-rel ( south , 0 , w2 , w1 ) </s>
+<s> Create a 9 by 5 rectangle beneath the row </s>===<s> rectangle ( e ) ^ height ( e , 5 ) ^ width ( e , 9 ) ^ bottom ( e , b ) </s>
+<s> Make sure that the rectangle 's upper right corner is adjacent to the right end of the row </s>===<s> block ( f ) ^ location ( w3 ) ^ block-location ( f , w3 ) ^ upper_right ( e , f ) ^ block ( g ) ^ location ( w4 ) ^ block-location ( g , w4 ) ^ lower_right ( b , g ) ^ spatial-rel ( south , 0 , w4 , w3 ) </s>
+
+<s> Build a horizontal line </s>===<s> row ( a ) </s>
+<s> Then , form a square to the right of the horizontal line </s>===<s> square ( b ) ^ right ( b , a ) </s>
+<s> Next , form another one to the left of the first one </s>===<s> row ( c ) ^ left ( c , a ) </s>
+<s> After that , construct another one to the left of the first one </s>===<s> row ( d ) ^ left ( d , c ) </s>
+
+<s> Please build a aaauw of width 2 </s>===<s> aaauw ( a ) ^ width ( 2 ) </s>
+
+<s> Build a aaaxx of length 3 </s>===<s> aaaxx ( a ) ^ width ( 3 ) </s>
+
+<s> Construct a aaawt of length 9 </s>===<s> aaawt ( a ) ^ width ( 9 ) </s>
+
+<s> Construct a horizontal line </s>===<s> row ( a ) </s>
+<s> Next , build another one to the top of the first one </s>===<s> row ( b ) ^ top ( b , a ) </s>
+
+<s> You should place a aaati of height 9 on the table </s>===<s> aaati ( a ) ^ height ( 9 ) </s>
+
+<s> Build a rectangle </s>===<s> rectangle ( a ) </s>
+<s> After that , construct a column to the top of the rectangle </s>===<s> column ( b ) ^ top ( b , a ) </s>
+
+<s> Please build a aaatk </s>===<s> aaatk ( a ) </s>
+
+<s> Please construct a aaaws </s>===<s> aaaws ( a ) </s>
+
+<s> Construct a rectangle with a height of 8 blocks and a width of 2 blocks </s>===<s> rectangle ( a ) ^ height ( a , 8 ) ^ width ( a , 2 ) </s>
+<s> Form another one to the left of the first one </s>===<s> rectangle ( b ) ^ height ( b , 8 ) ^ width ( b , 2 ) ^ left ( b , a ) </s>
+<s> Ensure that the new rectangle 's lower right corner is adjacent to the third row of the first rectangle </s>===<s> block ( c ) ^ location ( w1 ) ^ block-location ( c , w1 ) ^ lower_right ( b , c ) ^ block ( d ) ^ location ( w2 ) ^ block-location ( d , w2 ) ^ left_side ( a , d , 2 ) ^ spatial-rel ( west , 0 , w2 , w1 ) </s>
+<s> Construct a vertical line of size 5 to the right of the rectangle </s>===<s> column ( e ) ^ height ( e , 5 ) ^ right ( e , a ) </s>
+<s> Ensure that the vertical line 's top end is next to the upper right corner of the first rectangle </s>===<s> block ( f ) ^ location ( w3 ) ^ block-location ( f , w3 ) ^ upper_left ( e , f ) ^ block ( g ) ^ location ( w4 ) ^ block-location ( g , w4 ) ^ upper_right ( a , g ) ^ spatial-rel ( east , 0 , w4 , w3 ) </s>
+<s> Do not put blocks in the spaces at row 0 and column 3 and at row 9 and column 1 </s>===<s> restricted ( 3 , 0 ) ^ restricted ( 1 , 9 ) </s>
+
+<s> Create a column </s>===<s> column ( a ) </s>
+<s> Then , build another one to the right of the first one </s>===<s> column ( b ) ^ right ( b , a ) </s>
+<s> Next , form a rectangle to the right of the column </s>===<s> rectangle ( c ) ^ right ( c , b ) </s>
+<s> Then , form a square to the right of the rectangle </s>===<s> square ( d ) ^ right ( d , c ) </s>
+
+<s> Build a rectangle with a width of 6 blocks and a height of 2 blocks </s>===<s> rectangle ( a ) ^ height ( a , 2 ) ^ width ( a , 6 ) </s>
+<s> Finally , build a row with 9 blocks to the left of the rectangle </s>===<s> row ( b ) ^ width ( b , 9 ) ^ left ( b , a ) </s>
+<s> Make sure that the right end of the row is adjacent to the lower left corner of the rectangle </s>===<s> block ( c ) ^ location ( w1 ) ^ block-location ( c , w1 ) ^ upper_right ( b , c ) ^ block ( d ) ^ location ( w2 ) ^ block-location ( d , w2 ) ^ lower_left ( a , d ) ^ spatial-rel ( west , 0 , w2 , w1 ) </s>
+<s> There is an immobile block at row 2 and column 7 </s>===<s> immobile_block ( 7 , 2 ) </s>
+
+<s> Build a row </s>===<s> row ( a ) </s>
+<s> Next , form a square to the bottom of the row </s>===<s> square ( b ) ^ bottom ( b , a ) </s>
+
+<s> You should put a aaaun of length 2 on the table </s>===<s> aaaun ( a ) ^ width ( 2 ) </s>
+
+<s> Build a column using 6 blocks </s>===<s> column ( a ) ^ height ( a , 6 ) </s>
+<s> Now , form another one to the right of the first one </s>===<s> column ( b ) ^ height ( b , 6 ) ^ right ( b , a ) </s>
+<s> Ensure that this column 's bottom end is next to the fifth row of the first column </s>===<s> block ( c ) ^ location ( w1 ) ^ block-location ( c , w1 ) ^ lower_left ( b , c ) ^ block ( d ) ^ location ( w2 ) ^ block-location ( d , w2 ) ^ right_side ( a , d , 4 ) ^ spatial-rel ( east , 0 , w2 , w1 ) </s>
+<s> Construct a rectangle that is 3 blocks tall and 2 blocks wide to the right of the column </s>===<s> rectangle ( e ) ^ height ( e , 3 ) ^ width ( e , 2 ) ^ right ( e , b ) </s>
+<s> Ensure that the rectangle 's upper left corner is next to the fifth row of the second column </s>===<s> block ( f ) ^ location ( w3 ) ^ block-location ( f , w3 ) ^ upper_left ( e , f ) ^ block ( g ) ^ location ( w4 ) ^ block-location ( g , w4 ) ^ right_side ( b , g , 4 ) ^ spatial-rel ( east , 0 , w4 , w3 ) </s>
+<s> There are immobile blocks at row 3 and column 1 , at row 4 and column 8 , and at row 3 and column 6 </s>===<s> immobile_block ( 1 , 3 ) ^ immobile_block ( 8 , 4 ) ^ immobile_block ( 6 , 3 ) </s>
+
+<s> You should create a aaauv of height 4 </s>===<s> aaauv ( a ) ^ height ( 4 ) </s>
+
+<s> Build a aaazi of height 5 </s>===<s> aaazi ( a ) ^ height ( 5 ) </s>
+
+<s> Create a column of size 7 </s>===<s> column ( a ) ^ height ( a , 7 ) </s>
+
+<s> I want you to build a aaavw of length 9 and height 3 </s>===<s> aaavw ( a ) ^ width ( 9 ) ^ height ( 3 ) </s>
+
+<s> Build a rectangle </s>===<s> rectangle ( a ) </s>
+<s> Then , create a square to the bottom of the rectangle </s>===<s> square ( b ) ^ bottom ( b , a ) </s>
+
+<s> You should place a aabae of width 6 and height 2 on the table </s>===<s> aabae ( a ) ^ width ( 6 ) ^ height ( 2 ) </s>
+
+<s> Create a column </s>===<s> column ( a ) </s>
+<s> Next , create another one to the top of the first one </s>===<s> column ( b ) ^ top ( b , a ) </s>
+<s> After that , create a square to the right of the vertical line </s>===<s> square ( c ) ^ right ( c , b ) </s>
+<s> Next , build another one to the right of the first one </s>===<s> square ( d ) ^ right ( d , c ) </s>
+
+<s> You should construct a aaazg of height 2 </s>===<s> aaazg ( a ) ^ height ( 2 ) </s>
+
+<s> Place a aabaj on the table </s>===<s> aabaj ( a ) </s>
+
+<s> Build a square </s>===<s> square ( a ) </s>
+<s> Next , build a vertical line to the right of the square </s>===<s> column ( b ) ^ right ( b , a ) </s>
+
+<s> I want you to build a aaawq </s>===<s> aaawq ( a ) </s>
+
+<s> You should put a aaawe on the table </s>===<s> aaawe ( a ) </s>
+
+<s> Construct a aaatz </s>===<s> aaatz ( a ) </s>
+
+<s> Please construct a aaawb of height 5 </s>===<s> aaawb ( a ) ^ height ( 5 ) </s>
+
+<s> Please put a aaaxj on the table </s>===<s> aaaxj ( a ) </s>
+
+<s> Form a 3 by 3 square </s>===<s> square ( a ) ^ size ( a , 3 ) </s>
+<s> Now , construct a horizontal line of size 5 above the square </s>===<s> row ( b ) ^ width ( b , 5 ) ^ top ( b , a ) </s>
+<s> Make sure that the left end of the horizontal line is next to the second column of the square </s>===<s> block ( c ) ^ location ( w1 ) ^ block-location ( c , w1 ) ^ lower_left ( b , c ) ^ block ( d ) ^ location ( w2 ) ^ block-location ( d , w2 ) ^ top_side ( a , d , 1 ) ^ spatial-rel ( north , 0 , w2 , w1 ) </s>
+<s> Finally , build another one to the left of the first one </s>===<s> square ( e ) ^ size ( e , 6 ) ^ left ( e , a ) </s>
+<s> Make sure that this square 's upper right corner is aligned with the upper left corner of the first square </s>===<s> block ( f ) ^ location ( w3 ) ^ block-location ( f , w3 ) ^ upper_right ( e , f ) ^ block ( g ) ^ location ( w4 ) ^ block-location ( g , w4 ) ^ upper_left ( a , g ) ^ spatial-rel ( west , 0 , w4 , w3 ) </s>
+
+<s> Build a column </s>===<s> column ( a ) </s>
+<s> Next , construct a square to the bottom of the column </s>===<s> square ( b ) ^ bottom ( b , a ) </s>
+
+<s> Please put a aaazy on the table </s>===<s> aaazy ( a ) </s>
+
+<s> Please put a aaauq of width 5 on the table </s>===<s> aaauq ( a ) ^ width ( 5 ) </s>
+
+<s> Construct a column </s>===<s> column ( a ) </s>
+<s> Then , create a square to the bottom of the column </s>===<s> square ( b ) ^ bottom ( b , a ) </s>
+
+<s> You should build a aaawd of height 6 and width 2 </s>===<s> aaawd ( a ) ^ height ( 6 ) ^ width ( 2 ) </s>
+
+<s> Please create a aaawr of width 7 </s>===<s> aaawr ( a ) ^ width ( 7 ) </s>
+
+<s> Form a vertical line of size 3 </s>===<s> column ( a ) ^ height ( a , 3 ) </s>
+<s> There are already blocks at row 8 and column 6 , at row 1 and column 8 , and at row 6 and column 7 </s>===<s> starting_block ( 6 , 8 ) ^ starting_block ( 8 , 1 ) ^ starting_block ( 7 , 6 ) </s>
+
+<s> Construct a horizontal line with 3 blocks </s>===<s> row ( a ) ^ width ( a , 3 ) </s>
+
+<s> Build a row of length 4 </s>===<s> row ( a ) ^ width ( a , 4 ) </s>
+
+<s> Build a horizontal line with 7 blocks </s>===<s> row ( a ) ^ width ( a , 7 ) </s>
+<s> Next , form a column of height 9 to the right of the horizontal line </s>===<s> column ( b ) ^ height ( b , 9 ) ^ right ( b , a ) </s>
+<s> Ensure that the seventh row of the column is next to the right end of the horizontal line </s>===<s> block ( c ) ^ location ( w1 ) ^ block-location ( c , w1 ) ^ left_side ( b , c , 6 ) ^ block ( d ) ^ location ( w2 ) ^ block-location ( d , w2 ) ^ upper_right ( a , d ) ^ spatial-rel ( east , 0 , w2 , w1 ) </s>
+<s> After that , form a vertical line of size 9 to the left of the horizontal line </s>===<s> column ( e ) ^ height ( e , 9 ) ^ left ( e , a ) </s>
+<s> Make sure that the fourth row of the vertical line is next to the horizontal line 's left end </s>===<s> block ( f ) ^ location ( w3 ) ^ block-location ( f , w3 ) ^ right_side ( e , f , 3 ) ^ block ( g ) ^ location ( w4 ) ^ block-location ( g , w4 ) ^ upper_left ( a , g ) ^ spatial-rel ( west , 0 , w4 , w3 ) </s>
+<s> There are already blocks at row 1 and column 3 , at row 4 and column 2 , and at row 2 and column 7 </s>===<s> starting_block ( 3 , 1 ) ^ starting_block ( 2 , 4 ) ^ starting_block ( 7 , 2 ) </s>
+
+<s> Form a vertical line of size 8 </s>===<s> column ( a ) ^ height ( a , 8 ) </s>
+
+<s> Build a rectangle that is 5 blocks tall and 3 blocks wide </s>===<s> rectangle ( a ) ^ height ( a , 5 ) ^ width ( a , 3 ) </s>
+<s> Build a 9 by 9 square to the right of the rectangle </s>===<s> square ( b ) ^ size ( b , 9 ) ^ right ( b , a ) </s>
+<s> Ensure that the square 's upper left corner is adjacent to the rectangle 's lower right corner </s>===<s> block ( c ) ^ location ( w1 ) ^ block-location ( c , w1 ) ^ upper_left ( b , c ) ^ block ( d ) ^ location ( w2 ) ^ block-location ( d , w2 ) ^ lower_right ( a , d ) ^ spatial-rel ( east , 0 , w2 , w1 ) </s>
+<s> There are immobile blocks at row 7 and column 9 , at row 3 and column 2 , and at row 0 and column 6 </s>===<s> immobile_block ( 9 , 7 ) ^ immobile_block ( 2 , 3 ) ^ immobile_block ( 6 , 0 ) </s>
+
+<s> Create a 9 block by 9 block square </s>===<s> square ( a ) ^ size ( a , 9 ) </s>
+<s> There are already blocks at row 7 and column 2 , at row 5 and column 1 , and at row 2 and column 10 </s>===<s> starting_block ( 2 , 7 ) ^ starting_block ( 1 , 5 ) ^ starting_block ( 10 , 2 ) </s>
+
+<s> Build a aaaue of height 7 </s>===<s> aaaue ( a ) ^ height ( 7 ) </s>
+
+<s> Create a horizontal line </s>===<s> row ( a ) </s>
+<s> After that , construct a square to the left of the horizontal line </s>===<s> square ( b ) ^ left ( b , a ) </s>
+<s> Then , build a vertical line to the left of the square </s>===<s> column ( c ) ^ left ( c , b ) </s>
+<s> After that , build a vertical line to the right of the horizontal line </s>===<s> column ( d ) ^ right ( d , a ) </s>
+
+<s> Build a vertical line </s>===<s> column ( a ) </s>
+<s> After that , create a rectangle to the left of the vertical line </s>===<s> rectangle ( b ) ^ left ( b , a ) </s>
+
+<s> You should place a aaazd of height 8 on the table </s>===<s> aaazd ( a ) ^ height ( 8 ) </s>
+
+<s> You should create a aaaux of height 4 and width 2 </s>===<s> aaaux ( a ) ^ height ( 4 ) ^ width ( 2 ) </s>
+
+<s> Build a aaatg of length 4 and height 8 </s>===<s> aaatg ( a ) ^ width ( 4 ) ^ height ( 8 ) </s>
+
+<s> Build a row of size 3 </s>===<s> row ( a ) ^ width ( a , 3 ) </s>
+<s> There are already blocks at row 8 and column 6 and at row 8 and column 8 </s>===<s> starting_block ( 6 , 8 ) ^ starting_block ( 8 , 8 ) </s>
+
+<s> Form a column with 7 blocks </s>===<s> column ( a ) ^ height ( a , 7 ) </s>
+<s> Finally , construct a rectangle that is 6 blocks tall and 9 blocks wide beneath the column </s>===<s> rectangle ( b ) ^ height ( b , 6 ) ^ width ( b , 9 ) ^ bottom ( b , a ) </s>
+<s> Ensure that the sixth column of the rectangle is next to the bottom end of the column </s>===<s> block ( c ) ^ location ( w1 ) ^ block-location ( c , w1 ) ^ top_side ( b , c , 5 ) ^ block ( d ) ^ location ( w2 ) ^ block-location ( d , w2 ) ^ lower_left ( a , d ) ^ spatial-rel ( south , 0 , w2 , w1 ) </s>
+
+<s> Please place a aaazv of height 3 on the table </s>===<s> aaazv ( a ) ^ height ( 3 ) </s>
+
+<s> Construct a aaawc </s>===<s> aaawc ( a ) </s>
+
+<s> Build a horizontal line </s>===<s> row ( a ) </s>
+<s> Then , construct a rectangle to the top of the horizontal line </s>===<s> rectangle ( b ) ^ top ( b , a ) </s>
+<s> Next , create a row to the right of the rectangle </s>===<s> row ( c ) ^ right ( c , b ) </s>
+<s> Then , construct another one to the top of the first one </s>===<s> row ( d ) ^ top ( d , c ) </s>
+
+<s> Build a horizontal line </s>===<s> row ( a ) </s>
+<s> Next , build a rectangle to the left of the horizontal line </s>===<s> rectangle ( b ) ^ left ( b , a ) </s>
+<s> Next , create another one to the bottom of the first one </s>===<s> rectangle ( c ) ^ bottom ( c , b ) </s>
+
+<s> Form a row of size 3 </s>===<s> row ( a ) ^ width ( a , 3 ) </s>
+<s> Do not place a block in the space at row 5 and column 1 </s>===<s> restricted ( 1 , 5 ) </s>
+
+<s> You should create a aaayd of width 3 </s>===<s> aaayd ( a ) ^ width ( 3 ) </s>
+
+<s> Construct a square </s>===<s> square ( a ) </s>
+<s> Next , build another one to the left of the first one </s>===<s> square ( b ) ^ left ( b , a ) </s>
+<s> Next , create a rectangle to the left of the square </s>===<s> rectangle ( c ) ^ left ( c , b ) </s>
+
+<s> Build a aaawl of length 5 and height 6 </s>===<s> aaawl ( a ) ^ width ( 5 ) ^ height ( 6 ) </s>
+
+<s> Construct a vertical line </s>===<s> column ( a ) </s>
+<s> Next , build a square to the bottom of the vertical line </s>===<s> square ( b ) ^ bottom ( b , a ) </s>
+<s> Then , create another one to the right of the first one </s>===<s> square ( c ) ^ right ( c , b ) </s>
+
+<s> You should construct a aaaxs </s>===<s> aaaxs ( a ) </s>
+
+<s> Form a vertical line of size 8 </s>===<s> column ( a ) ^ height ( a , 8 ) </s>
+<s> Do not put blocks in the spaces at row 10 and column 4 and at row 5 and column 4 </s>===<s> restricted ( 4 , 10 ) ^ restricted ( 4 , 5 ) </s>
+
+<s> Create a aaawu of height 7 and length 9 </s>===<s> aaawu ( a ) ^ height ( 7 ) ^ width ( 9 ) </s>
+
+<s> Construct a square </s>===<s> square ( a ) </s>
+<s> Then , build a row to the right of the square </s>===<s> row ( b ) ^ right ( b , a ) </s>
+
+<s> I want you to place a aaaua of height 7 on the table </s>===<s> aaaua ( a ) ^ height ( 7 ) </s>
+
+<s> Form a vertical line </s>===<s> column ( a ) </s>
+<s> Next , build a row to the right of the vertical line </s>===<s> row ( b ) ^ right ( b , a ) </s>
+
+<s> Build a row </s>===<s> row ( a ) </s>
+<s> After that , construct a rectangle to the bottom of the row </s>===<s> rectangle ( b ) ^ bottom ( b , a ) </s>
+
+<s> Construct a square </s>===<s> square ( a ) </s>
+<s> Then , construct a rectangle to the left of the square </s>===<s> rectangle ( b ) ^ left ( b , a ) </s>
+<s> Next , create a row to the left of the rectangle </s>===<s> row ( c ) ^ left ( c , b ) </s>
+
+<s> You should put a aaatj of length 7 on the table </s>===<s> aaatj ( a ) ^ width ( 7 ) </s>
+
+<s> Construct a rectangle that is 2 blocks wide and 5 blocks tall </s>===<s> rectangle ( a ) ^ height ( a , 5 ) ^ width ( a , 2 ) </s>
+<s> There are already blocks at row 6 and column 10 and at row 1 and column 3 </s>===<s> starting_block ( 10 , 6 ) ^ starting_block ( 3 , 1 ) </s>
+
+<s> Build a rectangle </s>===<s> rectangle ( a ) </s>
+<s> After that , create another one to the top of the first one </s>===<s> rectangle ( b ) ^ top ( b , a ) </s>
+<s> Next , create a square to the top of the rectangle </s>===<s> square ( c ) ^ top ( c , b ) </s>
+
+<s> Construct a rectangle with a height of 8 blocks and a width of 2 blocks </s>===<s> rectangle ( a ) ^ height ( a , 8 ) ^ width ( a , 2 ) </s>
+<s> There is an immobile block at row 7 and column 0 </s>===<s> immobile_block ( 0 , 7 ) </s>
+
+<s> Form a vertical line </s>===<s> column ( a ) </s>
+<s> Then , create a square to the bottom of the vertical line </s>===<s> square ( b ) ^ bottom ( b , a ) </s>
+
+<s> Create a square </s>===<s> square ( a ) </s>
+<s> Then , construct another one to the bottom of the first one </s>===<s> square ( b ) ^ bottom ( b , a ) </s>
+<s> Next , construct a rectangle to the right of the square </s>===<s> rectangle ( c ) ^ right ( c , a ) </s>
+<s> Then , create another one to the top of the first one </s>===<s> square ( d ) ^ top ( d , a ) </s>
+
+<s> Please put a aaaxf of width 5 on the table </s>===<s> aaaxf ( a ) ^ width ( 5 ) </s>
+
+<s> Form a column using 8 blocks </s>===<s> column ( a ) ^ height ( a , 8 ) </s>
+<s> Finally , build a rectangle with a height of 8 blocks and a width of 4 blocks to the left of the column </s>===<s> rectangle ( b ) ^ height ( b , 8 ) ^ width ( b , 4 ) ^ left ( b , a ) </s>
+<s> Make sure that the upper right corner of the rectangle is adjacent to the fifth row of the column </s>===<s> block ( c ) ^ location ( w1 ) ^ block-location ( c , w1 ) ^ upper_right ( b , c ) ^ block ( d ) ^ location ( w2 ) ^ block-location ( d , w2 ) ^ left_side ( a , d , 4 ) ^ spatial-rel ( west , 0 , w2 , w1 ) </s>
+<s> There are immobile blocks at row 1 and column 1 , at row 6 and column 8 , and at row 0 and column 5 </s>===<s> immobile_block ( 1 , 1 ) ^ immobile_block ( 8 , 6 ) ^ immobile_block ( 5 , 0 ) </s>
+
+<s> Build a rectangle </s>===<s> rectangle ( a ) </s>
+<s> After that , create a square to the right of the rectangle </s>===<s> square ( b ) ^ right ( b , a ) </s>
+<s> After that , build a rectangle to the top of the square </s>===<s> rectangle ( c ) ^ top ( c , b ) </s>
+
+<s> Construct a rectangle with a width of 4 blocks and a height of 8 blocks </s>===<s> rectangle ( a ) ^ height ( a , 8 ) ^ width ( a , 4 ) </s>
+<s> Next , build a vertical line with 9 blocks to the right of the rectangle </s>===<s> column ( b ) ^ height ( b , 9 ) ^ right ( b , a ) </s>
+<s> Make sure that the top end of the vertical line is adjacent to the second row of the rectangle </s>===<s> block ( c ) ^ location ( w1 ) ^ block-location ( c , w1 ) ^ upper_left ( b , c ) ^ block ( d ) ^ location ( w2 ) ^ block-location ( d , w2 ) ^ right_side ( a , d , 1 ) ^ spatial-rel ( east , 0 , w2 , w1 ) </s>
+<s> Build a rectangle with a height of 4 blocks and a width of 9 blocks above the rectangle </s>===<s> rectangle ( e ) ^ height ( e , 4 ) ^ width ( e , 9 ) ^ top ( e , a ) </s>
+<s> Ensure that the third column of the new rectangle is next to the upper left corner of the first rectangle </s>===<s> block ( f ) ^ location ( w3 ) ^ block-location ( f , w3 ) ^ bottom_side ( e , f , 2 ) ^ block ( g ) ^ location ( w4 ) ^ block-location ( g , w4 ) ^ upper_left ( a , g ) ^ spatial-rel ( north , 0 , w4 , w3 ) </s>
+
+<s> Construct a rectangle </s>===<s> rectangle ( a ) </s>
+<s> Next , build another one to the top of the first one </s>===<s> rectangle ( b ) ^ top ( b , a ) </s>
+<s> After that , create a horizontal line to the left of the rectangle </s>===<s> row ( c ) ^ left ( c , b ) </s>
+<s> Next , create another one to the right of the first one </s>===<s> rectangle ( d ) ^ right ( d , a ) </s>
+
+<s> Create a horizontal line using 5 blocks </s>===<s> row ( a ) ^ width ( a , 5 ) </s>
+<s> There is an immobile block at row 6 and column 0 </s>===<s> immobile_block ( 0 , 6 ) </s>
+
+<s> You should build a aaawk of length 5 </s>===<s> aaawk ( a ) ^ width ( 5 ) </s>
+
+<s> Construct a vertical line using 5 blocks </s>===<s> column ( a ) ^ height ( a , 5 ) </s>
+<s> Construct another one below the first one </s>===<s> column ( b ) ^ height ( b , 5 ) ^ bottom ( b , a ) </s>
+<s> Ensure that the top end of the new vertical line is aligned with the first vertical line 's bottom end </s>===<s> block ( c ) ^ location ( w1 ) ^ block-location ( c , w1 ) ^ upper_left ( b , c ) ^ block ( d ) ^ location ( w2 ) ^ block-location ( d , w2 ) ^ lower_left ( a , d ) ^ spatial-rel ( south , 0 , w2 , w1 ) </s>
+<s> There are already blocks at row 7 and column 6 , at row 7 and column 8 , and at row 9 and column 10 </s>===<s> starting_block ( 6 , 7 ) ^ starting_block ( 8 , 7 ) ^ starting_block ( 10 , 9 ) </s>
+
+<s> Create a rectangle with a height of 9 blocks and a width of 6 blocks </s>===<s> rectangle ( a ) ^ height ( a , 9 ) ^ width ( a , 6 ) </s>
+<s> There is already a block at row 0 and column 0 </s>===<s> starting_block ( 0 , 0 ) </s>
+
+<s> Create a column using 9 blocks </s>===<s> column ( a ) ^ height ( a , 9 ) </s>
+<s> There is already a block at row 4 and column 9 </s>===<s> starting_block ( 9 , 4 ) </s>
+
+<s> Create a square with sides of block length 3 </s>===<s> square ( a ) ^ size ( a , 3 ) </s>
+<s> Now , build a column with 3 blocks to the top of the square </s>===<s> column ( b ) ^ height ( b , 3 ) ^ top ( b , a ) </s>
+<s> Make sure that the column 's bottom end is adjacent to the square 's upper right corner </s>===<s> block ( c ) ^ location ( w1 ) ^ block-location ( c , w1 ) ^ lower_left ( b , c ) ^ block ( d ) ^ location ( w2 ) ^ block-location ( d , w2 ) ^ upper_right ( a , d ) ^ spatial-rel ( north , 0 , w2 , w1 ) </s>
+<s> After that , construct a rectangle that is 2 blocks wide and 6 blocks tall to the right of the column </s>===<s> rectangle ( e ) ^ height ( e , 6 ) ^ width ( e , 2 ) ^ right ( e , b ) </s>
+<s> Ensure that the rectangle 's lower left corner is next to the second row of the column </s>===<s> block ( f ) ^ location ( w3 ) ^ block-location ( f , w3 ) ^ lower_left ( e , f ) ^ block ( g ) ^ location ( w4 ) ^ block-location ( g , w4 ) ^ right_side ( b , g , 1 ) ^ spatial-rel ( east , 0 , w4 , w3 ) </s>
+<s> Do not place blocks in the space at row 10 and column 3 , the space at row 0 and column 2 , and the space at row 2 and column 4 </s>===<s> restricted ( 3 , 10 ) ^ restricted ( 2 , 0 ) ^ restricted ( 4 , 2 ) </s>
+
+<s> Create a row </s>===<s> row ( a ) </s>
+<s> Next , build a square to the left of the row </s>===<s> square ( b ) ^ left ( b , a ) </s>
+<s> Then , build a row to the bottom of the square </s>===<s> row ( c ) ^ bottom ( c , b ) </s>
+<s> Next , build a horizontal line to the left of the square </s>===<s> row ( d ) ^ left ( d , b ) </s>
+
+<s> Create a rectangle with a height of 8 blocks and a width of 6 blocks </s>===<s> rectangle ( a ) ^ height ( a , 8 ) ^ width ( a , 6 ) </s>
+<s> Form a 6 block by 6 block square to the left of the rectangle </s>===<s> square ( b ) ^ size ( b , 6 ) ^ left ( b , a ) </s>
+<s> Ensure that the square 's upper right corner is aligned with the third row of the rectangle </s>===<s> block ( c ) ^ location ( w1 ) ^ block-location ( c , w1 ) ^ upper_right ( b , c ) ^ block ( d ) ^ location ( w2 ) ^ block-location ( d , w2 ) ^ left_side ( a , d , 2 ) ^ spatial-rel ( west , 0 , w2 , w1 ) </s>
+
+<s> Please build a aaaxl </s>===<s> aaaxl ( a ) </s>
+
+<s> Construct a vertical line of height 5 </s>===<s> column ( a ) ^ height ( a , 5 ) </s>
+
+<s> Form a rectangle with a width of 4 blocks and a height of 3 blocks </s>===<s> rectangle ( a ) ^ height ( a , 3 ) ^ width ( a , 4 ) </s>
+<s> Build a 8 block by 8 block square to the bottom of the rectangle </s>===<s> square ( b ) ^ size ( b , 8 ) ^ bottom ( b , a ) </s>
+<s> Ensure that the square 's upper right corner is adjacent to the third column of the rectangle </s>===<s> block ( c ) ^ location ( w1 ) ^ block-location ( c , w1 ) ^ upper_right ( b , c ) ^ block ( d ) ^ location ( w2 ) ^ block-location ( d , w2 ) ^ bottom_side ( a , d , 2 ) ^ spatial-rel ( south , 0 , w2 , w1 ) </s>
+<s> There are immobile blocks at row 7 and column 3 , at row 1 and column 3 , and at row 3 and column 5 </s>===<s> immobile_block ( 3 , 7 ) ^ immobile_block ( 3 , 1 ) ^ immobile_block ( 5 , 3 ) </s>
+
+<s> I want you to construct a aaazq of length 3 </s>===<s> aaazq ( a ) ^ width ( 3 ) </s>
+
+<s> Build a aaayp </s>===<s> aaayp ( a ) </s>
+
+<s> Build a column </s>===<s> column ( a ) </s>
+<s> Then , construct a rectangle to the left of the column </s>===<s> rectangle ( b ) ^ left ( b , a ) </s>
+<s> Then , build a row to the top of the rectangle </s>===<s> row ( c ) ^ top ( c , b ) </s>
+<s> Next , build a square to the bottom of the column </s>===<s> square ( d ) ^ bottom ( d , a ) </s>
+
+<s> Build a column </s>===<s> column ( a ) </s>
+<s> After that , build a row to the bottom of the column </s>===<s> row ( b ) ^ bottom ( b , a ) </s>
+<s> Next , create a square to the left of the row </s>===<s> square ( c ) ^ left ( c , b ) </s>
+
+<s> Construct a rectangle </s>===<s> rectangle ( a ) </s>
+<s> Next , form a square to the left of the rectangle </s>===<s> square ( b ) ^ left ( b , a ) </s>
+<s> Then , create a column to the left of the square </s>===<s> column ( c ) ^ left ( c , b ) </s>
+<s> Then , create a vertical line to the bottom of the rectangle </s>===<s> column ( d ) ^ bottom ( d , a ) </s>
+
+<s> You should build a aabax of length 9 </s>===<s> aabax ( a ) ^ width ( 9 ) </s>
+
+<s> Build a rectangle that is 5 blocks tall and 3 blocks wide </s>===<s> rectangle ( a ) ^ height ( a , 5 ) ^ width ( a , 3 ) </s>
+<s> Create another one beneath the first one </s>===<s> rectangle ( b ) ^ height ( b , 5 ) ^ width ( b , 3 ) ^ bottom ( b , a ) </s>
+<s> Make sure that the upper left corner of the new rectangle is adjacent to the first rectangle 's lower left corner </s>===<s> block ( c ) ^ location ( w1 ) ^ block-location ( c , w1 ) ^ upper_left ( b , c ) ^ block ( d ) ^ location ( w2 ) ^ block-location ( d , w2 ) ^ lower_left ( a , d ) ^ spatial-rel ( south , 0 , w2 , w1 ) </s>
+<s> Do not place a block in the space at row 0 and column 10 </s>===<s> restricted ( 10 , 0 ) </s>
+
+<s> Build a horizontal line </s>===<s> row ( a ) </s>
+<s> Next , construct a rectangle to the right of the horizontal line </s>===<s> rectangle ( b ) ^ right ( b , a ) </s>
+<s> Then , build a square to the left of the horizontal line </s>===<s> square ( c ) ^ left ( c , a ) </s>
+
+<s> Build a horizontal line </s>===<s> row ( a ) </s>
+<s> Then , construct another one to the bottom of the first one </s>===<s> row ( b ) ^ bottom ( b , a ) </s>
+
+<s> Construct a vertical line with 3 blocks </s>===<s> column ( a ) ^ height ( a , 3 ) </s>
+<s> There are already blocks at row 8 and column 1 and at row 6 and column 6 </s>===<s> starting_block ( 1 , 8 ) ^ starting_block ( 6 , 6 ) </s>
+
+<s> Create a square </s>===<s> square ( a ) </s>
+<s> Then , build another one to the top of the first one </s>===<s> square ( b ) ^ top ( b , a ) </s>
+<s> Next , form a rectangle to the left of the square </s>===<s> rectangle ( c ) ^ left ( c , b ) </s>
+
+<s> Construct a horizontal line with 4 blocks </s>===<s> row ( a ) ^ width ( a , 4 ) </s>
+<s> Next , form a rectangle that is 5 blocks tall and 2 blocks wide to the right of the horizontal line </s>===<s> rectangle ( b ) ^ height ( b , 5 ) ^ width ( b , 2 ) ^ right ( b , a ) </s>
+<s> Ensure that the second row of the rectangle is adjacent to the horizontal line 's right end </s>===<s> block ( c ) ^ location ( w1 ) ^ block-location ( c , w1 ) ^ left_side ( b , c , 1 ) ^ block ( d ) ^ location ( w2 ) ^ block-location ( d , w2 ) ^ upper_right ( a , d ) ^ spatial-rel ( east , 0 , w2 , w1 ) </s>
+
+<s> Build a horizontal line </s>===<s> row ( a ) </s>
+<s> After that , construct a vertical line to the top of the horizontal line </s>===<s> column ( b ) ^ top ( b , a ) </s>
+<s> After that , build a vertical line to the right of the horizontal line </s>===<s> column ( c ) ^ right ( c , a ) </s>
+
+<s> Create a square </s>===<s> square ( a ) </s>
+<s> Then , build a row to the right of the square </s>===<s> row ( b ) ^ right ( b , a ) </s>
+<s> Then , create a vertical line to the left of the square </s>===<s> column ( c ) ^ left ( c , a ) </s>
+<s> Then , form a square to the right of the row </s>===<s> square ( d ) ^ right ( d , b ) </s>
+
+<s> Construct a row </s>===<s> row ( a ) </s>
+<s> Next , create a square to the right of the row </s>===<s> square ( b ) ^ right ( b , a ) </s>
+<s> Next , create a row to the bottom of the square </s>===<s> row ( c ) ^ bottom ( c , b ) </s>
+<s> Then , form another one to the top of the first one </s>===<s> square ( d ) ^ top ( d , b ) </s>
+
+<s> Form a column using 4 blocks </s>===<s> column ( a ) ^ height ( a , 4 ) </s>
+<s> Create a 9 by 9 square to the bottom of the column </s>===<s> square ( b ) ^ size ( b , 9 ) ^ bottom ( b , a ) </s>
+<s> Ensure that the eighth column of the square is adjacent to the bottom end of the column </s>===<s> block ( c ) ^ location ( w1 ) ^ block-location ( c , w1 ) ^ top_side ( b , c , 7 ) ^ block ( d ) ^ location ( w2 ) ^ block-location ( d , w2 ) ^ lower_left ( a , d ) ^ spatial-rel ( south , 0 , w2 , w1 ) </s>
+<s> There is already a block at row 3 and column 6 </s>===<s> starting_block ( 6 , 3 ) </s>
+
+<s> Create a vertical line using 4 blocks </s>===<s> column ( a ) ^ height ( a , 4 ) </s>
+<s> Finally , form another one to the top of the first one </s>===<s> column ( b ) ^ height ( b , 4 ) ^ top ( b , a ) </s>
+<s> Make sure that the bottom end of the new vertical line is adjacent to the top end of the first vertical line </s>===<s> block ( c ) ^ location ( w1 ) ^ block-location ( c , w1 ) ^ lower_left ( b , c ) ^ block ( d ) ^ location ( w2 ) ^ block-location ( d , w2 ) ^ upper_left ( a , d ) ^ spatial-rel ( north , 0 , w2 , w1 ) </s>
+<s> Do not place a block in the space at row 1 and column 9 </s>===<s> restricted ( 9 , 1 ) </s>
+
+<s> Create a 4 by 4 square </s>===<s> square ( a ) ^ size ( a , 4 ) </s>
+<s> There are already blocks at row 4 and column 7 and at row 5 and column 9 </s>===<s> starting_block ( 7 , 4 ) ^ starting_block ( 9 , 5 ) </s>
+
+<s> Place a aaavy of length 3 on the table </s>===<s> aaavy ( a ) ^ width ( 3 ) </s>
+
+<s> Build a horizontal line using 4 blocks </s>===<s> row ( a ) ^ width ( a , 4 ) </s>
+<s> Then , construct a vertical line of height 5 to the bottom of the horizontal line </s>===<s> column ( b ) ^ height ( b , 5 ) ^ bottom ( b , a ) </s>
+<s> Make sure that the top end of the vertical line is adjacent to the second column of the horizontal line </s>===<s> block ( c ) ^ location ( w1 ) ^ block-location ( c , w1 ) ^ upper_left ( b , c ) ^ block ( d ) ^ location ( w2 ) ^ block-location ( d , w2 ) ^ bottom_side ( a , d , 1 ) ^ spatial-rel ( south , 0 , w2 , w1 ) </s>
+<s> Do not place blocks in the space at row 4 and column 5 , the space at row 2 and column 2 , and the space at row 9 and column 9 </s>===<s> restricted ( 5 , 4 ) ^ restricted ( 2 , 2 ) ^ restricted ( 9 , 9 ) </s>
+
+<s> Build a horizontal line using 9 blocks </s>===<s> row ( a ) ^ width ( a , 9 ) </s>
+<s> There are immobile blocks at row 5 and column 4 and at row 7 and column 1 </s>===<s> immobile_block ( 4 , 5 ) ^ immobile_block ( 1 , 7 ) </s>
+
+<s> You should build a aaavt </s>===<s> aaavt ( a ) </s>
+
+<s> You should build a aabaw of height 3 and width 2 </s>===<s> aabaw ( a ) ^ height ( 3 ) ^ width ( 2 ) </s>
+
+<s> Create a horizontal line of size 4 </s>===<s> row ( a ) ^ width ( a , 4 ) </s>
+<s> Finally , construct a horizontal line of size 4 to the left of the horizontal line </s>===<s> row ( b ) ^ width ( b , 4 ) ^ left ( b , a ) </s>
+<s> Ensure that the right end of the new horizontal line is in line with the first horizontal line 's left end </s>===<s> block ( c ) ^ location ( w1 ) ^ block-location ( c , w1 ) ^ upper_right ( b , c ) ^ block ( d ) ^ location ( w2 ) ^ block-location ( d , w2 ) ^ upper_left ( a , d ) ^ spatial-rel ( west , 0 , w2 , w1 ) </s>
+<s> Do not put blocks in the space at row 1 and column 5 , the space at row 0 and column 4 , and the space at row 2 and column 3 </s>===<s> restricted ( 5 , 1 ) ^ restricted ( 4 , 0 ) ^ restricted ( 3 , 2 ) </s>
+
+<s> Build a square with sides of block length 5 </s>===<s> square ( a ) ^ size ( a , 5 ) </s>
+<s> Build a rectangle with a height of 9 blocks and a width of 3 blocks to the bottom of the square </s>===<s> rectangle ( b ) ^ height ( b , 9 ) ^ width ( b , 3 ) ^ bottom ( b , a ) </s>
+<s> Ensure that the upper left corner of the rectangle is next to the fourth column of the square </s>===<s> block ( c ) ^ location ( w1 ) ^ block-location ( c , w1 ) ^ upper_left ( b , c ) ^ block ( d ) ^ location ( w2 ) ^ block-location ( d , w2 ) ^ bottom_side ( a , d , 3 ) ^ spatial-rel ( south , 0 , w2 , w1 ) </s>
+<s> Construct a horizontal line of size 6 to the bottom of the rectangle </s>===<s> row ( e ) ^ width ( e , 6 ) ^ bottom ( e , b ) </s>
+<s> Make sure that the right end of the horizontal line is adjacent to the rectangle 's lower right corner </s>===<s> block ( f ) ^ location ( w3 ) ^ block-location ( f , w3 ) ^ upper_right ( e , f ) ^ block ( g ) ^ location ( w4 ) ^ block-location ( g , w4 ) ^ lower_right ( b , g ) ^ spatial-rel ( south , 0 , w4 , w3 ) </s>
+<s> Do not put a block in the space at row 7 and column 7 </s>===<s> restricted ( 7 , 7 ) </s>
+
+<s> Place a aaauu of height 2 on the table </s>===<s> aaauu ( a ) ^ height ( 2 ) </s>
+
+<s> Build a 5 by 3 rectangle </s>===<s> rectangle ( a ) ^ height ( a , 3 ) ^ width ( a , 5 ) </s>
+<s> Build a 5 by 3 rectangle to the right of the rectangle </s>===<s> rectangle ( b ) ^ height ( b , 3 ) ^ width ( b , 5 ) ^ right ( b , a ) </s>
+<s> Ensure that the lower left corner of the new rectangle is next to the upper right corner of the first rectangle </s>===<s> block ( c ) ^ location ( w1 ) ^ block-location ( c , w1 ) ^ lower_left ( b , c ) ^ block ( d ) ^ location ( w2 ) ^ block-location ( d , w2 ) ^ upper_right ( a , d ) ^ spatial-rel ( east , 0 , w2 , w1 ) </s>
+<s> There are immobile blocks at row 0 and column 6 and at row 4 and column 6 </s>===<s> immobile_block ( 6 , 0 ) ^ immobile_block ( 6 , 4 ) </s>
+
+<s> Construct a 2 block by 2 block square </s>===<s> square ( a ) ^ size ( a , 2 ) </s>
+<s> Next , construct another one to the right of the first one </s>===<s> square ( b ) ^ size ( b , 2 ) ^ right ( b , a ) </s>
+<s> Make sure that the upper left corner of the new square is in line with the first square 's upper right corner </s>===<s> block ( c ) ^ location ( w1 ) ^ block-location ( c , w1 ) ^ upper_left ( b , c ) ^ block ( d ) ^ location ( w2 ) ^ block-location ( d , w2 ) ^ upper_right ( a , d ) ^ spatial-rel ( east , 0 , w2 , w1 ) </s>
+<s> There are immobile blocks at row 8 and column 1 and at row 6 and column 3 </s>===<s> immobile_block ( 1 , 8 ) ^ immobile_block ( 3 , 6 ) </s>
+
+<s> Create a square </s>===<s> square ( a ) </s>
+<s> Next , create a vertical line to the right of the square </s>===<s> column ( b ) ^ right ( b , a ) </s>
+<s> After that , form a rectangle to the top of the vertical line </s>===<s> rectangle ( c ) ^ top ( c , b ) </s>
+<s> After that , build a column to the top of the rectangle </s>===<s> column ( d ) ^ top ( d , c ) </s>
+
+<s> Create a rectangle that is 6 blocks wide and 7 blocks tall </s>===<s> rectangle ( a ) ^ height ( a , 7 ) ^ width ( a , 6 ) </s>
+<s> Now , build a column with 5 blocks to the right of the rectangle </s>===<s> column ( b ) ^ height ( b , 5 ) ^ right ( b , a ) </s>
+<s> Ensure that the top end of the column is adjacent to the fourth row of the rectangle </s>===<s> block ( c ) ^ location ( w1 ) ^ block-location ( c , w1 ) ^ upper_left ( b , c ) ^ block ( d ) ^ location ( w2 ) ^ block-location ( d , w2 ) ^ right_side ( a , d , 3 ) ^ spatial-rel ( east , 0 , w2 , w1 ) </s>
+<s> Form a 8 block by 8 block square to the left of the rectangle </s>===<s> square ( e ) ^ size ( e , 8 ) ^ left ( e , a ) </s>
+<s> Make sure that the square 's lower right corner is next to the sixth row of the rectangle </s>===<s> block ( f ) ^ location ( w3 ) ^ block-location ( f , w3 ) ^ lower_right ( e , f ) ^ block ( g ) ^ location ( w4 ) ^ block-location ( g , w4 ) ^ left_side ( a , g , 5 ) ^ spatial-rel ( west , 0 , w4 , w3 ) </s>
+
+<s> Create a horizontal line </s>===<s> row ( a ) </s>
+<s> After that , create another one to the bottom of the first one </s>===<s> row ( b ) ^ bottom ( b , a ) </s>
+<s> Next , build a square to the right of the row </s>===<s> square ( c ) ^ right ( c , b ) </s>
+
+<s> Create a square </s>===<s> square ( a ) </s>
+<s> After that , create a vertical line to the right of the square </s>===<s> column ( b ) ^ right ( b , a ) </s>
+<s> Next , build a rectangle to the bottom of the vertical line </s>===<s> rectangle ( c ) ^ bottom ( c , b ) </s>
+
+<s> Form a horizontal line </s>===<s> row ( a ) </s>
+<s> Next , form another one to the left of the first one </s>===<s> row ( b ) ^ left ( b , a ) </s>
+<s> After that , construct another one to the bottom of the first one </s>===<s> row ( c ) ^ bottom ( c , b ) </s>
+<s> After that , construct a vertical line to the left of the horizontal line </s>===<s> column ( d ) ^ left ( d , c ) </s>
+
+<s> Build a rectangle with a height of 7 blocks and a width of 5 blocks </s>===<s> rectangle ( a ) ^ height ( a , 7 ) ^ width ( a , 5 ) </s>
+<s> Do not place a block in the space at row 0 and column 3 </s>===<s> restricted ( 3 , 0 ) </s>
+
+<s> Create a aabas of height 4 </s>===<s> aabas ( a ) ^ height ( 4 ) </s>
+
+<s> Create a rectangle with a width of 3 blocks and a height of 7 blocks </s>===<s> rectangle ( a ) ^ height ( a , 7 ) ^ width ( a , 3 ) </s>
+
+<s> Form a square </s>===<s> square ( a ) </s>
+<s> Next , construct a horizontal line to the top of the square </s>===<s> row ( b ) ^ top ( b , a ) </s>
+<s> Then , create a rectangle to the left of the horizontal line </s>===<s> rectangle ( c ) ^ left ( c , b ) </s>
+<s> Then , construct a horizontal line to the top of the rectangle </s>===<s> row ( d ) ^ top ( d , c ) </s>
+
+<s> Build a rectangle with a height of 9 blocks and a width of 2 blocks </s>===<s> rectangle ( a ) ^ height ( a , 9 ) ^ width ( a , 2 ) </s>
+<s> Finally , construct a vertical line with 3 blocks above the rectangle </s>===<s> column ( b ) ^ height ( b , 3 ) ^ top ( b , a ) </s>
+<s> Ensure that the bottom end of the vertical line is adjacent to the rectangle 's upper right corner </s>===<s> block ( c ) ^ location ( w1 ) ^ block-location ( c , w1 ) ^ lower_left ( b , c ) ^ block ( d ) ^ location ( w2 ) ^ block-location ( d , w2 ) ^ upper_right ( a , d ) ^ spatial-rel ( north , 0 , w2 , w1 ) </s>
+
+<s> Please build a aaawz of width 6 </s>===<s> aaawz ( a ) ^ width ( 6 ) </s>
+
+<s> Create a column </s>===<s> column ( a ) </s>
+<s> Next , form a rectangle to the bottom of the column </s>===<s> rectangle ( b ) ^ bottom ( b , a ) </s>
+
+<s> You should construct a aaayq of width 6 </s>===<s> aaayq ( a ) ^ width ( 6 ) </s>
+
+<s> You should create a aaaxo of height 6 </s>===<s> aaaxo ( a ) ^ height ( 6 ) </s>
+
+<s> Construct a rectangle with a height of 5 blocks and a width of 9 blocks </s>===<s> rectangle ( a ) ^ height ( a , 5 ) ^ width ( a , 9 ) </s>
+<s> Form a horizontal line of length 3 to the right of the rectangle </s>===<s> row ( b ) ^ width ( b , 3 ) ^ right ( b , a ) </s>
+<s> Make sure that the left end of the horizontal line is in line with the upper right corner of the rectangle </s>===<s> block ( c ) ^ location ( w1 ) ^ block-location ( c , w1 ) ^ upper_left ( b , c ) ^ block ( d ) ^ location ( w2 ) ^ block-location ( d , w2 ) ^ upper_right ( a , d ) ^ spatial-rel ( east , 0 , w2 , w1 ) </s>
+<s> There are already blocks at row 7 and column 9 and at row 2 and column 7 </s>===<s> starting_block ( 9 , 7 ) ^ starting_block ( 7 , 2 ) </s>
+
+<s> Construct a row </s>===<s> row ( a ) </s>
+<s> Next , form a rectangle to the left of the row </s>===<s> rectangle ( b ) ^ left ( b , a ) </s>
+
+<s> Create a 6 block by 6 block square </s>===<s> square ( a ) ^ size ( a , 6 ) </s>
+<s> There are already blocks at row 2 and column 2 and at row 7 and column 8 </s>===<s> starting_block ( 2 , 2 ) ^ starting_block ( 8 , 7 ) </s>
+
+<s> Create a row </s>===<s> row ( a ) </s>
+<s> Then , construct a square to the top of the row </s>===<s> square ( b ) ^ top ( b , a ) </s>
+<s> After that , form another one to the bottom of the first one </s>===<s> row ( c ) ^ bottom ( c , a ) </s>
+<s> Then , create another one to the left of the first one </s>===<s> square ( d ) ^ left ( d , b ) </s>
+
+<s> Form a column with 7 blocks </s>===<s> column ( a ) ^ height ( a , 7 ) </s>
+<s> Construct a column of size 7 to the right of the column </s>===<s> column ( b ) ^ height ( b , 7 ) ^ right ( b , a ) </s>
+<s> Make sure that the new column 's bottom end is next to the fourth row of the first column </s>===<s> block ( c ) ^ location ( w1 ) ^ block-location ( c , w1 ) ^ lower_left ( b , c ) ^ block ( d ) ^ location ( w2 ) ^ block-location ( d , w2 ) ^ right_side ( a , d , 3 ) ^ spatial-rel ( east , 0 , w2 , w1 ) </s>
+<s> Then , build a row using 4 blocks above the column </s>===<s> row ( e ) ^ width ( e , 4 ) ^ top ( e , b ) </s>
+<s> Ensure that the left end of the row is next to the top end of the second column </s>===<s> block ( f ) ^ location ( w3 ) ^ block-location ( f , w3 ) ^ lower_left ( e , f ) ^ block ( g ) ^ location ( w4 ) ^ block-location ( g , w4 ) ^ upper_left ( b , g ) ^ spatial-rel ( north , 0 , w4 , w3 ) </s>
+<s> There are already blocks at row 8 and column 8 , at row 8 and column 6 , and at row 6 and column 3 </s>===<s> starting_block ( 8 , 8 ) ^ starting_block ( 6 , 8 ) ^ starting_block ( 3 , 6 ) </s>
+
+<s> Construct a rectangle </s>===<s> rectangle ( a ) </s>
+<s> After that , construct another one to the left of the first one </s>===<s> rectangle ( b ) ^ left ( b , a ) </s>
+
+<s> Construct a 7 by 9 rectangle </s>===<s> rectangle ( a ) ^ height ( a , 9 ) ^ width ( a , 7 ) </s>
+<s> Form a 4 by 4 square to the right of the rectangle </s>===<s> square ( b ) ^ size ( b , 4 ) ^ right ( b , a ) </s>
+<s> Make sure that the upper left corner of the square is next to the third row of the rectangle </s>===<s> block ( c ) ^ location ( w1 ) ^ block-location ( c , w1 ) ^ upper_left ( b , c ) ^ block ( d ) ^ location ( w2 ) ^ block-location ( d , w2 ) ^ right_side ( a , d , 2 ) ^ spatial-rel ( east , 0 , w2 , w1 ) </s>
+<s> There are immobile blocks at row 8 and column 8 and at row 9 and column 7 </s>===<s> immobile_block ( 8 , 8 ) ^ immobile_block ( 7 , 9 ) </s>
+
+<s> Construct a 4 by 4 square </s>===<s> square ( a ) ^ size ( a , 4 ) </s>
+<s> Next , build a vertical line of height 4 to the right of the square </s>===<s> column ( b ) ^ height ( b , 4 ) ^ right ( b , a ) </s>
+<s> Ensure that the top end of the vertical line is next to the square 's lower right corner </s>===<s> block ( c ) ^ location ( w1 ) ^ block-location ( c , w1 ) ^ upper_left ( b , c ) ^ block ( d ) ^ location ( w2 ) ^ block-location ( d , w2 ) ^ lower_right ( a , d ) ^ spatial-rel ( east , 0 , w2 , w1 ) </s>
+<s> Build a rectangle with a width of 9 blocks and a height of 7 blocks beneath the vertical line </s>===<s> rectangle ( e ) ^ height ( e , 7 ) ^ width ( e , 9 ) ^ bottom ( e , b ) </s>
+<s> Ensure that the upper right corner of the rectangle is next to the bottom end of the vertical line </s>===<s> block ( f ) ^ location ( w3 ) ^ block-location ( f , w3 ) ^ upper_right ( e , f ) ^ block ( g ) ^ location ( w4 ) ^ block-location ( g , w4 ) ^ lower_right ( b , g ) ^ spatial-rel ( south , 0 , w4 , w3 ) </s>
+<s> Do not put blocks in the space at row 7 and column 1 , the space at row 6 and column 4 , and the space at row 5 and column 3 </s>===<s> restricted ( 1 , 7 ) ^ restricted ( 4 , 6 ) ^ restricted ( 3 , 5 ) </s>
+
+<s> Build a rectangle </s>===<s> rectangle ( a ) </s>
+<s> Then , construct a square to the left of the rectangle </s>===<s> square ( b ) ^ left ( b , a ) </s>
+<s> Next , build a rectangle to the left of the square </s>===<s> rectangle ( c ) ^ left ( c , b ) </s>
+<s> Then , form another one to the right of the first one </s>===<s> rectangle ( d ) ^ right ( d , a ) </s>
+
+<s> Build a horizontal line </s>===<s> row ( a ) </s>
+<s> After that , build a vertical line to the top of the horizontal line </s>===<s> column ( b ) ^ top ( b , a ) </s>
+<s> Next , construct a row to the top of the vertical line </s>===<s> row ( c ) ^ top ( c , b ) </s>
+<s> After that , build a rectangle to the right of the row </s>===<s> rectangle ( d ) ^ right ( d , c ) </s>
+
+<s> Create a vertical line </s>===<s> column ( a ) </s>
+<s> After that , create another one to the left of the first one </s>===<s> column ( b ) ^ left ( b , a ) </s>
+
+<s> I want you to place a aaatt on the table </s>===<s> aaatt ( a ) </s>
+
+<s> Construct a column </s>===<s> column ( a ) </s>
+<s> After that , build a row to the right of the column </s>===<s> row ( b ) ^ right ( b , a ) </s>
+<s> Then , create a horizontal line to the bottom of the column </s>===<s> row ( c ) ^ bottom ( c , a ) </s>
+
+<s> Construct a vertical line with 3 blocks </s>===<s> column ( a ) ^ height ( a , 3 ) </s>
+<s> Do not put a block in the space at row 9 and column 1 </s>===<s> restricted ( 1 , 9 ) </s>
+
+<s> Create a rectangle </s>===<s> rectangle ( a ) </s>
+<s> Next , construct a column to the right of the rectangle </s>===<s> column ( b ) ^ right ( b , a ) </s>
+<s> Next , create a horizontal line to the bottom of the rectangle </s>===<s> row ( c ) ^ bottom ( c , a ) </s>
+<s> Then , build another one to the left of the first one </s>===<s> row ( d ) ^ left ( d , c ) </s>
+
+<s> Create a vertical line of height 5 </s>===<s> column ( a ) ^ height ( a , 5 ) </s>
+<s> There are already blocks at row 4 and column 6 and at row 10 and column 8 </s>===<s> starting_block ( 6 , 4 ) ^ starting_block ( 8 , 10 ) </s>
+
+<s> Create a row of length 4 </s>===<s> row ( a ) ^ width ( a , 4 ) </s>
+<s> Then , create a vertical line of size 8 to the left of the row </s>===<s> column ( b ) ^ height ( b , 8 ) ^ left ( b , a ) </s>
+<s> Ensure that the seventh row of the vertical line is adjacent to the row 's left end </s>===<s> block ( c ) ^ location ( w1 ) ^ block-location ( c , w1 ) ^ right_side ( b , c , 6 ) ^ block ( d ) ^ location ( w2 ) ^ block-location ( d , w2 ) ^ upper_left ( a , d ) ^ spatial-rel ( west , 0 , w2 , w1 ) </s>
+<s> Construct a 7 by 7 square to the left of the vertical line </s>===<s> square ( e ) ^ size ( e , 7 ) ^ left ( e , b ) </s>
+<s> Ensure that the square 's lower right corner is next to the sixth row of the vertical line </s>===<s> block ( f ) ^ location ( w3 ) ^ block-location ( f , w3 ) ^ lower_right ( e , f ) ^ block ( g ) ^ location ( w4 ) ^ block-location ( g , w4 ) ^ left_side ( b , g , 5 ) ^ spatial-rel ( west , 0 , w4 , w3 ) </s>
+<s> There are already blocks at row 3 and column 8 and at row 2 and column 2 </s>===<s> starting_block ( 8 , 3 ) ^ starting_block ( 2 , 2 ) </s>
+
+<s> Please build a aaazf of width 2 and height 5 </s>===<s> aaazf ( a ) ^ width ( 2 ) ^ height ( 5 ) </s>
+
+<s> Construct a aaayb of length 8 </s>===<s> aaayb ( a ) ^ width ( 8 ) </s>
+
+<s> Form a horizontal line </s>===<s> row ( a ) </s>
+<s> After that , form a rectangle to the left of the horizontal line </s>===<s> rectangle ( b ) ^ left ( b , a ) </s>
+<s> Next , form a square to the right of the horizontal line </s>===<s> square ( c ) ^ right ( c , a ) </s>
+<s> Next , construct a column to the top of the square </s>===<s> column ( d ) ^ top ( d , c ) </s>
+
+<s> Please build a aaawy of height 9 and length 7 </s>===<s> aaawy ( a ) ^ height ( 9 ) ^ width ( 7 ) </s>
+
+<s> Create a horizontal line with 7 blocks </s>===<s> row ( a ) ^ width ( a , 7 ) </s>
+<s> Construct a column of height 6 to the top of the horizontal line </s>===<s> column ( b ) ^ height ( b , 6 ) ^ top ( b , a ) </s>
+<s> Make sure that the bottom end of the column is adjacent to the right end of the horizontal line </s>===<s> block ( c ) ^ location ( w1 ) ^ block-location ( c , w1 ) ^ lower_left ( b , c ) ^ block ( d ) ^ location ( w2 ) ^ block-location ( d , w2 ) ^ upper_right ( a , d ) ^ spatial-rel ( north , 0 , w2 , w1 ) </s>
+<s> Form a 3 block by 3 block square to the bottom of the horizontal line </s>===<s> square ( e ) ^ size ( e , 3 ) ^ bottom ( e , a ) </s>
+<s> Ensure that the square 's upper left corner is adjacent to the sixth column of the horizontal line </s>===<s> block ( f ) ^ location ( w3 ) ^ block-location ( f , w3 ) ^ upper_left ( e , f ) ^ block ( g ) ^ location ( w4 ) ^ block-location ( g , w4 ) ^ bottom_side ( a , g , 5 ) ^ spatial-rel ( south , 0 , w4 , w3 ) </s>
+<s> There are already blocks at row 10 and column 9 and at row 0 and column 1 </s>===<s> starting_block ( 9 , 10 ) ^ starting_block ( 1 , 0 ) </s>
+
+<s> Construct a column </s>===<s> column ( a ) </s>
+<s> After that , create a rectangle to the left of the column </s>===<s> rectangle ( b ) ^ left ( b , a ) </s>
+<s> Then , build a column to the left of the rectangle </s>===<s> column ( c ) ^ left ( c , b ) </s>
+<s> After that , create a row to the top of the rectangle </s>===<s> row ( d ) ^ top ( d , b ) </s>
+
+<s> Please put a aaaxh of length 8 on the table </s>===<s> aaaxh ( a ) ^ width ( 8 ) </s>
+
+<s> Build a horizontal line of length 9 </s>===<s> row ( a ) ^ width ( a , 9 ) </s>
+<s> There are already blocks at row 8 and column 9 and at row 10 and column 5 </s>===<s> starting_block ( 9 , 8 ) ^ starting_block ( 5 , 10 ) </s>
+
+<s> Put a aaaxz of length 5 on the table </s>===<s> aaaxz ( a ) ^ width ( 5 ) </s>
+
+<s> Form a horizontal line with 9 blocks </s>===<s> row ( a ) ^ width ( a , 9 ) </s>
+<s> Do not place blocks in the spaces at row 4 and column 6 and at row 5 and column 10 </s>===<s> restricted ( 6 , 4 ) ^ restricted ( 10 , 5 ) </s>
+
+<s> Please put a aaazb of height 3 and width 4 on the table </s>===<s> aaazb ( a ) ^ height ( 3 ) ^ width ( 4 ) </s>
+
+<s> Build a square </s>===<s> square ( a ) </s>
+<s> After that , create a column to the left of the square </s>===<s> column ( b ) ^ left ( b , a ) </s>
+<s> Then , build a vertical line to the bottom of the square </s>===<s> column ( c ) ^ bottom ( c , a ) </s>
+
+<s> I want you to build a aabai of height 6 </s>===<s> aabai ( a ) ^ height ( 6 ) </s>
+
+<s> You should build a aaaus of width 9 and height 5 </s>===<s> aaaus ( a ) ^ width ( 9 ) ^ height ( 5 ) </s>
+
+<s> Create a horizontal line </s>===<s> row ( a ) </s>
+<s> Next , construct a square to the left of the horizontal line </s>===<s> square ( b ) ^ left ( b , a ) </s>
+
+<s> Create a vertical line with 8 blocks </s>===<s> column ( a ) ^ height ( a , 8 ) </s>
+<s> There are immobile blocks at row 0 and column 0 , at row 1 and column 2 , and at row 0 and column 8 </s>===<s> immobile_block ( 0 , 0 ) ^ immobile_block ( 2 , 1 ) ^ immobile_block ( 8 , 0 ) </s>
+
+<s> Build a horizontal line </s>===<s> row ( a ) </s>
+<s> Then , form a square to the bottom of the horizontal line </s>===<s> square ( b ) ^ bottom ( b , a ) </s>
+<s> Then , create a rectangle to the bottom of the square </s>===<s> rectangle ( c ) ^ bottom ( c , b ) </s>
+<s> Then , create a column to the top of the horizontal line </s>===<s> column ( d ) ^ top ( d , a ) </s>
+
+<s> Build a column of size 3 </s>===<s> column ( a ) ^ height ( a , 3 ) </s>
+<s> Then , construct another one above the first one </s>===<s> column ( b ) ^ height ( b , 3 ) ^ top ( b , a ) </s>
+<s> Ensure that the new column 's bottom end is in line with the first column 's top end </s>===<s> block ( c ) ^ location ( w1 ) ^ block-location ( c , w1 ) ^ lower_left ( b , c ) ^ block ( d ) ^ location ( w2 ) ^ block-location ( d , w2 ) ^ upper_left ( a , d ) ^ spatial-rel ( north , 0 , w2 , w1 ) </s>
+<s> There are already blocks at row 4 and column 1 and at row 1 and column 10 </s>===<s> starting_block ( 1 , 4 ) ^ starting_block ( 10 , 1 ) </s>
+
+<s> Create a aaaup of width 9 and height 7 </s>===<s> aaaup ( a ) ^ width ( 9 ) ^ height ( 7 ) </s>
+
+<s> Create a aaatr of width 2 and height 6 </s>===<s> aaatr ( a ) ^ width ( 2 ) ^ height ( 6 ) </s>
+
+<s> Form a column </s>===<s> column ( a ) </s>
+<s> Then , build a rectangle to the right of the column </s>===<s> rectangle ( b ) ^ right ( b , a ) </s>
+<s> Then , build another one to the bottom of the first one </s>===<s> rectangle ( c ) ^ bottom ( c , b ) </s>
+
+
+<s> Create a column </s>===<s> column ( a ) </s>
+<s> Next , form a row to the bottom of the column </s>===<s> row ( b ) ^ bottom ( b , a ) </s>
+
+<s> Create a row </s>===<s> row ( a ) </s>
+<s> Next , form a rectangle to the left of the row </s>===<s> rectangle ( b ) ^ left ( b , a ) </s>
+<s> Then , build a column to the bottom of the rectangle </s>===<s> column ( c ) ^ bottom ( c , b ) </s>
+<s> Then , build a rectangle to the bottom of the column </s>===<s> rectangle ( d ) ^ bottom ( d , c ) </s>
+
+<s> Form a column using 4 blocks </s>===<s> column ( a ) ^ height ( a , 4 ) </s>
+<s> Next , build a 3 by 8 rectangle to the right of the column </s>===<s> rectangle ( b ) ^ height ( b , 8 ) ^ width ( b , 3 ) ^ right ( b , a ) </s>
+<s> Ensure that the lower left corner of the rectangle is next to the bottom end of the column </s>===<s> block ( c ) ^ location ( w1 ) ^ block-location ( c , w1 ) ^ lower_left ( b , c ) ^ block ( d ) ^ location ( w2 ) ^ block-location ( d , w2 ) ^ lower_right ( a , d ) ^ spatial-rel ( east , 0 , w2 , w1 ) </s>
+<s> There are immobile blocks at row 8 and column 3 and at row 0 and column 0 </s>===<s> immobile_block ( 3 , 8 ) ^ immobile_block ( 0 , 0 ) </s>
+
+<s> Create a horizontal line of length 6 </s>===<s> row ( a ) ^ width ( a , 6 ) </s>
+<s> There is an immobile block at row 1 and column 1 </s>===<s> immobile_block ( 1 , 1 ) </s>
+
+<s> Form a row of size 9 </s>===<s> row ( a ) ^ width ( a , 9 ) </s>
+<s> Next , build a rectangle with a width of 6 blocks and a height of 3 blocks to the top of the row </s>===<s> rectangle ( b ) ^ height ( b , 3 ) ^ width ( b , 6 ) ^ top ( b , a ) </s>
+<s> Ensure that the lower right corner of the rectangle is adjacent to the fourth column of the row </s>===<s> block ( c ) ^ location ( w1 ) ^ block-location ( c , w1 ) ^ lower_right ( b , c ) ^ block ( d ) ^ location ( w2 ) ^ block-location ( d , w2 ) ^ top_side ( a , d , 3 ) ^ spatial-rel ( north , 0 , w2 , w1 ) </s>
+<s> Form a column of height 9 above the rectangle </s>===<s> column ( e ) ^ height ( e , 9 ) ^ top ( e , b ) </s>
+<s> Make sure that the column 's bottom end is next to the fifth column of the rectangle </s>===<s> block ( f ) ^ location ( w3 ) ^ block-location ( f , w3 ) ^ lower_left ( e , f ) ^ block ( g ) ^ location ( w4 ) ^ block-location ( g , w4 ) ^ top_side ( b , g , 4 ) ^ spatial-rel ( north , 0 , w4 , w3 ) </s>
+
+<s> Create a horizontal line </s>===<s> row ( a ) </s>
+<s> Then , create a square to the right of the horizontal line </s>===<s> square ( b ) ^ right ( b , a ) </s>
+<s> Next , construct a horizontal line to the top of the square </s>===<s> row ( c ) ^ top ( c , b ) </s>
+
+<s> Place a aaawm on the table </s>===<s> aaawm ( a ) </s>
+
+<s> Form a row </s>===<s> row ( a ) </s>
+<s> After that , build a rectangle to the top of the row </s>===<s> rectangle ( b ) ^ top ( b , a ) </s>
+<s> Next , construct a square to the right of the rectangle </s>===<s> square ( c ) ^ right ( c , b ) </s>
+
+<s> Create a column </s>===<s> column ( a ) </s>
+<s> Then , create a horizontal line to the bottom of the column </s>===<s> row ( b ) ^ bottom ( b , a ) </s>
+<s> Next , create a square to the right of the horizontal line </s>===<s> square ( c ) ^ right ( c , b ) </s>
+<s> After that , construct another one to the top of the first one </s>===<s> column ( d ) ^ top ( d , a ) </s>
+
+<s> Construct a rectangle </s>===<s> rectangle ( a ) </s>
+<s> Next , create a horizontal line to the bottom of the rectangle </s>===<s> row ( b ) ^ bottom ( b , a ) </s>
+
+<s> Create a rectangle with a width of 8 blocks and a height of 6 blocks </s>===<s> rectangle ( a ) ^ height ( a , 6 ) ^ width ( a , 8 ) </s>
+<s> There are already blocks at row 10 and column 5 , at row 1 and column 3 , and at row 1 and column 4 </s>===<s> starting_block ( 5 , 10 ) ^ starting_block ( 3 , 1 ) ^ starting_block ( 4 , 1 ) </s>
+
+<s> Form a square </s>===<s> square ( a ) </s>
+<s> Then , create a vertical line to the left of the square </s>===<s> column ( b ) ^ left ( b , a ) </s>
+
+<s> Create a aaaxy of width 3 </s>===<s> aaaxy ( a ) ^ width ( 3 ) </s>
+
+<s> You should put a aaaxd of length 8 and height 3 on the table </s>===<s> aaaxd ( a ) ^ width ( 8 ) ^ height ( 3 ) </s>
+
+<s> I want you to place a aabaf of length 5 on the table </s>===<s> aabaf ( a ) ^ width ( 5 ) </s>
+
+<s> Please construct a aaaxt of length 7 </s>===<s> aaaxt ( a ) ^ width ( 7 ) </s>
+
+<s> I want you to place a aaavj on the table </s>===<s> aaavj ( a ) </s>
+
+<s> Create a horizontal line </s>===<s> row ( a ) </s>
+<s> Then , build a square to the bottom of the horizontal line </s>===<s> square ( b ) ^ bottom ( b , a ) </s>
+<s> Next , build a square to the top of the horizontal line </s>===<s> square ( c ) ^ top ( c , a ) </s>
+<s> Next , create another one to the right of the first one </s>===<s> row ( d ) ^ right ( d , a ) </s>
+
+<s> I want you to build a aaayl of height 3 </s>===<s> aaayl ( a ) ^ height ( 3 ) </s>
+
+<s> Create a square </s>===<s> square ( a ) </s>
+<s> Next , construct another one to the right of the first one </s>===<s> square ( b ) ^ right ( b , a ) </s>
+<s> Then , form another one to the left of the first one </s>===<s> square ( c ) ^ left ( c , a ) </s>
+
+<s> Create a horizontal line </s>===<s> row ( a ) </s>
+<s> Then , construct a rectangle to the left of the horizontal line </s>===<s> rectangle ( b ) ^ left ( b , a ) </s>
+<s> After that , form another one to the top of the first one </s>===<s> rectangle ( c ) ^ top ( c , b ) </s>
+<s> Then , construct a rectangle to the right of the horizontal line </s>===<s> rectangle ( d ) ^ right ( d , a ) </s>
+
+<s> You should put a aaaty on the table </s>===<s> aaaty ( a ) </s>
+
+<s> Form a 3 by 8 rectangle </s>===<s> rectangle ( a ) ^ height ( a , 8 ) ^ width ( a , 3 ) </s>
+<s> Finally , form a row using 4 blocks beneath the rectangle </s>===<s> row ( b ) ^ width ( b , 4 ) ^ bottom ( b , a ) </s>
+<s> Ensure that the row 's left end is adjacent to the rectangle 's lower right corner </s>===<s> block ( c ) ^ location ( w1 ) ^ block-location ( c , w1 ) ^ upper_left ( b , c ) ^ block ( d ) ^ location ( w2 ) ^ block-location ( d , w2 ) ^ lower_right ( a , d ) ^ spatial-rel ( south , 0 , w2 , w1 ) </s>
+
+<s> Form a row </s>===<s> row ( a ) </s>
+<s> Next , create another one to the bottom of the first one </s>===<s> row ( b ) ^ bottom ( b , a ) </s>
+<s> Next , build a column to the left of the row </s>===<s> column ( c ) ^ left ( c , a ) </s>
+<s> Then , build a rectangle to the top of the column </s>===<s> rectangle ( d ) ^ top ( d , c ) </s>
+
+<s> Please construct a aaayx of length 2 and height 8 </s>===<s> aaayx ( a ) ^ width ( 2 ) ^ height ( 8 ) </s>
+
+<s> Form a vertical line </s>===<s> column ( a ) </s>
+<s> Next , form another one to the bottom of the first one </s>===<s> column ( b ) ^ bottom ( b , a ) </s>
+<s> Next , construct a horizontal line to the top of the vertical line </s>===<s> row ( c ) ^ top ( c , a ) </s>
+
+<s> Construct a vertical line </s>===<s> column ( a ) </s>
+<s> Then , form another one to the right of the first one </s>===<s> column ( b ) ^ right ( b , a ) </s>
+<s> Next , build another one to the left of the first one </s>===<s> column ( c ) ^ left ( c , a ) </s>
+<s> After that , form a rectangle to the right of the column </s>===<s> rectangle ( d ) ^ right ( d , b ) </s>
+
+<s> Form a square with sides of block length 8 </s>===<s> square ( a ) ^ size ( a , 8 ) </s>
+<s> Create a rectangle with a height of 6 blocks and a width of 2 blocks to the top of the square </s>===<s> rectangle ( b ) ^ height ( b , 6 ) ^ width ( b , 2 ) ^ top ( b , a ) </s>
+<s> Make sure that the rectangle 's lower left corner is next to the seventh column of the square </s>===<s> block ( c ) ^ location ( w1 ) ^ block-location ( c , w1 ) ^ lower_left ( b , c ) ^ block ( d ) ^ location ( w2 ) ^ block-location ( d , w2 ) ^ top_side ( a , d , 6 ) ^ spatial-rel ( north , 0 , w2 , w1 ) </s>
+
+<s> Please build a aaayy of width 2 and height 4 </s>===<s> aaayy ( a ) ^ width ( 2 ) ^ height ( 4 ) </s>
+
+<s> Build a rectangle that is 5 blocks wide and 9 blocks tall </s>===<s> rectangle ( a ) ^ height ( a , 9 ) ^ width ( a , 5 ) </s>
+<s> Do not put blocks in the spaces at row 4 and column 7 and at row 0 and column 7 </s>===<s> restricted ( 7 , 4 ) ^ restricted ( 7 , 0 ) </s>
+
+<s> Construct a 7 block by 7 block square </s>===<s> square ( a ) ^ size ( a , 7 ) </s>
+<s> There are already blocks at row 1 and column 1 , at row 4 and column 1 , and at row 9 and column 10 </s>===<s> starting_block ( 1 , 1 ) ^ starting_block ( 1 , 4 ) ^ starting_block ( 10 , 9 ) </s>
+
+<s> Create a column with 3 blocks </s>===<s> column ( a ) ^ height ( a , 3 ) </s>
+<s> Do not put a block in the space at row 0 and column 9 </s>===<s> restricted ( 9 , 0 ) </s>
+
+<s> Build a 2 by 2 square </s>===<s> square ( a ) ^ size ( a , 2 ) </s>
+<s> There are immobile blocks at row 1 and column 4 and at row 7 and column 0 </s>===<s> immobile_block ( 4 , 1 ) ^ immobile_block ( 0 , 7 ) </s>
+
+<s> Form a rectangle </s>===<s> rectangle ( a ) </s>
+<s> After that , create another one to the left of the first one </s>===<s> rectangle ( b ) ^ left ( b , a ) </s>
+<s> Next , form a row to the right of the rectangle </s>===<s> row ( c ) ^ right ( c , a ) </s>
+
+<s> You should build a aaawg of height 5 and length 9 </s>===<s> aaawg ( a ) ^ height ( 5 ) ^ width ( 9 ) </s>
+
+<s> Build a square </s>===<s> square ( a ) </s>
+<s> After that , form a horizontal line to the left of the square </s>===<s> row ( b ) ^ left ( b , a ) </s>
+<s> Then , construct a rectangle to the bottom of the square </s>===<s> rectangle ( c ) ^ bottom ( c , a ) </s>
+<s> After that , construct a vertical line to the top of the square </s>===<s> column ( d ) ^ top ( d , a ) </s>
+
+<s> Create a 9 by 5 rectangle </s>===<s> rectangle ( a ) ^ height ( a , 5 ) ^ width ( a , 9 ) </s>
+<s> Do not put blocks in the spaces at row 2 and column 8 and at row 5 and column 9 </s>===<s> restricted ( 8 , 2 ) ^ restricted ( 9 , 5 ) </s>
+
+<s> Construct a aaavp of length 4 </s>===<s> aaavp ( a ) ^ width ( 4 ) </s>
+
+<s> Form a column of height 4 </s>===<s> column ( a ) ^ height ( a , 4 ) </s>
+<s> Finally , create a 2 by 2 square to the top of the column </s>===<s> square ( b ) ^ size ( b , 2 ) ^ top ( b , a ) </s>
+<s> Make sure that the square 's lower right corner is next to the top end of the column </s>===<s> block ( c ) ^ location ( w1 ) ^ block-location ( c , w1 ) ^ lower_right ( b , c ) ^ block ( d ) ^ location ( w2 ) ^ block-location ( d , w2 ) ^ upper_right ( a , d ) ^ spatial-rel ( north , 0 , w2 , w1 ) </s>
+<s> Do not place a block in the space at row 2 and column 0 </s>===<s> restricted ( 0 , 2 ) </s>
+
+<s> Build a aaazw </s>===<s> aaazw ( a ) </s>
+
+<s> Form a rectangle </s>===<s> rectangle ( a ) </s>
+<s> Next , form a horizontal line to the right of the rectangle </s>===<s> row ( b ) ^ right ( b , a ) </s>
+
+<s> Form a rectangle with a width of 4 blocks and a height of 7 blocks </s>===<s> rectangle ( a ) ^ height ( a , 7 ) ^ width ( a , 4 ) </s>
+<s> There are immobile blocks at row 4 and column 6 and at row 3 and column 2 </s>===<s> immobile_block ( 6 , 4 ) ^ immobile_block ( 2 , 3 ) </s>
+
+<s> Build a rectangle </s>===<s> rectangle ( a ) </s>
+<s> Next , create another one to the right of the first one </s>===<s> rectangle ( b ) ^ right ( b , a ) </s>
+
+<s> Create a 8 by 9 rectangle </s>===<s> rectangle ( a ) ^ height ( a , 9 ) ^ width ( a , 8 ) </s>
+<s> There are immobile blocks at row 4 and column 6 , at row 4 and column 8 , and at row 2 and column 2 </s>===<s> immobile_block ( 6 , 4 ) ^ immobile_block ( 8 , 4 ) ^ immobile_block ( 2 , 2 ) </s>
+
+<s> Form a row </s>===<s> row ( a ) </s>
+<s> Then , construct a square to the left of the row </s>===<s> square ( b ) ^ left ( b , a ) </s>
+<s> Next , create a horizontal line to the top of the square </s>===<s> row ( c ) ^ top ( c , b ) </s>
+<s> Then , build a column to the right of the row </s>===<s> column ( d ) ^ right ( d , a ) </s>
+
+<s> Form a 6 block by 6 block square </s>===<s> square ( a ) ^ size ( a , 6 ) </s>
+<s> There are already blocks at row 9 and column 4 and at row 5 and column 10 </s>===<s> starting_block ( 4 , 9 ) ^ starting_block ( 10 , 5 ) </s>
+
+<s> Construct a vertical line </s>===<s> column ( a ) </s>
+<s> Next , build a rectangle to the bottom of the vertical line </s>===<s> rectangle ( b ) ^ bottom ( b , a ) </s>
+
+<s> Build a rectangle </s>===<s> rectangle ( a ) </s>
+<s> After that , form another one to the left of the first one </s>===<s> rectangle ( b ) ^ left ( b , a ) </s>
+<s> After that , form a square to the right of the rectangle </s>===<s> square ( c ) ^ right ( c , a ) </s>
+<s> Next , create a rectangle to the right of the square </s>===<s> rectangle ( d ) ^ right ( d , c ) </s>
+
+<s> Form a square </s>===<s> square ( a ) </s>
+<s> Next , build another one to the left of the first one </s>===<s> square ( b ) ^ left ( b , a ) </s>
+<s> Then , construct a rectangle to the left of the square </s>===<s> rectangle ( c ) ^ left ( c , b ) </s>
+
+<s> Form a rectangle </s>===<s> rectangle ( a ) </s>
+<s> After that , form a horizontal line to the left of the rectangle </s>===<s> row ( b ) ^ left ( b , a ) </s>
+<s> Then , form a rectangle to the bottom of the horizontal line </s>===<s> rectangle ( c ) ^ bottom ( c , b ) </s>
+
+<s> Please put a aaauk of height 4 on the table </s>===<s> aaauk ( a ) ^ height ( 4 ) </s>
+
+<s> You should build a aaatn of height 7 and length 6 </s>===<s> aaatn ( a ) ^ height ( 7 ) ^ width ( 6 ) </s>
+
+<s> Please create a aaauf </s>===<s> aaauf ( a ) </s>
+
+<s> Build a 2 by 2 square </s>===<s> square ( a ) ^ size ( a , 2 ) </s>
+<s> Now , construct a rectangle that is 4 blocks wide and 9 blocks tall above the square </s>===<s> rectangle ( b ) ^ height ( b , 9 ) ^ width ( b , 4 ) ^ top ( b , a ) </s>
+<s> Ensure that the lower left corner of the rectangle is adjacent to the upper left corner of the square </s>===<s> block ( c ) ^ location ( w1 ) ^ block-location ( c , w1 ) ^ lower_left ( b , c ) ^ block ( d ) ^ location ( w2 ) ^ block-location ( d , w2 ) ^ upper_left ( a , d ) ^ spatial-rel ( north , 0 , w2 , w1 ) </s>
+<s> There are already blocks at row 7 and column 5 and at row 5 and column 10 </s>===<s> starting_block ( 5 , 7 ) ^ starting_block ( 10 , 5 ) </s>
+
+<s> Create a column </s>===<s> column ( a ) </s>
+<s> Then , create a horizontal line to the left of the column </s>===<s> row ( b ) ^ left ( b , a ) </s>
+
+<s> Construct a aaatl of height 5 </s>===<s> aaatl ( a ) ^ height ( 5 ) </s>
+
+<s> Construct a rectangle that is 6 blocks wide and 2 blocks tall </s>===<s> rectangle ( a ) ^ height ( a , 2 ) ^ width ( a , 6 ) </s>
+<s> There are already blocks at row 0 and column 3 and at row 10 and column 4 </s>===<s> starting_block ( 3 , 0 ) ^ starting_block ( 4 , 10 ) </s>
+
+<s> Please build a aaaxk of width 5 and height 6 </s>===<s> aaaxk ( a ) ^ width ( 5 ) ^ height ( 6 ) </s>
+
+<s> Form a vertical line of height 6 </s>===<s> column ( a ) ^ height ( a , 6 ) </s>
+<s> Do not put blocks in the spaces at row 6 and column 2 and at row 7 and column 2 </s>===<s> restricted ( 2 , 6 ) ^ restricted ( 2 , 7 ) </s>
+
+<s> Place a aaaxv on the table </s>===<s> aaaxv ( a ) </s>
+
+<s> Create a 2 block by 2 block square </s>===<s> square ( a ) ^ size ( a , 2 ) </s>
+<s> Create a row using 5 blocks beneath the square </s>===<s> row ( b ) ^ width ( b , 5 ) ^ bottom ( b , a ) </s>
+<s> Make sure that the right end of the row is next to the square 's lower right corner </s>===<s> block ( c ) ^ location ( w1 ) ^ block-location ( c , w1 ) ^ upper_right ( b , c ) ^ block ( d ) ^ location ( w2 ) ^ block-location ( d , w2 ) ^ lower_right ( a , d ) ^ spatial-rel ( south , 0 , w2 , w1 ) </s>
+<s> Finally , construct a square with sides of block length 3 to the right of the row </s>===<s> square ( e ) ^ size ( e , 3 ) ^ right ( e , b ) </s>
+<s> Make sure that the upper left corner of the new square is next to the right end of the row </s>===<s> block ( f ) ^ location ( w3 ) ^ block-location ( f , w3 ) ^ upper_left ( e , f ) ^ block ( g ) ^ location ( w4 ) ^ block-location ( g , w4 ) ^ upper_right ( b , g ) ^ spatial-rel ( east , 0 , w4 , w3 ) </s>
+<s> Do not put blocks in the space at row 10 and column 8 , the space at row 6 and column 2 , and the space at row 5 and column 9 </s>===<s> restricted ( 8 , 10 ) ^ restricted ( 2 , 6 ) ^ restricted ( 9 , 5 ) </s>
+
+<s> Create a rectangle </s>===<s> rectangle ( a ) </s>
+<s> Then , form a square to the top of the rectangle </s>===<s> square ( b ) ^ top ( b , a ) </s>
+<s> After that , build a rectangle to the top of the square </s>===<s> rectangle ( c ) ^ top ( c , b ) </s>
+
+<s> Construct a 3 block by 3 block square </s>===<s> square ( a ) ^ size ( a , 3 ) </s>
+
+<s> Form a vertical line </s>===<s> column ( a ) </s>
+<s> Next , create a square to the bottom of the vertical line </s>===<s> square ( b ) ^ bottom ( b , a ) </s>
+<s> Then , build a rectangle to the bottom of the square </s>===<s> rectangle ( c ) ^ bottom ( c , b ) </s>
+<s> After that , form a row to the right of the rectangle </s>===<s> row ( d ) ^ right ( d , c ) </s>
+
+<s> I want you to place a aaawx of height 8 on the table </s>===<s> aaawx ( a ) ^ height ( 8 ) </s>
+
+<s> You should build a aaayt </s>===<s> aaayt ( a ) </s>
+
+<s> Construct a 3 by 3 square </s>===<s> square ( a ) ^ size ( a , 3 ) </s>
+<s> Do not put blocks in the spaces at row 5 and column 7 and at row 1 and column 0 </s>===<s> restricted ( 7 , 5 ) ^ restricted ( 0 , 1 ) </s>
+
+<s> I want you to build a aaauh </s>===<s> aaauh ( a ) </s>
+
+<s> Please put a aaayz of length 3 on the table </s>===<s> aaayz ( a ) ^ width ( 3 ) </s>
+
+<s> Create a column with 9 blocks </s>===<s> column ( a ) ^ height ( a , 9 ) </s>
+<s> Do not place blocks in the spaces at row 4 and column 6 and at row 5 and column 10 </s>===<s> restricted ( 6 , 4 ) ^ restricted ( 10 , 5 ) </s>
+
+<s> Build a square </s>===<s> square ( a ) </s>
+<s> After that , create a row to the right of the square </s>===<s> row ( b ) ^ right ( b , a ) </s>
+
+<s> Create a 6 block by 6 block square </s>===<s> square ( a ) ^ size ( a , 6 ) </s>
+<s> Do not put blocks in the spaces at row 4 and column 9 and at row 10 and column 6 </s>===<s> restricted ( 9 , 4 ) ^ restricted ( 6 , 10 ) </s>
+
+<s> Form a square </s>===<s> square ( a ) </s>
+<s> Next , form a rectangle to the right of the square </s>===<s> rectangle ( b ) ^ right ( b , a ) </s>
+
+<s> Please construct a aaavd of height 7 </s>===<s> aaavd ( a ) ^ height ( 7 ) </s>
+
+<s> Construct a column of height 9 </s>===<s> column ( a ) ^ height ( a , 9 ) </s>
+<s> There are immobile blocks at row 0 and column 9 and at row 7 and column 0 </s>===<s> immobile_block ( 9 , 0 ) ^ immobile_block ( 0 , 7 ) </s>
+
+<s> Form a horizontal line </s>===<s> row ( a ) </s>
+<s> Then , build a column to the top of the horizontal line </s>===<s> column ( b ) ^ top ( b , a ) </s>
+<s> After that , build a column to the right of the horizontal line </s>===<s> column ( c ) ^ right ( c , a ) </s>
+
+<s> You should build a aaaxn of height 8 and length 2 </s>===<s> aaaxn ( a ) ^ height ( 8 ) ^ width ( 2 ) </s>
+
+<s> Please create a aaazp of height 5 </s>===<s> aaazp ( a ) ^ height ( 5 ) </s>
+
+<s> Create a rectangle that is 5 blocks tall and 2 blocks wide </s>===<s> rectangle ( a ) ^ height ( a , 5 ) ^ width ( a , 2 ) </s>
+<s> Do not put blocks in the spaces at row 6 and column 1 and at row 9 and column 4 </s>===<s> restricted ( 1 , 6 ) ^ restricted ( 4 , 9 ) </s>
+
+<s> Construct a 8 block by 8 block square </s>===<s> square ( a ) ^ size ( a , 8 ) </s>
+<s> Next , construct a row of size 4 to the bottom of the square </s>===<s> row ( b ) ^ width ( b , 4 ) ^ bottom ( b , a ) </s>
+<s> Ensure that the left end of the row is next to the square 's lower right corner </s>===<s> block ( c ) ^ location ( w1 ) ^ block-location ( c , w1 ) ^ upper_left ( b , c ) ^ block ( d ) ^ location ( w2 ) ^ block-location ( d , w2 ) ^ lower_right ( a , d ) ^ spatial-rel ( south , 0 , w2 , w1 ) </s>
+
+<s> Build a 7 block by 7 block square </s>===<s> square ( a ) ^ size ( a , 7 ) </s>
+<s> Build a rectangle that is 4 blocks tall and 8 blocks wide to the left of the square </s>===<s> rectangle ( b ) ^ height ( b , 4 ) ^ width ( b , 8 ) ^ left ( b , a ) </s>
+<s> Make sure that the rectangle 's upper right corner is next to the sixth row of the square </s>===<s> block ( c ) ^ location ( w1 ) ^ block-location ( c , w1 ) ^ upper_right ( b , c ) ^ block ( d ) ^ location ( w2 ) ^ block-location ( d , w2 ) ^ left_side ( a , d , 5 ) ^ spatial-rel ( west , 0 , w2 , w1 ) </s>
+
+<s> Construct a column </s>===<s> column ( a ) </s>
+<s> After that , construct a rectangle to the left of the column </s>===<s> rectangle ( b ) ^ left ( b , a ) </s>
+<s> Next , form a row to the bottom of the column </s>===<s> row ( c ) ^ bottom ( c , a ) </s>
+
+<s> Create a column of size 8 </s>===<s> column ( a ) ^ height ( a , 8 ) </s>
+<s> Create a horizontal line with 5 blocks to the right of the column </s>===<s> row ( b ) ^ width ( b , 5 ) ^ right ( b , a ) </s>
+<s> Ensure that the left end of the horizontal line is adjacent to the column 's bottom end </s>===<s> block ( c ) ^ location ( w1 ) ^ block-location ( c , w1 ) ^ upper_left ( b , c ) ^ block ( d ) ^ location ( w2 ) ^ block-location ( d , w2 ) ^ lower_right ( a , d ) ^ spatial-rel ( east , 0 , w2 , w1 ) </s>
+
+<s> Form a square </s>===<s> square ( a ) </s>
+<s> Next , construct a row to the bottom of the square </s>===<s> row ( b ) ^ bottom ( b , a ) </s>
+<s> Then , form a column to the top of the square </s>===<s> column ( c ) ^ top ( c , a ) </s>
+
+<s> Form a rectangle </s>===<s> rectangle ( a ) </s>
+<s> Then , construct another one to the top of the first one </s>===<s> rectangle ( b ) ^ top ( b , a ) </s>
+
+<s> Create a vertical line using 8 blocks </s>===<s> column ( a ) ^ height ( a , 8 ) </s>
+<s> Now , create a 4 by 4 square to the top of the vertical line </s>===<s> square ( b ) ^ size ( b , 4 ) ^ top ( b , a ) </s>
+<s> Make sure that the second column of the square is adjacent to the vertical line 's top end </s>===<s> block ( c ) ^ location ( w1 ) ^ block-location ( c , w1 ) ^ bottom_side ( b , c , 1 ) ^ block ( d ) ^ location ( w2 ) ^ block-location ( d , w2 ) ^ upper_left ( a , d ) ^ spatial-rel ( north , 0 , w2 , w1 ) </s>
+<s> Form a horizontal line of length 6 to the right of the square </s>===<s> row ( e ) ^ width ( e , 6 ) ^ right ( e , b ) </s>
+<s> Make sure that the horizontal line 's left end is next to the square 's upper right corner </s>===<s> block ( f ) ^ location ( w3 ) ^ block-location ( f , w3 ) ^ upper_left ( e , f ) ^ block ( g ) ^ location ( w4 ) ^ block-location ( g , w4 ) ^ upper_right ( b , g ) ^ spatial-rel ( east , 0 , w4 , w3 ) </s>
+<s> There are immobile blocks at row 0 and column 3 , at row 1 and column 4 , and at row 1 and column 3 </s>===<s> immobile_block ( 3 , 0 ) ^ immobile_block ( 4 , 1 ) ^ immobile_block ( 3 , 1 ) </s>
+
+<s> Place a aaaze of width 3 on the table </s>===<s> aaaze ( a ) ^ width ( 3 ) </s>
+
+<s> Form a 3 by 3 square </s>===<s> square ( a ) ^ size ( a , 3 ) </s>
+<s> Do not place blocks in the space at row 7 and column 4 , the space at row 0 and column 6 , and the space at row 1 and column 6 </s>===<s> restricted ( 4 , 7 ) ^ restricted ( 6 , 0 ) ^ restricted ( 6 , 1 ) </s>
+
+<s> Please place a aaauo of length 3 on the table </s>===<s> aaauo ( a ) ^ width ( 3 ) </s>
+
+<s> Form a horizontal line with 3 blocks </s>===<s> row ( a ) ^ width ( a , 3 ) </s>
+<s> Then , construct a rectangle with a height of 8 blocks and a width of 3 blocks to the left of the horizontal line </s>===<s> rectangle ( b ) ^ height ( b , 8 ) ^ width ( b , 3 ) ^ left ( b , a ) </s>
+<s> Ensure that the rectangle 's upper right corner is in line with the left end of the horizontal line </s>===<s> block ( c ) ^ location ( w1 ) ^ block-location ( c , w1 ) ^ upper_right ( b , c ) ^ block ( d ) ^ location ( w2 ) ^ block-location ( d , w2 ) ^ upper_left ( a , d ) ^ spatial-rel ( west , 0 , w2 , w1 ) </s>
+
+<s> Build a 3 by 3 square </s>===<s> square ( a ) ^ size ( a , 3 ) </s>
+<s> Finally , build a vertical line of height 5 to the right of the square </s>===<s> column ( b ) ^ height ( b , 5 ) ^ right ( b , a ) </s>
+<s> Ensure that the vertical line 's top end is adjacent to the second row of the square </s>===<s> block ( c ) ^ location ( w1 ) ^ block-location ( c , w1 ) ^ upper_left ( b , c ) ^ block ( d ) ^ location ( w2 ) ^ block-location ( d , w2 ) ^ right_side ( a , d , 1 ) ^ spatial-rel ( east , 0 , w2 , w1 ) </s>
+<s> There is an immobile block at row 4 and column 4 </s>===<s> immobile_block ( 4 , 4 ) </s>
+
+<s> Construct a rectangle </s>===<s> rectangle ( a ) </s>
+<s> Then , create another one to the top of the first one </s>===<s> rectangle ( b ) ^ top ( b , a ) </s>
+<s> Next , construct a horizontal line to the top of the rectangle </s>===<s> row ( c ) ^ top ( c , b ) </s>
+<s> Next , build a square to the left of the rectangle </s>===<s> square ( d ) ^ left ( d , b ) </s>
+
+<s> Create a rectangle </s>===<s> rectangle ( a ) </s>
+<s> After that , create a square to the top of the rectangle </s>===<s> square ( b ) ^ top ( b , a ) </s>
+<s> Then , form a square to the bottom of the rectangle </s>===<s> square ( c ) ^ bottom ( c , a ) </s>
+<s> Then , build another one to the right of the first one </s>===<s> square ( d ) ^ right ( d , c ) </s>
+
+<s> Build a horizontal line with 3 blocks </s>===<s> row ( a ) ^ width ( a , 3 ) </s>
+<s> There is already a block at row 9 and column 4 </s>===<s> starting_block ( 4 , 9 ) </s>
+
+<s> Form a square </s>===<s> square ( a ) </s>
+<s> Next , create a horizontal line to the bottom of the square </s>===<s> row ( b ) ^ bottom ( b , a ) </s>
+<s> After that , create a rectangle to the right of the horizontal line </s>===<s> rectangle ( c ) ^ right ( c , b ) </s>
+<s> Then , create a square to the left of the horizontal line </s>===<s> square ( d ) ^ left ( d , b ) </s>
+
+<s> Put a aabao on the table </s>===<s> aabao ( a ) </s>
+
+<s> You should construct a aaayn </s>===<s> aaayn ( a ) </s>
+
+<s> Create a aaaxg of height 9 </s>===<s> aaaxg ( a ) ^ height ( 9 ) </s>
+
+<s> Construct a aaaxw of length 5 and height 3 </s>===<s> aaaxw ( a ) ^ width ( 5 ) ^ height ( 3 ) </s>
+
+<s> Form a column of height 9 </s>===<s> column ( a ) ^ height ( a , 9 ) </s>
+<s> Next , build another one to the right of the first one </s>===<s> column ( b ) ^ height ( b , 9 ) ^ right ( b , a ) </s>
+<s> Ensure that the bottom end of the vertical line is adjacent to the third row of the column </s>===<s> block ( c ) ^ location ( w1 ) ^ block-location ( c , w1 ) ^ lower_left ( b , c ) ^ block ( d ) ^ location ( w2 ) ^ block-location ( d , w2 ) ^ right_side ( a , d , 2 ) ^ spatial-rel ( east , 0 , w2 , w1 ) </s>
+
+<s> You should put a aaatq of width 4 on the table </s>===<s> aaatq ( a ) ^ width ( 4 ) </s>
+
+<s> Construct a rectangle </s>===<s> rectangle ( a ) </s>
+<s> After that , form a square to the left of the rectangle </s>===<s> square ( b ) ^ left ( b , a ) </s>
+
+<s> Please create a aaavf </s>===<s> aaavf ( a ) </s>
+
+<s> Build a horizontal line </s>===<s> row ( a ) </s>
+<s> Next , form a rectangle to the right of the horizontal line </s>===<s> rectangle ( b ) ^ right ( b , a ) </s>
+<s> After that , create a square to the right of the rectangle </s>===<s> square ( c ) ^ right ( c , b ) </s>
+
+<s> Create a row </s>===<s> row ( a ) </s>
+<s> Next , form a vertical line to the bottom of the row </s>===<s> column ( b ) ^ bottom ( b , a ) </s>
+<s> Then , construct another one to the right of the first one </s>===<s> column ( c ) ^ right ( c , b ) </s>
+
+<s> Construct a 9 block by 9 block square </s>===<s> square ( a ) ^ size ( a , 9 ) </s>
+<s> Construct a rectangle with a height of 6 blocks and a width of 2 blocks to the top of the square </s>===<s> rectangle ( b ) ^ height ( b , 6 ) ^ width ( b , 2 ) ^ top ( b , a ) </s>
+<s> Ensure that the rectangle 's lower left corner is adjacent to the square 's upper left corner </s>===<s> block ( c ) ^ location ( w1 ) ^ block-location ( c , w1 ) ^ lower_left ( b , c ) ^ block ( d ) ^ location ( w2 ) ^ block-location ( d , w2 ) ^ upper_left ( a , d ) ^ spatial-rel ( north , 0 , w2 , w1 ) </s>
+<s> There are immobile blocks at row 2 and column 3 and at row 9 and column 9 </s>===<s> immobile_block ( 3 , 2 ) ^ immobile_block ( 9 , 9 ) </s>
+
+<s> Build a rectangle </s>===<s> rectangle ( a ) </s>
+<s> After that , construct a square to the left of the rectangle </s>===<s> square ( b ) ^ left ( b , a ) </s>
+
+<s> Create a rectangle </s>===<s> rectangle ( a ) </s>
+<s> Then , construct a vertical line to the bottom of the rectangle </s>===<s> column ( b ) ^ bottom ( b , a ) </s>
+<s> Next , create another one to the left of the first one </s>===<s> rectangle ( c ) ^ left ( c , a ) </s>
+
+<s> Form a column of height 3 </s>===<s> column ( a ) ^ height ( a , 3 ) </s>
+<s> Do not place a block in the space at row 8 and column 4 </s>===<s> restricted ( 4 , 8 ) </s>
+
+<s> Build a vertical line of size 4 </s>===<s> column ( a ) ^ height ( a , 4 ) </s>
+<s> There are immobile blocks at row 4 and column 1 , at row 7 and column 9 , and at row 0 and column 4 </s>===<s> immobile_block ( 1 , 4 ) ^ immobile_block ( 9 , 7 ) ^ immobile_block ( 4 , 0 ) </s>
+
+<s> Create a horizontal line of size 7 </s>===<s> row ( a ) ^ width ( a , 7 ) </s>
+<s> There are already blocks at row 8 and column 1 and at row 4 and column 10 </s>===<s> starting_block ( 1 , 8 ) ^ starting_block ( 10 , 4 ) </s>
+
+<s> Construct a square </s>===<s> square ( a ) </s>
+<s> Next , construct another one to the right of the first one </s>===<s> square ( b ) ^ right ( b , a ) </s>
+<s> Next , build a rectangle to the top of the square </s>===<s> rectangle ( c ) ^ top ( c , a ) </s>
+
+<s> Construct a row of length 6 </s>===<s> row ( a ) ^ width ( a , 6 ) </s>
+<s> Finally , build a column with 8 blocks to the left of the row </s>===<s> column ( b ) ^ height ( b , 8 ) ^ left ( b , a ) </s>
+<s> Ensure that the sixth row of the column is adjacent to the row 's left end </s>===<s> block ( c ) ^ location ( w1 ) ^ block-location ( c , w1 ) ^ right_side ( b , c , 5 ) ^ block ( d ) ^ location ( w2 ) ^ block-location ( d , w2 ) ^ upper_left ( a , d ) ^ spatial-rel ( west , 0 , w2 , w1 ) </s>
+
+<s> Form a square </s>===<s> square ( a ) </s>
+<s> Next , create a row to the right of the square </s>===<s> row ( b ) ^ right ( b , a ) </s>
+<s> Next , form another one to the left of the first one </s>===<s> square ( c ) ^ left ( c , a ) </s>
+
+<s> Build a square </s>===<s> square ( a ) </s>
+<s> Next , construct a vertical line to the left of the square </s>===<s> column ( b ) ^ left ( b , a ) </s>
+<s> After that , create another one to the bottom of the first one </s>===<s> column ( c ) ^ bottom ( c , b ) </s>
+
+<s> Build a square </s>===<s> square ( a ) </s>
+<s> Then , construct another one to the right of the first one </s>===<s> square ( b ) ^ right ( b , a ) </s>
+
+<s> Form a row using 7 blocks </s>===<s> row ( a ) ^ width ( a , 7 ) </s>
+<s> Build a vertical line of height 9 to the bottom of the row </s>===<s> column ( b ) ^ height ( b , 9 ) ^ bottom ( b , a ) </s>
+<s> Ensure that the top end of the vertical line is adjacent to the fifth column of the row </s>===<s> block ( c ) ^ location ( w1 ) ^ block-location ( c , w1 ) ^ upper_left ( b , c ) ^ block ( d ) ^ location ( w2 ) ^ block-location ( d , w2 ) ^ bottom_side ( a , d , 4 ) ^ spatial-rel ( south , 0 , w2 , w1 ) </s>
+<s> Do not put blocks in the spaces at row 9 and column 6 and at row 3 and column 0 </s>===<s> restricted ( 6 , 9 ) ^ restricted ( 0 , 3 ) </s>
+
+<s> Construct a rectangle that is 4 blocks tall and 3 blocks wide </s>===<s> rectangle ( a ) ^ height ( a , 4 ) ^ width ( a , 3 ) </s>
+<s> There are already blocks at row 7 and column 0 and at row 3 and column 8 </s>===<s> starting_block ( 0 , 7 ) ^ starting_block ( 8 , 3 ) </s>
+
+<s> Form a row </s>===<s> row ( a ) </s>
+<s> After that , form a vertical line to the top of the row </s>===<s> column ( b ) ^ top ( b , a ) </s>
+<s> Next , build a horizontal line to the top of the vertical line </s>===<s> row ( c ) ^ top ( c , b ) </s>
+<s> After that , build a square to the left of the row </s>===<s> square ( d ) ^ left ( d , a ) </s>
+
+<s> Put a aaavv of length 2 on the table </s>===<s> aaavv ( a ) ^ width ( 2 ) </s>
+
+<s> Create a horizontal line </s>===<s> row ( a ) </s>
+<s> Next , form a vertical line to the left of the horizontal line </s>===<s> column ( b ) ^ left ( b , a ) </s>
+<s> After that , build another one to the right of the first one </s>===<s> row ( c ) ^ right ( c , a ) </s>
+<s> Next , create a square to the right of the row </s>===<s> square ( d ) ^ right ( d , c ) </s>
+
+<s> Construct a rectangle </s>===<s> rectangle ( a ) </s>
+<s> After that , construct another one to the bottom of the first one </s>===<s> rectangle ( b ) ^ bottom ( b , a ) </s>
+
+<s> Please create a aaaug of width 4 and height 7 </s>===<s> aaaug ( a ) ^ width ( 4 ) ^ height ( 7 ) </s>
+
+<s> I want you to place a aaazz of length 5 on the table </s>===<s> aaazz ( a ) ^ width ( 5 ) </s>
+
+<s> Construct a vertical line of size 7 </s>===<s> column ( a ) ^ height ( a , 7 ) </s>
+<s> Create a rectangle with a width of 6 blocks and a height of 7 blocks to the left of the vertical line </s>===<s> rectangle ( b ) ^ height ( b , 7 ) ^ width ( b , 6 ) ^ left ( b , a ) </s>
+<s> Ensure that the upper right corner of the rectangle is next to the vertical line 's bottom end </s>===<s> block ( c ) ^ location ( w1 ) ^ block-location ( c , w1 ) ^ upper_right ( b , c ) ^ block ( d ) ^ location ( w2 ) ^ block-location ( d , w2 ) ^ lower_left ( a , d ) ^ spatial-rel ( west , 0 , w2 , w1 ) </s>
+<s> There is already a block at row 8 and column 2 </s>===<s> starting_block ( 2 , 8 ) </s>
+
+<s> Build a horizontal line </s>===<s> row ( a ) </s>
+<s> Then , create a rectangle to the bottom of the horizontal line </s>===<s> rectangle ( b ) ^ bottom ( b , a ) </s>
+
+<s> Form a rectangle </s>===<s> rectangle ( a ) </s>
+<s> After that , construct another one to the left of the first one </s>===<s> rectangle ( b ) ^ left ( b , a ) </s>
+
+<s> Please put a aabap on the table </s>===<s> aabap ( a ) </s>
+
+<s> Create a aaatm </s>===<s> aaatm ( a ) </s>
+
+<s> Put a aaauj on the table </s>===<s> aaauj ( a ) </s>
+
+<s> Construct a aaazj of width 3 and height 5 </s>===<s> aaazj ( a ) ^ width ( 3 ) ^ height ( 5 ) </s>
+
+<s> Please put a aaban of height 2 on the table </s>===<s> aaban ( a ) ^ height ( 2 ) </s>
+
+<s> Build a aaavg </s>===<s> aaavg ( a ) </s>
+
+<s> Build a column with 6 blocks </s>===<s> column ( a ) ^ height ( a , 6 ) </s>
+<s> Next , construct a row with 7 blocks to the right of the column </s>===<s> row ( b ) ^ width ( b , 7 ) ^ right ( b , a ) </s>
+<s> Make sure that the row 's left end is adjacent to the fourth row of the column </s>===<s> block ( c ) ^ location ( w1 ) ^ block-location ( c , w1 ) ^ upper_left ( b , c ) ^ block ( d ) ^ location ( w2 ) ^ block-location ( d , w2 ) ^ right_side ( a , d , 3 ) ^ spatial-rel ( east , 0 , w2 , w1 ) </s>
+<s> Build a rectangle that is 3 blocks wide and 7 blocks tall to the right of the row </s>===<s> rectangle ( e ) ^ height ( e , 7 ) ^ width ( e , 3 ) ^ right ( e , b ) </s>
+<s> Ensure that the lower left corner of the rectangle is adjacent to the right end of the row </s>===<s> block ( f ) ^ location ( w3 ) ^ block-location ( f , w3 ) ^ lower_left ( e , f ) ^ block ( g ) ^ location ( w4 ) ^ block-location ( g , w4 ) ^ lower_right ( b , g ) ^ spatial-rel ( east , 0 , w4 , w3 ) </s>
+
+<s> You should construct a aaaul of height 3 </s>===<s> aaaul ( a ) ^ height ( 3 ) </s>
+
+<s> Put a aaavn on the table </s>===<s> aaavn ( a ) </s>
+
+<s> Build a aaaum of length 3 </s>===<s> aaaum ( a ) ^ width ( 3 ) </s>
+
+<s> Build a row with 8 blocks </s>===<s> row ( a ) ^ width ( a , 8 ) </s>
+<s> Now , create a 4 by 4 square to the right of the row </s>===<s> square ( b ) ^ size ( b , 4 ) ^ right ( b , a ) </s>
+<s> Make sure that the lower left corner of the square is next to the row 's right end </s>===<s> block ( c ) ^ location ( w1 ) ^ block-location ( c , w1 ) ^ lower_left ( b , c ) ^ block ( d ) ^ location ( w2 ) ^ block-location ( d , w2 ) ^ lower_right ( a , d ) ^ spatial-rel ( east , 0 , w2 , w1 ) </s>
+<s> There are already blocks at row 4 and column 7 , at row 8 and column 8 , and at row 8 and column 2 </s>===<s> starting_block ( 7 , 4 ) ^ starting_block ( 8 , 8 ) ^ starting_block ( 2 , 8 ) </s>
+
+<s> Create a column using 4 blocks </s>===<s> column ( a ) ^ height ( a , 4 ) </s>
+<s> There are immobile blocks at row 0 and column 5 and at row 2 and column 1 </s>===<s> immobile_block ( 5 , 0 ) ^ immobile_block ( 1 , 2 ) </s>
+
+<s> I want you to construct a aaaui of height 4 </s>===<s> aaaui ( a ) ^ height ( 4 ) </s>
+
+<s> Create a row </s>===<s> row ( a ) </s>
+<s> Then , create a column to the top of the row </s>===<s> column ( b ) ^ top ( b , a ) </s>
+
+<s> You should put a aaavh of height 8 and width 3 on the table </s>===<s> aaavh ( a ) ^ height ( 8 ) ^ width ( 3 ) </s>
+
+<s> Please construct a aaavm </s>===<s> aaavm ( a ) </s>
+
+<s> Form a rectangle that is 3 blocks tall and 9 blocks wide </s>===<s> rectangle ( a ) ^ height ( a , 3 ) ^ width ( a , 9 ) </s>
+<s> Do not put blocks in the space at row 7 and column 1 , the space at row 2 and column 3 , and the space at row 3 and column 4 </s>===<s> restricted ( 1 , 7 ) ^ restricted ( 3 , 2 ) ^ restricted ( 4 , 3 ) </s>
+
+<s> You should create a aaawn of height 5 </s>===<s> aaawn ( a ) ^ height ( 5 ) </s>
+
+<s> Build a rectangle </s>===<s> rectangle ( a ) </s>
+<s> Then , create another one to the left of the first one </s>===<s> rectangle ( b ) ^ left ( b , a ) </s>
+
+<s> Build a rectangle with a height of 8 blocks and a width of 4 blocks </s>===<s> rectangle ( a ) ^ height ( a , 8 ) ^ width ( a , 4 ) </s>
+
+<s> Build a row </s>===<s> row ( a ) </s>
+<s> Next , create another one to the left of the first one </s>===<s> row ( b ) ^ left ( b , a ) </s>
+<s> Then , construct a column to the left of the row </s>===<s> column ( c ) ^ left ( c , b ) </s>
+
+<s> I want you to create a aaaza of height 9 and length 3 </s>===<s> aaaza ( a ) ^ height ( 9 ) ^ width ( 3 ) </s>
+
+<s> Build a square with sides of block length 8 </s>===<s> square ( a ) ^ size ( a , 8 ) </s>
+<s> Finally , form a 7 by 2 rectangle to the left of the square </s>===<s> rectangle ( b ) ^ height ( b , 2 ) ^ width ( b , 7 ) ^ left ( b , a ) </s>
+<s> Ensure that the upper right corner of the rectangle is next to the fifth row of the square </s>===<s> block ( c ) ^ location ( w1 ) ^ block-location ( c , w1 ) ^ upper_right ( b , c ) ^ block ( d ) ^ location ( w2 ) ^ block-location ( d , w2 ) ^ left_side ( a , d , 4 ) ^ spatial-rel ( west , 0 , w2 , w1 ) </s>
+<s> There are already blocks at row 4 and column 1 and at row 0 and column 2 </s>===<s> starting_block ( 1 , 4 ) ^ starting_block ( 2 , 0 ) </s>
+
+
+<s> Construct a rectangle with a height of 7 blocks and a width of 2 blocks </s>===<s> rectangle ( a ) ^ height ( a , 7 ) ^ width ( a , 2 ) </s>
+<s> Now , construct another one to the left of the first one </s>===<s> rectangle ( b ) ^ height ( b , 7 ) ^ width ( b , 2 ) ^ left ( b , a ) </s>
+<s> Make sure that the upper right corner of the new rectangle is in line with the upper left corner of the first rectangle </s>===<s> block ( c ) ^ location ( w1 ) ^ block-location ( c , w1 ) ^ upper_right ( b , c ) ^ block ( d ) ^ location ( w2 ) ^ block-location ( d , w2 ) ^ upper_left ( a , d ) ^ spatial-rel ( west , 0 , w2 , w1 ) </s>
+<s> Finally , construct a rectangle that is 2 blocks wide and 7 blocks tall to the right of the rectangle </s>===<s> rectangle ( e ) ^ height ( e , 7 ) ^ width ( e , 2 ) ^ right ( e , a ) </s>
+<s> Ensure that the new rectangle 's lower left corner is next to the fourth row of the first rectangle </s>===<s> block ( f ) ^ location ( w3 ) ^ block-location ( f , w3 ) ^ lower_left ( e , f ) ^ block ( g ) ^ location ( w4 ) ^ block-location ( g , w4 ) ^ right_side ( a , g , 3 ) ^ spatial-rel ( east , 0 , w4 , w3 ) </s>
+<s> There are immobile blocks at row 9 and column 1 and at row 6 and column 1 </s>===<s> immobile_block ( 1 , 9 ) ^ immobile_block ( 1 , 6 ) </s>
+
+<s> Construct a rectangle </s>===<s> rectangle ( a ) </s>
+<s> Next , build a horizontal line to the right of the rectangle </s>===<s> row ( b ) ^ right ( b , a ) </s>
+<s> After that , construct another one to the bottom of the first one </s>===<s> rectangle ( c ) ^ bottom ( c , a ) </s>
+<s> Then , construct a square to the bottom of the rectangle </s>===<s> square ( d ) ^ bottom ( d , c ) </s>
+
+<s> Construct a vertical line using 8 blocks </s>===<s> column ( a ) ^ height ( a , 8 ) </s>
+<s> There are already blocks at row 9 and column 6 , at row 8 and column 8 , and at row 9 and column 7 </s>===<s> starting_block ( 6 , 9 ) ^ starting_block ( 8 , 8 ) ^ starting_block ( 7 , 9 ) </s>
+
+<s> Construct a square </s>===<s> square ( a ) </s>
+<s> After that , form another one to the bottom of the first one </s>===<s> square ( b ) ^ bottom ( b , a ) </s>
+<s> After that , create a horizontal line to the left of the square </s>===<s> row ( c ) ^ left ( c , a ) </s>
+
+<s> Build a square </s>===<s> square ( a ) </s>
+<s> After that , construct a horizontal line to the left of the square </s>===<s> row ( b ) ^ left ( b , a ) </s>
+<s> Next , construct a vertical line to the left of the horizontal line </s>===<s> column ( c ) ^ left ( c , b ) </s>
+
+<s> Place a aaayw of width 4 and height 2 on the table </s>===<s> aaayw ( a ) ^ width ( 4 ) ^ height ( 2 ) </s>
+
+<s> Create a aaazm of length 9 </s>===<s> aaazm ( a ) ^ width ( 9 ) </s>
+
+<s> Form a vertical line using 6 blocks </s>===<s> column ( a ) ^ height ( a , 6 ) </s>
+<s> Construct a rectangle with a height of 3 blocks and a width of 9 blocks to the right of the vertical line </s>===<s> rectangle ( b ) ^ height ( b , 3 ) ^ width ( b , 9 ) ^ right ( b , a ) </s>
+<s> Ensure that the upper left corner of the rectangle is next to the third row of the vertical line </s>===<s> block ( c ) ^ location ( w1 ) ^ block-location ( c , w1 ) ^ upper_left ( b , c ) ^ block ( d ) ^ location ( w2 ) ^ block-location ( d , w2 ) ^ right_side ( a , d , 2 ) ^ spatial-rel ( east , 0 , w2 , w1 ) </s>
+
+<s> You should build a aabaq of height 6 </s>===<s> aabaq ( a ) ^ height ( 6 ) </s>
+
+<s> Construct a rectangle that is 6 blocks wide and 4 blocks tall </s>===<s> rectangle ( a ) ^ height ( a , 4 ) ^ width ( a , 6 ) </s>
+<s> There is an immobile block at row 0 and column 6 </s>===<s> immobile_block ( 6 , 0 ) </s>
+
+<s> Build a rectangle </s>===<s> rectangle ( a ) </s>
+<s> Next , build a square to the right of the rectangle </s>===<s> square ( b ) ^ right ( b , a ) </s>
+<s> After that , build a vertical line to the bottom of the square </s>===<s> column ( c ) ^ bottom ( c , b ) </s>
+<s> Then , form a rectangle to the bottom of the vertical line </s>===<s> rectangle ( d ) ^ bottom ( d , c ) </s>
+
+<s> Construct a row of size 5 </s>===<s> row ( a ) ^ width ( a , 5 ) </s>
+<s> Build a rectangle that is 9 blocks tall and 2 blocks wide to the top of the row </s>===<s> rectangle ( b ) ^ height ( b , 9 ) ^ width ( b , 2 ) ^ top ( b , a ) </s>
+<s> Make sure that the lower left corner of the rectangle is adjacent to the right end of the row </s>===<s> block ( c ) ^ location ( w1 ) ^ block-location ( c , w1 ) ^ lower_left ( b , c ) ^ block ( d ) ^ location ( w2 ) ^ block-location ( d , w2 ) ^ upper_right ( a , d ) ^ spatial-rel ( north , 0 , w2 , w1 ) </s>
+<s> Do not place blocks in the space at row 8 and column 3 , the space at row 9 and column 8 , and the space at row 10 and column 1 </s>===<s> restricted ( 3 , 8 ) ^ restricted ( 8 , 9 ) ^ restricted ( 1 , 10 ) </s>
+
+<s> Create a 2 by 2 square </s>===<s> square ( a ) ^ size ( a , 2 ) </s>
+<s> Create a square with sides of block length 2 above the square </s>===<s> square ( b ) ^ size ( b , 2 ) ^ top ( b , a ) </s>
+<s> Ensure that the new square 's lower right corner is next to the first square 's upper left corner </s>===<s> block ( c ) ^ location ( w1 ) ^ block-location ( c , w1 ) ^ lower_right ( b , c ) ^ block ( d ) ^ location ( w2 ) ^ block-location ( d , w2 ) ^ upper_left ( a , d ) ^ spatial-rel ( north , 0 , w2 , w1 ) </s>
+<s> Create a column of height 3 to the top of the square </s>===<s> column ( e ) ^ height ( e , 3 ) ^ top ( e , b ) </s>
+<s> Ensure that the bottom end of the column is adjacent to the second square 's upper right corner </s>===<s> block ( f ) ^ location ( w3 ) ^ block-location ( f , w3 ) ^ lower_left ( e , f ) ^ block ( g ) ^ location ( w4 ) ^ block-location ( g , w4 ) ^ upper_right ( b , g ) ^ spatial-rel ( north , 0 , w4 , w3 ) </s>
+<s> There are already blocks at row 9 and column 9 and at row 6 and column 2 </s>===<s> starting_block ( 9 , 9 ) ^ starting_block ( 2 , 6 ) </s>
+
+<s> Construct a rectangle </s>===<s> rectangle ( a ) </s>
+<s> After that , construct a row to the top of the rectangle </s>===<s> row ( b ) ^ top ( b , a ) </s>
+<s> Next , create a square to the right of the row </s>===<s> square ( c ) ^ right ( c , b ) </s>
+<s> Next , create another one to the bottom of the first one </s>===<s> rectangle ( d ) ^ bottom ( d , a ) </s>
+
+<s> Please create a aaauc of height 2 and width 3 </s>===<s> aaauc ( a ) ^ height ( 2 ) ^ width ( 3 ) </s>
+
+<s> Form a horizontal line of length 5 </s>===<s> row ( a ) ^ width ( a , 5 ) </s>
+<s> Create a 3 block by 3 block square above the horizontal line </s>===<s> square ( b ) ^ size ( b , 3 ) ^ top ( b , a ) </s>
+<s> Make sure that the lower left corner of the square is next to the second column of the horizontal line </s>===<s> block ( c ) ^ location ( w1 ) ^ block-location ( c , w1 ) ^ lower_left ( b , c ) ^ block ( d ) ^ location ( w2 ) ^ block-location ( d , w2 ) ^ top_side ( a , d , 1 ) ^ spatial-rel ( north , 0 , w2 , w1 ) </s>
+<s> There are immobile blocks at row 8 and column 1 and at row 9 and column 4 </s>===<s> immobile_block ( 1 , 8 ) ^ immobile_block ( 4 , 9 ) </s>
+
+<s> Form a rectangle that is 6 blocks wide and 5 blocks tall </s>===<s> rectangle ( a ) ^ height ( a , 5 ) ^ width ( a , 6 ) </s>
+<s> There are already blocks at row 4 and column 10 , at row 4 and column 2 , and at row 5 and column 0 </s>===<s> starting_block ( 10 , 4 ) ^ starting_block ( 2 , 4 ) ^ starting_block ( 0 , 5 ) </s>
+
+<s> Build a rectangle that is 2 blocks tall and 9 blocks wide </s>===<s> rectangle ( a ) ^ height ( a , 2 ) ^ width ( a , 9 ) </s>
+<s> Construct a 2 by 2 square to the bottom of the rectangle </s>===<s> square ( b ) ^ size ( b , 2 ) ^ bottom ( b , a ) </s>
+<s> Ensure that the upper left corner of the square is adjacent to the fourth column of the rectangle </s>===<s> block ( c ) ^ location ( w1 ) ^ block-location ( c , w1 ) ^ upper_left ( b , c ) ^ block ( d ) ^ location ( w2 ) ^ block-location ( d , w2 ) ^ bottom_side ( a , d , 3 ) ^ spatial-rel ( south , 0 , w2 , w1 ) </s>
+<s> There are immobile blocks at row 1 and column 0 , at row 3 and column 7 , and at row 6 and column 3 </s>===<s> immobile_block ( 0 , 1 ) ^ immobile_block ( 7 , 3 ) ^ immobile_block ( 3 , 6 ) </s>
+
+<s> Construct a row of length 6 </s>===<s> row ( a ) ^ width ( a , 6 ) </s>
+<s> Construct a 2 block by 2 block square to the left of the row </s>===<s> square ( b ) ^ size ( b , 2 ) ^ left ( b , a ) </s>
+<s> Make sure that the upper right corner of the square is adjacent to the row 's left end </s>===<s> block ( c ) ^ location ( w1 ) ^ block-location ( c , w1 ) ^ upper_right ( b , c ) ^ block ( d ) ^ location ( w2 ) ^ block-location ( d , w2 ) ^ upper_left ( a , d ) ^ spatial-rel ( west , 0 , w2 , w1 ) </s>
+
+<s> Form a row </s>===<s> row ( a ) </s>
+<s> After that , build another one to the right of the first one </s>===<s> row ( b ) ^ right ( b , a ) </s>
+<s> Then , build a rectangle to the top of the horizontal line </s>===<s> rectangle ( c ) ^ top ( c , b ) </s>
+
+<s> Please place a aaatx on the table </s>===<s> aaatx ( a ) </s>
+
+<s> Create a vertical line </s>===<s> column ( a ) </s>
+<s> Next , form a row to the top of the vertical line </s>===<s> row ( b ) ^ top ( b , a ) </s>
+<s> Next , build a rectangle to the left of the row </s>===<s> rectangle ( c ) ^ left ( c , b ) </s>
+<s> Then , construct another one to the left of the first one </s>===<s> rectangle ( d ) ^ left ( d , c ) </s>
+
+<s> Create a rectangle </s>===<s> rectangle ( a ) </s>
+<s> Next , form a square to the right of the rectangle </s>===<s> square ( b ) ^ right ( b , a ) </s>
+<s> Then , form a row to the bottom of the square </s>===<s> row ( c ) ^ bottom ( c , b ) </s>
+<s> Next , create a square to the left of the row </s>===<s> square ( d ) ^ left ( d , c ) </s>
+
+<s> You should build a aaaxm of height 4 and length 2 </s>===<s> aaaxm ( a ) ^ height ( 4 ) ^ width ( 2 ) </s>
+
+<s> Form a rectangle with a width of 9 blocks and a height of 3 blocks </s>===<s> rectangle ( a ) ^ height ( a , 3 ) ^ width ( a , 9 ) </s>
+<s> After that , create a row with 4 blocks to the right of the rectangle </s>===<s> row ( b ) ^ width ( b , 4 ) ^ right ( b , a ) </s>
+<s> Ensure that the left end of the row is next to the lower right corner of the rectangle </s>===<s> block ( c ) ^ location ( w1 ) ^ block-location ( c , w1 ) ^ upper_left ( b , c ) ^ block ( d ) ^ location ( w2 ) ^ block-location ( d , w2 ) ^ lower_right ( a , d ) ^ spatial-rel ( east , 0 , w2 , w1 ) </s>
+<s> There are already blocks at row 10 and column 2 and at row 3 and column 1 </s>===<s> starting_block ( 2 , 10 ) ^ starting_block ( 1 , 3 ) </s>
+
+<s> Form a horizontal line of length 6 </s>===<s> row ( a ) ^ width ( a , 6 ) </s>
+<s> Construct a horizontal line using 6 blocks to the left of the horizontal line </s>===<s> row ( b ) ^ width ( b , 6 ) ^ left ( b , a ) </s>
+<s> Ensure that this horizontal line 's right end is adjacent to the left end of the first horizontal line </s>===<s> block ( c ) ^ location ( w1 ) ^ block-location ( c , w1 ) ^ upper_right ( b , c ) ^ block ( d ) ^ location ( w2 ) ^ block-location ( d , w2 ) ^ upper_left ( a , d ) ^ spatial-rel ( west , 0 , w2 , w1 ) </s>
+
+<s> Put a aaaww of length 5 and height 8 on the table </s>===<s> aaaww ( a ) ^ width ( 5 ) ^ height ( 8 ) </s>
+
+<s> Construct a 4 block by 4 block square </s>===<s> square ( a ) ^ size ( a , 4 ) </s>
+<s> Finally , build a rectangle with a width of 9 blocks and a height of 8 blocks above the square </s>===<s> rectangle ( b ) ^ height ( b , 8 ) ^ width ( b , 9 ) ^ top ( b , a ) </s>
+<s> Ensure that the lower right corner of the rectangle is next to the second column of the square </s>===<s> block ( c ) ^ location ( w1 ) ^ block-location ( c , w1 ) ^ lower_right ( b , c ) ^ block ( d ) ^ location ( w2 ) ^ block-location ( d , w2 ) ^ top_side ( a , d , 1 ) ^ spatial-rel ( north , 0 , w2 , w1 ) </s>
+<s> Do not place blocks in the spaces at row 6 and column 0 and at row 2 and column 10 </s>===<s> restricted ( 0 , 6 ) ^ restricted ( 10 , 2 ) </s>
+
+<s> Build a column of height 4 </s>===<s> column ( a ) ^ height ( a , 4 ) </s>
+<s> Create a row using 6 blocks to the right of the column </s>===<s> row ( b ) ^ width ( b , 6 ) ^ right ( b , a ) </s>
+<s> Ensure that the row 's left end is next to the top end of the column </s>===<s> block ( c ) ^ location ( w1 ) ^ block-location ( c , w1 ) ^ upper_left ( b , c ) ^ block ( d ) ^ location ( w2 ) ^ block-location ( d , w2 ) ^ upper_right ( a , d ) ^ spatial-rel ( east , 0 , w2 , w1 ) </s>
+<s> There is an immobile block at row 5 and column 8 </s>===<s> immobile_block ( 8 , 5 ) </s>
+
+<s> Create a horizontal line of length 4 </s>===<s> row ( a ) ^ width ( a , 4 ) </s>
+<s> There are immobile blocks at row 0 and column 9 and at row 2 and column 2 </s>===<s> immobile_block ( 9 , 0 ) ^ immobile_block ( 2 , 2 ) </s>
+
+<s> Construct a aaavl of height 2 </s>===<s> aaavl ( a ) ^ height ( 2 ) </s>
+
+<s> Create a rectangle </s>===<s> rectangle ( a ) </s>
+<s> Next , form a horizontal line to the left of the rectangle </s>===<s> row ( b ) ^ left ( b , a ) </s>
+
+<s> Form a rectangle </s>===<s> rectangle ( a ) </s>
+<s> Next , create a row to the left of the rectangle </s>===<s> row ( b ) ^ left ( b , a ) </s>
+
+<s> Create a rectangle that is 5 blocks tall and 8 blocks wide </s>===<s> rectangle ( a ) ^ height ( a , 5 ) ^ width ( a , 8 ) </s>
+<s> There are already blocks at row 10 and column 8 and at row 10 and column 6 </s>===<s> starting_block ( 8 , 10 ) ^ starting_block ( 6 , 10 ) </s>
+
+<s> Form a horizontal line of size 5 </s>===<s> row ( a ) ^ width ( a , 5 ) </s>
+<s> Create a square with sides of block length 8 below the horizontal line </s>===<s> square ( b ) ^ size ( b , 8 ) ^ bottom ( b , a ) </s>
+<s> Make sure that the square 's upper left corner is adjacent to the second column of the horizontal line </s>===<s> block ( c ) ^ location ( w1 ) ^ block-location ( c , w1 ) ^ upper_left ( b , c ) ^ block ( d ) ^ location ( w2 ) ^ block-location ( d , w2 ) ^ bottom_side ( a , d , 1 ) ^ spatial-rel ( south , 0 , w2 , w1 ) </s>
+<s> Do not place blocks in the spaces at row 3 and column 6 and at row 10 and column 10 </s>===<s> restricted ( 6 , 3 ) ^ restricted ( 10 , 10 ) </s>
+
+<s> You should create a aaawf of width 7 and height 5 </s>===<s> aaawf ( a ) ^ width ( 7 ) ^ height ( 5 ) </s>
+
+<s> Form a horizontal line of size 3 </s>===<s> row ( a ) ^ width ( a , 3 ) </s>
+<s> After that , create a row using 3 blocks above the horizontal line </s>===<s> row ( b ) ^ width ( b , 3 ) ^ top ( b , a ) </s>
+<s> Ensure that the left end of the row is in line with the left end of the horizontal line </s>===<s> block ( c ) ^ location ( w1 ) ^ block-location ( c , w1 ) ^ lower_left ( b , c ) ^ block ( d ) ^ location ( w2 ) ^ block-location ( d , w2 ) ^ upper_left ( a , d ) ^ spatial-rel ( north , 0 , w2 , w1 ) </s>
+<s> There are immobile blocks at row 7 and column 4 and at row 3 and column 8 </s>===<s> immobile_block ( 4 , 7 ) ^ immobile_block ( 8 , 3 ) </s>
+
+<s> Form a horizontal line </s>===<s> row ( a ) </s>
+<s> After that , create a vertical line to the bottom of the horizontal line </s>===<s> column ( b ) ^ bottom ( b , a ) </s>
+<s> Next , build a square to the bottom of the vertical line </s>===<s> square ( c ) ^ bottom ( c , b ) </s>
+<s> Then , construct a column to the bottom of the square </s>===<s> column ( d ) ^ bottom ( d , c ) </s>
+
+<s> Construct a column of height 7 </s>===<s> column ( a ) ^ height ( a , 7 ) </s>
+
+<s> You should construct a aaavz </s>===<s> aaavz ( a ) </s>
+
+<s> Form a column with 6 blocks </s>===<s> column ( a ) ^ height ( a , 6 ) </s>
+<s> Do not place a block in the space at row 7 and column 10 </s>===<s> restricted ( 10 , 7 ) </s>
+
+<s> Build a horizontal line </s>===<s> row ( a ) </s>
+<s> Next , construct a column to the top of the horizontal line </s>===<s> column ( b ) ^ top ( b , a ) </s>
+<s> After that , create a rectangle to the right of the horizontal line </s>===<s> rectangle ( c ) ^ right ( c , a ) </s>
+
+<s> I want you to place a aaaur on the table </s>===<s> aaaur ( a ) </s>
+
+<s> Build a column </s>===<s> column ( a ) </s>
+<s> After that , construct another one to the left of the first one </s>===<s> column ( b ) ^ left ( b , a ) </s>
+
+<s> Create a square with sides of block length 6 </s>===<s> square ( a ) ^ size ( a , 6 ) </s>
+
+<s> Build a rectangle </s>===<s> rectangle ( a ) </s>
+<s> Next , construct another one to the bottom of the first one </s>===<s> rectangle ( b ) ^ bottom ( b , a ) </s>
+<s> Next , form a column to the right of the rectangle </s>===<s> column ( c ) ^ right ( c , a ) </s>
+
+<s> I want you to construct a aaaye of length 9 </s>===<s> aaaye ( a ) ^ width ( 9 ) </s>
+
+<s> Form a rectangle </s>===<s> rectangle ( a ) </s>
+<s> Then , form a vertical line to the top of the rectangle </s>===<s> column ( b ) ^ top ( b , a ) </s>
+
+<s> Create a square </s>===<s> square ( a ) </s>
+<s> Then , create a column to the bottom of the square </s>===<s> column ( b ) ^ bottom ( b , a ) </s>
+
+<s> Create a square </s>===<s> square ( a ) </s>
+<s> After that , create a column to the left of the square </s>===<s> column ( b ) ^ left ( b , a ) </s>
+<s> Then , form another one to the left of the first one </s>===<s> column ( c ) ^ left ( c , b ) </s>
+<s> Then , construct a horizontal line to the right of the square </s>===<s> row ( d ) ^ right ( d , a ) </s>
+
+<s> Build a 6 by 6 square </s>===<s> square ( a ) ^ size ( a , 6 ) </s>
+<s> Do not place blocks in the spaces at row 3 and column 1 and at row 2 and column 0 </s>===<s> restricted ( 1 , 3 ) ^ restricted ( 0 , 2 ) </s>
+
+<s> Construct a rectangle </s>===<s> rectangle ( a ) </s>
+<s> After that , form a square to the bottom of the rectangle </s>===<s> square ( b ) ^ bottom ( b , a ) </s>
+<s> Then , create a column to the left of the square </s>===<s> column ( c ) ^ left ( c , b ) </s>
+<s> Then , build a row to the left of the column </s>===<s> row ( d ) ^ left ( d , c ) </s>
+
+<s> Build a rectangle </s>===<s> rectangle ( a ) </s>
+<s> Next , construct a square to the bottom of the rectangle </s>===<s> square ( b ) ^ bottom ( b , a ) </s>
+
+<s> Build a column </s>===<s> column ( a ) </s>
+<s> After that , build a square to the left of the column </s>===<s> square ( b ) ^ left ( b , a ) </s>
+<s> Next , create a row to the bottom of the column </s>===<s> row ( c ) ^ bottom ( c , a ) </s>
+<s> Next , create another one to the top of the first one </s>===<s> square ( d ) ^ top ( d , b ) </s>
+
+<s> Construct a column of size 8 </s>===<s> column ( a ) ^ height ( a , 8 ) </s>
+<s> Build a row with 8 blocks above the column </s>===<s> row ( b ) ^ width ( b , 8 ) ^ top ( b , a ) </s>
+<s> Make sure that the fourth column of the row is adjacent to the column 's top end </s>===<s> block ( c ) ^ location ( w1 ) ^ block-location ( c , w1 ) ^ bottom_side ( b , c , 3 ) ^ block ( d ) ^ location ( w2 ) ^ block-location ( d , w2 ) ^ upper_left ( a , d ) ^ spatial-rel ( north , 0 , w2 , w1 ) </s>
+<s> Finally , form a square with sides of block length 6 to the right of the row </s>===<s> square ( e ) ^ size ( e , 6 ) ^ right ( e , b ) </s>
+<s> Ensure that the fifth row of the square is adjacent to the row 's right end </s>===<s> block ( f ) ^ location ( w3 ) ^ block-location ( f , w3 ) ^ left_side ( e , f , 4 ) ^ block ( g ) ^ location ( w4 ) ^ block-location ( g , w4 ) ^ upper_right ( b , g ) ^ spatial-rel ( east , 0 , w4 , w3 ) </s>
+<s> There are immobile blocks at row 6 and column 7 and at row 6 and column 1 </s>===<s> immobile_block ( 7 , 6 ) ^ immobile_block ( 1 , 6 ) </s>
+
+<s> Form a column </s>===<s> column ( a ) </s>
+<s> Then , construct a horizontal line to the top of the column </s>===<s> row ( b ) ^ top ( b , a ) </s>
+
+<s> Build a horizontal line using 3 blocks </s>===<s> row ( a ) ^ width ( a , 3 ) </s>
+<s> Form a square with sides of block length 6 to the left of the horizontal line </s>===<s> square ( b ) ^ size ( b , 6 ) ^ left ( b , a ) </s>
+<s> Make sure that the upper right corner of the square is in line with the left end of the horizontal line </s>===<s> block ( c ) ^ location ( w1 ) ^ block-location ( c , w1 ) ^ upper_right ( b , c ) ^ block ( d ) ^ location ( w2 ) ^ block-location ( d , w2 ) ^ upper_left ( a , d ) ^ spatial-rel ( west , 0 , w2 , w1 ) </s>
+<s> Now , create another one to the left of the first one </s>===<s> square ( e ) ^ size ( e , 6 ) ^ left ( e , b ) </s>
+<s> Make sure that the upper right corner of the new square is adjacent to the lower left corner of the first square </s>===<s> block ( f ) ^ location ( w3 ) ^ block-location ( f , w3 ) ^ upper_right ( e , f ) ^ block ( g ) ^ location ( w4 ) ^ block-location ( g , w4 ) ^ lower_left ( b , g ) ^ spatial-rel ( west , 0 , w4 , w3 ) </s>
+<s> There is an immobile block at row 5 and column 0 </s>===<s> immobile_block ( 0 , 5 ) </s>
+
+<s> Please create a aaauy of length 3 and height 9 </s>===<s> aaauy ( a ) ^ width ( 3 ) ^ height ( 9 ) </s>
+
+<s> Please put a aaays of width 6 and height 4 on the table </s>===<s> aaays ( a ) ^ width ( 6 ) ^ height ( 4 ) </s>
+
+<s> I want you to place a aaayc of height 4 on the table </s>===<s> aaayc ( a ) ^ height ( 4 ) </s>
+
+<s> Construct a rectangle </s>===<s> rectangle ( a ) </s>
+<s> After that , create a square to the right of the rectangle </s>===<s> square ( b ) ^ right ( b , a ) </s>
+<s> After that , form a horizontal line to the top of the square </s>===<s> row ( c ) ^ top ( c , b ) </s>
+<s> After that , form another one to the right of the first one </s>===<s> row ( d ) ^ right ( d , c ) </s>
+
+<s> Place a aabac of width 2 and height 6 on the table </s>===<s> aabac ( a ) ^ width ( 2 ) ^ height ( 6 ) </s>
+
+<s> I want you to build a aaawa </s>===<s> aaawa ( a ) </s>
+
+<s> I want you to create a aaaxu of height 3 </s>===<s> aaaxu ( a ) ^ height ( 3 ) </s>
+
+<s> Create a row </s>===<s> row ( a ) </s>
+<s> Then , form another one to the bottom of the first one </s>===<s> row ( b ) ^ bottom ( b , a ) </s>
+
+<s> Please put a aaazl on the table </s>===<s> aaazl ( a ) </s>
+
+<s> You should place a aaavi of height 4 and width 2 on the table </s>===<s> aaavi ( a ) ^ height ( 4 ) ^ width ( 2 ) </s>
+
+<s> Form a row </s>===<s> row ( a ) </s>
+<s> Next , construct another one to the left of the first one </s>===<s> row ( b ) ^ left ( b , a ) </s>
+<s> Then , build a rectangle to the left of the row </s>===<s> rectangle ( c ) ^ left ( c , b ) </s>
+
+<s> Build a 9 block by 9 block square </s>===<s> square ( a ) ^ size ( a , 9 ) </s>
+<s> There is already a block at row 9 and column 7 </s>===<s> starting_block ( 7 , 9 ) </s>
+
+<s> Construct a horizontal line </s>===<s> row ( a ) </s>
+<s> Then , construct a vertical line to the bottom of the horizontal line </s>===<s> column ( b ) ^ bottom ( b , a ) </s>
+
+<s> Form a column </s>===<s> column ( a ) </s>
+<s> After that , create a square to the top of the column </s>===<s> square ( b ) ^ top ( b , a ) </s>
+<s> Then , form a rectangle to the bottom of the column </s>===<s> rectangle ( c ) ^ bottom ( c , a ) </s>
+
+<s> Create a horizontal line </s>===<s> row ( a ) </s>
+<s> Then , build a vertical line to the right of the horizontal line </s>===<s> column ( b ) ^ right ( b , a ) </s>
+<s> Next , construct another one to the right of the first one </s>===<s> column ( c ) ^ right ( c , b ) </s>
+
+<s> Please place a aaazs of height 4 on the table </s>===<s> aaazs ( a ) ^ height ( 4 ) </s>
+
+<s> Construct a rectangle </s>===<s> rectangle ( a ) </s>
+<s> Next , build another one to the right of the first one </s>===<s> rectangle ( b ) ^ right ( b , a ) </s>
+
+<s> Construct a horizontal line of length 4 </s>===<s> row ( a ) ^ width ( a , 4 ) </s>
+
+<s> You should place a aabaa of width 8 on the table </s>===<s> aabaa ( a ) ^ width ( 8 ) </s>
+
+<s> Form a square </s>===<s> square ( a ) </s>
+<s> After that , create a rectangle to the bottom of the square </s>===<s> rectangle ( b ) ^ bottom ( b , a ) </s>
+<s> Next , create a horizontal line to the top of the square </s>===<s> row ( c ) ^ top ( c , a ) </s>
+
+<s> Build a column </s>===<s> column ( a ) </s>
+<s> After that , create a row to the bottom of the column </s>===<s> row ( b ) ^ bottom ( b , a ) </s>
+<s> After that , form a square to the left of the row </s>===<s> square ( c ) ^ left ( c , b ) </s>
+<s> Next , build a rectangle to the right of the row </s>===<s> rectangle ( d ) ^ right ( d , b ) </s>
+
+<s> You should put a aaath of height 7 and length 2 on the table </s>===<s> aaath ( a ) ^ height ( 7 ) ^ width ( 2 ) </s>
+
+<s> Please put a aaaxe of height 3 on the table </s>===<s> aaaxe ( a ) ^ height ( 3 ) </s>
+
+<s> I want you to construct a aabav of length 4 </s>===<s> aabav ( a ) ^ width ( 4 ) </s>
+
+<s> Construct a square with sides of block length 5 </s>===<s> square ( a ) ^ size ( a , 5 ) </s>
+<s> Create a column using 4 blocks to the right of the square </s>===<s> column ( b ) ^ height ( b , 4 ) ^ right ( b , a ) </s>
+<s> Ensure that the column 's top end is adjacent to the lower right corner of the square </s>===<s> block ( c ) ^ location ( w1 ) ^ block-location ( c , w1 ) ^ upper_left ( b , c ) ^ block ( d ) ^ location ( w2 ) ^ block-location ( d , w2 ) ^ lower_right ( a , d ) ^ spatial-rel ( east , 0 , w2 , w1 ) </s>
+<s> Create a vertical line with 4 blocks beneath the column </s>===<s> column ( e ) ^ height ( e , 4 ) ^ bottom ( e , b ) </s>
+<s> Ensure that the vertical line 's top end is adjacent to the column 's bottom end </s>===<s> block ( f ) ^ location ( w3 ) ^ block-location ( f , w3 ) ^ upper_left ( e , f ) ^ block ( g ) ^ location ( w4 ) ^ block-location ( g , w4 ) ^ lower_left ( b , g ) ^ spatial-rel ( south , 0 , w4 , w3 ) </s>
+<s> There are immobile blocks at row 1 and column 8 and at row 8 and column 6 </s>===<s> immobile_block ( 8 , 1 ) ^ immobile_block ( 6 , 8 ) </s>
+
+<s> Build a aaatv of height 4 </s>===<s> aaatv ( a ) ^ height ( 4 ) </s>
+
+<s> Build a column using 8 blocks </s>===<s> column ( a ) ^ height ( a , 8 ) </s>
+<s> Then , form a rectangle that is 2 blocks tall and 7 blocks wide to the left of the column </s>===<s> rectangle ( b ) ^ height ( b , 2 ) ^ width ( b , 7 ) ^ left ( b , a ) </s>
+<s> Ensure that the upper right corner of the rectangle is next to the sixth row of the column </s>===<s> block ( c ) ^ location ( w1 ) ^ block-location ( c , w1 ) ^ upper_right ( b , c ) ^ block ( d ) ^ location ( w2 ) ^ block-location ( d , w2 ) ^ left_side ( a , d , 5 ) ^ spatial-rel ( west , 0 , w2 , w1 ) </s>
+<s> Finally , create a vertical line with 6 blocks beneath the column </s>===<s> column ( e ) ^ height ( e , 6 ) ^ bottom ( e , a ) </s>
+<s> Make sure that the vertical line 's top end is aligned with the column 's bottom end </s>===<s> block ( f ) ^ location ( w3 ) ^ block-location ( f , w3 ) ^ upper_left ( e , f ) ^ block ( g ) ^ location ( w4 ) ^ block-location ( g , w4 ) ^ lower_left ( a , g ) ^ spatial-rel ( south , 0 , w4 , w3 ) </s>
+<s> There are immobile blocks at row 6 and column 5 , at row 2 and column 7 , and at row 1 and column 0 </s>===<s> immobile_block ( 5 , 6 ) ^ immobile_block ( 7 , 2 ) ^ immobile_block ( 0 , 1 ) </s>
+
+<s> Form a vertical line using 9 blocks </s>===<s> column ( a ) ^ height ( a , 9 ) </s>
+<s> Build another one to the right of the first one </s>===<s> column ( b ) ^ height ( b , 9 ) ^ right ( b , a ) </s>
+<s> Make sure that the top end of the column is next to the sixth row of the vertical line </s>===<s> block ( c ) ^ location ( w1 ) ^ block-location ( c , w1 ) ^ upper_left ( b , c ) ^ block ( d ) ^ location ( w2 ) ^ block-location ( d , w2 ) ^ right_side ( a , d , 5 ) ^ spatial-rel ( east , 0 , w2 , w1 ) </s>
+<s> Do not place blocks in the spaces at row 6 and column 4 and at row 3 and column 6 </s>===<s> restricted ( 4 , 6 ) ^ restricted ( 6 , 3 ) </s>
+
+<s> Form a vertical line with 3 blocks </s>===<s> column ( a ) ^ height ( a , 3 ) </s>
+
+<s> Put a aaaxb on the table </s>===<s> aaaxb ( a ) </s>
+
+<s> Form a horizontal line with 4 blocks </s>===<s> row ( a ) ^ width ( a , 4 ) </s>
+<s> Do not put blocks in the space at row 10 and column 6 , the space at row 10 and column 1 , and the space at row 7 and column 3 </s>===<s> restricted ( 6 , 10 ) ^ restricted ( 1 , 10 ) ^ restricted ( 3 , 7 ) </s>
+
+<s> You should put a aaatu of height 7 on the table </s>===<s> aaatu ( a ) ^ height ( 7 ) </s>
+
+<s> Construct a rectangle </s>===<s> rectangle ( a ) </s>
+<s> After that , form a square to the top of the rectangle </s>===<s> square ( b ) ^ top ( b , a ) </s>
+<s> After that , build a row to the left of the square </s>===<s> row ( c ) ^ left ( c , b ) </s>
+<s> Then , create a row to the right of the rectangle </s>===<s> row ( d ) ^ right ( d , a ) </s>
+
+<s> Create a aaayf </s>===<s> aaayf ( a ) </s>
+
+<s> Build a vertical line </s>===<s> column ( a ) </s>
+<s> After that , build a horizontal line to the bottom of the vertical line </s>===<s> row ( b ) ^ bottom ( b , a ) </s>
+<s> Then , build a rectangle to the bottom of the horizontal line </s>===<s> rectangle ( c ) ^ bottom ( c , b ) </s>
+<s> After that , create a square to the bottom of the rectangle </s>===<s> square ( d ) ^ bottom ( d , c ) </s>
+
+<s> Create a aabab of height 9 and width 2 </s>===<s> aabab ( a ) ^ height ( 9 ) ^ width ( 2 ) </s>
+
+<s> Form a rectangle </s>===<s> rectangle ( a ) </s>
+<s> Next , build a column to the right of the rectangle </s>===<s> column ( b ) ^ right ( b , a ) </s>
+<s> Then , build a horizontal line to the bottom of the rectangle </s>===<s> row ( c ) ^ bottom ( c , a ) </s>
+
+<s> Create a column using 5 blocks </s>===<s> column ( a ) ^ height ( a , 5 ) </s>
+<s> Now , build a 4 by 4 square to the right of the column </s>===<s> square ( b ) ^ size ( b , 4 ) ^ right ( b , a ) </s>
+<s> Make sure that the square 's upper left corner is adjacent to the fourth row of the column </s>===<s> block ( c ) ^ location ( w1 ) ^ block-location ( c , w1 ) ^ upper_left ( b , c ) ^ block ( d ) ^ location ( w2 ) ^ block-location ( d , w2 ) ^ right_side ( a , d , 3 ) ^ spatial-rel ( east , 0 , w2 , w1 ) </s>
+<s> Build a square with sides of block length 4 to the left of the column </s>===<s> square ( e ) ^ size ( e , 4 ) ^ left ( e , a ) </s>
+<s> Ensure that the upper right corner of this square is adjacent to the second row of the column </s>===<s> block ( f ) ^ location ( w3 ) ^ block-location ( f , w3 ) ^ upper_right ( e , f ) ^ block ( g ) ^ location ( w4 ) ^ block-location ( g , w4 ) ^ left_side ( a , g , 1 ) ^ spatial-rel ( west , 0 , w4 , w3 ) </s>
+<s> There is already a block at row 7 and column 8 </s>===<s> starting_block ( 8 , 7 ) </s>
+
+<s> I want you to place a aabar on the table </s>===<s> aabar ( a ) </s>
+
+<s> Form a rectangle </s>===<s> rectangle ( a ) </s>
+<s> After that , construct a vertical line to the top of the rectangle </s>===<s> column ( b ) ^ top ( b , a ) </s>
+<s> Then , create a rectangle to the top of the vertical line </s>===<s> rectangle ( c ) ^ top ( c , b ) </s>
+
+<s> Create a 6 block by 6 block square </s>===<s> square ( a ) ^ size ( a , 6 ) </s>
+<s> Finally , form a column of size 4 to the right of the square </s>===<s> column ( b ) ^ height ( b , 4 ) ^ right ( b , a ) </s>
+<s> Make sure that the column 's bottom end is next to the upper right corner of the square </s>===<s> block ( c ) ^ location ( w1 ) ^ block-location ( c , w1 ) ^ lower_left ( b , c ) ^ block ( d ) ^ location ( w2 ) ^ block-location ( d , w2 ) ^ upper_right ( a , d ) ^ spatial-rel ( east , 0 , w2 , w1 ) </s>
+
+<s> Form a square </s>===<s> square ( a ) </s>
+<s> Then , create a column to the bottom of the square </s>===<s> column ( b ) ^ bottom ( b , a ) </s>
+<s> Then , construct another one to the left of the first one </s>===<s> column ( c ) ^ left ( c , b ) </s>
+
+<s> Construct a square </s>===<s> square ( a ) </s>
+<s> Next , construct another one to the bottom of the first one </s>===<s> square ( b ) ^ bottom ( b , a ) </s>
+<s> After that , create another one to the top of the first one </s>===<s> square ( c ) ^ top ( c , a ) </s>
+
+<s> Build a square </s>===<s> square ( a ) </s>
+<s> Next , build a row to the top of the square </s>===<s> row ( b ) ^ top ( b , a ) </s>
+<s> After that , construct a rectangle to the right of the row </s>===<s> rectangle ( c ) ^ right ( c , b ) </s>
+<s> Then , construct a vertical line to the bottom of the square </s>===<s> column ( d ) ^ bottom ( d , a ) </s>
+
+<s> Construct a 8 block by 8 block square </s>===<s> square ( a ) ^ size ( a , 8 ) </s>
+<s> Form a horizontal line of size 6 above the square </s>===<s> row ( b ) ^ width ( b , 6 ) ^ top ( b , a ) </s>
+<s> Ensure that the left end of the horizontal line is next to the sixth column of the square </s>===<s> block ( c ) ^ location ( w1 ) ^ block-location ( c , w1 ) ^ lower_left ( b , c ) ^ block ( d ) ^ location ( w2 ) ^ block-location ( d , w2 ) ^ top_side ( a , d , 5 ) ^ spatial-rel ( north , 0 , w2 , w1 ) </s>
+<s> There is already a block at row 4 and column 9 </s>===<s> starting_block ( 9 , 4 ) </s>
+
+<s> Create a column of height 6 </s>===<s> column ( a ) ^ height ( a , 6 ) </s>
+<s> There are already blocks at row 2 and column 5 , at row 7 and column 8 , and at row 9 and column 4 </s>===<s> starting_block ( 5 , 2 ) ^ starting_block ( 8 , 7 ) ^ starting_block ( 4 , 9 ) </s>
+
+<s> Build a square </s>===<s> square ( a ) </s>
+<s> After that , create a vertical line to the bottom of the square </s>===<s> column ( b ) ^ bottom ( b , a ) </s>
+
+<s> You should put a aaauz of width 9 on the table </s>===<s> aaauz ( a ) ^ width ( 9 ) </s>
+
+<s> Please build a aabat of length 6 and height 2 </s>===<s> aabat ( a ) ^ width ( 6 ) ^ height ( 2 ) </s>
+
+<s> Build a square </s>===<s> square ( a ) </s>
+<s> Then , create another one to the bottom of the first one </s>===<s> square ( b ) ^ bottom ( b , a ) </s>
+
+<s> You should put a aaatw of height 5 on the table </s>===<s> aaatw ( a ) ^ height ( 5 ) </s>
+
+<s> Create a row of length 9 </s>===<s> row ( a ) ^ width ( a , 9 ) </s>
+<s> Do not place blocks in the spaces at row 1 and column 5 and at row 10 and column 9 </s>===<s> restricted ( 5 , 1 ) ^ restricted ( 9 , 10 ) </s>
+
+<s> Construct a horizontal line </s>===<s> row ( a ) </s>
+<s> After that , create a vertical line to the bottom of the horizontal line </s>===<s> column ( b ) ^ bottom ( b , a ) </s>
+<s> After that , form a rectangle to the left of the vertical line </s>===<s> rectangle ( c ) ^ left ( c , b ) </s>
+<s> Then , form a square to the left of the rectangle </s>===<s> square ( d ) ^ left ( d , c ) </s>
+
+<s> Build a square </s>===<s> square ( a ) </s>
+<s> Then , form a row to the top of the square </s>===<s> row ( b ) ^ top ( b , a ) </s>
+<s> Then , form a square to the top of the row </s>===<s> square ( c ) ^ top ( c , b ) </s>
+
+<s> You should create a aaaut of height 2 </s>===<s> aaaut ( a ) ^ height ( 2 ) </s>
+
+<s> Please create a aaayi of width 3 and height 9 </s>===<s> aaayi ( a ) ^ width ( 3 ) ^ height ( 9 ) </s>
+
+<s> Construct a row </s>===<s> row ( a ) </s>
+<s> Next , build another one to the right of the first one </s>===<s> row ( b ) ^ right ( b , a ) </s>
+
+<s> Construct a vertical line of height 6 </s>===<s> column ( a ) ^ height ( a , 6 ) </s>
+<s> There is an immobile block at row 2 and column 2 </s>===<s> immobile_block ( 2 , 2 ) </s>
+
+<s> I want you to construct a aaawh of width 5 and height 5 </s>===<s> aaawh ( a ) ^ width ( 5 ) ^ height ( 5 ) </s>
+
+<s> You should put a aaayo of width 7 on the table </s>===<s> aaayo ( a ) ^ width ( 7 ) </s>
+
+<s> Build a aabag of height 3 and width 8 </s>===<s> aabag ( a ) ^ height ( 3 ) ^ width ( 8 ) </s>
+
+<s> Form a column with 5 blocks </s>===<s> column ( a ) ^ height ( a , 5 ) </s>
+<s> Finally , create a horizontal line with 4 blocks to the bottom of the column </s>===<s> row ( b ) ^ width ( b , 4 ) ^ bottom ( b , a ) </s>
+<s> Ensure that the horizontal line 's right end is adjacent to the bottom end of the column </s>===<s> block ( c ) ^ location ( w1 ) ^ block-location ( c , w1 ) ^ upper_right ( b , c ) ^ block ( d ) ^ location ( w2 ) ^ block-location ( d , w2 ) ^ lower_right ( a , d ) ^ spatial-rel ( south , 0 , w2 , w1 ) </s>
+
+<s> Form a horizontal line of size 5 </s>===<s> row ( a ) ^ width ( a , 5 ) </s>
+
+<s> Construct a column of height 4 </s>===<s> column ( a ) ^ height ( a , 4 ) </s>
+<s> Build a square with sides of block length 2 above the column </s>===<s> square ( b ) ^ size ( b , 2 ) ^ top ( b , a ) </s>
+<s> Ensure that the square 's lower right corner is next to the top end of the column </s>===<s> block ( c ) ^ location ( w1 ) ^ block-location ( c , w1 ) ^ lower_right ( b , c ) ^ block ( d ) ^ location ( w2 ) ^ block-location ( d , w2 ) ^ upper_right ( a , d ) ^ spatial-rel ( north , 0 , w2 , w1 ) </s>
+<s> Do not place blocks in the spaces at row 9 and column 3 and at row 4 and column 10 </s>===<s> restricted ( 3 , 9 ) ^ restricted ( 10 , 4 ) </s>
+
+<s> I want you to place a aaawj of height 3 on the table </s>===<s> aaawj ( a ) ^ height ( 3 ) </s>
+
+<s> Construct a square with sides of block length 2 </s>===<s> square ( a ) ^ size ( a , 2 ) </s>
+<s> Finally , build a horizontal line using 4 blocks below the square </s>===<s> row ( b ) ^ width ( b , 4 ) ^ bottom ( b , a ) </s>
+<s> Make sure that the second column of the horizontal line is next to the lower left corner of the square </s>===<s> block ( c ) ^ location ( w1 ) ^ block-location ( c , w1 ) ^ top_side ( b , c , 1 ) ^ block ( d ) ^ location ( w2 ) ^ block-location ( d , w2 ) ^ lower_left ( a , d ) ^ spatial-rel ( south , 0 , w2 , w1 ) </s>
+<s> There is already a block at row 9 and column 0 </s>===<s> starting_block ( 0 , 9 ) </s>
+
+<s> You should construct a aabak of height 3 and length 4 </s>===<s> aabak ( a ) ^ height ( 3 ) ^ width ( 4 ) </s>
+
+<s> Build a rectangle </s>===<s> rectangle ( a ) </s>
+<s> After that , construct another one to the right of the first one </s>===<s> rectangle ( b ) ^ right ( b , a ) </s>
+<s> Next , form a horizontal line to the bottom of the rectangle </s>===<s> row ( c ) ^ bottom ( c , b ) </s>
+
+<s> Create a rectangle with a width of 5 blocks and a height of 8 blocks </s>===<s> rectangle ( a ) ^ height ( a , 8 ) ^ width ( a , 5 ) </s>
+<s> There are immobile blocks at row 5 and column 5 , at row 7 and column 0 , and at row 0 and column 1 </s>===<s> immobile_block ( 5 , 5 ) ^ immobile_block ( 0 , 7 ) ^ immobile_block ( 1 , 0 ) </s>
+
+<s> Build a vertical line using 5 blocks </s>===<s> column ( a ) ^ height ( a , 5 ) </s>
+<s> Next , build a square with sides of block length 6 to the left of the vertical line </s>===<s> square ( b ) ^ size ( b , 6 ) ^ left ( b , a ) </s>
+<s> Make sure that the square 's lower right corner is adjacent to the second row of the vertical line </s>===<s> block ( c ) ^ location ( w1 ) ^ block-location ( c , w1 ) ^ lower_right ( b , c ) ^ block ( d ) ^ location ( w2 ) ^ block-location ( d , w2 ) ^ left_side ( a , d , 1 ) ^ spatial-rel ( west , 0 , w2 , w1 ) </s>
+<s> Construct a column with 6 blocks to the left of the square </s>===<s> column ( e ) ^ height ( e , 6 ) ^ left ( e , b ) </s>
+<s> Make sure that the top end of the column is in line with the square 's upper left corner </s>===<s> block ( f ) ^ location ( w3 ) ^ block-location ( f , w3 ) ^ upper_right ( e , f ) ^ block ( g ) ^ location ( w4 ) ^ block-location ( g , w4 ) ^ upper_left ( b , g ) ^ spatial-rel ( west , 0 , w4 , w3 ) </s>
+<s> There is an immobile block at row 3 and column 1 </s>===<s> immobile_block ( 1 , 3 ) </s>
+
+<s> Construct a column with 4 blocks </s>===<s> column ( a ) ^ height ( a , 4 ) </s>
+<s> Do not place blocks in the space at row 4 and column 3 , the space at row 9 and column 9 , and the space at row 3 and column 3 </s>===<s> restricted ( 3 , 4 ) ^ restricted ( 9 , 9 ) ^ restricted ( 3 , 3 ) </s>
+
+<s> Build a row of length 8 </s>===<s> row ( a ) ^ width ( a , 8 ) </s>
+<s> Form another one beneath the first one </s>===<s> row ( b ) ^ width ( b , 8 ) ^ bottom ( b , a ) </s>
+<s> Make sure that the horizontal line 's right end is adjacent to the seventh column of the row </s>===<s> block ( c ) ^ location ( w1 ) ^ block-location ( c , w1 ) ^ upper_right ( b , c ) ^ block ( d ) ^ location ( w2 ) ^ block-location ( d , w2 ) ^ bottom_side ( a , d , 6 ) ^ spatial-rel ( south , 0 , w2 , w1 ) </s>
+<s> Build a vertical line of size 3 to the left of the horizontal line </s>===<s> column ( e ) ^ height ( e , 3 ) ^ left ( e , b ) </s>
+<s> Ensure that the vertical line 's bottom end is aligned with the horizontal line 's left end </s>===<s> block ( f ) ^ location ( w3 ) ^ block-location ( f , w3 ) ^ lower_right ( e , f ) ^ block ( g ) ^ location ( w4 ) ^ block-location ( g , w4 ) ^ lower_left ( b , g ) ^ spatial-rel ( west , 0 , w4 , w3 ) </s>
+<s> There are already blocks at row 6 and column 8 and at row 10 and column 3 </s>===<s> starting_block ( 8 , 6 ) ^ starting_block ( 3 , 10 ) </s>
+
+<s> You should build a aaaym </s>===<s> aaaym ( a ) </s>
+
+<s> Create a vertical line with 8 blocks </s>===<s> column ( a ) ^ height ( a , 8 ) </s>
+<s> Construct a rectangle with a height of 8 blocks and a width of 4 blocks to the left of the vertical line </s>===<s> rectangle ( b ) ^ height ( b , 8 ) ^ width ( b , 4 ) ^ left ( b , a ) </s>
+<s> Make sure that the upper right corner of the rectangle is next to the sixth row of the vertical line </s>===<s> block ( c ) ^ location ( w1 ) ^ block-location ( c , w1 ) ^ upper_right ( b , c ) ^ block ( d ) ^ location ( w2 ) ^ block-location ( d , w2 ) ^ left_side ( a , d , 5 ) ^ spatial-rel ( west , 0 , w2 , w1 ) </s>
+<s> Do not put blocks in the spaces at row 5 and column 1 and at row 0 and column 1 </s>===<s> restricted ( 1 , 5 ) ^ restricted ( 1 , 0 ) </s>
+
+<s> Form a vertical line </s>===<s> column ( a ) </s>
+<s> After that , build another one to the top of the first one </s>===<s> column ( b ) ^ top ( b , a ) </s>
+<s> Next , build a rectangle to the top of the vertical line </s>===<s> rectangle ( c ) ^ top ( c , b ) </s>
+<s> Next , create a horizontal line to the left of the rectangle </s>===<s> row ( d ) ^ left ( d , c ) </s>
+
+<s> Build a vertical line with 7 blocks </s>===<s> column ( a ) ^ height ( a , 7 ) </s>
+
+<s> I want you to build a aaayg of height 5 </s>===<s> aaayg ( a ) ^ height ( 5 ) </s>
+
+<s> Form a 8 by 8 square </s>===<s> square ( a ) ^ size ( a , 8 ) </s>
+<s> Do not place blocks in the space at row 10 and column 1 , the space at row 1 and column 0 , and the space at row 6 and column 10 </s>===<s> restricted ( 1 , 10 ) ^ restricted ( 0 , 1 ) ^ restricted ( 10 , 6 ) </s>
+
+<s> You should build a aaayj of height 9 and length 5 </s>===<s> aaayj ( a ) ^ height ( 9 ) ^ width ( 5 ) </s>
+
+<s> You should construct a aaavc </s>===<s> aaavc ( a ) </s>
+
+<s> Create a rectangle </s>===<s> rectangle ( a ) </s>
+<s> Next , build a square to the left of the rectangle </s>===<s> square ( b ) ^ left ( b , a ) </s>
+<s> Then , build a horizontal line to the left of the square </s>===<s> row ( c ) ^ left ( c , b ) </s>
+<s> Then , form a column to the left of the horizontal line </s>===<s> column ( d ) ^ left ( d , c ) </s>
+
+<s> I want you to construct a aaazr </s>===<s> aaazr ( a ) </s>
+
+<s> You should place a aaaya of length 8 on the table </s>===<s> aaaya ( a ) ^ width ( 8 ) </s>
+
+<s> Construct a 3 by 3 square </s>===<s> square ( a ) ^ size ( a , 3 ) </s>
+<s> There is an immobile block at row 9 and column 6 </s>===<s> immobile_block ( 6 , 9 ) </s>
+
+<s> I want you to construct a aaave </s>===<s> aaave ( a ) </s>
+
+<s> Please create a aaavo of height 2 and width 5 </s>===<s> aaavo ( a ) ^ height ( 2 ) ^ width ( 5 ) </s>
+
+<s> Form a horizontal line </s>===<s> row ( a ) </s>
+<s> Then , create a vertical line to the right of the horizontal line </s>===<s> column ( b ) ^ right ( b , a ) </s>
+
+<s> Construct a horizontal line with 7 blocks </s>===<s> row ( a ) ^ width ( a , 7 ) </s>
+<s> Build a 2 block by 2 block square above the horizontal line </s>===<s> square ( b ) ^ size ( b , 2 ) ^ top ( b , a ) </s>
+<s> Make sure that the lower left corner of the square is adjacent to the third column of the horizontal line </s>===<s> block ( c ) ^ location ( w1 ) ^ block-location ( c , w1 ) ^ lower_left ( b , c ) ^ block ( d ) ^ location ( w2 ) ^ block-location ( d , w2 ) ^ top_side ( a , d , 2 ) ^ spatial-rel ( north , 0 , w2 , w1 ) </s>
+<s> Build a rectangle that is 6 blocks wide and 7 blocks tall to the right of the horizontal line </s>===<s> rectangle ( e ) ^ height ( e , 7 ) ^ width ( e , 6 ) ^ right ( e , a ) </s>
+<s> Make sure that the second row of the rectangle is adjacent to the right end of the horizontal line </s>===<s> block ( f ) ^ location ( w3 ) ^ block-location ( f , w3 ) ^ left_side ( e , f , 1 ) ^ block ( g ) ^ location ( w4 ) ^ block-location ( g , w4 ) ^ upper_right ( a , g ) ^ spatial-rel ( east , 0 , w4 , w3 ) </s>
+<s> There are already blocks at row 6 and column 6 and at row 1 and column 1 </s>===<s> starting_block ( 6 , 6 ) ^ starting_block ( 1 , 1 ) </s>
+
+<s> Form a row of size 4 </s>===<s> row ( a ) ^ width ( a , 4 ) </s>
+<s> There are already blocks at row 6 and column 8 , at row 2 and column 5 , and at row 3 and column 6 </s>===<s> starting_block ( 8 , 6 ) ^ starting_block ( 5 , 2 ) ^ starting_block ( 6 , 3 ) </s>
+
+<s> Create a row </s>===<s> row ( a ) </s>
+<s> Next , form a square to the top of the row </s>===<s> square ( b ) ^ top ( b , a ) </s>
+<s> Then , form a horizontal line to the top of the square </s>===<s> row ( c ) ^ top ( c , b ) </s>
+<s> After that , build a rectangle to the top of the horizontal line </s>===<s> rectangle ( d ) ^ top ( d , c ) </s>
+
+<s> Form a row </s>===<s> row ( a ) </s>
+<s> Next , form a column to the right of the row </s>===<s> column ( b ) ^ right ( b , a ) </s>
+<s> Then , construct a rectangle to the bottom of the column </s>===<s> rectangle ( c ) ^ bottom ( c , b ) </s>
+
+<s> Form a horizontal line of length 7 </s>===<s> row ( a ) ^ width ( a , 7 ) </s>
+<s> Form a rectangle with a width of 6 blocks and a height of 7 blocks below the horizontal line </s>===<s> rectangle ( b ) ^ height ( b , 7 ) ^ width ( b , 6 ) ^ bottom ( b , a ) </s>
+<s> Make sure that the upper left corner of the rectangle is adjacent to the third column of the horizontal line </s>===<s> block ( c ) ^ location ( w1 ) ^ block-location ( c , w1 ) ^ upper_left ( b , c ) ^ block ( d ) ^ location ( w2 ) ^ block-location ( d , w2 ) ^ bottom_side ( a , d , 2 ) ^ spatial-rel ( south , 0 , w2 , w1 ) </s>
+<s> Now , create a vertical line using 8 blocks to the left of the horizontal line </s>===<s> column ( e ) ^ height ( e , 8 ) ^ left ( e , a ) </s>
+<s> Make sure that the vertical line 's top end is aligned with the left end of the horizontal line </s>===<s> block ( f ) ^ location ( w3 ) ^ block-location ( f , w3 ) ^ upper_right ( e , f ) ^ block ( g ) ^ location ( w4 ) ^ block-location ( g , w4 ) ^ upper_left ( a , g ) ^ spatial-rel ( west , 0 , w4 , w3 ) </s>
+<s> Do not place blocks in the spaces at row 2 and column 0 and at row 2 and column 5 </s>===<s> restricted ( 0 , 2 ) ^ restricted ( 5 , 2 ) </s>
+
+<s> Construct a row </s>===<s> row ( a ) </s>
+<s> Then , build a square to the top of the row </s>===<s> square ( b ) ^ top ( b , a ) </s>
+<s> Then , form a column to the right of the row </s>===<s> column ( c ) ^ right ( c , a ) </s>
+<s> Next , construct another one to the right of the first one </s>===<s> column ( d ) ^ right ( d , c ) </s>
+
+<s> You should put a aaavk of height 7 and width 4 on the table </s>===<s> aaavk ( a ) ^ height ( 7 ) ^ width ( 4 ) </s>
+
+<s> Form a 6 block by 6 block square </s>===<s> square ( a ) ^ size ( a , 6 ) </s>
+<s> Do not place blocks in the spaces at row 6 and column 4 and at row 5 and column 2 </s>===<s> restricted ( 4 , 6 ) ^ restricted ( 2 , 5 ) </s>
+
+<s> Form a column using 4 blocks </s>===<s> column ( a ) ^ height ( a , 4 ) </s>
+<s> Do not put a block in the space at row 6 and column 6 </s>===<s> restricted ( 6 , 6 ) </s>
+
+<s> Create a row using 4 blocks </s>===<s> row ( a ) ^ width ( a , 4 ) </s>
+<s> Do not place a block in the space at row 7 and column 8 </s>===<s> restricted ( 8 , 7 ) </s>
+
+<s> Construct a row with 3 blocks </s>===<s> row ( a ) ^ width ( a , 3 ) </s>
+<s> There are already blocks at row 0 and column 3 and at row 4 and column 4 </s>===<s> starting_block ( 3 , 0 ) ^ starting_block ( 4 , 4 ) </s>
+
+<s> Form a row </s>===<s> row ( a ) </s>
+<s> After that , create a rectangle to the top of the row </s>===<s> rectangle ( b ) ^ top ( b , a ) </s>
+
+<s> Construct a row </s>===<s> row ( a ) </s>
+<s> After that , construct a rectangle to the top of the row </s>===<s> rectangle ( b ) ^ top ( b , a ) </s>
+<s> After that , build a rectangle to the bottom of the row </s>===<s> rectangle ( c ) ^ bottom ( c , a ) </s>
+
+<s> Form a horizontal line </s>===<s> row ( a ) </s>
+<s> After that , form a rectangle to the top of the horizontal line </s>===<s> rectangle ( b ) ^ top ( b , a ) </s>
+<s> Next , create a rectangle to the bottom of the horizontal line </s>===<s> rectangle ( c ) ^ bottom ( c , a ) </s>
+
+<s> Create a vertical line of height 4 </s>===<s> column ( a ) ^ height ( a , 4 ) </s>
+
+<s> Form a square </s>===<s> square ( a ) </s>
+<s> After that , build a rectangle to the top of the square </s>===<s> rectangle ( b ) ^ top ( b , a ) </s>
+
+<s> Create a column of size 3 </s>===<s> column ( a ) ^ height ( a , 3 ) </s>
+<s> Construct a row of size 3 to the top of the column </s>===<s> row ( b ) ^ width ( b , 3 ) ^ top ( b , a ) </s>
+<s> Ensure that the row 's left end is adjacent to the top end of the column </s>===<s> block ( c ) ^ location ( w1 ) ^ block-location ( c , w1 ) ^ lower_left ( b , c ) ^ block ( d ) ^ location ( w2 ) ^ block-location ( d , w2 ) ^ upper_left ( a , d ) ^ spatial-rel ( north , 0 , w2 , w1 ) </s>
+<s> There are immobile blocks at row 3 and column 0 and at row 5 and column 5 </s>===<s> immobile_block ( 0 , 3 ) ^ immobile_block ( 5 , 5 ) </s>
+
+<s> Form a horizontal line </s>===<s> row ( a ) </s>
+<s> Next , build a column to the top of the horizontal line </s>===<s> column ( b ) ^ top ( b , a ) </s>
+<s> Next , build a rectangle to the right of the horizontal line </s>===<s> rectangle ( c ) ^ right ( c , a ) </s>
+
+<s> Form a horizontal line of length 4 </s>===<s> row ( a ) ^ width ( a , 4 ) </s>
+<s> Do not put blocks in the space at row 10 and column 8 , the space at row 5 and column 3 , and the space at row 8 and column 4 </s>===<s> restricted ( 8 , 10 ) ^ restricted ( 3 , 5 ) ^ restricted ( 4 , 8 ) </s>
+
+<s> I want you to build a aaato of length 6 and height 4 </s>===<s> aaato ( a ) ^ width ( 6 ) ^ height ( 4 ) </s>
+
+<s> Please place a aaayr on the table </s>===<s> aaayr ( a ) </s>
+
+<s> Construct a rectangle </s>===<s> rectangle ( a ) </s>
+<s> Then , form another one to the right of the first one </s>===<s> rectangle ( b ) ^ right ( b , a ) </s>
+<s> After that , construct another one to the bottom of the first one </s>===<s> rectangle ( c ) ^ bottom ( c , b ) </s>
+
+<s> Please build a aaazx of width 8 </s>===<s> aaazx ( a ) ^ width ( 8 ) </s>
+
+<s> Please build a aaatp of height 2 </s>===<s> aaatp ( a ) ^ height ( 2 ) </s>
+
+<s> Create a row </s>===<s> row ( a ) </s>
+<s> After that , build a square to the right of the row </s>===<s> square ( b ) ^ right ( b , a ) </s>
+<s> Next , create another one to the bottom of the first one </s>===<s> square ( c ) ^ bottom ( c , b ) </s>
+<s> After that , construct a rectangle to the left of the row </s>===<s> rectangle ( d ) ^ left ( d , a ) </s>
+
+<s> Build a 2 by 2 square </s>===<s> square ( a ) ^ size ( a , 2 ) </s>
+<s> Construct a vertical line of height 8 to the right of the square </s>===<s> column ( b ) ^ height ( b , 8 ) ^ right ( b , a ) </s>
+<s> Ensure that the second row of the vertical line is next to the upper right corner of the square </s>===<s> block ( c ) ^ location ( w1 ) ^ block-location ( c , w1 ) ^ left_side ( b , c , 1 ) ^ block ( d ) ^ location ( w2 ) ^ block-location ( d , w2 ) ^ upper_right ( a , d ) ^ spatial-rel ( east , 0 , w2 , w1 ) </s>
+<s> There are already blocks at row 3 and column 1 , at row 1 and column 2 , and at row 1 and column 3 </s>===<s> starting_block ( 1 , 3 ) ^ starting_block ( 2 , 1 ) ^ starting_block ( 3 , 1 ) </s>
+
+<s> Create a row with 8 blocks </s>===<s> row ( a ) ^ width ( a , 8 ) </s>
+<s> Then , create a rectangle that is 3 blocks wide and 6 blocks tall to the left of the row </s>===<s> rectangle ( b ) ^ height ( b , 6 ) ^ width ( b , 3 ) ^ left ( b , a ) </s>
+<s> Ensure that the rectangle 's lower right corner is adjacent to the row 's left end </s>===<s> block ( c ) ^ location ( w1 ) ^ block-location ( c , w1 ) ^ lower_right ( b , c ) ^ block ( d ) ^ location ( w2 ) ^ block-location ( d , w2 ) ^ lower_left ( a , d ) ^ spatial-rel ( west , 0 , w2 , w1 ) </s>
+<s> After that , create a 3 by 6 rectangle to the bottom of the rectangle </s>===<s> rectangle ( e ) ^ height ( e , 6 ) ^ width ( e , 3 ) ^ bottom ( e , b ) </s>
+<s> Make sure that the upper left corner of this rectangle is next to the second column of the first rectangle </s>===<s> block ( f ) ^ location ( w3 ) ^ block-location ( f , w3 ) ^ upper_left ( e , f ) ^ block ( g ) ^ location ( w4 ) ^ block-location ( g , w4 ) ^ bottom_side ( b , g , 1 ) ^ spatial-rel ( south , 0 , w4 , w3 ) </s>
+
+<s> Please place a aaayv of height 3 on the table </s>===<s> aaayv ( a ) ^ height ( 3 ) </s>
+
+<s> Construct a rectangle </s>===<s> rectangle ( a ) </s>
+<s> After that , create a square to the top of the rectangle </s>===<s> square ( b ) ^ top ( b , a ) </s>
+<s> Then , form another one to the right of the first one </s>===<s> square ( c ) ^ right ( c , b ) </s>
+<s> Next , construct another one to the top of the first one </s>===<s> square ( d ) ^ top ( d , c ) </s>
+
+<s> Form a vertical line using 7 blocks </s>===<s> column ( a ) ^ height ( a , 7 ) </s>
+<s> Build another one to the left of the first one </s>===<s> column ( b ) ^ height ( b , 7 ) ^ left ( b , a ) </s>
+<s> Ensure that the bottom end of the new vertical line is next to the third row of the first vertical line </s>===<s> block ( c ) ^ location ( w1 ) ^ block-location ( c , w1 ) ^ lower_right ( b , c ) ^ block ( d ) ^ location ( w2 ) ^ block-location ( d , w2 ) ^ left_side ( a , d , 2 ) ^ spatial-rel ( west , 0 , w2 , w1 ) </s>
+<s> Do not put a block in the space at row 7 and column 0 </s>===<s> restricted ( 0 , 7 ) </s>
+
+<s> Build a row </s>===<s> row ( a ) </s>
+<s> Next , create a rectangle to the top of the row </s>===<s> rectangle ( b ) ^ top ( b , a ) </s>
+<s> Then , construct a rectangle to the left of the row </s>===<s> rectangle ( c ) ^ left ( c , a ) </s>
+
+<s> Construct a row </s>===<s> row ( a ) </s>
+<s> Then , form a square to the bottom of the row </s>===<s> square ( b ) ^ bottom ( b , a ) </s>
+<s> After that , construct a rectangle to the left of the row </s>===<s> rectangle ( c ) ^ left ( c , a ) </s>
+<s> Next , form a vertical line to the bottom of the square </s>===<s> column ( d ) ^ bottom ( d , b ) </s>
+
+<s> Create a vertical line </s>===<s> column ( a ) </s>
+<s> Then , build a square to the top of the vertical line </s>===<s> square ( b ) ^ top ( b , a ) </s>
+<s> After that , build another one to the right of the first one </s>===<s> square ( c ) ^ right ( c , b ) </s>
+
+<s> I want you to build a aaazo of height 7 </s>===<s> aaazo ( a ) ^ height ( 7 ) </s>
+

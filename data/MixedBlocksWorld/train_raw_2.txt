@@ -1,0 +1,3862 @@
+===
+rectangle(a)
+Create a rectangle.
+square(b) ^ left(b, a)
+After that, form a square to the left of the rectangle.
+row(c) ^ right(c, a)
+After that, build a row  to the right of the rectangle.
+column(d) ^ left(d, b)
+Next, create a vertical line  to the left of the square.
+
+===
+row(a)
+Build a horizontal line .
+
+===
+square(a)
+Create a square.
+column(b) ^ left(b, a)
+Next, form a column  to the left of the square.
+row(c) ^ bottom(c, b)
+Then, build a row  to the bottom of the column.
+square(d) ^ left(d, c)
+After that, form a square to the left of the row.
+
+===
+column(a)
+Create a vertical line .
+
+===
+row(a)
+Construct a row .
+rectangle(b) ^ top(b, a)
+After that, form a rectangle to the top of the row.
+
+===
+rectangle(a)
+Form a rectangle.
+row(b) ^ left(b, a)
+Next, build a row  to the left of the rectangle.
+square(c) ^ bottom(c, a)
+Then, form a square to the bottom of the rectangle.
+row(d) ^ top(d, a)
+Next, build a horizontal line  to the top of the rectangle.
+
+===
+column(a)
+Build a vertical line .
+column(b) ^ right(b, a)
+Then, construct another one to the right of the first one.
+
+===
+square(a)
+Construct a square.
+column(b) ^ top(b, a)
+Then, build a vertical line  to the top of the square.
+rectangle(c) ^ bottom(c, a)
+Then, form a rectangle to the bottom of the square.
+
+===
+square(a)
+Build a square.
+square(b) ^ bottom(b, a)
+Then, create another one to the bottom of the first one.
+row(c) ^ left(c, a)
+Next, construct a horizontal line  to the left of the square.
+
+===
+row(a)
+Create a row .
+
+===
+row(a)
+Construct a horizontal line .
+row(b) ^ right(b, a)
+After that, create another one to the right of the first one.
+column(c) ^ top(c, b)
+Next, build a vertical line  to the top of the row.
+
+===
+column(a)
+Construct a vertical line .
+column(b) ^ top(b, a)
+After that, create another one to the top of the first one.
+rectangle(c) ^ bottom(c, a)
+Next, construct a rectangle to the bottom of the vertical line.
+rectangle(d) ^ bottom(d, c)
+After that, build another one to the bottom of the first one.
+
+===
+row(a)
+Construct a horizontal line .
+
+===
+rectangle(a)
+Build a rectangle.
+row(b) ^ right(b, a)
+Then, form a row  to the right of the rectangle.
+
+===
+square(a)
+Build a square.
+row(b) ^ bottom(b, a)
+Then, create a row  to the bottom of the square.
+
+===
+column(a)
+Create a vertical line .
+row(b) ^ left(b, a)
+Then, construct a horizontal line  to the left of the vertical line.
+row(c) ^ bottom(c, b)
+Then, create another one to the bottom of the first one.
+rectangle(d) ^ bottom(d, c)
+Then, form a rectangle to the bottom of the horizontal line.
+
+===
+square(a)
+Create a square.
+rectangle(b) ^ top(b, a)
+After that, create a rectangle to the top of the square.
+square(c) ^ bottom(c, a)
+Then, create another one to the bottom of the first one.
+column(d) ^ left(d, c)
+Then, form a vertical line  to the left of the square.
+
+===
+rectangle(a)
+Build a rectangle.
+
+===
+column(a)
+Construct a vertical line .
+
+===
+column(a)
+Build a column .
+row(b) ^ left(b, a)
+After that, construct a horizontal line  to the left of the column.
+
+===
+square(a)
+Form a square.
+square(b) ^ bottom(b, a)
+Then, form another one to the bottom of the first one.
+rectangle(c) ^ left(c, a)
+After that, construct a rectangle to the left of the square.
+
+===
+column(a)
+Build a column .
+row(b) ^ top(b, a)
+Next, build a horizontal line  to the top of the column.
+
+===
+column(a)
+Build a column .
+square(b) ^ right(b, a)
+Next, form a square to the right of the column.
+row(c) ^ top(c, b)
+After that, build a horizontal line  to the top of the square.
+
+===
+square(a)
+Form a square.
+column(b) ^ right(b, a)
+After that, create a column  to the right of the square.
+
+===
+row(a)
+Create a horizontal line .
+row(b) ^ bottom(b, a)
+After that, form another one to the bottom of the first one.
+column(c) ^ right(c, a)
+After that, form a vertical line  to the right of the horizontal line.
+rectangle(d) ^ left(d, b)
+Next, construct a rectangle to the left of the horizontal line.
+
+===
+column(a)
+Form a column .
+square(b) ^ bottom(b, a)
+Then, construct a square to the bottom of the column.
+
+===
+row(a)
+Construct a row .
+rectangle(b) ^ top(b, a)
+After that, build a rectangle to the top of the row.
+column(c) ^ left(c, b)
+Next, build a vertical line  to the left of the rectangle.
+
+===
+row(a)
+Create a horizontal line .
+rectangle(b) ^ right(b, a)
+Then, form a rectangle to the right of the horizontal line.
+square(c) ^ right(c, b)
+Next, form a square to the right of the rectangle.
+
+===
+column(a)
+Form a column .
+row(b) ^ top(b, a)
+After that, form a row  to the top of the column.
+
+===
+column(a)
+Build a vertical line .
+row(b) ^ bottom(b, a)
+Then, build a row  to the bottom of the vertical line.
+
+===
+column(a)
+Create a vertical line .
+row(b) ^ left(b, a)
+Next, build a horizontal line  to the left of the vertical line.
+rectangle(c) ^ right(c, a)
+Next, construct a rectangle to the right of the vertical line.
+column(d) ^ top(d, a)
+After that, construct another one to the top of the first one.
+
+===
+column(a)
+Form a vertical line .
+row(b) ^ right(b, a)
+After that, build a horizontal line  to the right of the vertical line.
+column(c) ^ right(c, b)
+After that, create a column  to the right of the horizontal line.
+square(d) ^ top(d, a)
+Then, create a square to the top of the vertical line.
+
+===
+rectangle(a)
+Construct a rectangle.
+column(b) ^ top(b, a)
+Then, create a vertical line  to the top of the rectangle.
+rectangle(c) ^ right(c, a)
+Then, form another one to the right of the first one.
+rectangle(d) ^ right(d, c)
+Next, construct another one to the right of the first one.
+
+===
+square(a)
+Create a square.
+
+===
+column(a)
+Create a column .
+
+===
+rectangle(a)
+Build a rectangle.
+square(b) ^ right(b, a)
+Next, build a square to the right of the rectangle.
+rectangle(c) ^ bottom(c, a)
+After that, create another one to the bottom of the first one.
+
+===
+column(a)
+Construct a column .
+
+===
+column(a)
+Construct a vertical line .
+row(b) ^ left(b, a)
+After that, construct a row  to the left of the vertical line.
+column(c) ^ right(c, a)
+Then, create another one to the right of the first one.
+
+===
+square(a)
+Create a square.
+column(b) ^ left(b, a)
+Then, construct a vertical line  to the left of the square.
+column(c) ^ left(c, b)
+Then, create another one to the left of the first one.
+
+===
+rectangle(a)
+Create a rectangle.
+square(b) ^ bottom(b, a)
+Next, form a square to the bottom of the rectangle.
+row(c) ^ bottom(c, b)
+Next, build a row  to the bottom of the square.
+column(d) ^ left(d, b)
+Next, construct a column  to the left of the square.
+
+===
+rectangle(a)
+Create a rectangle.
+square(b) ^ left(b, a)
+After that, build a square to the left of the rectangle.
+row(c) ^ bottom(c, b)
+Next, create a row  to the bottom of the square.
+row(d) ^ top(d, b)
+Then, build a row  to the top of the square.
+
+===
+rectangle(a)
+Construct a rectangle.
+
+===
+row(a)
+Build a row .
+rectangle(b) ^ bottom(b, a)
+Then, build a rectangle to the bottom of the row.
+rectangle(c) ^ top(c, a)
+Then, build a rectangle to the top of the row.
+
+===
+square(a)
+Create a square.
+column(b) ^ right(b, a)
+After that, form a column  to the right of the square.
+square(c) ^ top(c, b)
+Then, build a square to the top of the column.
+
+===
+row(a)
+Create a row .
+column(b) ^ left(b, a)
+Then, form a vertical line  to the left of the row.
+square(c) ^ left(c, b)
+Then, form a square to the left of the vertical line.
+rectangle(d) ^ bottom(d, b)
+After that, form a rectangle to the bottom of the vertical line.
+
+===
+row(a)
+Create a row .
+rectangle(b) ^ right(b, a)
+Then, create a rectangle to the right of the row.
+row(c) ^ left(c, a)
+Next, form another one to the left of the first one.
+
+===
+rectangle(a)
+Build a rectangle.
+column(b) ^ top(b, a)
+Then, construct a column  to the top of the rectangle.
+
+===
+rectangle(a)
+Form a rectangle.
+square(b) ^ bottom(b, a)
+After that, construct a square to the bottom of the rectangle.
+row(c) ^ left(c, a)
+After that, construct a row  to the left of the rectangle.
+
+===
+square(a)
+Create a square.
+row(b) ^ left(b, a)
+Then, form a horizontal line  to the left of the square.
+row(c) ^ top(c, a)
+After that, construct a horizontal line  to the top of the square.
+column(d) ^ top(d, c)
+Then, form a vertical line  to the top of the horizontal line.
+
+===
+row(a)
+Form a horizontal line .
+row(b) ^ bottom(b, a)
+After that, construct another one to the bottom of the first one.
+column(c) ^ bottom(c, b)
+Then, create a column  to the bottom of the row.
+
+===
+square(a)
+Construct a square.
+row(b) ^ bottom(b, a)
+Next, form a horizontal line  to the bottom of the square.
+rectangle(c) ^ left(c, b)
+Next, construct a rectangle to the left of the horizontal line.
+
+===
+row(a)
+Form a horizontal line .
+square(b) ^ left(b, a)
+After that, create a square to the left of the horizontal line.
+rectangle(c) ^ top(c, b)
+After that, build a rectangle to the top of the square.
+
+===
+column(a)
+Build a vertical line .
+column(b) ^ bottom(b, a)
+Next, create another one to the bottom of the first one.
+
+===
+row(a)
+Construct a horizontal line .
+column(b) ^ top(b, a)
+After that, create a vertical line  to the top of the horizontal line.
+
+===
+rectangle(a)
+Create a rectangle.
+row(b) ^ right(b, a)
+After that, build a row  to the right of the rectangle.
+row(c) ^ left(c, a)
+Next, form a row  to the left of the rectangle.
+
+===
+row(a)
+Form a row .
+
+===
+row(a)
+Build a horizontal line .
+rectangle(b) ^ top(b, a)
+Then, build a rectangle to the top of the horizontal line.
+rectangle(c) ^ bottom(c, a)
+Next, construct a rectangle to the bottom of the horizontal line.
+
+===
+square(a)
+Construct a square.
+rectangle(b) ^ left(b, a)
+Next, construct a rectangle to the left of the square.
+row(c) ^ bottom(c, a)
+Then, form a row  to the bottom of the square.
+rectangle(d) ^ left(d, b)
+Next, construct another one to the left of the first one.
+
+===
+square(a)
+Construct a square.
+row(b) ^ left(b, a)
+Next, form a row  to the left of the square.
+
+===
+column(a)
+Form a column .
+rectangle(b) ^ top(b, a)
+After that, build a rectangle to the top of the column.
+rectangle(c) ^ bottom(c, a)
+Then, build a rectangle to the bottom of the column.
+column(d) ^ left(d, c)
+Then, form a column  to the left of the rectangle.
+
+===
+rectangle(a)
+Form a rectangle.
+rectangle(b) ^ right(b, a)
+After that, construct another one to the right of the first one.
+rectangle(c) ^ right(c, b)
+Then, construct another one to the right of the first one.
+
+===
+row(a)
+Construct a horizontal line .
+square(b) ^ right(b, a)
+After that, form a square to the right of the horizontal line.
+
+===
+rectangle(a)
+Create a rectangle.
+
+===
+row(a)
+Create a horizontal line .
+row(b) ^ bottom(b, a)
+Next, construct another one to the bottom of the first one.
+
+===
+row(a)
+Construct a horizontal line .
+square(b) ^ right(b, a)
+Then, create a square to the right of the horizontal line.
+row(c) ^ right(c, b)
+After that, form a horizontal line  to the right of the square.
+
+===
+column(a)
+Form a vertical line .
+rectangle(b) ^ top(b, a)
+Next, form a rectangle to the top of the vertical line.
+
+===
+row(a)
+Form a horizontal line .
+row(b) ^ right(b, a)
+Next, form another one to the right of the first one.
+square(c) ^ right(c, b)
+Then, create a square to the right of the row.
+rectangle(d) ^ right(d, c)
+After that, construct a rectangle to the right of the square.
+
+===
+row(a)
+Construct a row .
+rectangle(b) ^ left(b, a)
+Then, form a rectangle to the left of the row.
+
+===
+square(a)
+Build a square.
+
+===
+rectangle(a)
+Build a rectangle.
+column(b) ^ right(b, a)
+After that, form a column  to the right of the rectangle.
+column(c) ^ bottom(c, b)
+Then, create another one to the bottom of the first one.
+square(d) ^ bottom(d, c)
+After that, construct a square to the bottom of the column.
+
+===
+column(a)
+Build a column .
+column(b) ^ top(b, a)
+Then, form another one to the top of the first one.
+
+===
+square(a)
+Create a square.
+column(b) ^ top(b, a)
+Then, build a vertical line  to the top of the square.
+square(c) ^ left(c, a)
+Then, construct another one to the left of the first one.
+rectangle(d) ^ left(d, c)
+Then, build a rectangle to the left of the square.
+
+===
+rectangle(a)
+Build a rectangle.
+column(b) ^ left(b, a)
+Then, create a vertical line  to the left of the rectangle.
+rectangle(c) ^ left(c, b)
+Next, construct a rectangle to the left of the vertical line.
+square(d) ^ left(d, c)
+After that, create a square to the left of the rectangle.
+
+===
+rectangle(a)
+Construct a rectangle.
+rectangle(b) ^ top(b, a)
+Then, build another one to the top of the first one.
+square(c) ^ right(c, b)
+Then, construct a square to the right of the rectangle.
+row(d) ^ bottom(d, a)
+Next, create a row  to the bottom of the rectangle.
+
+===
+square(a)
+Form a square.
+square(b) ^ left(b, a)
+Next, create another one to the left of the first one.
+square(c) ^ right(c, a)
+Then, create another one to the right of the first one.
+
+===
+row(a)
+Create a horizontal line .
+rectangle(b) ^ left(b, a)
+Then, construct a rectangle to the left of the horizontal line.
+square(c) ^ left(c, b)
+After that, create a square to the left of the rectangle.
+row(d) ^ right(d, a)
+Next, construct another one to the right of the first one.
+
+===
+square(a)
+Form a square.
+rectangle(b) ^ left(b, a)
+Next, build a rectangle to the left of the square.
+row(c) ^ bottom(c, a)
+Next, form a horizontal line  to the bottom of the square.
+
+===
+rectangle(a)
+Create a rectangle.
+square(b) ^ bottom(b, a)
+After that, form a square to the bottom of the rectangle.
+row(c) ^ right(c, b)
+Next, construct a row  to the right of the square.
+rectangle(d) ^ right(d, c)
+After that, construct a rectangle to the right of the row.
+
+===
+column(a)
+Build a column .
+column(b) ^ bottom(b, a)
+Then, create another one to the bottom of the first one.
+
+===
+row(a)
+Construct a row .
+
+===
+row(a)
+Create a horizontal line .
+row(b) ^ right(b, a)
+After that, construct another one to the right of the first one.
+rectangle(c) ^ bottom(c, b)
+Then, form a rectangle to the bottom of the row.
+
+===
+column(a)
+Form a column .
+rectangle(b) ^ top(b, a)
+After that, form a rectangle to the top of the column.
+
+===
+column(a)
+Form a column .
+square(b) ^ top(b, a)
+Then, construct a square to the top of the column.
+column(c) ^ top(c, b)
+Next, build a vertical line  to the top of the square.
+
+===
+column(a)
+Construct a vertical line .
+column(b) ^ right(b, a)
+Then, form another one to the right of the first one.
+square(c) ^ right(c, b)
+After that, build a square to the right of the column.
+square(d) ^ bottom(d, c)
+After that, construct another one to the bottom of the first one.
+
+===
+row(a)
+Build a row .
+row(b) ^ top(b, a)
+Next, construct another one to the top of the first one.
+row(c) ^ left(c, a)
+Next, construct another one to the left of the first one.
+
+===
+rectangle(a)
+Construct a rectangle.
+column(b) ^ right(b, a)
+Next, build a column  to the right of the rectangle.
+
+===
+rectangle(a)
+Form a rectangle.
+
+===
+row(a)
+Form a row .
+row(b) ^ bottom(b, a)
+After that, build another one to the bottom of the first one.
+column(c) ^ left(c, a)
+Then, build a vertical line  to the left of the row.
+
+===
+square(a)
+Create a square.
+rectangle(b) ^ right(b, a)
+After that, form a rectangle to the right of the square.
+rectangle(c) ^ top(c, b)
+Next, construct another one to the top of the first one.
+row(d) ^ left(d, a)
+Then, create a horizontal line  to the left of the square.
+
+===
+row(a)
+Form a horizontal line .
+square(b) ^ right(b, a)
+Then, create a square to the right of the horizontal line.
+
+===
+row(a)
+Form a horizontal line .
+row(b) ^ left(b, a)
+Next, form another one to the left of the first one.
+
+===
+row(a)
+Create a horizontal line .
+square(b) ^ right(b, a)
+After that, build a square to the right of the horizontal line.
+rectangle(c) ^ bottom(c, b)
+Then, build a rectangle to the bottom of the square.
+
+===
+row(a)
+Form a horizontal line .
+
+===
+rectangle(a)
+Form a rectangle.
+square(b) ^ bottom(b, a)
+Next, create a square to the bottom of the rectangle.
+square(c) ^ right(c, b)
+Next, create another one to the right of the first one.
+rectangle(d) ^ right(d, c)
+Next, construct a rectangle to the right of the square.
+
+===
+column(a)
+Construct a column .
+rectangle(b) ^ left(b, a)
+After that, build a rectangle to the left of the column.
+rectangle(c) ^ right(c, a)
+Next, create a rectangle to the right of the column.
+
+===
+square(a)
+Build a square.
+column(b) ^ top(b, a)
+After that, form a column  to the top of the square.
+rectangle(c) ^ bottom(c, a)
+After that, create a rectangle to the bottom of the square.
+
+===
+square(a)
+Form a square.
+rectangle(b) ^ left(b, a)
+Then, construct a rectangle to the left of the square.
+rectangle(c) ^ right(c, a)
+After that, form a rectangle to the right of the square.
+rectangle(d) ^ bottom(d, b)
+After that, create another one to the bottom of the first one.
+
+===
+square(a)
+Create a square.
+rectangle(b) ^ top(b, a)
+Next, create a rectangle to the top of the square.
+
+===
+row(a)
+Create a horizontal line .
+rectangle(b) ^ top(b, a)
+Then, form a rectangle to the top of the horizontal line.
+rectangle(c) ^ bottom(c, a)
+After that, construct a rectangle to the bottom of the horizontal line.
+square(d) ^ top(d, b)
+After that, build a square to the top of the rectangle.
+
+===
+row(a)
+Build a row .
+rectangle(b) ^ left(b, a)
+After that, build a rectangle to the left of the row.
+row(c) ^ right(c, a)
+After that, build another one to the right of the first one.
+
+===
+row(a)
+Create a horizontal line .
+row(b) ^ top(b, a)
+Then, create another one to the top of the first one.
+rectangle(c) ^ top(c, b)
+After that, create a rectangle to the top of the row.
+column(d) ^ top(d, c)
+Then, construct a vertical line  to the top of the rectangle.
+
+===
+row(a)
+Build a row .
+square(b) ^ bottom(b, a)
+Next, construct a square to the bottom of the row.
+
+===
+row(a)
+Create a row .
+rectangle(b) ^ top(b, a)
+Next, build a rectangle to the top of the row.
+
+===
+row(a)
+Form a horizontal line .
+rectangle(b) ^ top(b, a)
+Next, create a rectangle to the top of the horizontal line.
+square(c) ^ top(c, b)
+Then, create a square to the top of the rectangle.
+
+===
+square(a)
+Construct a square.
+square(b) ^ left(b, a)
+Then, form another one to the left of the first one.
+row(c) ^ right(c, a)
+Then, form a horizontal line  to the right of the square.
+rectangle(d) ^ right(d, c)
+After that, form a rectangle to the right of the horizontal line.
+
+===
+rectangle(a)
+Construct a rectangle.
+rectangle(b) ^ top(b, a)
+Next, form another one to the top of the first one.
+
+===
+column(a)
+Form a vertical line .
+row(b) ^ top(b, a)
+After that, build a row  to the top of the vertical line.
+
+===
+column(a)
+Construct a vertical line .
+column(b) ^ left(b, a)
+Then, form another one to the left of the first one.
+
+===
+square(a)
+Form a square.
+rectangle(b) ^ left(b, a)
+Next, build a rectangle to the left of the square.
+
+===
+square(a)
+Build a square.
+column(b) ^ right(b, a)
+Then, build a vertical line  to the right of the square.
+row(c) ^ bottom(c, a)
+After that, build a row  to the bottom of the square.
+rectangle(d) ^ bottom(d, c)
+Next, form a rectangle to the bottom of the row.
+
+===
+row(a)
+Build a horizontal line .
+rectangle(b) ^ bottom(b, a)
+Then, construct a rectangle to the bottom of the horizontal line.
+column(c) ^ top(c, a)
+Next, form a column  to the top of the horizontal line.
+
+===
+square(a)
+Construct a square.
+row(b) ^ left(b, a)
+After that, construct a row  to the left of the square.
+row(c) ^ bottom(c, b)
+Then, form another one to the bottom of the first one.
+
+===
+row(a)
+Construct a horizontal line .
+rectangle(b) ^ left(b, a)
+Next, construct a rectangle to the left of the horizontal line.
+rectangle(c) ^ right(c, a)
+Then, form a rectangle to the right of the horizontal line.
+
+===
+column(a)
+Construct a vertical line .
+row(b) ^ top(b, a)
+Next, form a horizontal line  to the top of the vertical line.
+square(c) ^ bottom(c, a)
+Next, form a square to the bottom of the vertical line.
+rectangle(d) ^ left(d, b)
+Then, build a rectangle to the left of the horizontal line.
+
+===
+column(a)
+Build a column .
+row(b) ^ top(b, a)
+After that, build a row  to the top of the column.
+
+===
+square(a)
+Create a square.
+rectangle(b) ^ top(b, a)
+After that, form a rectangle to the top of the square.
+row(c) ^ right(c, a)
+Then, construct a horizontal line  to the right of the square.
+
+===
+square(a)
+Construct a square.
+column(b) ^ left(b, a)
+Next, build a vertical line  to the left of the square.
+
+===
+rectangle(a)
+Build a rectangle.
+row(b) ^ right(b, a)
+Then, form a row  to the right of the rectangle.
+column(c) ^ right(c, b)
+After that, build a vertical line  to the right of the row.
+
+===
+column(a)
+Form a vertical line .
+rectangle(b) ^ left(b, a)
+Then, form a rectangle to the left of the vertical line.
+
+===
+rectangle(a)
+Create a rectangle.
+square(b) ^ bottom(b, a)
+After that, construct a square to the bottom of the rectangle.
+row(c) ^ left(c, a)
+Then, build a row  to the left of the rectangle.
+square(d) ^ top(d, c)
+After that, create a square to the top of the row.
+
+===
+column(a)
+Build a vertical line .
+square(b) ^ right(b, a)
+Then, form a square to the right of the vertical line.
+
+===
+square(a)
+Create a square.
+square(b) ^ top(b, a)
+After that, form another one to the top of the first one.
+column(c) ^ left(c, a)
+Then, build a vertical line  to the left of the square.
+
+===
+square(a)
+Build a square.
+rectangle(b) ^ bottom(b, a)
+Next, construct a rectangle to the bottom of the square.
+row(c) ^ bottom(c, b)
+After that, build a horizontal line  to the bottom of the rectangle.
+
+===
+square(a)
+Create a square.
+rectangle(b) ^ left(b, a)
+After that, construct a rectangle to the left of the square.
+
+===
+square(a)
+Construct a square.
+row(b) ^ bottom(b, a)
+After that, form a horizontal line  to the bottom of the square.
+column(c) ^ right(c, b)
+After that, create a vertical line  to the right of the horizontal line.
+
+===
+row(a)
+Create a horizontal line .
+
+===
+row(a)
+Form a row .
+row(b) ^ right(b, a)
+Then, construct another one to the right of the first one.
+column(c) ^ bottom(c, b)
+After that, form a column  to the bottom of the row.
+
+===
+column(a)
+Construct a vertical line .
+rectangle(b) ^ right(b, a)
+After that, construct a rectangle to the right of the vertical line.
+column(c) ^ top(c, b)
+After that, construct a vertical line  to the top of the rectangle.
+rectangle(d) ^ left(d, a)
+After that, create a rectangle to the left of the vertical line.
+
+===
+square(a)
+Form a square.
+rectangle(b) ^ bottom(b, a)
+Then, form a rectangle to the bottom of the square.
+square(c) ^ left(c, a)
+After that, form another one to the left of the first one.
+row(d) ^ top(d, c)
+Then, build a row  to the top of the square.
+
+===
+column(a)
+Construct a column .
+square(b) ^ bottom(b, a)
+Then, form a square to the bottom of the column.
+square(c) ^ top(c, a)
+Next, create a square to the top of the column.
+
+===
+row(a)
+Form a row .
+row(b) ^ left(b, a)
+After that, build another one to the left of the first one.
+
+===
+rectangle(a)
+Create a rectangle.
+column(b) ^ left(b, a)
+Then, create a vertical line  to the left of the rectangle.
+rectangle(c) ^ bottom(c, a)
+Then, form another one to the bottom of the first one.
+
+===
+square(a)
+Construct a square.
+square(b) ^ top(b, a)
+Next, form another one to the top of the first one.
+row(c) ^ right(c, a)
+Then, create a row  to the right of the square.
+
+===
+row(a)
+Construct a horizontal line .
+row(b) ^ right(b, a)
+After that, build another one to the right of the first one.
+row(c) ^ top(c, b)
+Then, form another one to the top of the first one.
+
+===
+column(a)
+Create a vertical line .
+row(b) ^ top(b, a)
+Next, build a row  to the top of the vertical line.
+rectangle(c) ^ left(c, b)
+Then, construct a rectangle to the left of the row.
+row(d) ^ top(d, c)
+Then, create a row  to the top of the rectangle.
+
+===
+rectangle(a)
+Build a rectangle.
+rectangle(b) ^ left(b, a)
+Next, form another one to the left of the first one.
+rectangle(c) ^ right(c, a)
+After that, form another one to the right of the first one.
+column(d) ^ left(d, b)
+After that, form a column  to the left of the rectangle.
+
+===
+rectangle(a)
+Form a rectangle.
+row(b) ^ right(b, a)
+After that, construct a horizontal line  to the right of the rectangle.
+
+===
+column(a)
+Form a column .
+rectangle(b) ^ right(b, a)
+Then, form a rectangle to the right of the column.
+
+===
+rectangle(a)
+Create a rectangle.
+square(b) ^ top(b, a)
+Then, build a square to the top of the rectangle.
+row(c) ^ left(c, b)
+After that, form a row  to the left of the square.
+
+===
+rectangle(a)
+Form a rectangle.
+column(b) ^ top(b, a)
+Then, construct a column  to the top of the rectangle.
+
+===
+column(a)
+Form a column .
+
+===
+square(a)
+Form a square.
+square(b) ^ left(b, a)
+After that, build another one to the left of the first one.
+
+===
+rectangle(a)
+Create a rectangle.
+column(b) ^ right(b, a)
+Next, construct a vertical line  to the right of the rectangle.
+column(c) ^ left(c, a)
+Then, form a column  to the left of the rectangle.
+
+===
+row(a)
+Build a row .
+column(b) ^ left(b, a)
+After that, construct a column  to the left of the row.
+rectangle(c) ^ left(c, b)
+After that, form a rectangle to the left of the column.
+
+===
+square(a)
+Create a square.
+square(b) ^ top(b, a)
+Then, form another one to the top of the first one.
+column(c) ^ bottom(c, a)
+Then, create a vertical line  to the bottom of the square.
+
+===
+rectangle(a)
+Form a rectangle.
+column(b) ^ right(b, a)
+Next, create a column  to the right of the rectangle.
+square(c) ^ right(c, b)
+Then, create a square to the right of the column.
+row(d) ^ left(d, a)
+Then, build a horizontal line  to the left of the rectangle.
+
+===
+rectangle(a)
+Construct a rectangle.
+square(b) ^ top(b, a)
+Next, create a square to the top of the rectangle.
+rectangle(c) ^ top(c, b)
+After that, form a rectangle to the top of the square.
+
+===
+column(a)
+Build a column .
+
+===
+row(a)
+Form a horizontal line .
+column(b) ^ left(b, a)
+After that, create a vertical line  to the left of the horizontal line.
+
+===
+row(a)
+Build a horizontal line .
+row(b) ^ top(b, a)
+After that, build another one to the top of the first one.
+
+===
+rectangle(a)
+Create a rectangle.
+square(b) ^ top(b, a)
+Then, build a square to the top of the rectangle.
+column(c) ^ right(c, a)
+Next, construct a column  to the right of the rectangle.
+column(d) ^ top(d, b)
+Then, build a column  to the top of the square.
+
+===
+column(a)
+Build a vertical line .
+
+===
+row(a)
+Create a row .
+square(b) ^ bottom(b, a)
+After that, construct a square to the bottom of the row.
+rectangle(c) ^ right(c, a)
+Next, build a rectangle to the right of the row.
+
+===
+rectangle(a)
+Build a rectangle.
+square(b) ^ right(b, a)
+Next, build a square to the right of the rectangle.
+
+===
+column(a)
+Create a vertical line .
+row(b) ^ right(b, a)
+Then, form a horizontal line  to the right of the vertical line.
+rectangle(c) ^ bottom(c, a)
+After that, build a rectangle to the bottom of the vertical line.
+rectangle(d) ^ right(d, b)
+Then, form a rectangle to the right of the horizontal line.
+
+===
+rectangle(a)
+Construct a rectangle.
+square(b) ^ top(b, a)
+Next, form a square to the top of the rectangle.
+row(c) ^ right(c, a)
+Next, create a horizontal line  to the right of the rectangle.
+
+===
+rectangle(a)
+Build a rectangle.
+column(b) ^ left(b, a)
+Then, form a vertical line  to the left of the rectangle.
+rectangle(c) ^ top(c, a)
+Then, form another one to the top of the first one.
+
+===
+row(a)
+Build a horizontal line .
+rectangle(b) ^ bottom(b, a)
+After that, form a rectangle to the bottom of the horizontal line.
+rectangle(c) ^ right(c, b)
+After that, create another one to the right of the first one.
+
+===
+rectangle(a)
+Construct a rectangle.
+rectangle(b) ^ left(b, a)
+Then, construct another one to the left of the first one.
+rectangle(c) ^ top(c, a)
+Then, build another one to the top of the first one.
+column(d) ^ left(d, b)
+Next, form a column  to the left of the rectangle.
+
+===
+row(a)
+Form a row .
+square(b) ^ right(b, a)
+Next, create a square to the right of the row.
+square(c) ^ left(c, a)
+Then, construct a square to the left of the row.
+
+===
+rectangle(a)
+Form a rectangle.
+rectangle(b) ^ top(b, a)
+Next, build another one to the top of the first one.
+column(c) ^ left(c, b)
+Next, build a vertical line  to the left of the rectangle.
+square(d) ^ top(d, b)
+After that, build a square to the top of the rectangle.
+
+===
+rectangle(a)
+Create a rectangle.
+column(b) ^ top(b, a)
+After that, construct a vertical line  to the top of the rectangle.
+rectangle(c) ^ bottom(c, a)
+Then, create another one to the bottom of the first one.
+
+===
+square(a)
+Construct a square.
+
+===
+square(a)
+Construct a square.
+row(b) ^ right(b, a)
+Then, form a horizontal line  to the right of the square.
+row(c) ^ left(c, a)
+Then, create a row  to the left of the square.
+
+===
+square(a)
+Form a square.
+column(b) ^ right(b, a)
+Next, form a column  to the right of the square.
+
+===
+square(a)
+Construct a square.
+rectangle(b) ^ top(b, a)
+Then, build a rectangle to the top of the square.
+rectangle(c) ^ left(c, a)
+Next, construct a rectangle to the left of the square.
+rectangle(d) ^ left(d, c)
+Next, form another one to the left of the first one.
+
+===
+rectangle(a)
+Create a rectangle.
+column(b) ^ left(b, a)
+Then, construct a vertical line  to the left of the rectangle.
+column(c) ^ left(c, b)
+Then, form another one to the left of the first one.
+row(d) ^ bottom(d, c)
+Then, construct a horizontal line  to the bottom of the vertical line.
+
+===
+row(a)
+Build a row .
+rectangle(b) ^ right(b, a)
+Next, create a rectangle to the right of the row.
+column(c) ^ left(c, a)
+After that, create a column  to the left of the row.
+square(d) ^ top(d, b)
+Next, construct a square to the top of the rectangle.
+
+===
+rectangle(a)
+Create a rectangle.
+rectangle(b) ^ right(b, a)
+Then, build another one to the right of the first one.
+column(c) ^ left(c, a)
+Next, construct a vertical line  to the left of the rectangle.
+
+===
+rectangle(a)
+Construct a rectangle.
+row(b) ^ left(b, a)
+Next, form a row  to the left of the rectangle.
+
+===
+rectangle(a)
+Construct a rectangle.
+column(b) ^ top(b, a)
+After that, build a vertical line  to the top of the rectangle.
+square(c) ^ right(c, a)
+Then, form a square to the right of the rectangle.
+
+===
+column(a)
+Form a column .
+row(b) ^ right(b, a)
+Then, create a horizontal line  to the right of the column.
+
+===
+rectangle(a)
+Construct a rectangle.
+column(b) ^ left(b, a)
+Next, create a vertical line  to the left of the rectangle.
+square(c) ^ top(c, a)
+Next, build a square to the top of the rectangle.
+column(d) ^ left(d, b)
+Next, build another one to the left of the first one.
+
+===
+row(a)
+Construct a horizontal line .
+square(b) ^ bottom(b, a)
+Then, create a square to the bottom of the horizontal line.
+
+===
+square(a)
+Form a square.
+
+===
+rectangle(a)
+Create a rectangle.
+rectangle(b) ^ right(b, a)
+After that, create another one to the right of the first one.
+
+===
+rectangle(a)
+Create a rectangle.
+column(b) ^ left(b, a)
+Then, create a column  to the left of the rectangle.
+square(c) ^ left(c, b)
+After that, create a square to the left of the column.
+
+===
+square(a)
+Form a square.
+rectangle(b) ^ bottom(b, a)
+Then, form a rectangle to the bottom of the square.
+
+===
+rectangle(a)
+Form a rectangle.
+square(b) ^ left(b, a)
+Next, form a square to the left of the rectangle.
+
+===
+column(a)
+Create a column .
+rectangle(b) ^ bottom(b, a)
+Then, create a rectangle to the bottom of the column.
+
+===
+square(a)
+Build a square.
+row(b) ^ left(b, a)
+Next, construct a row  to the left of the square.
+square(c) ^ top(c, a)
+After that, construct another one to the top of the first one.
+
+===
+square(a)
+Form a square.
+square(b) ^ right(b, a)
+Then, create another one to the right of the first one.
+square(c) ^ right(c, b)
+Then, form another one to the right of the first one.
+
+===
+column(a)
+Construct a vertical line .
+row(b) ^ bottom(b, a)
+Next, construct a row  to the bottom of the vertical line.
+rectangle(c) ^ right(c, b)
+Next, create a rectangle to the right of the row.
+rectangle(d) ^ right(d, c)
+After that, build another one to the right of the first one.
+
+===
+rectangle(a)
+Build a rectangle.
+square(b) ^ top(b, a)
+After that, construct a square to the top of the rectangle.
+
+===
+column(a)
+Build a vertical line .
+rectangle(b) ^ left(b, a)
+Next, build a rectangle to the left of the vertical line.
+square(c) ^ top(c, b)
+Then, build a square to the top of the rectangle.
+
+===
+column(a)
+Construct a vertical line .
+row(b) ^ right(b, a)
+Next, build a row  to the right of the vertical line.
+
+===
+square(a)
+Create a square.
+row(b) ^ left(b, a)
+Next, create a row  to the left of the square.
+square(c) ^ bottom(c, a)
+After that, create another one to the bottom of the first one.
+square(d) ^ bottom(d, c)
+After that, build another one to the bottom of the first one.
+
+===
+rectangle(a)
+Build a rectangle.
+rectangle(b) ^ right(b, a)
+Then, build another one to the right of the first one.
+rectangle(c) ^ bottom(c, a)
+Next, construct another one to the bottom of the first one.
+
+===
+column(a)
+Create a column .
+column(b) ^ bottom(b, a)
+Next, build another one to the bottom of the first one.
+
+===
+rectangle(a)
+Construct a rectangle.
+row(b) ^ right(b, a)
+After that, build a horizontal line  to the right of the rectangle.
+column(c) ^ left(c, a)
+Then, build a column  to the left of the rectangle.
+square(d) ^ top(d, a)
+Then, create a square to the top of the rectangle.
+
+===
+rectangle(a)
+Construct a rectangle.
+square(b) ^ right(b, a)
+Then, form a square to the right of the rectangle.
+row(c) ^ top(c, b)
+Next, create a row  to the top of the square.
+
+===
+square(a)
+Create a square.
+column(b) ^ right(b, a)
+Then, build a vertical line  to the right of the square.
+
+===
+rectangle(a)
+Create a rectangle.
+row(b) ^ top(b, a)
+Next, form a horizontal line  to the top of the rectangle.
+
+===
+rectangle(a)
+Construct a rectangle.
+column(b) ^ top(b, a)
+Next, form a vertical line  to the top of the rectangle.
+row(c) ^ bottom(c, a)
+After that, construct a row  to the bottom of the rectangle.
+square(d) ^ left(d, c)
+Then, form a square to the left of the row.
+
+===
+rectangle(a)
+Form a rectangle.
+column(b) ^ top(b, a)
+Next, build a column  to the top of the rectangle.
+
+===
+row(a)
+Build a row .
+column(b) ^ top(b, a)
+Then, build a vertical line  to the top of the row.
+
+===
+column(a)
+Create a column .
+row(b) ^ left(b, a)
+Next, create a row  to the left of the column.
+
+===
+rectangle(a)
+Create a rectangle.
+rectangle(b) ^ bottom(b, a)
+Next, construct another one to the bottom of the first one.
+square(c) ^ left(c, a)
+Then, create a square to the left of the rectangle.
+
+===
+square(a)
+Construct a square.
+rectangle(b) ^ bottom(b, a)
+After that, build a rectangle to the bottom of the square.
+square(c) ^ left(c, b)
+Then, build a square to the left of the rectangle.
+row(d) ^ left(d, c)
+After that, build a row  to the left of the square.
+
+===
+square(a)
+Form a square.
+rectangle(b) ^ right(b, a)
+Next, create a rectangle to the right of the square.
+row(c) ^ bottom(c, a)
+Next, form a row  to the bottom of the square.
+column(d) ^ top(d, a)
+After that, create a column  to the top of the square.
+
+===
+column(a)
+Create a column .
+square(b) ^ left(b, a)
+Then, build a square to the left of the column.
+
+===
+rectangle(a)
+Construct a rectangle.
+rectangle(b) ^ bottom(b, a)
+Next, build another one to the bottom of the first one.
+rectangle(c) ^ right(c, b)
+After that, build another one to the right of the first one.
+
+===
+square(a)
+Create a square.
+rectangle(b) ^ left(b, a)
+Next, construct a rectangle to the left of the square.
+column(c) ^ left(c, b)
+Next, form a vertical line  to the left of the rectangle.
+
+===
+column(a)
+Form a vertical line .
+square(b) ^ bottom(b, a)
+After that, construct a square to the bottom of the vertical line.
+row(c) ^ left(c, b)
+Next, form a row  to the left of the square.
+row(d) ^ top(d, a)
+After that, construct a horizontal line  to the top of the vertical line.
+
+===
+square(a)
+Build a square.
+row(b) ^ right(b, a)
+Next, build a horizontal line  to the right of the square.
+
+===
+rectangle(a)
+Create a rectangle.
+row(b) ^ bottom(b, a)
+Next, create a horizontal line  to the bottom of the rectangle.
+
+===
+row(a)
+Build a horizontal line .
+square(b) ^ left(b, a)
+Next, form a square to the left of the horizontal line.
+column(c) ^ bottom(c, b)
+After that, construct a vertical line  to the bottom of the square.
+
+===
+rectangle(a)
+Construct a rectangle.
+square(b) ^ bottom(b, a)
+After that, create a square to the bottom of the rectangle.
+rectangle(c) ^ bottom(c, b)
+Next, build a rectangle to the bottom of the square.
+
+===
+square(a)
+Build a square.
+row(b) ^ bottom(b, a)
+Then, construct a row  to the bottom of the square.
+
+===
+column(a)
+Construct a column .
+column(b) ^ top(b, a)
+Then, build another one to the top of the first one.
+
+===
+rectangle(a)
+Form a rectangle.
+row(b) ^ top(b, a)
+Then, build a horizontal line  to the top of the rectangle.
+square(c) ^ bottom(c, a)
+Next, form a square to the bottom of the rectangle.
+
+===
+square(a)
+Create a square.
+row(b) ^ right(b, a)
+Then, create a horizontal line  to the right of the square.
+
+===
+rectangle(a)
+Build a rectangle.
+column(b) ^ right(b, a)
+Next, build a vertical line  to the right of the rectangle.
+column(c) ^ left(c, a)
+Next, form a column  to the left of the rectangle.
+
+===
+column(a)
+Form a vertical line .
+square(b) ^ right(b, a)
+Next, construct a square to the right of the vertical line.
+
+===
+row(a)
+Create a row .
+row(b) ^ left(b, a)
+Then, create another one to the left of the first one.
+row(c) ^ left(c, b)
+Next, form another one to the left of the first one.
+
+===
+rectangle(a)
+Build a rectangle.
+square(b) ^ left(b, a)
+Then, construct a square to the left of the rectangle.
+square(c) ^ right(c, a)
+Next, create a square to the right of the rectangle.
+square(d) ^ bottom(d, c)
+Then, construct another one to the bottom of the first one.
+
+===
+column(a)
+Build a vertical line .
+square(b) ^ right(b, a)
+Next, construct a square to the right of the vertical line.
+
+===
+column(a)
+Create a column .
+column(b) ^ bottom(b, a)
+Next, create another one to the bottom of the first one.
+column(c) ^ top(c, a)
+Next, construct another one to the top of the first one.
+
+===
+row(a)
+Form a row .
+row(b) ^ right(b, a)
+Next, build another one to the right of the first one.
+
+===
+rectangle(a)
+Construct a rectangle.
+square(b) ^ bottom(b, a)
+After that, build a square to the bottom of the rectangle.
+row(c) ^ bottom(c, b)
+After that, create a horizontal line  to the bottom of the square.
+
+===
+row(a)
+Create a horizontal line .
+rectangle(b) ^ top(b, a)
+After that, create a rectangle to the top of the horizontal line.
+column(c) ^ right(c, b)
+Then, construct a column  to the right of the rectangle.
+
+===
+rectangle(a)
+Build a rectangle.
+square(b) ^ top(b, a)
+Then, construct a square to the top of the rectangle.
+
+===
+column(a)
+Construct a vertical line .
+square(b) ^ right(b, a)
+Next, construct a square to the right of the vertical line.
+column(c) ^ top(c, a)
+After that, create another one to the top of the first one.
+row(d) ^ left(d, c)
+Then, create a row  to the left of the vertical line.
+
+===
+square(a)
+Create a square.
+column(b) ^ bottom(b, a)
+Then, construct a column  to the bottom of the square.
+row(c) ^ left(c, a)
+Next, build a horizontal line  to the left of the square.
+
+===
+rectangle(a)
+Create a rectangle.
+column(b) ^ right(b, a)
+Then, build a column  to the right of the rectangle.
+row(c) ^ top(c, a)
+Then, build a row  to the top of the rectangle.
+
+===
+row(a)
+Form a row .
+rectangle(b) ^ right(b, a)
+Next, construct a rectangle to the right of the row.
+
+===
+row(a)
+Form a horizontal line .
+rectangle(b) ^ top(b, a)
+Then, build a rectangle to the top of the horizontal line.
+square(c) ^ right(c, a)
+Then, build a square to the right of the horizontal line.
+
+===
+column(a)
+Form a column .
+rectangle(b) ^ top(b, a)
+Then, construct a rectangle to the top of the column.
+rectangle(c) ^ top(c, b)
+Then, construct another one to the top of the first one.
+column(d) ^ left(d, c)
+Then, construct a vertical line  to the left of the rectangle.
+
+===
+row(a)
+Construct a row .
+row(b) ^ right(b, a)
+Then, create another one to the right of the first one.
+square(c) ^ left(c, a)
+After that, build a square to the left of the row.
+row(d) ^ bottom(d, c)
+Then, form a row  to the bottom of the square.
+
+===
+square(a)
+Form a square.
+column(b) ^ bottom(b, a)
+Then, build a vertical line  to the bottom of the square.
+
+===
+square(a)
+Construct a square.
+square(b) ^ top(b, a)
+Then, create another one to the top of the first one.
+column(c) ^ top(c, b)
+Then, create a vertical line  to the top of the square.
+
+===
+column(a)
+Form a column .
+rectangle(b) ^ left(b, a)
+Next, form a rectangle to the left of the column.
+
+===
+column(a)
+Form a vertical line .
+
+===
+rectangle(a)
+Form a rectangle.
+row(b) ^ top(b, a)
+Next, build a row  to the top of the rectangle.
+square(c) ^ top(c, b)
+Then, form a square to the top of the row.
+
+===
+row(a)
+Construct a row .
+column(b) ^ right(b, a)
+Then, build a column  to the right of the row.
+row(c) ^ bottom(c, b)
+Then, create a row  to the bottom of the column.
+row(d) ^ top(d, b)
+After that, form a row  to the top of the column.
+
+===
+square(a)
+Construct a square.
+row(b) ^ right(b, a)
+After that, construct a horizontal line  to the right of the square.
+rectangle(c) ^ left(c, a)
+After that, build a rectangle to the left of the square.
+square(d) ^ bottom(d, b)
+Next, create a square to the bottom of the horizontal line.
+
+===
+rectangle(a)
+Form a rectangle.
+column(b) ^ left(b, a)
+Then, construct a column  to the left of the rectangle.
+rectangle(c) ^ bottom(c, b)
+Next, create a rectangle to the bottom of the column.
+square(d) ^ right(d, c)
+Next, construct a square to the right of the rectangle.
+
+===
+rectangle(a)
+Create a rectangle.
+rectangle(b) ^ bottom(b, a)
+After that, form another one to the bottom of the first one.
+square(c) ^ bottom(c, b)
+Next, create a square to the bottom of the rectangle.
+
+===
+square(a)
+Build a square.
+column(b) ^ left(b, a)
+After that, build a vertical line  to the left of the square.
+column(c) ^ top(c, b)
+After that, create another one to the top of the first one.
+square(d) ^ right(d, a)
+After that, create another one to the right of the first one.
+
+===
+square(a)
+Build a square.
+column(b) ^ left(b, a)
+After that, create a vertical line  to the left of the square.
+square(c) ^ left(c, b)
+Next, create a square to the left of the vertical line.
+rectangle(d) ^ left(d, c)
+After that, form a rectangle to the left of the square.
+
+===
+square(a)
+Build a square.
+square(b) ^ bottom(b, a)
+Then, build another one to the bottom of the first one.
+
+===
+column(a)
+Form a column .
+square(b) ^ right(b, a)
+After that, create a square to the right of the column.
+
+===
+row(a)
+Create a row .
+row(b) ^ bottom(b, a)
+After that, construct another one to the bottom of the first one.
+row(c) ^ right(c, a)
+Next, build another one to the right of the first one.
+column(d) ^ left(d, b)
+Next, form a column  to the left of the row.
+
+===
+column(a)
+Construct a column .
+rectangle(b) ^ right(b, a)
+Next, construct a rectangle to the right of the column.
+
+===
+square(a)
+Form a square.
+square(b) ^ left(b, a)
+Then, build another one to the left of the first one.
+rectangle(c) ^ left(c, b)
+Then, form a rectangle to the left of the square.
+square(d) ^ top(d, a)
+Then, build another one to the top of the first one.
+
+===
+square(a)
+Construct a square.
+rectangle(b) ^ right(b, a)
+Next, construct a rectangle to the right of the square.
+row(c) ^ left(c, a)
+Next, create a horizontal line  to the left of the square.
+square(d) ^ bottom(d, a)
+Then, create another one to the bottom of the first one.
+
+===
+rectangle(a)
+Form a rectangle.
+row(b) ^ bottom(b, a)
+After that, create a horizontal line  to the bottom of the rectangle.
+row(c) ^ top(c, a)
+Then, construct a horizontal line  to the top of the rectangle.
+
+===
+rectangle(a)
+Construct a rectangle.
+row(b) ^ bottom(b, a)
+Next, construct a horizontal line  to the bottom of the rectangle.
+square(c) ^ right(c, b)
+After that, construct a square to the right of the horizontal line.
+column(d) ^ top(d, a)
+Next, create a vertical line  to the top of the rectangle.
+
+===
+square(a)
+Form a square.
+square(b) ^ right(b, a)
+After that, create another one to the right of the first one.
+column(c) ^ top(c, a)
+Next, build a column  to the top of the square.
+column(d) ^ bottom(d, b)
+Next, create a vertical line  to the bottom of the square.
+
+===
+column(a)
+Construct a vertical line .
+rectangle(b) ^ right(b, a)
+After that, create a rectangle to the right of the vertical line.
+square(c) ^ top(c, b)
+After that, form a square to the top of the rectangle.
+
+===
+column(a)
+Form a column .
+square(b) ^ top(b, a)
+Next, construct a square to the top of the column.
+
+===
+column(a)
+Construct a column .
+row(b) ^ top(b, a)
+After that, form a row  to the top of the column.
+rectangle(c) ^ left(c, b)
+Next, construct a rectangle to the left of the row.
+
+===
+rectangle(a)
+Create a rectangle.
+column(b) ^ right(b, a)
+Next, create a column  to the right of the rectangle.
+rectangle(c) ^ bottom(c, b)
+Next, create a rectangle to the bottom of the column.
+square(d) ^ right(d, c)
+After that, build a square to the right of the rectangle.
+
+===
+row(a)
+Build a horizontal line .
+square(b) ^ top(b, a)
+Next, build a square to the top of the horizontal line.
+
+===
+rectangle(a)
+Build a rectangle.
+column(b) ^ left(b, a)
+Then, build a vertical line  to the left of the rectangle.
+rectangle(c) ^ left(c, b)
+After that, construct a rectangle to the left of the vertical line.
+square(d) ^ bottom(d, a)
+After that, form a square to the bottom of the rectangle.
+
+===
+row(a)
+Construct a row .
+row(b) ^ right(b, a)
+Then, construct another one to the right of the first one.
+
+===
+square(a)
+Form a square.
+rectangle(b) ^ top(b, a)
+After that, construct a rectangle to the top of the square.
+column(c) ^ right(c, a)
+Then, construct a vertical line  to the right of the square.
+
+===
+row(a)
+Form a horizontal line .
+square(b) ^ top(b, a)
+After that, construct a square to the top of the horizontal line.
+rectangle(c) ^ top(c, b)
+Next, create a rectangle to the top of the square.
+square(d) ^ bottom(d, a)
+Next, form a square to the bottom of the horizontal line.
+
+===
+row(a)
+Form a row .
+square(b) ^ top(b, a)
+After that, build a square to the top of the row.
+
+===
+column(a)
+Create a vertical line .
+rectangle(b) ^ right(b, a)
+After that, construct a rectangle to the right of the vertical line.
+row(c) ^ bottom(c, b)
+After that, create a horizontal line  to the bottom of the rectangle.
+column(d) ^ left(d, a)
+After that, create another one to the left of the first one.
+
+===
+rectangle(a)
+Form a rectangle.
+rectangle(b) ^ left(b, a)
+Next, form another one to the left of the first one.
+square(c) ^ right(c, a)
+Next, construct a square to the right of the rectangle.
+
+===
+column(a)
+Build a vertical line .
+row(b) ^ bottom(b, a)
+After that, build a row  to the bottom of the vertical line.
+column(c) ^ bottom(c, b)
+Next, form a vertical line  to the bottom of the row.
+
+===
+square(a)
+Form a square.
+row(b) ^ right(b, a)
+After that, create a horizontal line  to the right of the square.
+
+===
+column(a)
+Form a column .
+row(b) ^ top(b, a)
+Next, construct a row  to the top of the column.
+column(c) ^ right(c, b)
+Next, create a column  to the right of the row.
+row(d) ^ top(d, c)
+Then, construct a row  to the top of the column.
+
+===
+column(a)
+Form a vertical line .
+square(b) ^ left(b, a)
+Next, build a square to the left of the vertical line.
+
+===
+row(a)
+Construct a horizontal line .
+row(b) ^ bottom(b, a)
+Next, construct another one to the bottom of the first one.
+row(c) ^ left(c, a)
+Then, construct another one to the left of the first one.
+square(d) ^ right(d, b)
+After that, construct a square to the right of the horizontal line.
+
+===
+column(a)
+Construct a vertical line .
+row(b) ^ top(b, a)
+Next, construct a horizontal line  to the top of the vertical line.
+column(c) ^ top(c, b)
+Next, construct a vertical line  to the top of the horizontal line.
+
+===
+rectangle(a)
+Construct a rectangle.
+column(b) ^ bottom(b, a)
+After that, create a vertical line  to the bottom of the rectangle.
+rectangle(c) ^ top(c, a)
+Next, build another one to the top of the first one.
+column(d) ^ left(d, b)
+Then, construct another one to the left of the first one.
+
+===
+square(a)
+Form a square.
+row(b) ^ bottom(b, a)
+Then, form a row  to the bottom of the square.
+rectangle(c) ^ bottom(c, b)
+Next, construct a rectangle to the bottom of the row.
+
+===
+rectangle(a)
+Form a rectangle.
+column(b) ^ top(b, a)
+After that, construct a vertical line  to the top of the rectangle.
+column(c) ^ right(c, a)
+Next, construct a column  to the right of the rectangle.
+
+===
+row(a)
+Form a row .
+column(b) ^ top(b, a)
+Then, construct a vertical line  to the top of the row.
+column(c) ^ top(c, b)
+Then, construct another one to the top of the first one.
+
+===
+row(a)
+Construct a horizontal line .
+row(b) ^ right(b, a)
+After that, create another one to the right of the first one.
+row(c) ^ top(c, b)
+After that, form another one to the top of the first one.
+
+===
+row(a)
+Form a row .
+rectangle(b) ^ left(b, a)
+Next, create a rectangle to the left of the row.
+
+===
+column(a)
+Create a column .
+rectangle(b) ^ bottom(b, a)
+After that, construct a rectangle to the bottom of the column.
+row(c) ^ left(c, b)
+Next, form a row  to the left of the rectangle.
+column(d) ^ left(d, c)
+Next, form a column  to the left of the row.
+
+===
+square(a)
+Build a square.
+square(b) ^ top(b, a)
+Next, construct another one to the top of the first one.
+column(c) ^ top(c, b)
+Next, construct a column  to the top of the square.
+
+===
+square(a)
+Create a square.
+column(b) ^ top(b, a)
+Then, form a column  to the top of the square.
+
+===
+rectangle(a)
+Form a rectangle.
+square(b) ^ top(b, a)
+Next, create a square to the top of the rectangle.
+
+===
+row(a)
+Build a row .
+
+===
+row(a)
+Create a horizontal line .
+column(b) ^ right(b, a)
+Then, form a vertical line  to the right of the horizontal line.
+row(c) ^ bottom(c, b)
+After that, create a row  to the bottom of the vertical line.
+
+===
+column(a)
+Form a column .
+rectangle(b) ^ right(b, a)
+After that, form a rectangle to the right of the column.
+column(c) ^ left(c, a)
+Next, create another one to the left of the first one.
+row(d) ^ top(d, a)
+Then, construct a row  to the top of the column.
+
+===
+column(a)
+Build a vertical line .
+row(b) ^ top(b, a)
+After that, create a horizontal line  to the top of the vertical line.
+column(c) ^ left(c, b)
+After that, build a column  to the left of the horizontal line.
+
+===
+row(a)
+Build a row .
+column(b) ^ right(b, a)
+Then, construct a column  to the right of the row.
+row(c) ^ right(c, b)
+Then, construct a horizontal line  to the right of the column.
+rectangle(d) ^ bottom(d, b)
+Next, construct a rectangle to the bottom of the column.
+
+===
+row(a)
+Construct a horizontal line .
+row(b) ^ bottom(b, a)
+After that, build another one to the bottom of the first one.
+
+===
+column(a)
+Form a vertical line .
+column(b) ^ bottom(b, a)
+Then, construct another one to the bottom of the first one.
+square(c) ^ left(c, b)
+Next, create a square to the left of the vertical line.
+rectangle(d) ^ top(d, a)
+Then, create a rectangle to the top of the vertical line.
+
+===
+square(a)
+Construct a square.
+row(b) ^ right(b, a)
+After that, create a row  to the right of the square.
+
+===
+column(a)
+Create a column .
+rectangle(b) ^ right(b, a)
+Then, build a rectangle to the right of the column.
+
+===
+square(a)
+Build a square.
+row(b) ^ right(b, a)
+Then, construct a row  to the right of the square.
+rectangle(c) ^ left(c, a)
+After that, build a rectangle to the left of the square.
+rectangle(d) ^ top(d, a)
+Then, construct a rectangle to the top of the square.
+
+===
+square(a)
+Form a square.
+row(b) ^ right(b, a)
+Then, build a horizontal line  to the right of the square.
+square(c) ^ bottom(c, a)
+After that, create another one to the bottom of the first one.
+rectangle(d) ^ right(d, b)
+Next, create a rectangle to the right of the horizontal line.
+
+===
+rectangle(a)
+Build a rectangle.
+square(b) ^ bottom(b, a)
+Then, build a square to the bottom of the rectangle.
+rectangle(c) ^ left(c, a)
+Then, form another one to the left of the first one.
+
+===
+column(a)
+Build a column .
+row(b) ^ left(b, a)
+Next, form a horizontal line  to the left of the column.
+column(c) ^ right(c, a)
+After that, construct another one to the right of the first one.
+
+===
+row(a)
+Create a row .
+rectangle(b) ^ left(b, a)
+Next, create a rectangle to the left of the row.
+square(c) ^ bottom(c, b)
+Next, construct a square to the bottom of the rectangle.
+
+===
+square(a)
+Form a square.
+rectangle(b) ^ right(b, a)
+Then, form a rectangle to the right of the square.
+rectangle(c) ^ left(c, a)
+Then, create a rectangle to the left of the square.
+rectangle(d) ^ bottom(d, b)
+After that, form another one to the bottom of the first one.
+
+===
+rectangle(a)
+Construct a rectangle.
+row(b) ^ left(b, a)
+After that, form a row  to the left of the rectangle.
+square(c) ^ top(c, a)
+Then, create a square to the top of the rectangle.
+
+===
+rectangle(a)
+Build a rectangle.
+square(b) ^ left(b, a)
+Next, build a square to the left of the rectangle.
+rectangle(c) ^ top(c, a)
+After that, build another one to the top of the first one.
+
+===
+rectangle(a)
+Construct a rectangle.
+rectangle(b) ^ right(b, a)
+Next, form another one to the right of the first one.
+
+===
+square(a)
+Form a square.
+rectangle(b) ^ right(b, a)
+Next, form a rectangle to the right of the square.
+square(c) ^ left(c, a)
+Next, build another one to the left of the first one.
+rectangle(d) ^ right(d, b)
+Next, form another one to the right of the first one.
+
+===
+row(a)
+Construct a row .
+row(b) ^ top(b, a)
+After that, create another one to the top of the first one.
+rectangle(c) ^ bottom(c, a)
+Then, construct a rectangle to the bottom of the row.
+rectangle(d) ^ right(d, c)
+After that, form another one to the right of the first one.
+
+===
+row(a)
+Create a row .
+rectangle(b) ^ left(b, a)
+Next, form a rectangle to the left of the row.
+
+===
+rectangle(a)
+Form a rectangle.
+rectangle(b) ^ left(b, a)
+After that, form another one to the left of the first one.
+row(c) ^ left(c, b)
+Next, build a horizontal line  to the left of the rectangle.
+square(d) ^ top(d, a)
+Next, create a square to the top of the rectangle.
+
+===
+square(a)
+Construct a square.
+square(b) ^ bottom(b, a)
+Next, build another one to the bottom of the first one.
+square(c) ^ top(c, a)
+Then, build another one to the top of the first one.
+square(d) ^ left(d, c)
+Next, create another one to the left of the first one.
+
+===
+square(a)
+Form a square.
+rectangle(b) ^ top(b, a)
+Next, create a rectangle to the top of the square.
+
+===
+column(a)
+Build a vertical line .
+square(b) ^ left(b, a)
+Then, build a square to the left of the vertical line.
+row(c) ^ top(c, a)
+Then, build a row  to the top of the vertical line.
+
+===
+row(a)
+Construct a horizontal line .
+row(b) ^ top(b, a)
+Next, create another one to the top of the first one.
+square(c) ^ top(c, b)
+Then, build a square to the top of the row.
+
+===
+rectangle(a)
+Construct a rectangle.
+column(b) ^ bottom(b, a)
+After that, create a vertical line  to the bottom of the rectangle.
+row(c) ^ bottom(c, b)
+After that, create a row  to the bottom of the vertical line.
+
+===
+square(a)
+Construct a square.
+column(b) ^ right(b, a)
+Then, form a vertical line  to the right of the square.
+rectangle(c) ^ left(c, a)
+Then, form a rectangle to the left of the square.
+row(d) ^ bottom(d, c)
+Then, build a horizontal line  to the bottom of the rectangle.
+
+===
+row(a)
+Form a horizontal line .
+rectangle(b) ^ bottom(b, a)
+After that, form a rectangle to the bottom of the horizontal line.
+
+===
+column(a)
+Create a vertical line .
+rectangle(b) ^ right(b, a)
+Next, build a rectangle to the right of the vertical line.
+column(c) ^ top(c, b)
+Next, form a column  to the top of the rectangle.
+square(d) ^ top(d, c)
+Next, create a square to the top of the column.
+
+===
+column(a)
+Form a column .
+square(b) ^ left(b, a)
+Next, build a square to the left of the column.
+column(c) ^ left(c, b)
+After that, build a column  to the left of the square.
+
+===
+square(a)
+Create a square.
+rectangle(b) ^ bottom(b, a)
+Then, create a rectangle to the bottom of the square.
+row(c) ^ top(c, a)
+After that, construct a row  to the top of the square.
+
+===
+rectangle(a)
+Form a rectangle.
+row(b) ^ right(b, a)
+After that, create a horizontal line  to the right of the rectangle.
+rectangle(c) ^ left(c, a)
+After that, create another one to the left of the first one.
+
+===
+row(a)
+Build a horizontal line .
+square(b) ^ left(b, a)
+After that, form a square to the left of the horizontal line.
+rectangle(c) ^ top(c, b)
+Next, build a rectangle to the top of the square.
+rectangle(d) ^ bottom(d, b)
+Next, construct a rectangle to the bottom of the square.
+
+===
+column(a)
+Build a vertical line .
+square(b) ^ bottom(b, a)
+Then, create a square to the bottom of the vertical line.
+row(c) ^ top(c, a)
+Then, construct a row  to the top of the vertical line.
+
+===
+column(a)
+Build a column .
+rectangle(b) ^ left(b, a)
+Next, create a rectangle to the left of the column.
+square(c) ^ right(c, a)
+Then, construct a square to the right of the column.
+
+===
+row(a)
+Build a row .
+rectangle(b) ^ right(b, a)
+After that, construct a rectangle to the right of the row.
+
+===
+square(a)
+Construct a square.
+rectangle(b) ^ top(b, a)
+Next, build a rectangle to the top of the square.
+
+===
+square(a)
+Build a square.
+square(b) ^ right(b, a)
+After that, construct another one to the right of the first one.
+column(c) ^ left(c, a)
+Next, create a column  to the left of the square.
+square(d) ^ right(d, b)
+After that, build another one to the right of the first one.
+
+===
+row(a)
+Create a horizontal line .
+column(b) ^ right(b, a)
+Next, build a vertical line  to the right of the horizontal line.
+
+===
+row(a)
+Create a row .
+column(b) ^ right(b, a)
+Next, construct a column  to the right of the row.
+column(c) ^ bottom(c, b)
+Next, create another one to the bottom of the first one.
+
+===
+square(a)
+Construct a square.
+square(b) ^ right(b, a)
+After that, construct another one to the right of the first one.
+square(c) ^ bottom(c, a)
+After that, create another one to the bottom of the first one.
+column(d) ^ right(d, b)
+After that, construct a column  to the right of the square.
+
+===
+row(a)
+Form a row .
+row(b) ^ bottom(b, a)
+Next, form another one to the bottom of the first one.
+
+===
+square(a)
+Create a square.
+rectangle(b) ^ top(b, a)
+Then, form a rectangle to the top of the square.
+
+===
+square(a)
+Form a square.
+square(b) ^ right(b, a)
+Next, form another one to the right of the first one.
+row(c) ^ bottom(c, b)
+After that, build a row  to the bottom of the square.
+
+===
+rectangle(a)
+Construct a rectangle.
+row(b) ^ left(b, a)
+Then, construct a horizontal line  to the left of the rectangle.
+
+===
+rectangle(a)
+Form a rectangle.
+row(b) ^ right(b, a)
+Next, build a row  to the right of the rectangle.
+rectangle(c) ^ left(c, a)
+Next, construct another one to the left of the first one.
+
+===
+rectangle(a)
+Build a rectangle.
+square(b) ^ bottom(b, a)
+After that, construct a square to the bottom of the rectangle.
+square(c) ^ bottom(c, b)
+Next, form another one to the bottom of the first one.
+rectangle(d) ^ top(d, a)
+Next, create another one to the top of the first one.
+
+===
+square(a)
+Build a square.
+square(b) ^ top(b, a)
+After that, build another one to the top of the first one.
+
+===
+column(a)
+Construct a vertical line .
+square(b) ^ right(b, a)
+Then, construct a square to the right of the vertical line.
+
+===
+square(a)
+Construct a square.
+square(b) ^ left(b, a)
+Then, form another one to the left of the first one.
+rectangle(c) ^ right(c, a)
+Then, construct a rectangle to the right of the square.
+column(d) ^ top(d, a)
+After that, form a vertical line  to the top of the square.
+
+===
+square(a)
+Construct a square.
+square(b) ^ left(b, a)
+Then, build another one to the left of the first one.
+rectangle(c) ^ right(c, a)
+After that, construct a rectangle to the right of the square.
+column(d) ^ left(d, b)
+Next, form a column  to the left of the square.
+
+===
+rectangle(a)
+Form a rectangle.
+rectangle(b) ^ bottom(b, a)
+Then, create another one to the bottom of the first one.
+row(c) ^ top(c, a)
+Then, form a row  to the top of the rectangle.
+row(d) ^ right(d, a)
+After that, build a horizontal line  to the right of the rectangle.
+
+===
+column(a)
+Construct a column .
+square(b) ^ top(b, a)
+Then, construct a square to the top of the column.
+
+===
+square(a)
+Construct a square.
+row(b) ^ right(b, a)
+Next, build a row  to the right of the square.
+
+===
+rectangle(a)
+Construct a rectangle.
+column(b) ^ left(b, a)
+Next, construct a column  to the left of the rectangle.
+rectangle(c) ^ right(c, a)
+Then, form another one to the right of the first one.
+
+===
+column(a)
+Build a column .
+rectangle(b) ^ top(b, a)
+After that, form a rectangle to the top of the column.
+rectangle(c) ^ top(c, b)
+Then, build another one to the top of the first one.
+
+===
+row(a)
+Construct a row .
+row(b) ^ left(b, a)
+After that, construct another one to the left of the first one.
+square(c) ^ right(c, a)
+Then, build a square to the right of the row.
+square(d) ^ bottom(d, c)
+After that, construct another one to the bottom of the first one.
+
+===
+square(a)
+Construct a square.
+column(b) ^ left(b, a)
+Then, create a column  to the left of the square.
+column(c) ^ bottom(c, b)
+Then, form another one to the bottom of the first one.
+
+===
+square(a)
+Create a square.
+row(b) ^ top(b, a)
+Then, form a row  to the top of the square.
+row(c) ^ left(c, b)
+Next, construct another one to the left of the first one.
+square(d) ^ right(d, a)
+After that, construct another one to the right of the first one.
+
+===
+row(a)
+Form a horizontal line .
+square(b) ^ left(b, a)
+Then, build a square to the left of the horizontal line.
+rectangle(c) ^ top(c, b)
+After that, build a rectangle to the top of the square.
+
+===
+column(a)
+Form a column .
+column(b) ^ bottom(b, a)
+Then, form another one to the bottom of the first one.
+
+===
+square(a)
+Create a square.
+column(b) ^ right(b, a)
+After that, form a column  to the right of the square.
+
+===
+rectangle(a)
+Create a rectangle.
+column(b) ^ left(b, a)
+After that, construct a vertical line  to the left of the rectangle.
+rectangle(c) ^ top(c, b)
+Then, build a rectangle to the top of the vertical line.
+
+===
+row(a)
+Form a horizontal line .
+row(b) ^ bottom(b, a)
+After that, form another one to the bottom of the first one.
+row(c) ^ bottom(c, b)
+Then, create another one to the bottom of the first one.
+square(d) ^ left(d, c)
+After that, build a square to the left of the row.
+
+===
+row(a)
+Construct a horizontal line .
+rectangle(b) ^ top(b, a)
+Next, construct a rectangle to the top of the horizontal line.
+
+===
+column(a)
+Create a vertical line .
+rectangle(b) ^ bottom(b, a)
+Next, construct a rectangle to the bottom of the vertical line.
+square(c) ^ left(c, b)
+After that, create a square to the left of the rectangle.
+
+===
+row(a)
+Form a row .
+square(b) ^ left(b, a)
+After that, construct a square to the left of the row.
+
+===
+square(a)
+Form a square.
+row(b) ^ top(b, a)
+After that, create a row  to the top of the square.
+square(c) ^ left(c, a)
+After that, create another one to the left of the first one.
+
+===
+square(a)
+Form a square.
+column(b) ^ left(b, a)
+After that, build a vertical line  to the left of the square.
+row(c) ^ left(c, b)
+Then, create a horizontal line  to the left of the vertical line.
+
+===
+square(a)
+Form a square.
+rectangle(b) ^ bottom(b, a)
+After that, form a rectangle to the bottom of the square.
+column(c) ^ left(c, b)
+Then, form a column  to the left of the rectangle.
+rectangle(d) ^ right(d, a)
+After that, form a rectangle to the right of the square.
+
+===
+row(a)
+Form a row .
+column(b) ^ left(b, a)
+Then, form a column  to the left of the row.
+column(c) ^ left(c, b)
+Next, create another one to the left of the first one.
+
+===
+row(a)
+Create a row .
+square(b) ^ right(b, a)
+Then, build a square to the right of the row.
+rectangle(c) ^ left(c, a)
+After that, construct a rectangle to the left of the row.
+
+===
+column(a)
+Build a vertical line .
+row(b) ^ bottom(b, a)
+After that, form a row  to the bottom of the vertical line.
+column(c) ^ right(c, b)
+Next, create a column  to the right of the row.
+
+===
+rectangle(a)
+Build a rectangle.
+column(b) ^ bottom(b, a)
+After that, create a column  to the bottom of the rectangle.
+square(c) ^ left(c, a)
+After that, create a square to the left of the rectangle.
+rectangle(d) ^ top(d, a)
+Then, form another one to the top of the first one.
+
+===
+rectangle(a)
+Build a rectangle.
+square(b) ^ left(b, a)
+Next, form a square to the left of the rectangle.
+rectangle(c) ^ right(c, a)
+Then, build another one to the right of the first one.
+
+===
+square(a)
+Construct a square.
+rectangle(b) ^ left(b, a)
+After that, build a rectangle to the left of the square.
+row(c) ^ left(c, b)
+Next, form a row  to the left of the rectangle.
+rectangle(d) ^ bottom(d, b)
+After that, build another one to the bottom of the first one.
+
+===
+square(a)
+Form a square.
+rectangle(b) ^ right(b, a)
+Then, form a rectangle to the right of the square.
+
+===
+square(a)
+Form a square.
+row(b) ^ bottom(b, a)
+Next, build a row  to the bottom of the square.
+
+===
+rectangle(a)
+Build a rectangle.
+row(b) ^ top(b, a)
+Then, build a row  to the top of the rectangle.
+
+===
+column(a)
+Build a vertical line .
+rectangle(b) ^ left(b, a)
+Then, form a rectangle to the left of the vertical line.
+square(c) ^ left(c, b)
+Next, form a square to the left of the rectangle.
+square(d) ^ left(d, c)
+After that, build another one to the left of the first one.
+
+===
+column(a)
+Construct a column .
+column(b) ^ left(b, a)
+Next, create another one to the left of the first one.
+
+===
+row(a)
+Form a row .
+rectangle(b) ^ right(b, a)
+After that, construct a rectangle to the right of the row.
+square(c) ^ bottom(c, b)
+After that, create a square to the bottom of the rectangle.
+column(d) ^ right(d, c)
+After that, build a vertical line  to the right of the square.
+
+===
+rectangle(a)
+Form a rectangle.
+row(b) ^ right(b, a)
+Then, create a horizontal line  to the right of the rectangle.
+
+===
+column(a)
+Create a column .
+square(b) ^ top(b, a)
+Next, create a square to the top of the column.
+
+===
+rectangle(a)
+Form a rectangle.
+column(b) ^ right(b, a)
+Next, form a vertical line  to the right of the rectangle.
+
+===
+rectangle(a)
+Form a rectangle.
+rectangle(b) ^ right(b, a)
+Then, construct another one to the right of the first one.
+column(c) ^ right(c, b)
+After that, create a vertical line  to the right of the rectangle.
+column(d) ^ bottom(d, b)
+Next, build a column  to the bottom of the rectangle.
+
+===
+row(a)
+Build a row .
+column(b) ^ right(b, a)
+Then, construct a column  to the right of the row.
+square(c) ^ left(c, a)
+After that, create a square to the left of the row.
+
+===
+rectangle(a)
+Construct a rectangle.
+row(b) ^ left(b, a)
+After that, form a horizontal line  to the left of the rectangle.
+
+===
+square(a)
+Create a square.
+rectangle(b) ^ right(b, a)
+Next, construct a rectangle to the right of the square.
+column(c) ^ left(c, a)
+Next, create a vertical line  to the left of the square.
+column(d) ^ right(d, b)
+Then, form a column  to the right of the rectangle.
+
+===
+row(a)
+Build a horizontal line .
+row(b) ^ right(b, a)
+Next, build another one to the right of the first one.
+
+===
+rectangle(a)
+Build a rectangle.
+column(b) ^ top(b, a)
+Then, construct a column  to the top of the rectangle.
+row(c) ^ left(c, a)
+Next, build a row  to the left of the rectangle.
+row(d) ^ bottom(d, c)
+Then, construct another one to the bottom of the first one.
+
+===
+row(a)
+Construct a horizontal line .
+row(b) ^ left(b, a)
+After that, build another one to the left of the first one.
+column(c) ^ top(c, b)
+Next, build a column  to the top of the horizontal line.
+
+===
+rectangle(a)
+Form a rectangle.
+square(b) ^ left(b, a)
+Next, create a square to the left of the rectangle.
+
+===
+column(a)
+Build a vertical line .
+rectangle(b) ^ top(b, a)
+Next, construct a rectangle to the top of the vertical line.
+rectangle(c) ^ left(c, b)
+Next, form another one to the left of the first one.
+
+===
+square(a)
+Build a square.
+rectangle(b) ^ right(b, a)
+Next, create a rectangle to the right of the square.
+square(c) ^ left(c, a)
+Then, form another one to the left of the first one.
+column(d) ^ top(d, c)
+After that, construct a column  to the top of the square.
+
+===
+square(a)
+Build a square.
+row(b) ^ top(b, a)
+After that, build a row  to the top of the square.
+row(c) ^ left(c, b)
+Then, create another one to the left of the first one.
+
+===
+column(a)
+Construct a column .
+column(b) ^ bottom(b, a)
+After that, form another one to the bottom of the first one.
+
+===
+column(a)
+Build a column .
+square(b) ^ left(b, a)
+After that, form a square to the left of the column.
+
+===
+row(a)
+Construct a horizontal line .
+square(b) ^ right(b, a)
+Next, form a square to the right of the horizontal line.
+
+===
+square(a)
+Construct a square.
+column(b) ^ top(b, a)
+Next, form a vertical line  to the top of the square.
+
+===
+rectangle(a)
+Construct a rectangle.
+column(b) ^ top(b, a)
+Then, form a column  to the top of the rectangle.
+row(c) ^ top(c, b)
+After that, build a horizontal line  to the top of the column.
+rectangle(d) ^ right(d, c)
+Then, create a rectangle to the right of the horizontal line.
+
+===
+square(a)
+Create a square.
+column(b) ^ left(b, a)
+After that, construct a column  to the left of the square.
+rectangle(c) ^ right(c, a)
+Then, construct a rectangle to the right of the square.
+
+===
+rectangle(a)
+Form a rectangle.
+column(b) ^ top(b, a)
+Next, form a column  to the top of the rectangle.
+column(c) ^ left(c, a)
+Then, build a vertical line  to the left of the rectangle.
+column(d) ^ bottom(d, c)
+After that, create another one to the bottom of the first one.
+
+===
+rectangle(a)
+Create a rectangle.
+rectangle(b) ^ bottom(b, a)
+Next, form another one to the bottom of the first one.
+
+===
+rectangle(a)
+Create a rectangle.
+column(b) ^ top(b, a)
+Next, form a column  to the top of the rectangle.
+rectangle(c) ^ right(c, a)
+Then, form another one to the right of the first one.
+
+===
+column(a)
+Form a vertical line .
+square(b) ^ bottom(b, a)
+Next, build a square to the bottom of the vertical line.
+
+===
+square(a)
+Construct a square.
+row(b) ^ bottom(b, a)
+After that, create a horizontal line  to the bottom of the square.
+
+===
+rectangle(a)
+Create a rectangle.
+row(b) ^ top(b, a)
+After that, construct a horizontal line  to the top of the rectangle.
+
+===
+square(a)
+Form a square.
+row(b) ^ right(b, a)
+Next, form a row  to the right of the square.
+rectangle(c) ^ top(c, a)
+Then, create a rectangle to the top of the square.
+
+===
+rectangle(a)
+Build a rectangle.
+column(b) ^ left(b, a)
+Then, build a column  to the left of the rectangle.
+
+===
+row(a)
+Build a horizontal line .
+square(b) ^ bottom(b, a)
+Next, construct a square to the bottom of the horizontal line.
+rectangle(c) ^ right(c, b)
+Then, form a rectangle to the right of the square.
+rectangle(d) ^ right(d, c)
+Then, construct another one to the right of the first one.
+
+===
+row(a)
+Construct a horizontal line .
+row(b) ^ right(b, a)
+Then, construct another one to the right of the first one.
+square(c) ^ bottom(c, b)
+Then, build a square to the bottom of the row.
+column(d) ^ top(d, b)
+After that, create a vertical line  to the top of the row.
+
+===
+square(a)
+Construct a square.
+column(b) ^ right(b, a)
+After that, create a vertical line  to the right of the square.
+column(c) ^ bottom(c, b)
+After that, build another one to the bottom of the first one.
+
+===
+square(a)
+Create a square.
+column(b) ^ bottom(b, a)
+Next, create a column  to the bottom of the square.
+rectangle(c) ^ bottom(c, b)
+Then, form a rectangle to the bottom of the column.
+column(d) ^ left(d, c)
+Next, create a column  to the left of the rectangle.
+
+===
+rectangle(a)
+Create a rectangle.
+row(b) ^ right(b, a)
+Next, form a horizontal line  to the right of the rectangle.
+column(c) ^ right(c, b)
+After that, build a vertical line  to the right of the horizontal line.
+
+===
+square(a)
+Form a square.
+rectangle(b) ^ right(b, a)
+Then, construct a rectangle to the right of the square.
+
+===
+rectangle(a)
+Create a rectangle.
+rectangle(b) ^ bottom(b, a)
+Then, form another one to the bottom of the first one.
+rectangle(c) ^ left(c, a)
+Next, form another one to the left of the first one.
+square(d) ^ left(d, c)
+Then, form a square to the left of the rectangle.
+
+===
+row(a)
+Build a horizontal line .
+column(b) ^ top(b, a)
+After that, create a column  to the top of the horizontal line.
+
+===
+rectangle(a)
+Build a rectangle.
+row(b) ^ left(b, a)
+After that, construct a horizontal line  to the left of the rectangle.
+square(c) ^ right(c, a)
+Then, build a square to the right of the rectangle.
+square(d) ^ right(d, c)
+Then, build another one to the right of the first one.
+
+===
+row(a)
+Build a horizontal line .
+square(b) ^ top(b, a)
+After that, build a square to the top of the horizontal line.
+
+===
+row(a)
+Construct a row .
+square(b) ^ right(b, a)
+After that, build a square to the right of the row.
+
+===
+column(a)
+Build a vertical line .
+column(b) ^ left(b, a)
+After that, build another one to the left of the first one.
+column(c) ^ right(c, a)
+Next, form another one to the right of the first one.
+
+===
+rectangle(a)
+Build a rectangle.
+square(b) ^ right(b, a)
+Next, build a square to the right of the rectangle.
+column(c) ^ right(c, b)
+Next, form a vertical line  to the right of the square.
+
+===
+column(a)
+Construct a column .
+square(b) ^ right(b, a)
+After that, create a square to the right of the column.
+row(c) ^ top(c, b)
+Then, construct a horizontal line  to the top of the square.
+rectangle(d) ^ left(d, c)
+Next, build a rectangle to the left of the horizontal line.
+
+===
+square(a)
+Build a square.
+column(b) ^ top(b, a)
+Then, form a vertical line  to the top of the square.
+
+===
+column(a)
+Create a column .
+row(b) ^ right(b, a)
+After that, form a horizontal line  to the right of the column.
+
+===
+square(a)
+Build a square.
+square(b) ^ top(b, a)
+After that, build another one to the top of the first one.
+rectangle(c) ^ right(c, b)
+After that, form a rectangle to the right of the square.
+row(d) ^ left(d, a)
+Then, build a row  to the left of the square.
+
+===
+rectangle(a)
+Form a rectangle.
+square(b) ^ top(b, a)
+Next, construct a square to the top of the rectangle.
+square(c) ^ bottom(c, a)
+Then, form a square to the bottom of the rectangle.
+column(d) ^ left(d, c)
+After that, create a vertical line  to the left of the square.
+
+===
+square(a)
+Build a square.
+column(b) ^ bottom(b, a)
+After that, build a column  to the bottom of the square.
+
+===
+column(a)
+Form a column .
+row(b) ^ top(b, a)
+Then, form a row  to the top of the column.
+column(c) ^ right(c, b)
+Then, build a column  to the right of the row.
+
+===
+column(a)
+Create a vertical line .
+square(b) ^ left(b, a)
+Then, construct a square to the left of the vertical line.
+
+===
+rectangle(a)
+Build a rectangle.
+rectangle(b) ^ top(b, a)
+After that, form another one to the top of the first one.
+
+===
+row(a)
+Construct a row .
+row(b) ^ left(b, a)
+After that, create another one to the left of the first one.
+row(c) ^ right(c, a)
+After that, construct another one to the right of the first one.
+square(d) ^ bottom(d, c)
+Next, form a square to the bottom of the row.
+
+===
+square(a)
+Form a square.
+row(b) ^ right(b, a)
+Next, create a row  to the right of the square.
+row(c) ^ bottom(c, a)
+Then, construct a horizontal line  to the bottom of the square.
+square(d) ^ bottom(d, c)
+After that, construct a square to the bottom of the horizontal line.
+
+===
+column(a)
+Form a column .
+column(b) ^ top(b, a)
+Next, create another one to the top of the first one.
+rectangle(c) ^ bottom(c, a)
+After that, form a rectangle to the bottom of the column.
+row(d) ^ right(d, c)
+Next, construct a row  to the right of the rectangle.
+
+===
+row(a)
+Form a horizontal line .
+rectangle(b) ^ bottom(b, a)
+Then, form a rectangle to the bottom of the horizontal line.
+
+===
+row(a)
+Construct a horizontal line .
+column(b) ^ left(b, a)
+Then, form a column  to the left of the horizontal line.
+column(c) ^ bottom(c, b)
+After that, create another one to the bottom of the first one.
+
+===
+rectangle(a)
+Build a rectangle.
+row(b) ^ left(b, a)
+Next, build a horizontal line  to the left of the rectangle.
+square(c) ^ left(c, b)
+After that, construct a square to the left of the horizontal line.
+row(d) ^ right(d, a)
+After that, create a horizontal line  to the right of the rectangle.
+
+===
+column(a)
+Create a column .
+column(b) ^ right(b, a)
+Next, form another one to the right of the first one.
+
+===
+column(a)
+Create a vertical line .
+square(b) ^ bottom(b, a)
+Next, form a square to the bottom of the vertical line.
+row(c) ^ bottom(c, b)
+Next, create a row  to the bottom of the square.
+row(d) ^ left(d, c)
+Next, form another one to the left of the first one.
+
+===
+column(a)
+Form a column .
+row(b) ^ right(b, a)
+Next, build a horizontal line  to the right of the column.
+
+===
+square(a)
+Build a square.
+rectangle(b) ^ top(b, a)
+Then, form a rectangle to the top of the square.
+column(c) ^ bottom(c, a)
+Next, build a column  to the bottom of the square.
+
+===
+column(a)
+Construct a column .
+square(b) ^ left(b, a)
+Then, form a square to the left of the column.
+
+===
+rectangle(a)
+Create a rectangle.
+column(b) ^ right(b, a)
+After that, create a vertical line  to the right of the rectangle.
+
+===
+row(a)
+Construct a row .
+rectangle(b) ^ top(b, a)
+Next, construct a rectangle to the top of the row.
+column(c) ^ right(c, a)
+Next, form a column  to the right of the row.
+
+===
+row(a)
+Build a horizontal line .
+row(b) ^ left(b, a)
+Next, build another one to the left of the first one.
+rectangle(c) ^ top(c, b)
+Next, build a rectangle to the top of the horizontal line.
+row(d) ^ right(d, a)
+After that, build another one to the right of the first one.
+
+===
+square(a)
+Build a square.
+rectangle(b) ^ top(b, a)
+After that, form a rectangle to the top of the square.
+column(c) ^ right(c, a)
+After that, build a column  to the right of the square.
+column(d) ^ bottom(d, c)
+Then, construct another one to the bottom of the first one.
+
+===
+square(a)
+Construct a square.
+column(b) ^ left(b, a)
+After that, create a vertical line  to the left of the square.
+
+===
+rectangle(a)
+Construct a rectangle.
+column(b) ^ top(b, a)
+After that, build a column  to the top of the rectangle.
+
+===
+row(a)
+Create a row .
+column(b) ^ top(b, a)
+Then, form a column  to the top of the row.
+square(c) ^ top(c, b)
+After that, form a square to the top of the column.
+
+===
+column(a)
+Form a vertical line .
+rectangle(b) ^ left(b, a)
+After that, create a rectangle to the left of the vertical line.
+
+===
+column(a)
+Form a vertical line .
+row(b) ^ right(b, a)
+Next, construct a horizontal line  to the right of the vertical line.
+
+===
+column(a)
+Form a column .
+square(b) ^ top(b, a)
+After that, construct a square to the top of the column.
+rectangle(c) ^ top(c, b)
+After that, create a rectangle to the top of the square.
+
+===
+rectangle(a)
+Create a rectangle.
+column(b) ^ left(b, a)
+After that, form a vertical line  to the left of the rectangle.
+column(c) ^ left(c, b)
+After that, form another one to the left of the first one.
+square(d) ^ left(d, c)
+After that, create a square to the left of the column.
+
+===
+row(a)
+Build a row .
+row(b) ^ left(b, a)
+Next, form another one to the left of the first one.
+row(c) ^ bottom(c, b)
+Next, form another one to the bottom of the first one.
+column(d) ^ left(d, b)
+Next, build a vertical line  to the left of the row.
+
+===
+square(a)
+Form a square.
+rectangle(b) ^ left(b, a)
+Next, create a rectangle to the left of the square.
+column(c) ^ right(c, a)
+After that, build a vertical line  to the right of the square.
+square(d) ^ top(d, a)
+Next, form another one to the top of the first one.
+
+===
+column(a)
+Form a vertical line .
+row(b) ^ bottom(b, a)
+After that, create a horizontal line  to the bottom of the vertical line.
+rectangle(c) ^ top(c, a)
+After that, form a rectangle to the top of the vertical line.
+column(d) ^ top(d, c)
+Next, construct a vertical line  to the top of the rectangle.
+
+===
+column(a)
+Form a vertical line .
+column(b) ^ bottom(b, a)
+Next, form another one to the bottom of the first one.
+row(c) ^ bottom(c, b)
+After that, form a horizontal line  to the bottom of the vertical line.
+row(d) ^ top(d, a)
+Next, create a horizontal line  to the top of the vertical line.
+
+===
+row(a)
+Create a row .
+rectangle(b) ^ right(b, a)
+Then, form a rectangle to the right of the row.
+
+===
+rectangle(a)
+Form a rectangle.
+square(b) ^ right(b, a)
+Next, create a square to the right of the rectangle.
+
+===
+row(a)
+Create a horizontal line .
+row(b) ^ right(b, a)
+Next, create another one to the right of the first one.
+
+===
+column(a)
+Create a vertical line .
+row(b) ^ left(b, a)
+Next, construct a horizontal line  to the left of the vertical line.
+column(c) ^ bottom(c, a)
+After that, build another one to the bottom of the first one.
+row(d) ^ top(d, a)
+After that, create a row  to the top of the vertical line.
+
+===
+row(a)
+Create a row .
+rectangle(b) ^ left(b, a)
+After that, form a rectangle to the left of the row.
+
+===
+rectangle(a)
+Construct a rectangle.
+square(b) ^ top(b, a)
+After that, form a square to the top of the rectangle.
+rectangle(c) ^ left(c, a)
+Next, create another one to the left of the first one.
+row(d) ^ top(d, b)
+Next, form a row  to the top of the square.
+
+===
+square(a)
+Create a square.
+column(b) ^ top(b, a)
+Then, create a vertical line  to the top of the square.
+row(c) ^ top(c, b)
+After that, create a row  to the top of the vertical line.
+
+===
+column(a)
+Construct a column .
+square(b) ^ left(b, a)
+Next, build a square to the left of the column.
+
+===
+square(a)
+Construct a square.
+row(b) ^ top(b, a)
+After that, form a horizontal line  to the top of the square.
+
+===
+square(a)
+Build a square.
+rectangle(b) ^ top(b, a)
+Then, create a rectangle to the top of the square.
+row(c) ^ top(c, b)
+Next, build a row  to the top of the rectangle.
+square(d) ^ right(d, c)
+Next, form a square to the right of the row.
+
+===
+column(a)
+Form a vertical line .
+column(b) ^ left(b, a)
+Then, create another one to the left of the first one.
+
+===
+column(a)
+Build a column .
+row(b) ^ left(b, a)
+Next, create a horizontal line  to the left of the column.
+row(c) ^ right(c, a)
+After that, build a horizontal line  to the right of the column.
+row(d) ^ bottom(d, a)
+Then, create a horizontal line  to the bottom of the column.
+
+===
+column(a)
+Construct a vertical line .
+row(b) ^ bottom(b, a)
+Next, create a row  to the bottom of the vertical line.
+rectangle(c) ^ bottom(c, b)
+After that, create a rectangle to the bottom of the row.
+
+===
+column(a)
+Construct a column .
+rectangle(b) ^ left(b, a)
+Then, form a rectangle to the left of the column.
+column(c) ^ top(c, a)
+Next, build another one to the top of the first one.
+
+===
+row(a)
+Build a horizontal line .
+rectangle(b) ^ top(b, a)
+After that, build a rectangle to the top of the horizontal line.
+
+===
+row(a)
+Form a row .
+row(b) ^ left(b, a)
+Next, construct another one to the left of the first one.
+rectangle(c) ^ right(c, a)
+Then, create a rectangle to the right of the row.
+rectangle(d) ^ right(d, c)
+After that, form another one to the right of the first one.
+
+===
+column(a)
+Create a column .
+column(b) ^ bottom(b, a)
+After that, build another one to the bottom of the first one.
+square(c) ^ bottom(c, b)
+Next, create a square to the bottom of the vertical line.
+
+===
+column(a)
+Form a vertical line .
+row(b) ^ top(b, a)
+Next, form a horizontal line  to the top of the vertical line.
+
+===
+row(a)
+Build a horizontal line .
+column(b) ^ right(b, a)
+After that, create a column  to the right of the horizontal line.
+square(c) ^ right(c, b)
+Then, form a square to the right of the column.
+
+===
+square(a)
+Create a square.
+row(b) ^ bottom(b, a)
+Then, build a row  to the bottom of the square.
+row(c) ^ right(c, b)
+Next, build another one to the right of the first one.
+
+===
+row(a)
+Build a horizontal line .
+row(b) ^ right(b, a)
+After that, form another one to the right of the first one.
+square(c) ^ left(c, a)
+After that, construct a square to the left of the horizontal line.
+square(d) ^ top(d, c)
+Next, create another one to the top of the first one.
+
+===
+square(a)
+Construct a square.
+rectangle(b) ^ left(b, a)
+Next, construct a rectangle to the left of the square.
+square(c) ^ bottom(c, b)
+Then, construct a square to the bottom of the rectangle.
+square(d) ^ top(d, b)
+Then, construct a square to the top of the rectangle.
+
+===
+row(a)
+Construct a horizontal line .
+column(b) ^ top(b, a)
+After that, build a column  to the top of the horizontal line.
+rectangle(c) ^ top(c, b)
+Next, create a rectangle to the top of the column.
+rectangle(d) ^ left(d, a)
+Next, build a rectangle to the left of the horizontal line.
+
+===
+column(a)
+Create a column .
+square(b) ^ left(b, a)
+Next, create a square to the left of the column.
+
+===
+square(a)
+Build a square.
+rectangle(b) ^ top(b, a)
+Next, form a rectangle to the top of the square.
+column(c) ^ top(c, b)
+After that, create a vertical line  to the top of the rectangle.
+
+===
+square(a)
+Construct a square.
+column(b) ^ right(b, a)
+After that, build a vertical line  to the right of the square.
+
+===
+square(a)
+Construct a square.
+rectangle(b) ^ left(b, a)
+Next, build a rectangle to the left of the square.
+
+===
+rectangle(a)
+Create a rectangle.
+square(b) ^ top(b, a)
+Then, build a square to the top of the rectangle.
+column(c) ^ top(c, b)
+After that, construct a vertical line  to the top of the square.
+square(d) ^ left(d, b)
+After that, build another one to the left of the first one.
+
+===
+row(a)
+Create a horizontal line .
+rectangle(b) ^ left(b, a)
+Next, create a rectangle to the left of the horizontal line.
+rectangle(c) ^ right(c, a)
+Then, form a rectangle to the right of the horizontal line.
+
+===
+rectangle(a)
+Build a rectangle.
+rectangle(b) ^ right(b, a)
+Then, form another one to the right of the first one.
+column(c) ^ right(c, b)
+After that, construct a column  to the right of the rectangle.
+
+===
+square(a)
+Form a square.
+rectangle(b) ^ right(b, a)
+Then, form a rectangle to the right of the square.
+row(c) ^ right(c, b)
+After that, build a row  to the right of the rectangle.
+
+===
+row(a)
+Build a row .
+rectangle(b) ^ top(b, a)
+Then, build a rectangle to the top of the row.
+rectangle(c) ^ left(c, b)
+Next, construct another one to the left of the first one.
+
+===
+row(a)
+Build a row .
+rectangle(b) ^ top(b, a)
+After that, create a rectangle to the top of the row.
+square(c) ^ left(c, b)
+Next, construct a square to the left of the rectangle.
+column(d) ^ left(d, c)
+Then, construct a column  to the left of the square.
+
+===
+rectangle(a)
+Create a rectangle.
+rectangle(b) ^ bottom(b, a)
+Then, construct another one to the bottom of the first one.
+square(c) ^ bottom(c, b)
+Then, create a square to the bottom of the rectangle.
+
+===
+square(a)
+Create a square.
+column(b) ^ bottom(b, a)
+After that, construct a column  to the bottom of the square.
+
+===
+rectangle(a)
+Construct a rectangle.
+square(b) ^ right(b, a)
+After that, build a square to the right of the rectangle.
+
+===
+row(a)
+Build a row .
+rectangle(b) ^ top(b, a)
+Next, create a rectangle to the top of the row.
+
+===
+rectangle(a)
+Construct a rectangle.
+column(b) ^ right(b, a)
+After that, construct a column  to the right of the rectangle.
+square(c) ^ left(c, a)
+After that, construct a square to the left of the rectangle.
+
+===
+square(a)
+Create a square.
+column(b) ^ bottom(b, a)
+Then, construct a column  to the bottom of the square.
+
+===
+square(a)
+Form a square.
+rectangle(b) ^ left(b, a)
+Next, build a rectangle to the left of the square.
+row(c) ^ top(c, b)
+Next, build a horizontal line  to the top of the rectangle.
+
+===
+rectangle(a)
+Form a rectangle.
+square(b) ^ top(b, a)
+After that, form a square to the top of the rectangle.
+column(c) ^ left(c, a)
+Next, create a column  to the left of the rectangle.
+
+===
+column(a)
+Form a vertical line .
+square(b) ^ top(b, a)
+Next, create a square to the top of the vertical line.
+square(c) ^ top(c, b)
+Next, construct another one to the top of the first one.
+
+===
+row(a)
+Create a row .
+column(b) ^ right(b, a)
+Next, build a column  to the right of the row.
+column(c) ^ top(c, b)
+Then, form another one to the top of the first one.
+
+===
+row(a)
+Construct a horizontal line .
+rectangle(b) ^ right(b, a)
+Next, create a rectangle to the right of the horizontal line.
+square(c) ^ top(c, b)
+After that, create a square to the top of the rectangle.
+
+===
+rectangle(a)
+Form a rectangle.
+column(b) ^ top(b, a)
+After that, build a column  to the top of the rectangle.
+row(c) ^ top(c, b)
+After that, build a horizontal line  to the top of the column.
+
+===
+row(a)
+Construct a horizontal line .
+square(b) ^ top(b, a)
+After that, form a square to the top of the horizontal line.
+
+===
+row(a)
+Create a horizontal line .
+square(b) ^ right(b, a)
+Then, construct a square to the right of the horizontal line.
+rectangle(c) ^ left(c, a)
+Then, form a rectangle to the left of the horizontal line.
+
+===
+row(a)
+Construct a row .
+column(b) ^ top(b, a)
+Next, construct a column  to the top of the row.
+square(c) ^ bottom(c, a)
+Then, form a square to the bottom of the row.
+rectangle(d) ^ top(d, b)
+After that, build a rectangle to the top of the column.
+
+===
+square(a)
+Form a square.
+rectangle(b) ^ right(b, a)
+Then, build a rectangle to the right of the square.
+
+===
+row(a)
+Create a horizontal line .
+square(b) ^ top(b, a)
+After that, create a square to the top of the horizontal line.
+
+===
+square(a)
+Construct a square.
+column(b) ^ bottom(b, a)
+Then, form a column  to the bottom of the square.
+row(c) ^ right(c, a)
+After that, construct a row  to the right of the square.
+
+===
+row(a)
+Build a row .
+row(b) ^ top(b, a)
+Next, build another one to the top of the first one.
+column(c) ^ bottom(c, a)
+Next, form a column  to the bottom of the row.
+
+===
+square(a)
+Construct a square.
+rectangle(b) ^ left(b, a)
+Next, form a rectangle to the left of the square.
+row(c) ^ top(c, a)
+Next, construct a row  to the top of the square.
+
+===
+rectangle(a)
+Construct a rectangle.
+row(b) ^ left(b, a)
+Then, construct a horizontal line  to the left of the rectangle.
+square(c) ^ left(c, b)
+After that, construct a square to the left of the horizontal line.
+row(d) ^ right(d, a)
+Then, construct a horizontal line  to the right of the rectangle.
+
+===
+rectangle(a)
+Construct a rectangle.
+column(b) ^ right(b, a)
+Then, create a column  to the right of the rectangle.
+column(c) ^ right(c, b)
+Then, create another one to the right of the first one.
+column(d) ^ right(d, c)
+After that, build another one to the right of the first one.
+
+===
+rectangle(a)
+Construct a rectangle.
+row(b) ^ top(b, a)
+Then, create a row  to the top of the rectangle.
+column(c) ^ left(c, b)
+Then, construct a vertical line  to the left of the row.
+rectangle(d) ^ bottom(d, a)
+Next, form another one to the bottom of the first one.
+
+===
+row(a)
+Construct a horizontal line .
+square(b) ^ left(b, a)
+After that, create a square to the left of the horizontal line.
+
+===
+column(a)
+Form a vertical line .
+rectangle(b) ^ bottom(b, a)
+Then, create a rectangle to the bottom of the vertical line.
+row(c) ^ left(c, b)
+After that, create a horizontal line  to the left of the rectangle.
+square(d) ^ right(d, b)
+Then, form a square to the right of the rectangle.
+
+===
+column(a)
+Form a vertical line .
+rectangle(b) ^ left(b, a)
+Then, build a rectangle to the left of the vertical line.
+
+===
+square(a)
+Create a square.
+row(b) ^ top(b, a)
+After that, form a horizontal line  to the top of the square.
+
+===
+rectangle(a)
+Create a rectangle.
+row(b) ^ top(b, a)
+Next, form a horizontal line  to the top of the rectangle.
+rectangle(c) ^ right(c, b)
+Then, build a rectangle to the right of the horizontal line.
+rectangle(d) ^ bottom(d, a)
+Next, form another one to the bottom of the first one.
+
+===
+column(a)
+Create a vertical line .
+row(b) ^ bottom(b, a)
+After that, construct a horizontal line  to the bottom of the vertical line.
+
+===
+column(a)
+Construct a column .
+column(b) ^ left(b, a)
+Then, construct another one to the left of the first one.
+rectangle(c) ^ right(c, a)
+Then, build a rectangle to the right of the column.
+
+===
+column(a)
+Form a vertical line .
+column(b) ^ bottom(b, a)
+Then, form another one to the bottom of the first one.
+column(c) ^ right(c, b)
+Then, build another one to the right of the first one.
+square(d) ^ bottom(d, b)
+After that, build a square to the bottom of the column.
+

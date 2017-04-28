@@ -1,0 +1,1880 @@
+rectangle(a) ^ height(a, 10) ^ width(a, 4)
+Construct a rectangle that is 10 blocks tall and 4 blocks wide.
+
+aaawp(a)
+I want you to place a aaawp on the table.
+
+rectangle(a) ^ height(a, 2) ^ width(a, 5)
+Form a 5 by 2 rectangle.
+column(b) ^ height(b, 9) ^ bottom(b, a)
+Next, form a column with 9 blocks to the bottom of the rectangle.
+block(c) ^ location(w1) ^ block-location(c, w1) ^ upper_left(b, c) ^ block(d) ^ location(w2) ^ block-location(d, w2) ^ bottom_side(a, d, 3) ^ spatial-rel(south, 0, w2, w1)
+Ensure that the top end of the column is next to the fourth column of the rectangle.
+
+aaawz(a)
+Place a aaawz on the table.
+
+column(a) ^ height(a, 7)
+Form a column using 7 blocks.
+rectangle(b) ^ height(b, 7) ^ width(b, 6) ^ top(b, a)
+Next, form a rectangle with a width of 6 blocks and a height of 7 blocks to the top of the column.
+block(c) ^ location(w1) ^ block-location(c, w1) ^ bottom_side(b, c, 4) ^ block(d) ^ location(w2) ^ block-location(d, w2) ^ upper_left(a, d) ^ spatial-rel(north, 0, w2, w1)
+Ensure that the fifth column of the rectangle is adjacent to the top end of the column.
+immobile_block(3, 2) ^ immobile_block(10, 4) ^ immobile_block(2, 9)
+There are immobile blocks at row 2 and column 3, at row 4 and column 10, and at row 9 and column 2.
+
+aaaur(a)
+Please place a aaaur on the table.
+
+aaavr(a)
+Please build a aaavr.
+
+rectangle(a) ^ height(a, 8) ^ width(a, 7)
+Build a rectangle that is 8 blocks tall and 7 blocks wide.
+column(b) ^ height(b, 3) ^ bottom(b, a)
+After that, build a column with 3 blocks to the bottom of the rectangle.
+block(c) ^ location(w1) ^ block-location(c, w1) ^ upper_left(b, c) ^ block(d) ^ location(w2) ^ block-location(d, w2) ^ lower_left(a, d) ^ spatial-rel(south, 0, w2, w1)
+Ensure that the column's top end is adjacent to the lower left corner of the rectangle.
+restricted(10, 7) ^ restricted(0, 2)
+Do not put blocks in the spaces at row 7 and column 10 and at row 2 and column 0.
+
+aaati(a)
+I want you to create a aaati.
+
+square(a) ^ size(a, 7)
+Create a square with sides of block length 7.
+starting_block(3, 3) ^ starting_block(5, 0)
+There are already blocks at row 3 and column 3 and at row 0 and column 5.
+
+aaavd(a)
+I want you to build a aaavd.
+
+column(a) ^ height(a, 5)
+Create a vertical line of height 5.
+starting_block(6, 3) ^ starting_block(10, 3)
+There are already blocks at row 3 and column 6 and at row 3 and column 10.
+
+square(a) ^ size(a, 8)
+Form a square with sides of block length 8.
+starting_block(8, 1) ^ starting_block(3, 0)
+There are already blocks at row 1 and column 8 and at row 0 and column 3.
+
+square(a) ^ size(a, 3)
+Form a square with sides of block length 3.
+rectangle(b) ^ height(b, 7) ^ width(b, 2) ^ right(b, a)
+Then, build a rectangle with a height of 7 blocks and a width of 2 blocks to the right of the square.
+block(c) ^ location(w1) ^ block-location(c, w1) ^ left_side(b, c, 3) ^ block(d) ^ location(w2) ^ block-location(d, w2) ^ upper_right(a, d) ^ spatial-rel(east, 0, w2, w1)
+Ensure that the fourth row of the rectangle is adjacent to the square's upper right corner.
+starting_block(10, 7) ^ starting_block(3, 4) ^ starting_block(6, 7)
+There are already blocks at row 7 and column 10, at row 4 and column 3, and at row 7 and column 6.
+
+column(a) ^ height(a, 3)
+Construct a vertical line using 3 blocks.
+column(b) ^ height(b, 3) ^ bottom(b, a)
+Then, construct another one to the bottom of the first one.
+block(c) ^ location(w1) ^ block-location(c, w1) ^ upper_left(b, c) ^ block(d) ^ location(w2) ^ block-location(d, w2) ^ lower_left(a, d) ^ spatial-rel(south, 0, w2, w1)
+Ensure that the column's top end is in line with the vertical line's bottom end.
+immobile_block(8, 10) ^ immobile_block(8, 2)
+There are immobile blocks at row 10 and column 8 and at row 2 and column 8.
+
+aabak(a)
+Please create a aabak.
+
+aaazs(a)
+You should place a aaazs on the table.
+
+row(a) ^ width(a, 10)
+Create a horizontal line of size 10.
+starting_block(10, 10) ^ starting_block(5, 3) ^ starting_block(5, 2)
+There are already blocks at row 10 and column 10, at row 3 and column 5, and at row 2 and column 5.
+
+aaaxy(a)
+You should construct a aaaxy.
+
+row(a) ^ width(a, 3)
+Create a horizontal line with 3 blocks.
+immobile_block(8, 6)
+There is an immobile block at row 6 and column 8.
+
+aaauh(a)
+I want you to place a aaauh on the table.
+
+row(a) ^ width(a, 6)
+Construct a row of length 6.
+starting_block(1, 0) ^ starting_block(10, 1) ^ starting_block(4, 8)
+There are already blocks at row 0 and column 1, at row 1 and column 10, and at row 8 and column 4.
+
+column(a) ^ height(a, 9)
+Create a vertical line of height 9.
+immobile_block(8, 4) ^ immobile_block(2, 10)
+There are immobile blocks at row 4 and column 8 and at row 10 and column 2.
+
+aaavm(a)
+I want you to build a aaavm.
+
+column(a) ^ height(a, 10)
+Form a column of height 10.
+restricted(8, 9)
+Do not put a block in the space at row 9 and column 8.
+
+rectangle(a) ^ height(a, 7) ^ width(a, 2)
+Create a 2 by 7 rectangle.
+immobile_block(7, 2) ^ immobile_block(4, 9) ^ immobile_block(0, 1)
+There are immobile blocks at row 2 and column 7, at row 9 and column 4, and at row 1 and column 0.
+
+row(a) ^ width(a, 5)
+Construct a horizontal line of size 5.
+square(b) ^ size(b, 3) ^ bottom(b, a)
+Then, form a 3 by 3 square to the bottom of the horizontal line.
+block(c) ^ location(w1) ^ block-location(c, w1) ^ upper_left(b, c) ^ block(d) ^ location(w2) ^ block-location(d, w2) ^ bottom_side(a, d, 1) ^ spatial-rel(south, 0, w2, w1)
+Ensure that the square's upper left corner is next to the second column of the horizontal line.
+
+aaauu(a)
+Place a aaauu on the table.
+
+aaaxi(a)
+Please construct a aaaxi.
+
+column(a) ^ height(a, 10)
+Form a vertical line with 10 blocks.
+restricted(2, 0) ^ restricted(2, 10) ^ restricted(7, 3)
+Do not put blocks in the space at row 0 and column 2, the space at row 10 and column 2, and the space at row 3 and column 7.
+
+aaazp(a)
+I want you to build a aaazp.
+
+square(a) ^ size(a, 3)
+Build a 3 by 3 square.
+immobile_block(4, 6)
+There is an immobile block at row 6 and column 4.
+
+rectangle(a) ^ height(a, 10) ^ width(a, 2)
+Create a rectangle that is 2 blocks wide and 10 blocks tall.
+
+row(a) ^ width(a, 9)
+Create a row of length 9.
+column(b) ^ height(b, 6) ^ right(b, a)
+After that, form a column using 6 blocks to the right of the row.
+block(c) ^ location(w1) ^ block-location(c, w1) ^ upper_left(b, c) ^ block(d) ^ location(w2) ^ block-location(d, w2) ^ upper_right(a, d) ^ spatial-rel(east, 0, w2, w1)
+Ensure that the top end of the column is adjacent to the row's right end.
+starting_block(6, 0) ^ starting_block(6, 8) ^ starting_block(2, 1)
+There are already blocks at row 0 and column 6, at row 8 and column 6, and at row 1 and column 2.
+
+aaavk(a)
+Place a aaavk on the table.
+
+rectangle(a) ^ height(a, 6) ^ width(a, 3)
+Create a rectangle that is 3 blocks wide and 6 blocks tall.
+
+square(a) ^ size(a, 6)
+Construct a 6 by 6 square.
+column(b) ^ height(b, 8) ^ left(b, a)
+Then, construct a column using 8 blocks to the left of the square.
+block(c) ^ location(w1) ^ block-location(c, w1) ^ upper_right(b, c) ^ block(d) ^ location(w2) ^ block-location(d, w2) ^ left_side(a, d, 3) ^ spatial-rel(west, 0, w2, w1)
+Ensure that the column's top end is next to the fourth row of the square.
+immobile_block(8, 0) ^ immobile_block(5, 2)
+There are immobile blocks at row 0 and column 8 and at row 2 and column 5.
+
+column(a) ^ height(a, 6)
+Create a vertical line using 6 blocks.
+square(b) ^ size(b, 7) ^ top(b, a)
+Then, form a 7 block by 7 block square to the top of the vertical line.
+block(c) ^ location(w1) ^ block-location(c, w1) ^ lower_left(b, c) ^ block(d) ^ location(w2) ^ block-location(d, w2) ^ upper_left(a, d) ^ spatial-rel(north, 0, w2, w1)
+Ensure that the square's lower left corner is next to the vertical line's top end.
+
+row(a) ^ width(a, 7)
+Build a row of size 7.
+starting_block(9, 1) ^ starting_block(7, 1) ^ starting_block(0, 1)
+There are already blocks at row 1 and column 9, at row 1 and column 7, and at row 1 and column 0.
+
+aaayi(a)
+Build a aaayi.
+
+aaayn(a)
+You should build a aaayn.
+
+column(a) ^ height(a, 8)
+Create a column using 8 blocks.
+restricted(7, 6)
+Do not put a block in the space at row 6 and column 7.
+
+row(a) ^ width(a, 7)
+Form a horizontal line using 7 blocks.
+square(b) ^ size(b, 5) ^ right(b, a)
+Then, build a 5 block by 5 block square to the right of the horizontal line.
+block(c) ^ location(w1) ^ block-location(c, w1) ^ left_side(b, c, 2) ^ block(d) ^ location(w2) ^ block-location(d, w2) ^ upper_right(a, d) ^ spatial-rel(east, 0, w2, w1)
+Ensure that the third row of the square is adjacent to the right end of the horizontal line.
+immobile_block(5, 7)
+There is an immobile block at row 7 and column 5.
+
+square(a) ^ size(a, 4)
+Build a 4 block by 4 block square.
+row(b) ^ width(b, 3) ^ left(b, a)
+Next, create a row of length 3 to the left of the square.
+block(c) ^ location(w1) ^ block-location(c, w1) ^ upper_right(b, c) ^ block(d) ^ location(w2) ^ block-location(d, w2) ^ left_side(a, d, 2) ^ spatial-rel(west, 0, w2, w1)
+Ensure that the right end of the row is adjacent to the third row of the square.
+immobile_block(9, 9) ^ immobile_block(8, 10)
+There are immobile blocks at row 9 and column 9 and at row 10 and column 8.
+
+aaawl(a)
+Construct a aaawl.
+
+rectangle(a) ^ height(a, 5) ^ width(a, 9)
+Create a 9 by 5 rectangle.
+starting_block(7, 9) ^ starting_block(5, 8) ^ starting_block(3, 6)
+There are already blocks at row 9 and column 7, at row 8 and column 5, and at row 6 and column 3.
+
+square(a) ^ size(a, 6)
+Build a square with sides of block length 6.
+square(b) ^ size(b, 6) ^ right(b, a)
+Then, build another one to the right of the first one.
+block(c) ^ location(w1) ^ block-location(c, w1) ^ lower_left(b, c) ^ block(d) ^ location(w2) ^ block-location(d, w2) ^ right_side(a, d, 4) ^ spatial-rel(east, 0, w2, w1)
+Ensure that the lower left corner of the new square is next to the fifth row of the first square.
+
+aaawj(a)
+Please place a aaawj on the table.
+
+aaazz(a)
+Please construct a aaazz.
+
+aabax(a)
+Please build a aabax.
+
+aaaus(a)
+I want you to place a aaaus on the table.
+
+square(a) ^ size(a, 2)
+Create a square with sides of block length 2.
+immobile_block(9, 1) ^ immobile_block(2, 4) ^ immobile_block(4, 4)
+There are immobile blocks at row 1 and column 9, at row 4 and column 2, and at row 4 and column 4.
+
+row(a) ^ width(a, 5)
+Build a row with 5 blocks.
+column(b) ^ height(b, 4) ^ left(b, a)
+Next, build a column using 4 blocks to the left of the row.
+block(c) ^ location(w1) ^ block-location(c, w1) ^ upper_right(b, c) ^ block(d) ^ location(w2) ^ block-location(d, w2) ^ upper_left(a, d) ^ spatial-rel(west, 0, w2, w1)
+Ensure that the top end of the column is aligned with the left end of the row.
+starting_block(8, 10)
+There is already a block at row 10 and column 8.
+
+rectangle(a) ^ height(a, 7) ^ width(a, 10)
+Build a rectangle that is 7 blocks tall and 10 blocks wide.
+immobile_block(10, 0)
+There is an immobile block at row 0 and column 10.
+
+aaaxc(a)
+Create a aaaxc.
+
+column(a) ^ height(a, 3)
+Form a vertical line with 3 blocks.
+row(b) ^ width(b, 6) ^ top(b, a)
+Next, form a row of size 6 to the top of the vertical line.
+block(c) ^ location(w1) ^ block-location(c, w1) ^ lower_left(b, c) ^ block(d) ^ location(w2) ^ block-location(d, w2) ^ upper_left(a, d) ^ spatial-rel(north, 0, w2, w1)
+Ensure that the row's left end is aligned with the vertical line's top end.
+restricted(8, 5)
+Do not put a block in the space at row 5 and column 8.
+
+column(a) ^ height(a, 7)
+Construct a vertical line using 7 blocks.
+starting_block(3, 4)
+There is already a block at row 4 and column 3.
+
+aabaw(a)
+Construct a aabaw.
+
+row(a) ^ width(a, 10)
+Build a row using 10 blocks.
+immobile_block(2, 1) ^ immobile_block(10, 8) ^ immobile_block(6, 0)
+There are immobile blocks at row 1 and column 2, at row 8 and column 10, and at row 0 and column 6.
+
+column(a) ^ height(a, 10)
+Form a column with 10 blocks.
+square(b) ^ size(b, 7) ^ left(b, a)
+Then, build a 7 block by 7 block square to the left of the column.
+block(c) ^ location(w1) ^ block-location(c, w1) ^ lower_right(b, c) ^ block(d) ^ location(w2) ^ block-location(d, w2) ^ left_side(a, d, 2) ^ spatial-rel(west, 0, w2, w1)
+Ensure that the square's lower right corner is adjacent to the third row of the column.
+starting_block(7, 3)
+There is already a block at row 3 and column 7.
+
+aabar(a)
+Please construct a aabar.
+
+row(a) ^ width(a, 6)
+Construct a horizontal line with 6 blocks.
+row(b) ^ width(b, 6) ^ bottom(b, a)
+Then, build another one to the bottom of the first one.
+block(c) ^ location(w1) ^ block-location(c, w1) ^ upper_left(b, c) ^ block(d) ^ location(w2) ^ block-location(d, w2) ^ bottom_side(a, d, 1) ^ spatial-rel(south, 0, w2, w1)
+Ensure that the left end of the row is adjacent to the second column of the horizontal line.
+restricted(9, 3)
+Do not put a block in the space at row 3 and column 9.
+
+square(a) ^ size(a, 7)
+Create a square with sides of block length 7.
+restricted(10, 1)
+Do not put a block in the space at row 1 and column 10.
+
+aaayg(a)
+You should place a aaayg on the table.
+
+aaave(a)
+Please construct a aaave.
+
+aaayw(a)
+Construct a aaayw.
+
+row(a) ^ width(a, 10)
+Build a horizontal line of length 10.
+column(b) ^ height(b, 4) ^ left(b, a)
+After that, create a vertical line of size 4 to the left of the horizontal line.
+block(c) ^ location(w1) ^ block-location(c, w1) ^ upper_right(b, c) ^ block(d) ^ location(w2) ^ block-location(d, w2) ^ upper_left(a, d) ^ spatial-rel(west, 0, w2, w1)
+Ensure that the top end of the vertical line is in line with the horizontal line's left end.
+restricted(6, 6) ^ restricted(8, 10)
+Do not put blocks in the spaces at row 6 and column 6 and at row 10 and column 8.
+
+column(a) ^ height(a, 6)
+Create a vertical line of height 6.
+row(b) ^ width(b, 4) ^ left(b, a)
+Next, build a horizontal line using 4 blocks to the left of the vertical line.
+block(c) ^ location(w1) ^ block-location(c, w1) ^ upper_right(b, c) ^ block(d) ^ location(w2) ^ block-location(d, w2) ^ lower_left(a, d) ^ spatial-rel(west, 0, w2, w1)
+Ensure that the horizontal line's right end is aligned with the vertical line's bottom end.
+starting_block(6, 1) ^ starting_block(5, 4)
+There are already blocks at row 1 and column 6 and at row 4 and column 5.
+
+column(a) ^ height(a, 5)
+Construct a column using 5 blocks.
+restricted(10, 3)
+Do not put a block in the space at row 3 and column 10.
+
+square(a) ^ size(a, 8)
+Build a square with sides of block length 8.
+column(b) ^ height(b, 7) ^ left(b, a)
+Next, form a vertical line with 7 blocks to the left of the square.
+block(c) ^ location(w1) ^ block-location(c, w1) ^ lower_right(b, c) ^ block(d) ^ location(w2) ^ block-location(d, w2) ^ left_side(a, d, 5) ^ spatial-rel(west, 0, w2, w1)
+Ensure that the bottom end of the vertical line is next to the sixth row of the square.
+
+row(a) ^ width(a, 8)
+Create a horizontal line of size 8.
+column(b) ^ height(b, 8) ^ right(b, a)
+Next, create a column of height 8 to the right of the horizontal line.
+block(c) ^ location(w1) ^ block-location(c, w1) ^ left_side(b, c, 6) ^ block(d) ^ location(w2) ^ block-location(d, w2) ^ upper_right(a, d) ^ spatial-rel(east, 0, w2, w1)
+Ensure that the seventh row of the column is next to the horizontal line's right end.
+starting_block(4, 5) ^ starting_block(8, 1) ^ starting_block(6, 6)
+There are already blocks at row 5 and column 4, at row 1 and column 8, and at row 6 and column 6.
+
+aaazu(a)
+Please create a aaazu.
+
+aaayj(a)
+You should construct a aaayj.
+
+row(a) ^ width(a, 7)
+Construct a row with 7 blocks.
+starting_block(6, 7)
+There is already a block at row 7 and column 6.
+
+aaaub(a)
+I want you to create a aaaub.
+
+rectangle(a) ^ height(a, 2) ^ width(a, 10)
+Construct a rectangle that is 10 blocks wide and 2 blocks tall.
+square(b) ^ size(b, 6) ^ top(b, a)
+Next, construct a 6 block by 6 block square to the top of the rectangle.
+block(c) ^ location(w1) ^ block-location(c, w1) ^ lower_right(b, c) ^ block(d) ^ location(w2) ^ block-location(d, w2) ^ top_side(a, d, 4) ^ spatial-rel(north, 0, w2, w1)
+Ensure that the lower right corner of the square is next to the fifth column of the rectangle.
+
+aaazj(a)
+I want you to create a aaazj.
+
+aaaul(a)
+I want you to build a aaaul.
+
+square(a) ^ size(a, 6)
+Create a square with sides of block length 6.
+rectangle(b) ^ height(b, 9) ^ width(b, 6) ^ bottom(b, a)
+After that, build a 6 by 9 rectangle to the bottom of the square.
+block(c) ^ location(w1) ^ block-location(c, w1) ^ upper_left(b, c) ^ block(d) ^ location(w2) ^ block-location(d, w2) ^ bottom_side(a, d, 2) ^ spatial-rel(south, 0, w2, w1)
+Ensure that the rectangle's upper left corner is adjacent to the third column of the square.
+restricted(1, 8)
+Do not put a block in the space at row 8 and column 1.
+
+aaavx(a)
+Please create a aaavx.
+
+column(a) ^ height(a, 3)
+Build a vertical line of size 3.
+rectangle(b) ^ height(b, 3) ^ width(b, 10) ^ bottom(b, a)
+Next, build a 10 by 3 rectangle to the bottom of the vertical line.
+block(c) ^ location(w1) ^ block-location(c, w1) ^ top_side(b, c, 7) ^ block(d) ^ location(w2) ^ block-location(d, w2) ^ lower_left(a, d) ^ spatial-rel(south, 0, w2, w1)
+Ensure that the eighth column of the rectangle is next to the bottom end of the vertical line.
+restricted(5, 5)
+Do not put a block in the space at row 5 and column 5.
+
+square(a) ^ size(a, 4)
+Form a 4 by 4 square.
+row(b) ^ width(b, 3) ^ left(b, a)
+Next, form a row of size 3 to the left of the square.
+block(c) ^ location(w1) ^ block-location(c, w1) ^ upper_right(b, c) ^ block(d) ^ location(w2) ^ block-location(d, w2) ^ left_side(a, d, 1) ^ spatial-rel(west, 0, w2, w1)
+Ensure that the row's right end is next to the second row of the square.
+starting_block(5, 4) ^ starting_block(9, 7) ^ starting_block(5, 8)
+There are already blocks at row 4 and column 5, at row 7 and column 9, and at row 8 and column 5.
+
+aabal(a)
+Please place a aabal on the table.
+
+aaaud(a)
+Please place a aaaud on the table.
+
+square(a) ^ size(a, 7)
+Construct a 7 block by 7 block square.
+column(b) ^ height(b, 3) ^ bottom(b, a)
+After that, construct a vertical line of size 3 to the bottom of the square.
+block(c) ^ location(w1) ^ block-location(c, w1) ^ upper_left(b, c) ^ block(d) ^ location(w2) ^ block-location(d, w2) ^ lower_left(a, d) ^ spatial-rel(south, 0, w2, w1)
+Ensure that the vertical line's top end is aligned with the lower left corner of the square.
+
+row(a) ^ width(a, 5)
+Construct a row of size 5.
+square(b) ^ size(b, 6) ^ top(b, a)
+Then, create a 6 block by 6 block square to the top of the row.
+block(c) ^ location(w1) ^ block-location(c, w1) ^ lower_right(b, c) ^ block(d) ^ location(w2) ^ block-location(d, w2) ^ upper_left(a, d) ^ spatial-rel(north, 0, w2, w1)
+Ensure that the square's lower right corner is adjacent to the row's left end.
+restricted(3, 3) ^ restricted(8, 6)
+Do not put blocks in the spaces at row 3 and column 3 and at row 6 and column 8.
+
+rectangle(a) ^ height(a, 8) ^ width(a, 9)
+Create a rectangle with a height of 8 blocks and a width of 9 blocks.
+
+column(a) ^ height(a, 3)
+Create a column of size 3.
+column(b) ^ height(b, 3) ^ right(b, a)
+Then, create another one to the right of the first one.
+block(c) ^ location(w1) ^ block-location(c, w1) ^ upper_left(b, c) ^ block(d) ^ location(w2) ^ block-location(d, w2) ^ upper_right(a, d) ^ spatial-rel(east, 0, w2, w1)
+Ensure that the vertical line's top end is adjacent to the column's top end.
+immobile_block(7, 8) ^ immobile_block(1, 10)
+There are immobile blocks at row 8 and column 7 and at row 10 and column 1.
+
+aaauf(a)
+You should construct a aaauf.
+
+column(a) ^ height(a, 6)
+Build a vertical line of size 6.
+restricted(6, 6)
+Do not put a block in the space at row 6 and column 6.
+
+square(a) ^ size(a, 10)
+Build a 10 block by 10 block square.
+
+aaavn(a)
+Please build a aaavn.
+
+column(a) ^ height(a, 3)
+Create a column of height 3.
+column(b) ^ height(b, 3) ^ right(b, a)
+Then, form another one to the right of the first one.
+block(c) ^ location(w1) ^ block-location(c, w1) ^ upper_left(b, c) ^ block(d) ^ location(w2) ^ block-location(d, w2) ^ lower_right(a, d) ^ spatial-rel(east, 0, w2, w1)
+Ensure that the vertical line's top end is next to the bottom end of the column.
+immobile_block(8, 6) ^ immobile_block(6, 1) ^ immobile_block(6, 7)
+There are immobile blocks at row 6 and column 8, at row 1 and column 6, and at row 7 and column 6.
+
+rectangle(a) ^ height(a, 3) ^ width(a, 9)
+Create a rectangle that is 3 blocks tall and 9 blocks wide.
+
+square(a) ^ size(a, 2)
+Form a square with sides of block length 2.
+starting_block(1, 6) ^ starting_block(8, 6)
+There are already blocks at row 6 and column 1 and at row 6 and column 8.
+
+aaazt(a)
+I want you to build a aaazt.
+
+aaawn(a)
+I want you to construct a aaawn.
+
+column(a) ^ height(a, 8)
+Construct a column with 8 blocks.
+restricted(10, 10)
+Do not put a block in the space at row 10 and column 10.
+
+aaaxp(a)
+I want you to place a aaaxp on the table.
+
+aaazl(a)
+I want you to place a aaazl on the table.
+
+aaauw(a)
+You should create a aaauw.
+
+column(a) ^ height(a, 8)
+Build a vertical line using 8 blocks.
+rectangle(b) ^ height(b, 10) ^ width(b, 6) ^ left(b, a)
+After that, construct a rectangle that is 10 blocks tall and 6 blocks wide to the left of the vertical line.
+block(c) ^ location(w1) ^ block-location(c, w1) ^ upper_right(b, c) ^ block(d) ^ location(w2) ^ block-location(d, w2) ^ left_side(a, d, 5) ^ spatial-rel(west, 0, w2, w1)
+Ensure that the rectangle's upper right corner is next to the sixth row of the vertical line.
+starting_block(4, 1)
+There is already a block at row 1 and column 4.
+
+rectangle(a) ^ height(a, 3) ^ width(a, 10)
+Form a rectangle that is 3 blocks tall and 10 blocks wide.
+starting_block(3, 10)
+There is already a block at row 10 and column 3.
+
+column(a) ^ height(a, 4)
+Create a vertical line using 4 blocks.
+starting_block(6, 2)
+There is already a block at row 2 and column 6.
+
+column(a) ^ height(a, 8)
+Create a vertical line of size 8.
+row(b) ^ width(b, 6) ^ top(b, a)
+Then, create a row using 6 blocks to the top of the vertical line.
+block(c) ^ location(w1) ^ block-location(c, w1) ^ bottom_side(b, c, 2) ^ block(d) ^ location(w2) ^ block-location(d, w2) ^ upper_left(a, d) ^ spatial-rel(north, 0, w2, w1)
+Ensure that the third column of the row is next to the vertical line's top end.
+restricted(3, 0) ^ restricted(8, 8) ^ restricted(1, 6)
+Do not put blocks in the space at row 0 and column 3, the space at row 8 and column 8, and the space at row 6 and column 1.
+
+row(a) ^ width(a, 8)
+Construct a row of size 8.
+immobile_block(3, 10) ^ immobile_block(5, 6) ^ immobile_block(4, 5)
+There are immobile blocks at row 10 and column 3, at row 6 and column 5, and at row 5 and column 4.
+
+aaawh(a)
+Please create a aaawh.
+
+aaazy(a)
+I want you to create a aaazy.
+
+aaays(a)
+I want you to place a aaays on the table.
+
+aabad(a)
+I want you to create a aabad.
+
+row(a) ^ width(a, 3)
+Create a horizontal line using 3 blocks.
+rectangle(b) ^ height(b, 10) ^ width(b, 6) ^ top(b, a)
+Then, create a rectangle with a height of 10 blocks and a width of 6 blocks to the top of the horizontal line.
+block(c) ^ location(w1) ^ block-location(c, w1) ^ bottom_side(b, c, 2) ^ block(d) ^ location(w2) ^ block-location(d, w2) ^ upper_left(a, d) ^ spatial-rel(north, 0, w2, w1)
+Ensure that the third column of the rectangle is adjacent to the left end of the horizontal line.
+immobile_block(8, 1) ^ immobile_block(9, 4) ^ immobile_block(6, 8)
+There are immobile blocks at row 1 and column 8, at row 4 and column 9, and at row 8 and column 6.
+
+aaaws(a)
+Please place a aaaws on the table.
+
+aaayx(a)
+I want you to construct a aaayx.
+
+aabaf(a)
+You should create a aabaf.
+
+column(a) ^ height(a, 8)
+Create a column using 8 blocks.
+restricted(5, 5)
+Do not put a block in the space at row 5 and column 5.
+
+aaaux(a)
+I want you to build a aaaux.
+
+aaauy(a)
+I want you to build a aaauy.
+
+rectangle(a) ^ height(a, 5) ^ width(a, 6)
+Construct a rectangle with a width of 6 blocks and a height of 5 blocks.
+row(b) ^ width(b, 5) ^ right(b, a)
+Next, create a row with 5 blocks to the right of the rectangle.
+block(c) ^ location(w1) ^ block-location(c, w1) ^ upper_left(b, c) ^ block(d) ^ location(w2) ^ block-location(d, w2) ^ lower_right(a, d) ^ spatial-rel(east, 0, w2, w1)
+Ensure that the row's left end is next to the rectangle's lower right corner.
+immobile_block(5, 0)
+There is an immobile block at row 0 and column 5.
+
+square(a) ^ size(a, 9)
+Form a 9 by 9 square.
+restricted(9, 0) ^ restricted(10, 6)
+Do not put blocks in the spaces at row 0 and column 9 and at row 6 and column 10.
+
+aaaun(a)
+You should create a aaaun.
+
+column(a) ^ height(a, 6)
+Form a vertical line with 6 blocks.
+
+square(a) ^ size(a, 4)
+Form a 4 by 4 square.
+column(b) ^ height(b, 7) ^ top(b, a)
+Then, create a vertical line using 7 blocks to the top of the square.
+block(c) ^ location(w1) ^ block-location(c, w1) ^ lower_left(b, c) ^ block(d) ^ location(w2) ^ block-location(d, w2) ^ upper_left(a, d) ^ spatial-rel(north, 0, w2, w1)
+Ensure that the bottom end of the vertical line is in line with the upper left corner of the square.
+restricted(8, 10) ^ restricted(8, 8) ^ restricted(1, 4)
+Do not put blocks in the space at row 10 and column 8, the space at row 8 and column 8, and the space at row 4 and column 1.
+
+aaatp(a)
+You should construct a aaatp.
+
+aaatn(a)
+Please construct a aaatn.
+
+aaauo(a)
+Please create a aaauo.
+
+aabag(a)
+I want you to place a aabag on the table.
+
+square(a) ^ size(a, 3)
+Form a 3 by 3 square.
+
+square(a) ^ size(a, 3)
+Create a square with sides of block length 3.
+
+row(a) ^ width(a, 9)
+Create a horizontal line of size 9.
+restricted(3, 9) ^ restricted(7, 8)
+Do not put blocks in the spaces at row 9 and column 3 and at row 8 and column 7.
+
+column(a) ^ height(a, 7)
+Form a column of height 7.
+row(b) ^ width(b, 3) ^ right(b, a)
+After that, build a horizontal line with 3 blocks to the right of the column.
+block(c) ^ location(w1) ^ block-location(c, w1) ^ upper_left(b, c) ^ block(d) ^ location(w2) ^ block-location(d, w2) ^ right_side(a, d, 3) ^ spatial-rel(east, 0, w2, w1)
+Ensure that the left end of the horizontal line is next to the fourth row of the column.
+restricted(10, 6)
+Do not put a block in the space at row 6 and column 10.
+
+column(a) ^ height(a, 4)
+Form a vertical line using 4 blocks.
+column(b) ^ height(b, 4) ^ right(b, a)
+After that, build another one to the right of the first one.
+block(c) ^ location(w1) ^ block-location(c, w1) ^ lower_left(b, c) ^ block(d) ^ location(w2) ^ block-location(d, w2) ^ upper_right(a, d) ^ spatial-rel(east, 0, w2, w1)
+Ensure that the bottom end of the new vertical line is next to the first vertical line's top end.
+immobile_block(0, 8) ^ immobile_block(9, 4)
+There are immobile blocks at row 8 and column 0 and at row 4 and column 9.
+
+aaayu(a)
+Create a aaayu.
+
+aaava(a)
+Please create a aaava.
+
+square(a) ^ size(a, 3)
+Build a 3 by 3 square.
+restricted(3, 1) ^ restricted(7, 5)
+Do not put blocks in the spaces at row 1 and column 3 and at row 5 and column 7.
+
+row(a) ^ width(a, 4)
+Construct a row with 4 blocks.
+column(b) ^ height(b, 5) ^ left(b, a)
+After that, build a vertical line of height 5 to the left of the row.
+block(c) ^ location(w1) ^ block-location(c, w1) ^ upper_right(b, c) ^ block(d) ^ location(w2) ^ block-location(d, w2) ^ upper_left(a, d) ^ spatial-rel(west, 0, w2, w1)
+Ensure that the vertical line's top end is next to the left end of the row.
+restricted(0, 8)
+Do not put a block in the space at row 8 and column 0.
+
+aaazq(a)
+Please construct a aaazq.
+
+aaawo(a)
+Create a aaawo.
+
+aaayq(a)
+Build a aaayq.
+
+aaazf(a)
+Place a aaazf on the table.
+
+aaaxz(a)
+I want you to build a aaaxz.
+
+aaath(a)
+I want you to build a aaath.
+
+column(a) ^ height(a, 6)
+Construct a vertical line with 6 blocks.
+row(b) ^ width(b, 8) ^ top(b, a)
+After that, create a row of length 8 to the top of the vertical line.
+block(c) ^ location(w1) ^ block-location(c, w1) ^ bottom_side(b, c, 2) ^ block(d) ^ location(w2) ^ block-location(d, w2) ^ upper_left(a, d) ^ spatial-rel(north, 0, w2, w1)
+Ensure that the third column of the row is adjacent to the vertical line's top end.
+
+square(a) ^ size(a, 6)
+Create a 6 by 6 square.
+starting_block(5, 3) ^ starting_block(8, 5)
+There are already blocks at row 3 and column 5 and at row 5 and column 8.
+
+aabam(a)
+I want you to place a aabam on the table.
+
+rectangle(a) ^ height(a, 9) ^ width(a, 2)
+Build a rectangle that is 2 blocks wide and 9 blocks tall.
+column(b) ^ height(b, 6) ^ top(b, a)
+Next, construct a column using 6 blocks to the top of the rectangle.
+block(c) ^ location(w1) ^ block-location(c, w1) ^ lower_left(b, c) ^ block(d) ^ location(w2) ^ block-location(d, w2) ^ upper_right(a, d) ^ spatial-rel(north, 0, w2, w1)
+Ensure that the column's bottom end is adjacent to the rectangle's upper right corner.
+immobile_block(1, 5) ^ immobile_block(8, 4) ^ immobile_block(3, 8)
+There are immobile blocks at row 5 and column 1, at row 4 and column 8, and at row 8 and column 3.
+
+rectangle(a) ^ height(a, 7) ^ width(a, 3)
+Build a rectangle with a height of 7 blocks and a width of 3 blocks.
+restricted(10, 7)
+Do not put a block in the space at row 7 and column 10.
+
+aaaxm(a)
+Please construct a aaaxm.
+
+aaawu(a)
+I want you to place a aaawu on the table.
+
+rectangle(a) ^ height(a, 7) ^ width(a, 8)
+Construct a rectangle that is 8 blocks wide and 7 blocks tall.
+immobile_block(4, 6) ^ immobile_block(6, 3) ^ immobile_block(10, 2)
+There are immobile blocks at row 6 and column 4, at row 3 and column 6, and at row 2 and column 10.
+
+aaavp(a)
+I want you to construct a aaavp.
+
+row(a) ^ width(a, 3)
+Construct a horizontal line of length 3.
+
+aaawx(a)
+Build a aaawx.
+
+aaawg(a)
+Construct a aaawg.
+
+aaawt(a)
+Please construct a aaawt.
+
+aaatk(a)
+I want you to create a aaatk.
+
+aaaxk(a)
+Place a aaaxk on the table.
+
+aaaxa(a)
+You should construct a aaaxa.
+
+aaatw(a)
+You should build a aaatw.
+
+aaawm(a)
+Please construct a aaawm.
+
+square(a) ^ size(a, 5)
+Form a square with sides of block length 5.
+rectangle(b) ^ height(b, 7) ^ width(b, 3) ^ right(b, a)
+Next, build a rectangle that is 7 blocks tall and 3 blocks wide to the right of the square.
+block(c) ^ location(w1) ^ block-location(c, w1) ^ lower_left(b, c) ^ block(d) ^ location(w2) ^ block-location(d, w2) ^ right_side(a, d, 2) ^ spatial-rel(east, 0, w2, w1)
+Ensure that the lower left corner of the rectangle is next to the third row of the square.
+immobile_block(9, 7) ^ immobile_block(0, 7)
+There are immobile blocks at row 7 and column 9 and at row 7 and column 0.
+
+column(a) ^ height(a, 9)
+Build a vertical line of size 9.
+square(b) ^ size(b, 4) ^ bottom(b, a)
+After that, create a 4 by 4 square to the bottom of the vertical line.
+block(c) ^ location(w1) ^ block-location(c, w1) ^ upper_right(b, c) ^ block(d) ^ location(w2) ^ block-location(d, w2) ^ lower_right(a, d) ^ spatial-rel(south, 0, w2, w1)
+Ensure that the upper right corner of the square is adjacent to the vertical line's bottom end.
+
+aaaye(a)
+Please create a aaaye.
+
+square(a) ^ size(a, 6)
+Build a square with sides of block length 6.
+row(b) ^ width(b, 3) ^ bottom(b, a)
+Then, construct a horizontal line using 3 blocks to the bottom of the square.
+block(c) ^ location(w1) ^ block-location(c, w1) ^ upper_left(b, c) ^ block(d) ^ location(w2) ^ block-location(d, w2) ^ lower_right(a, d) ^ spatial-rel(south, 0, w2, w1)
+Ensure that the horizontal line's left end is adjacent to the lower right corner of the square.
+
+aaavb(a)
+Construct a aaavb.
+
+aaaue(a)
+Please build a aaaue.
+
+aaatl(a)
+Place a aaatl on the table.
+
+rectangle(a) ^ height(a, 7) ^ width(a, 4)
+Create a rectangle with a width of 4 blocks and a height of 7 blocks.
+
+aaawy(a)
+Please build a aaawy.
+
+aaauv(a)
+Please place a aaauv on the table.
+
+aaavy(a)
+Construct a aaavy.
+
+rectangle(a) ^ height(a, 6) ^ width(a, 10)
+Construct a 10 by 6 rectangle.
+rectangle(b) ^ height(b, 6) ^ width(b, 10) ^ top(b, a)
+Next, construct another one to the top of the first one.
+block(c) ^ location(w1) ^ block-location(c, w1) ^ lower_left(b, c) ^ block(d) ^ location(w2) ^ block-location(d, w2) ^ top_side(a, d, 2) ^ spatial-rel(north, 0, w2, w1)
+Ensure that the lower left corner of the new rectangle is next to the third column of the first rectangle.
+restricted(5, 7)
+Do not put a block in the space at row 7 and column 5.
+
+aaazx(a)
+Place a aaazx on the table.
+
+rectangle(a) ^ height(a, 3) ^ width(a, 9)
+Build a rectangle that is 9 blocks wide and 3 blocks tall.
+square(b) ^ size(b, 2) ^ left(b, a)
+Next, form a 2 by 2 square to the left of the rectangle.
+block(c) ^ location(w1) ^ block-location(c, w1) ^ upper_right(b, c) ^ block(d) ^ location(w2) ^ block-location(d, w2) ^ lower_left(a, d) ^ spatial-rel(west, 0, w2, w1)
+Ensure that the square's upper right corner is next to the lower left corner of the rectangle.
+starting_block(2, 9)
+There is already a block at row 9 and column 2.
+
+rectangle(a) ^ height(a, 4) ^ width(a, 6)
+Form a rectangle that is 6 blocks wide and 4 blocks tall.
+square(b) ^ size(b, 8) ^ top(b, a)
+After that, form a 8 by 8 square to the top of the rectangle.
+block(c) ^ location(w1) ^ block-location(c, w1) ^ lower_right(b, c) ^ block(d) ^ location(w2) ^ block-location(d, w2) ^ top_side(a, d, 1) ^ spatial-rel(north, 0, w2, w1)
+Ensure that the lower right corner of the square is next to the second column of the rectangle.
+
+square(a) ^ size(a, 4)
+Form a 4 by 4 square.
+
+row(a) ^ width(a, 3)
+Construct a horizontal line with 3 blocks.
+row(b) ^ width(b, 3) ^ right(b, a)
+Next, form another one to the right of the first one.
+block(c) ^ location(w1) ^ block-location(c, w1) ^ upper_left(b, c) ^ block(d) ^ location(w2) ^ block-location(d, w2) ^ upper_right(a, d) ^ spatial-rel(east, 0, w2, w1)
+Ensure that this horizontal line's left end is aligned with the right end of the first horizontal line.
+starting_block(0, 0) ^ starting_block(1, 5)
+There are already blocks at row 0 and column 0 and at row 5 and column 1.
+
+aaawf(a)
+Place a aaawf on the table.
+
+aaaxj(a)
+Construct a aaaxj.
+
+aaawq(a)
+I want you to create a aaawq.
+
+row(a) ^ width(a, 7)
+Create a horizontal line of size 7.
+
+square(a) ^ size(a, 4)
+Build a 4 block by 4 block square.
+column(b) ^ height(b, 6) ^ top(b, a)
+Next, construct a column using 6 blocks to the top of the square.
+block(c) ^ location(w1) ^ block-location(c, w1) ^ lower_left(b, c) ^ block(d) ^ location(w2) ^ block-location(d, w2) ^ top_side(a, d, 1) ^ spatial-rel(north, 0, w2, w1)
+Ensure that the bottom end of the column is next to the second column of the square.
+immobile_block(10, 5) ^ immobile_block(1, 2) ^ immobile_block(4, 7)
+There are immobile blocks at row 5 and column 10, at row 2 and column 1, and at row 7 and column 4.
+
+row(a) ^ width(a, 9)
+Form a row of length 9.
+square(b) ^ size(b, 5) ^ bottom(b, a)
+After that, construct a 5 block by 5 block square to the bottom of the row.
+block(c) ^ location(w1) ^ block-location(c, w1) ^ upper_right(b, c) ^ block(d) ^ location(w2) ^ block-location(d, w2) ^ bottom_side(a, d, 3) ^ spatial-rel(south, 0, w2, w1)
+Ensure that the square's upper right corner is next to the fourth column of the row.
+starting_block(3, 9)
+There is already a block at row 9 and column 3.
+
+column(a) ^ height(a, 4)
+Build a vertical line of height 4.
+row(b) ^ width(b, 5) ^ left(b, a)
+Next, build a row using 5 blocks to the left of the vertical line.
+block(c) ^ location(w1) ^ block-location(c, w1) ^ upper_right(b, c) ^ block(d) ^ location(w2) ^ block-location(d, w2) ^ left_side(a, d, 1) ^ spatial-rel(west, 0, w2, w1)
+Ensure that the right end of the row is next to the second row of the vertical line.
+starting_block(7, 7) ^ starting_block(2, 7)
+There are already blocks at row 7 and column 7 and at row 7 and column 2.
+
+row(a) ^ width(a, 7)
+Construct a row using 7 blocks.
+row(b) ^ width(b, 7) ^ bottom(b, a)
+Next, create another one to the bottom of the first one.
+block(c) ^ location(w1) ^ block-location(c, w1) ^ upper_left(b, c) ^ block(d) ^ location(w2) ^ block-location(d, w2) ^ bottom_side(a, d, 4) ^ spatial-rel(south, 0, w2, w1)
+Ensure that the horizontal line's left end is next to the fifth column of the row.
+immobile_block(2, 1)
+There is an immobile block at row 1 and column 2.
+
+rectangle(a) ^ height(a, 7) ^ width(a, 9)
+Construct a rectangle that is 9 blocks wide and 7 blocks tall.
+
+square(a) ^ size(a, 2)
+Build a 2 block by 2 block square.
+square(b) ^ size(b, 2) ^ left(b, a)
+Then, form another one to the left of the first one.
+block(c) ^ location(w1) ^ block-location(c, w1) ^ upper_right(b, c) ^ block(d) ^ location(w2) ^ block-location(d, w2) ^ upper_left(a, d) ^ spatial-rel(west, 0, w2, w1)
+Ensure that this square's upper right corner is adjacent to the upper left corner of the first square.
+restricted(4, 6)
+Do not put a block in the space at row 6 and column 4.
+
+aaayk(a)
+I want you to build a aaayk.
+
+aaaxs(a)
+Build a aaaxs.
+
+aabat(a)
+I want you to create a aabat.
+
+aaats(a)
+Place a aaats on the table.
+
+rectangle(a) ^ height(a, 6) ^ width(a, 4)
+Construct a rectangle that is 6 blocks tall and 4 blocks wide.
+restricted(10, 9)
+Do not put a block in the space at row 9 and column 10.
+
+rectangle(a) ^ height(a, 3) ^ width(a, 4)
+Construct a rectangle with a width of 4 blocks and a height of 3 blocks.
+row(b) ^ width(b, 4) ^ right(b, a)
+Next, form a row of length 4 to the right of the rectangle.
+block(c) ^ location(w1) ^ block-location(c, w1) ^ upper_left(b, c) ^ block(d) ^ location(w2) ^ block-location(d, w2) ^ right_side(a, d, 1) ^ spatial-rel(east, 0, w2, w1)
+Ensure that the row's left end is next to the second row of the rectangle.
+restricted(8, 3) ^ restricted(0, 6)
+Do not put blocks in the spaces at row 3 and column 8 and at row 6 and column 0.
+
+column(a) ^ height(a, 9)
+Create a vertical line using 9 blocks.
+immobile_block(0, 8) ^ immobile_block(7, 2) ^ immobile_block(4, 2)
+There are immobile blocks at row 8 and column 0, at row 2 and column 7, and at row 2 and column 4.
+
+aaauq(a)
+Please place a aaauq on the table.
+
+column(a) ^ height(a, 4)
+Build a vertical line with 4 blocks.
+square(b) ^ size(b, 9) ^ left(b, a)
+After that, create a 9 block by 9 block square to the left of the vertical line.
+block(c) ^ location(w1) ^ block-location(c, w1) ^ right_side(b, c, 4) ^ block(d) ^ location(w2) ^ block-location(d, w2) ^ upper_left(a, d) ^ spatial-rel(west, 0, w2, w1)
+Ensure that the fifth row of the square is next to the vertical line's top end.
+
+aaavw(a)
+I want you to construct a aaavw.
+
+aaayo(a)
+You should place a aaayo on the table.
+
+column(a) ^ height(a, 8)
+Build a column of height 8.
+immobile_block(0, 4) ^ immobile_block(4, 2)
+There are immobile blocks at row 4 and column 0 and at row 2 and column 4.
+
+row(a) ^ width(a, 10)
+Create a row of length 10.
+rectangle(b) ^ height(b, 5) ^ width(b, 8) ^ top(b, a)
+After that, construct a rectangle with a height of 5 blocks and a width of 8 blocks to the top of the row.
+block(c) ^ location(w1) ^ block-location(c, w1) ^ lower_left(b, c) ^ block(d) ^ location(w2) ^ block-location(d, w2) ^ top_side(a, d, 3) ^ spatial-rel(north, 0, w2, w1)
+Ensure that the lower left corner of the rectangle is next to the fourth column of the row.
+starting_block(8, 6)
+There is already a block at row 6 and column 8.
+
+aaavc(a)
+Place a aaavc on the table.
+
+aaavh(a)
+I want you to construct a aaavh.
+
+aabai(a)
+You should place a aabai on the table.
+
+row(a) ^ width(a, 4)
+Create a row of length 4.
+restricted(4, 9)
+Do not put a block in the space at row 9 and column 4.
+
+aaaxr(a)
+Create a aaaxr.
+
+aaazi(a)
+You should build a aaazi.
+
+row(a) ^ width(a, 7)
+Create a horizontal line of size 7.
+square(b) ^ size(b, 4) ^ bottom(b, a)
+Next, create a 4 by 4 square to the bottom of the horizontal line.
+block(c) ^ location(w1) ^ block-location(c, w1) ^ upper_left(b, c) ^ block(d) ^ location(w2) ^ block-location(d, w2) ^ lower_left(a, d) ^ spatial-rel(south, 0, w2, w1)
+Ensure that the square's upper left corner is next to the left end of the horizontal line.
+immobile_block(1, 8)
+There is an immobile block at row 8 and column 1.
+
+aaayv(a)
+Construct a aaayv.
+
+row(a) ^ width(a, 3)
+Build a row using 3 blocks.
+square(b) ^ size(b, 3) ^ bottom(b, a)
+Then, form a 3 block by 3 block square to the bottom of the row.
+block(c) ^ location(w1) ^ block-location(c, w1) ^ upper_left(b, c) ^ block(d) ^ location(w2) ^ block-location(d, w2) ^ lower_left(a, d) ^ spatial-rel(south, 0, w2, w1)
+Ensure that the square's upper left corner is adjacent to the row's left end.
+starting_block(8, 2) ^ starting_block(1, 6)
+There are already blocks at row 2 and column 8 and at row 6 and column 1.
+
+aabao(a)
+Construct a aabao.
+
+aaaty(a)
+Please place a aaaty on the table.
+
+aaban(a)
+Place a aaban on the table.
+
+aaayp(a)
+I want you to place a aaayp on the table.
+
+square(a) ^ size(a, 5)
+Create a square with sides of block length 5.
+immobile_block(0, 9)
+There is an immobile block at row 9 and column 0.
+
+aabae(a)
+I want you to build a aabae.
+
+aaaug(a)
+I want you to create a aaaug.
+
+aaavj(a)
+You should place a aaavj on the table.
+
+column(a) ^ height(a, 8)
+Form a vertical line of size 8.
+row(b) ^ width(b, 6) ^ right(b, a)
+After that, build a row of size 6 to the right of the vertical line.
+block(c) ^ location(w1) ^ block-location(c, w1) ^ upper_left(b, c) ^ block(d) ^ location(w2) ^ block-location(d, w2) ^ right_side(a, d, 6) ^ spatial-rel(east, 0, w2, w1)
+Ensure that the left end of the row is adjacent to the seventh row of the vertical line.
+
+row(a) ^ width(a, 8)
+Construct a row of size 8.
+starting_block(0, 10)
+There is already a block at row 10 and column 0.
+
+row(a) ^ width(a, 5)
+Create a row of length 5.
+immobile_block(0, 4) ^ immobile_block(0, 9) ^ immobile_block(6, 9)
+There are immobile blocks at row 4 and column 0, at row 9 and column 0, and at row 9 and column 6.
+
+square(a) ^ size(a, 6)
+Form a 6 block by 6 block square.
+square(b) ^ size(b, 6) ^ right(b, a)
+Then, create another one to the right of the first one.
+block(c) ^ location(w1) ^ block-location(c, w1) ^ lower_left(b, c) ^ block(d) ^ location(w2) ^ block-location(d, w2) ^ right_side(a, d, 1) ^ spatial-rel(east, 0, w2, w1)
+Ensure that this square's lower left corner is next to the second row of the first square.
+restricted(7, 5) ^ restricted(6, 3) ^ restricted(4, 2)
+Do not put blocks in the space at row 5 and column 7, the space at row 3 and column 6, and the space at row 2 and column 4.
+
+aaaxt(a)
+I want you to place a aaaxt on the table.
+
+aaaui(a)
+Please build a aaaui.
+
+aaato(a)
+I want you to build a aaato.
+
+aaawv(a)
+I want you to construct a aaawv.
+
+rectangle(a) ^ height(a, 10) ^ width(a, 7)
+Construct a rectangle that is 7 blocks wide and 10 blocks tall.
+starting_block(3, 10)
+There is already a block at row 10 and column 3.
+
+row(a) ^ width(a, 5)
+Form a row with 5 blocks.
+column(b) ^ height(b, 10) ^ bottom(b, a)
+Next, form a column with 10 blocks to the bottom of the row.
+block(c) ^ location(w1) ^ block-location(c, w1) ^ upper_left(b, c) ^ block(d) ^ location(w2) ^ block-location(d, w2) ^ bottom_side(a, d, 3) ^ spatial-rel(south, 0, w2, w1)
+Ensure that the top end of the column is next to the fourth column of the row.
+starting_block(6, 9)
+There is already a block at row 9 and column 6.
+
+aabaa(a)
+I want you to build a aabaa.
+
+square(a) ^ size(a, 6)
+Build a 6 block by 6 block square.
+
+aaawk(a)
+Please build a aaawk.
+
+aaaxg(a)
+You should build a aaaxg.
+
+aaavl(a)
+You should build a aaavl.
+
+rectangle(a) ^ height(a, 2) ^ width(a, 5)
+Construct a rectangle with a width of 5 blocks and a height of 2 blocks.
+row(b) ^ width(b, 10) ^ right(b, a)
+After that, construct a horizontal line of length 10 to the right of the rectangle.
+block(c) ^ location(w1) ^ block-location(c, w1) ^ upper_left(b, c) ^ block(d) ^ location(w2) ^ block-location(d, w2) ^ lower_right(a, d) ^ spatial-rel(east, 0, w2, w1)
+Ensure that the horizontal line's left end is adjacent to the lower right corner of the rectangle.
+starting_block(6, 9) ^ starting_block(9, 2)
+There are already blocks at row 9 and column 6 and at row 2 and column 9.
+
+aaazh(a)
+You should build a aaazh.
+
+rectangle(a) ^ height(a, 2) ^ width(a, 9)
+Form a 9 by 2 rectangle.
+starting_block(3, 6) ^ starting_block(3, 8)
+There are already blocks at row 6 and column 3 and at row 8 and column 3.
+
+rectangle(a) ^ height(a, 4) ^ width(a, 8)
+Create a 8 by 4 rectangle.
+immobile_block(8, 9)
+There is an immobile block at row 9 and column 8.
+
+aaaxo(a)
+You should build a aaaxo.
+
+aaayh(a)
+I want you to place a aaayh on the table.
+
+aaatq(a)
+I want you to place a aaatq on the table.
+
+aaaxn(a)
+I want you to build a aaaxn.
+
+square(a) ^ size(a, 3)
+Construct a 3 block by 3 block square.
+
+aaavu(a)
+You should build a aaavu.
+
+row(a) ^ width(a, 4)
+Construct a horizontal line using 4 blocks.
+row(b) ^ width(b, 4) ^ right(b, a)
+Then, create another one to the right of the first one.
+block(c) ^ location(w1) ^ block-location(c, w1) ^ upper_left(b, c) ^ block(d) ^ location(w2) ^ block-location(d, w2) ^ upper_right(a, d) ^ spatial-rel(east, 0, w2, w1)
+Ensure that the row's left end is in line with the horizontal line's right end.
+starting_block(7, 3) ^ starting_block(9, 7) ^ starting_block(5, 5)
+There are already blocks at row 3 and column 7, at row 7 and column 9, and at row 5 and column 5.
+
+aaavs(a)
+Place a aaavs on the table.
+
+rectangle(a) ^ height(a, 8) ^ width(a, 7)
+Build a 7 by 8 rectangle.
+restricted(6, 1) ^ restricted(4, 9)
+Do not put blocks in the spaces at row 1 and column 6 and at row 9 and column 4.
+
+aaayt(a)
+You should place a aaayt on the table.
+
+row(a) ^ width(a, 6)
+Construct a row of size 6.
+rectangle(b) ^ height(b, 6) ^ width(b, 9) ^ top(b, a)
+Then, build a 9 by 6 rectangle to the top of the row.
+block(c) ^ location(w1) ^ block-location(c, w1) ^ lower_left(b, c) ^ block(d) ^ location(w2) ^ block-location(d, w2) ^ top_side(a, d, 1) ^ spatial-rel(north, 0, w2, w1)
+Ensure that the rectangle's lower left corner is next to the second column of the row.
+
+aaatm(a)
+You should place a aaatm on the table.
+
+aaatz(a)
+Construct a aaatz.
+
+row(a) ^ width(a, 10)
+Build a row with 10 blocks.
+square(b) ^ size(b, 7) ^ bottom(b, a)
+Next, construct a 7 block by 7 block square to the bottom of the row.
+block(c) ^ location(w1) ^ block-location(c, w1) ^ upper_left(b, c) ^ block(d) ^ location(w2) ^ block-location(d, w2) ^ bottom_side(a, d, 8) ^ spatial-rel(south, 0, w2, w1)
+Ensure that the upper left corner of the square is next to the ninth column of the row.
+restricted(0, 7) ^ restricted(8, 10) ^ restricted(6, 4)
+Do not put blocks in the space at row 7 and column 0, the space at row 10 and column 8, and the space at row 4 and column 6.
+
+aaaxx(a)
+Please place a aaaxx on the table.
+
+aabab(a)
+I want you to place a aabab on the table.
+
+aaazr(a)
+Create a aaazr.
+
+column(a) ^ height(a, 3)
+Build a column of size 3.
+
+row(a) ^ width(a, 7)
+Create a row using 7 blocks.
+square(b) ^ size(b, 5) ^ right(b, a)
+After that, form a 5 by 5 square to the right of the row.
+block(c) ^ location(w1) ^ block-location(c, w1) ^ left_side(b, c, 2) ^ block(d) ^ location(w2) ^ block-location(d, w2) ^ upper_right(a, d) ^ spatial-rel(east, 0, w2, w1)
+Ensure that the third row of the square is adjacent to the row's right end.
+immobile_block(9, 2) ^ immobile_block(7, 0) ^ immobile_block(7, 1)
+There are immobile blocks at row 2 and column 9, at row 0 and column 7, and at row 1 and column 7.
+
+aaazv(a)
+I want you to build a aaazv.
+
+aabas(a)
+You should construct a aabas.
+
+aaazw(a)
+I want you to create a aaazw.
+
+aaatu(a)
+Create a aaatu.
+
+column(a) ^ height(a, 4)
+Create a column using 4 blocks.
+row(b) ^ width(b, 9) ^ top(b, a)
+Next, construct a row of length 9 to the top of the column.
+block(c) ^ location(w1) ^ block-location(c, w1) ^ bottom_side(b, c, 5) ^ block(d) ^ location(w2) ^ block-location(d, w2) ^ upper_left(a, d) ^ spatial-rel(north, 0, w2, w1)
+Ensure that the sixth column of the row is next to the top end of the column.
+immobile_block(1, 10) ^ immobile_block(8, 3)
+There are immobile blocks at row 10 and column 1 and at row 3 and column 8.
+
+aaavg(a)
+Place a aaavg on the table.
+
+rectangle(a) ^ height(a, 5) ^ width(a, 10)
+Form a rectangle with a width of 10 blocks and a height of 5 blocks.
+rectangle(b) ^ height(b, 5) ^ width(b, 10) ^ top(b, a)
+Next, create another one to the top of the first one.
+block(c) ^ location(w1) ^ block-location(c, w1) ^ lower_left(b, c) ^ block(d) ^ location(w2) ^ block-location(d, w2) ^ top_side(a, d, 4) ^ spatial-rel(north, 0, w2, w1)
+Ensure that the lower left corner of the new rectangle is next to the fifth column of the first rectangle.
+
+aaatr(a)
+Please place a aaatr on the table.
+
+row(a) ^ width(a, 8)
+Create a horizontal line of length 8.
+column(b) ^ height(b, 9) ^ right(b, a)
+After that, construct a column of height 9 to the right of the horizontal line.
+block(c) ^ location(w1) ^ block-location(c, w1) ^ left_side(b, c, 3) ^ block(d) ^ location(w2) ^ block-location(d, w2) ^ upper_right(a, d) ^ spatial-rel(east, 0, w2, w1)
+Ensure that the fourth row of the column is adjacent to the horizontal line's right end.
+starting_block(5, 0) ^ starting_block(9, 7) ^ starting_block(4, 3)
+There are already blocks at row 0 and column 5, at row 7 and column 9, and at row 3 and column 4.
+
+aaatg(a)
+Place a aaatg on the table.
+
+aaauj(a)
+You should build a aaauj.
+
+square(a) ^ size(a, 7)
+Form a 7 block by 7 block square.
+square(b) ^ size(b, 7) ^ left(b, a)
+After that, build another one to the left of the first one.
+block(c) ^ location(w1) ^ block-location(c, w1) ^ upper_right(b, c) ^ block(d) ^ location(w2) ^ block-location(d, w2) ^ lower_left(a, d) ^ spatial-rel(west, 0, w2, w1)
+Ensure that the upper right corner of the new square is adjacent to the lower left corner of the first square.
+starting_block(2, 9)
+There is already a block at row 9 and column 2.
+
+column(a) ^ height(a, 5)
+Build a column of size 5.
+row(b) ^ width(b, 8) ^ bottom(b, a)
+After that, form a horizontal line with 8 blocks to the bottom of the column.
+block(c) ^ location(w1) ^ block-location(c, w1) ^ upper_left(b, c) ^ block(d) ^ location(w2) ^ block-location(d, w2) ^ lower_left(a, d) ^ spatial-rel(south, 0, w2, w1)
+Ensure that the left end of the horizontal line is next to the bottom end of the column.
+immobile_block(3, 6) ^ immobile_block(2, 5) ^ immobile_block(6, 1)
+There are immobile blocks at row 6 and column 3, at row 5 and column 2, and at row 1 and column 6.
+
+row(a) ^ width(a, 5)
+Form a row using 5 blocks.
+
+column(a) ^ height(a, 7)
+Build a vertical line of size 7.
+
+aaaze(a)
+Place a aaaze on the table.
+
+column(a) ^ height(a, 5)
+Construct a column of size 5.
+immobile_block(2, 8) ^ immobile_block(9, 9) ^ immobile_block(10, 4)
+There are immobile blocks at row 8 and column 2, at row 9 and column 9, and at row 4 and column 10.
+
+aaazo(a)
+Create a aaazo.
+
+row(a) ^ width(a, 8)
+Construct a row of size 8.
+
+column(a) ^ height(a, 3)
+Build a column with 3 blocks.
+starting_block(10, 7) ^ starting_block(0, 6)
+There are already blocks at row 7 and column 10 and at row 6 and column 0.
+
+aaauc(a)
+You should place a aaauc on the table.
+
+rectangle(a) ^ height(a, 7) ^ width(a, 5)
+Build a rectangle with a height of 7 blocks and a width of 5 blocks.
+row(b) ^ width(b, 6) ^ left(b, a)
+Then, create a row of length 6 to the left of the rectangle.
+block(c) ^ location(w1) ^ block-location(c, w1) ^ upper_right(b, c) ^ block(d) ^ location(w2) ^ block-location(d, w2) ^ left_side(a, d, 5) ^ spatial-rel(west, 0, w2, w1)
+Ensure that the row's right end is next to the sixth row of the rectangle.
+restricted(8, 0) ^ restricted(7, 8)
+Do not put blocks in the spaces at row 0 and column 8 and at row 8 and column 7.
+
+row(a) ^ width(a, 3)
+Construct a row of size 3.
+immobile_block(8, 3) ^ immobile_block(2, 4) ^ immobile_block(5, 3)
+There are immobile blocks at row 3 and column 8, at row 4 and column 2, and at row 3 and column 5.
+
+square(a) ^ size(a, 7)
+Create a 7 by 7 square.
+rectangle(b) ^ height(b, 8) ^ width(b, 3) ^ bottom(b, a)
+Next, create a rectangle with a height of 8 blocks and a width of 3 blocks to the bottom of the square.
+block(c) ^ location(w1) ^ block-location(c, w1) ^ upper_left(b, c) ^ block(d) ^ location(w2) ^ block-location(d, w2) ^ bottom_side(a, d, 3) ^ spatial-rel(south, 0, w2, w1)
+Ensure that the rectangle's upper left corner is next to the fourth column of the square.
+immobile_block(2, 3)
+There is an immobile block at row 3 and column 2.
+
+square(a) ^ size(a, 4)
+Construct a 4 block by 4 block square.
+rectangle(b) ^ height(b, 6) ^ width(b, 9) ^ left(b, a)
+After that, construct a rectangle with a width of 9 blocks and a height of 6 blocks to the left of the square.
+block(c) ^ location(w1) ^ block-location(c, w1) ^ upper_right(b, c) ^ block(d) ^ location(w2) ^ block-location(d, w2) ^ lower_left(a, d) ^ spatial-rel(west, 0, w2, w1)
+Ensure that the upper right corner of the rectangle is next to the square's lower left corner.
+restricted(7, 2) ^ restricted(1, 8) ^ restricted(0, 6)
+Do not put blocks in the space at row 2 and column 7, the space at row 8 and column 1, and the space at row 6 and column 0.
+
+row(a) ^ width(a, 7)
+Create a horizontal line with 7 blocks.
+restricted(6, 7)
+Do not put a block in the space at row 7 and column 6.
+
+aaawa(a)
+I want you to construct a aaawa.
+
+aaaxf(a)
+Create a aaaxf.
+
+row(a) ^ width(a, 7)
+Construct a horizontal line with 7 blocks.
+immobile_block(3, 2) ^ immobile_block(9, 2)
+There are immobile blocks at row 2 and column 3 and at row 2 and column 9.
+
+column(a) ^ height(a, 6)
+Create a vertical line of height 6.
+
+rectangle(a) ^ height(a, 3) ^ width(a, 4)
+Create a 4 by 3 rectangle.
+restricted(2, 4) ^ restricted(7, 5)
+Do not put blocks in the spaces at row 4 and column 2 and at row 5 and column 7.
+
+aaavq(a)
+Please construct a aaavq.
+
+square(a) ^ size(a, 8)
+Construct a square with sides of block length 8.
+starting_block(5, 0) ^ starting_block(7, 7) ^ starting_block(2, 6)
+There are already blocks at row 0 and column 5, at row 7 and column 7, and at row 6 and column 2.
+
+rectangle(a) ^ height(a, 7) ^ width(a, 2)
+Create a rectangle that is 2 blocks wide and 7 blocks tall.
+row(b) ^ width(b, 3) ^ bottom(b, a)
+After that, form a row using 3 blocks to the bottom of the rectangle.
+block(c) ^ location(w1) ^ block-location(c, w1) ^ upper_left(b, c) ^ block(d) ^ location(w2) ^ block-location(d, w2) ^ lower_right(a, d) ^ spatial-rel(south, 0, w2, w1)
+Ensure that the row's left end is next to the rectangle's lower right corner.
+starting_block(0, 3)
+There is already a block at row 3 and column 0.
+
+aaaza(a)
+I want you to build a aaaza.
+
+row(a) ^ width(a, 3)
+Construct a horizontal line of length 3.
+row(b) ^ width(b, 3) ^ top(b, a)
+Then, build another one to the top of the first one.
+block(c) ^ location(w1) ^ block-location(c, w1) ^ lower_right(b, c) ^ block(d) ^ location(w2) ^ block-location(d, w2) ^ upper_left(a, d) ^ spatial-rel(north, 0, w2, w1)
+Ensure that the new horizontal line's right end is next to the left end of the first horizontal line.
+restricted(7, 3) ^ restricted(2, 6)
+Do not put blocks in the spaces at row 3 and column 7 and at row 6 and column 2.
+
+aaawd(a)
+Place a aaawd on the table.
+
+square(a) ^ size(a, 7)
+Build a square with sides of block length 7.
+immobile_block(5, 4)
+There is an immobile block at row 4 and column 5.
+
+row(a) ^ width(a, 9)
+Build a row using 9 blocks.
+restricted(10, 10)
+Do not put a block in the space at row 10 and column 10.
+
+aaatt(a)
+I want you to place a aaatt on the table.
+
+row(a) ^ width(a, 10)
+Form a horizontal line with 10 blocks.
+row(b) ^ width(b, 10) ^ bottom(b, a)
+Next, construct another one to the bottom of the first one.
+block(c) ^ location(w1) ^ block-location(c, w1) ^ upper_left(b, c) ^ block(d) ^ location(w2) ^ block-location(d, w2) ^ bottom_side(a, d, 5) ^ spatial-rel(south, 0, w2, w1)
+Ensure that the left end of the row is adjacent to the sixth column of the horizontal line.
+immobile_block(3, 1) ^ immobile_block(6, 9)
+There are immobile blocks at row 1 and column 3 and at row 9 and column 6.
+
+column(a) ^ height(a, 4)
+Build a column of height 4.
+row(b) ^ width(b, 10) ^ right(b, a)
+Next, build a row of size 10 to the right of the column.
+block(c) ^ location(w1) ^ block-location(c, w1) ^ upper_left(b, c) ^ block(d) ^ location(w2) ^ block-location(d, w2) ^ right_side(a, d, 1) ^ spatial-rel(east, 0, w2, w1)
+Ensure that the left end of the row is next to the second row of the column.
+restricted(6, 5) ^ restricted(0, 1)
+Do not put blocks in the spaces at row 5 and column 6 and at row 1 and column 0.
+
+column(a) ^ height(a, 9)
+Form a column with 9 blocks.
+rectangle(b) ^ height(b, 5) ^ width(b, 8) ^ left(b, a)
+Then, construct a rectangle that is 5 blocks tall and 8 blocks wide to the left of the column.
+block(c) ^ location(w1) ^ block-location(c, w1) ^ upper_right(b, c) ^ block(d) ^ location(w2) ^ block-location(d, w2) ^ left_side(a, d, 5) ^ spatial-rel(west, 0, w2, w1)
+Ensure that the upper right corner of the rectangle is adjacent to the sixth row of the column.
+restricted(3, 5) ^ restricted(6, 2)
+Do not put blocks in the spaces at row 5 and column 3 and at row 2 and column 6.
+
+column(a) ^ height(a, 6)
+Form a column with 6 blocks.
+column(b) ^ height(b, 6) ^ left(b, a)
+Then, create another one to the left of the first one.
+block(c) ^ location(w1) ^ block-location(c, w1) ^ upper_right(b, c) ^ block(d) ^ location(w2) ^ block-location(d, w2) ^ left_side(a, d, 1) ^ spatial-rel(west, 0, w2, w1)
+Ensure that the top end of the vertical line is adjacent to the second row of the column.
+starting_block(2, 7) ^ starting_block(0, 0) ^ starting_block(2, 8)
+There are already blocks at row 7 and column 2, at row 0 and column 0, and at row 8 and column 2.
+
+column(a) ^ height(a, 3)
+Create a vertical line of size 3.
+square(b) ^ size(b, 10) ^ left(b, a)
+Next, construct a 10 block by 10 block square to the left of the vertical line.
+block(c) ^ location(w1) ^ block-location(c, w1) ^ right_side(b, c, 5) ^ block(d) ^ location(w2) ^ block-location(d, w2) ^ upper_left(a, d) ^ spatial-rel(west, 0, w2, w1)
+Ensure that the sixth row of the square is adjacent to the vertical line's top end.
+starting_block(0, 2) ^ starting_block(10, 3)
+There are already blocks at row 2 and column 0 and at row 3 and column 10.
+
+square(a) ^ size(a, 2)
+Create a square with sides of block length 2.
+immobile_block(1, 6) ^ immobile_block(3, 4) ^ immobile_block(3, 8)
+There are immobile blocks at row 6 and column 1, at row 4 and column 3, and at row 8 and column 3.
+
+row(a) ^ width(a, 3)
+Build a horizontal line with 3 blocks.
+rectangle(b) ^ height(b, 7) ^ width(b, 6) ^ bottom(b, a)
+After that, create a rectangle that is 6 blocks wide and 7 blocks tall to the bottom of the horizontal line.
+block(c) ^ location(w1) ^ block-location(c, w1) ^ upper_right(b, c) ^ block(d) ^ location(w2) ^ block-location(d, w2) ^ lower_left(a, d) ^ spatial-rel(south, 0, w2, w1)
+Ensure that the upper right corner of the rectangle is adjacent to the horizontal line's left end.
+immobile_block(1, 8)
+There is an immobile block at row 8 and column 1.
+
+aaavi(a)
+Build a aaavi.
+
+rectangle(a) ^ height(a, 3) ^ width(a, 9)
+Build a rectangle that is 3 blocks tall and 9 blocks wide.
+row(b) ^ width(b, 5) ^ right(b, a)
+After that, form a row of size 5 to the right of the rectangle.
+block(c) ^ location(w1) ^ block-location(c, w1) ^ upper_left(b, c) ^ block(d) ^ location(w2) ^ block-location(d, w2) ^ upper_right(a, d) ^ spatial-rel(east, 0, w2, w1)
+Ensure that the row's left end is next to the upper right corner of the rectangle.
+starting_block(1, 3) ^ starting_block(10, 10) ^ starting_block(3, 10)
+There are already blocks at row 3 and column 1, at row 10 and column 10, and at row 10 and column 3.
+
+square(a) ^ size(a, 3)
+Form a 3 block by 3 block square.
+starting_block(3, 9)
+There is already a block at row 9 and column 3.
+
+aaaym(a)
+You should construct a aaaym.
+
+aaaum(a)
+Please construct a aaaum.
+
+aaatj(a)
+Place a aaatj on the table.
+
+aaawc(a)
+I want you to create a aaawc.
+
+column(a) ^ height(a, 6)
+Form a vertical line using 6 blocks.
+rectangle(b) ^ height(b, 10) ^ width(b, 5) ^ right(b, a)
+Then, build a rectangle that is 10 blocks tall and 5 blocks wide to the right of the vertical line.
+block(c) ^ location(w1) ^ block-location(c, w1) ^ upper_left(b, c) ^ block(d) ^ location(w2) ^ block-location(d, w2) ^ lower_right(a, d) ^ spatial-rel(east, 0, w2, w1)
+Ensure that the upper left corner of the rectangle is next to the vertical line's bottom end.
+restricted(9, 6) ^ restricted(0, 2)
+Do not put blocks in the spaces at row 6 and column 9 and at row 2 and column 0.
+
+aaaxv(a)
+I want you to construct a aaaxv.
+
+rectangle(a) ^ height(a, 2) ^ width(a, 3)
+Build a rectangle with a width of 3 blocks and a height of 2 blocks.
+starting_block(3, 1) ^ starting_block(8, 0) ^ starting_block(6, 5)
+There are already blocks at row 1 and column 3, at row 0 and column 8, and at row 5 and column 6.
+
+row(a) ^ width(a, 3)
+Construct a horizontal line of size 3.
+
+aaaut(a)
+Please place a aaaut on the table.
+
+aaayc(a)
+You should create a aaayc.
+
+column(a) ^ height(a, 5)
+Construct a vertical line of size 5.
+restricted(2, 5)
+Do not put a block in the space at row 5 and column 2.
+
+row(a) ^ width(a, 5)
+Construct a horizontal line of length 5.
+
+aaauz(a)
+Create a aaauz.
+
+aabav(a)
+You should place a aabav on the table.
+
+column(a) ^ height(a, 7)
+Form a column of size 7.
+
+aaazb(a)
+I want you to build a aaazb.
+
+aabac(a)
+I want you to place a aabac on the table.
+
+aaazd(a)
+You should build a aaazd.
+
+column(a) ^ height(a, 5)
+Construct a vertical line using 5 blocks.
+
+rectangle(a) ^ height(a, 6) ^ width(a, 5)
+Form a rectangle that is 5 blocks wide and 6 blocks tall.
+
+aaavz(a)
+You should create a aaavz.
+
+column(a) ^ height(a, 5)
+Build a column using 5 blocks.
+
+row(a) ^ width(a, 6)
+Form a horizontal line of size 6.
+starting_block(10, 7) ^ starting_block(10, 0) ^ starting_block(5, 5)
+There are already blocks at row 7 and column 10, at row 0 and column 10, and at row 5 and column 5.
+
+column(a) ^ height(a, 6)
+Create a vertical line of size 6.
+column(b) ^ height(b, 6) ^ bottom(b, a)
+Then, create another one to the bottom of the first one.
+block(c) ^ location(w1) ^ block-location(c, w1) ^ upper_left(b, c) ^ block(d) ^ location(w2) ^ block-location(d, w2) ^ lower_left(a, d) ^ spatial-rel(south, 0, w2, w1)
+Ensure that the new vertical line's top end is aligned with the bottom end of the first vertical line.
+restricted(10, 1) ^ restricted(0, 9) ^ restricted(3, 7)
+Do not put blocks in the space at row 1 and column 10, the space at row 9 and column 0, and the space at row 7 and column 3.
+
+square(a) ^ size(a, 9)
+Build a square with sides of block length 9.
+column(b) ^ height(b, 4) ^ top(b, a)
+Then, build a column using 4 blocks to the top of the square.
+block(c) ^ location(w1) ^ block-location(c, w1) ^ lower_left(b, c) ^ block(d) ^ location(w2) ^ block-location(d, w2) ^ top_side(a, d, 1) ^ spatial-rel(north, 0, w2, w1)
+Ensure that the column's bottom end is adjacent to the second column of the square.
+immobile_block(9, 5)
+There is an immobile block at row 5 and column 9.
+
+row(a) ^ width(a, 4)
+Form a horizontal line of length 4.
+row(b) ^ width(b, 4) ^ top(b, a)
+Then, build another one to the top of the first one.
+block(c) ^ location(w1) ^ block-location(c, w1) ^ lower_right(b, c) ^ block(d) ^ location(w2) ^ block-location(d, w2) ^ top_side(a, d, 2) ^ spatial-rel(north, 0, w2, w1)
+Ensure that the right end of this horizontal line is next to the third column of the first horizontal line.
+
+aaawe(a)
+I want you to construct a aaawe.
+
+column(a) ^ height(a, 4)
+Construct a column with 4 blocks.
+
+aaatx(a)
+Create a aaatx.
+
+rectangle(a) ^ height(a, 10) ^ width(a, 7)
+Build a 7 by 10 rectangle.
+starting_block(2, 8) ^ starting_block(1, 0)
+There are already blocks at row 8 and column 2 and at row 0 and column 1.
+
+square(a) ^ size(a, 4)
+Form a 4 block by 4 block square.
+
+aaaua(a)
+I want you to build a aaaua.
+
+row(a) ^ width(a, 6)
+Construct a horizontal line using 6 blocks.
+row(b) ^ width(b, 6) ^ left(b, a)
+Then, build another one to the left of the first one.
+block(c) ^ location(w1) ^ block-location(c, w1) ^ upper_right(b, c) ^ block(d) ^ location(w2) ^ block-location(d, w2) ^ upper_left(a, d) ^ spatial-rel(west, 0, w2, w1)
+Ensure that the row's right end is next to the left end of the horizontal line.
+
+aaawb(a)
+Build a aaawb.
+
+aaaxl(a)
+You should place a aaaxl on the table.
+
+aaaww(a)
+You should construct a aaaww.
+
+rectangle(a) ^ height(a, 8) ^ width(a, 7)
+Create a rectangle with a height of 8 blocks and a width of 7 blocks.
+row(b) ^ width(b, 6) ^ right(b, a)
+Then, build a row of length 6 to the right of the rectangle.
+block(c) ^ location(w1) ^ block-location(c, w1) ^ upper_left(b, c) ^ block(d) ^ location(w2) ^ block-location(d, w2) ^ right_side(a, d, 6) ^ spatial-rel(east, 0, w2, w1)
+Ensure that the row's left end is adjacent to the seventh row of the rectangle.
+immobile_block(0, 3) ^ immobile_block(8, 5) ^ immobile_block(2, 1)
+There are immobile blocks at row 3 and column 0, at row 5 and column 8, and at row 1 and column 2.
+
+aaaxw(a)
+Please create a aaaxw.
+
+aaawi(a)
+You should construct a aaawi.
+
+aaayy(a)
+You should build a aaayy.
+
+square(a) ^ size(a, 6)
+Build a 6 block by 6 block square.
+square(b) ^ size(b, 6) ^ top(b, a)
+Next, construct another one to the top of the first one.
+block(c) ^ location(w1) ^ block-location(c, w1) ^ lower_right(b, c) ^ block(d) ^ location(w2) ^ block-location(d, w2) ^ top_side(a, d, 2) ^ spatial-rel(north, 0, w2, w1)
+Ensure that the new square's lower right corner is adjacent to the third column of the first square.
+restricted(10, 7)
+Do not put a block in the space at row 7 and column 10.
+
+aabau(a)
+Place a aabau on the table.
+
+column(a) ^ height(a, 5)
+Build a vertical line with 5 blocks.
+rectangle(b) ^ height(b, 7) ^ width(b, 9) ^ right(b, a)
+After that, construct a 9 by 7 rectangle to the right of the vertical line.
+block(c) ^ location(w1) ^ block-location(c, w1) ^ left_side(b, c, 1) ^ block(d) ^ location(w2) ^ block-location(d, w2) ^ upper_right(a, d) ^ spatial-rel(east, 0, w2, w1)
+Ensure that the second row of the rectangle is adjacent to the top end of the vertical line.
+restricted(4, 4) ^ restricted(1, 10) ^ restricted(10, 6)
+Do not put blocks in the space at row 4 and column 4, the space at row 10 and column 1, and the space at row 6 and column 10.
+
+aaayr(a)
+I want you to place a aaayr on the table.
+
+aaazc(a)
+I want you to place a aaazc on the table.
+
+aaaxd(a)
+You should construct a aaaxd.
+
+aaayb(a)
+You should construct a aaayb.
+
+aaaup(a)
+I want you to place a aaaup on the table.
+
+aaavo(a)
+You should place a aaavo on the table.
+
+row(a) ^ width(a, 9)
+Form a horizontal line of length 9.
+starting_block(1, 2) ^ starting_block(6, 1)
+There are already blocks at row 2 and column 1 and at row 1 and column 6.
+
+rectangle(a) ^ height(a, 7) ^ width(a, 8)
+Construct a rectangle that is 8 blocks wide and 7 blocks tall.
+row(b) ^ width(b, 7) ^ top(b, a)
+After that, construct a horizontal line of size 7 to the top of the rectangle.
+block(c) ^ location(w1) ^ block-location(c, w1) ^ lower_right(b, c) ^ block(d) ^ location(w2) ^ block-location(d, w2) ^ top_side(a, d, 4) ^ spatial-rel(north, 0, w2, w1)
+Ensure that the right end of the horizontal line is adjacent to the fifth column of the rectangle.
+immobile_block(2, 2)
+There is an immobile block at row 2 and column 2.
+
+square(a) ^ size(a, 7)
+Form a 7 block by 7 block square.
+
+row(a) ^ width(a, 8)
+Build a horizontal line of size 8.
+column(b) ^ height(b, 8) ^ left(b, a)
+Then, form a vertical line of height 8 to the left of the horizontal line.
+block(c) ^ location(w1) ^ block-location(c, w1) ^ right_side(b, c, 6) ^ block(d) ^ location(w2) ^ block-location(d, w2) ^ upper_left(a, d) ^ spatial-rel(west, 0, w2, w1)
+Ensure that the seventh row of the vertical line is next to the left end of the horizontal line.
+
+row(a) ^ width(a, 9)
+Create a row of length 9.
+starting_block(4, 7) ^ starting_block(3, 2)
+There are already blocks at row 7 and column 4 and at row 2 and column 3.
+
+aaazn(a)
+You should build a aaazn.
+
+rectangle(a) ^ height(a, 8) ^ width(a, 4)
+Construct a rectangle with a width of 4 blocks and a height of 8 blocks.
+immobile_block(3, 1)
+There is an immobile block at row 1 and column 3.
+
+square(a) ^ size(a, 2)
+Create a 2 block by 2 block square.
+restricted(7, 2) ^ restricted(3, 4)
+Do not put blocks in the spaces at row 2 and column 7 and at row 4 and column 3.
+
+square(a) ^ size(a, 6)
+Build a square with sides of block length 6.
+starting_block(1, 3)
+There is already a block at row 3 and column 1.
+
+aaaxh(a)
+Please create a aaaxh.
+
+square(a) ^ size(a, 5)
+Construct a 5 block by 5 block square.
+column(b) ^ height(b, 10) ^ right(b, a)
+Next, create a column using 10 blocks to the right of the square.
+block(c) ^ location(w1) ^ block-location(c, w1) ^ left_side(b, c, 1) ^ block(d) ^ location(w2) ^ block-location(d, w2) ^ upper_right(a, d) ^ spatial-rel(east, 0, w2, w1)
+Ensure that the second row of the column is next to the square's upper right corner.
+starting_block(5, 1) ^ starting_block(8, 7)
+There are already blocks at row 1 and column 5 and at row 7 and column 8.
+
+rectangle(a) ^ height(a, 3) ^ width(a, 2)
+Construct a 2 by 3 rectangle.
+immobile_block(0, 3) ^ immobile_block(9, 9)
+There are immobile blocks at row 3 and column 0 and at row 9 and column 9.
+
+column(a) ^ height(a, 6)
+Construct a column using 6 blocks.
+starting_block(10, 6) ^ starting_block(5, 9) ^ starting_block(3, 0)
+There are already blocks at row 6 and column 10, at row 9 and column 5, and at row 0 and column 3.
+
+aaaya(a)
+You should build a aaaya.
+
+square(a) ^ size(a, 8)
+Form a 8 by 8 square.
+
+column(a) ^ height(a, 5)
+Form a vertical line using 5 blocks.
+
+square(a) ^ size(a, 8)
+Create a 8 block by 8 block square.
+restricted(3, 10)
+Do not put a block in the space at row 10 and column 3.
+
+aabap(a)
+I want you to create a aabap.
+
+aaaxu(a)
+Please create a aaaxu.
+
+aaavt(a)
+You should construct a aaavt.
+
+aaayz(a)
+You should construct a aaayz.
+
+row(a) ^ width(a, 10)
+Form a horizontal line with 10 blocks.
+
+aaaxe(a)
+Please place a aaaxe on the table.
+
+aaazm(a)
+I want you to build a aaazm.
+
+aaaxq(a)
+You should place a aaaxq on the table.
+
+aaazg(a)
+I want you to place a aaazg on the table.
+
+aaavv(a)
+Please build a aaavv.
+
+aabaj(a)
+I want you to build a aabaj.
+
+aaaxb(a)
+Place a aaaxb on the table.
+
+square(a) ^ size(a, 4)
+Create a square with sides of block length 4.
+row(b) ^ width(b, 6) ^ right(b, a)
+After that, construct a row of size 6 to the right of the square.
+block(c) ^ location(w1) ^ block-location(c, w1) ^ upper_left(b, c) ^ block(d) ^ location(w2) ^ block-location(d, w2) ^ lower_right(a, d) ^ spatial-rel(east, 0, w2, w1)
+Ensure that the left end of the row is next to the lower right corner of the square.
+restricted(3, 1) ^ restricted(1, 0)
+Do not put blocks in the spaces at row 1 and column 3 and at row 0 and column 1.
+
+row(a) ^ width(a, 9)
+Form a horizontal line of length 9.
+square(b) ^ size(b, 4) ^ left(b, a)
+After that, build a 4 block by 4 block square to the left of the horizontal line.
+block(c) ^ location(w1) ^ block-location(c, w1) ^ upper_right(b, c) ^ block(d) ^ location(w2) ^ block-location(d, w2) ^ upper_left(a, d) ^ spatial-rel(west, 0, w2, w1)
+Ensure that the upper right corner of the square is aligned with the left end of the horizontal line.
+
+aaauk(a)
+You should construct a aaauk.
+
+aaatv(a)
+I want you to place a aaatv on the table.
+
+aaawr(a)
+Please create a aaawr.
+
+aaayf(a)
+I want you to build a aaayf.
+
+aaayl(a)
+Please create a aaayl.
+
+aabaq(a)
+Create a aabaq.
+
+rectangle(a) ^ height(a, 4) ^ width(a, 7)
+Create a rectangle with a height of 4 blocks and a width of 7 blocks.
+immobile_block(6, 9) ^ immobile_block(8, 7) ^ immobile_block(2, 0)
+There are immobile blocks at row 9 and column 6, at row 7 and column 8, and at row 0 and column 2.
+
+row(a) ^ width(a, 4)
+Form a horizontal line with 4 blocks.
+rectangle(b) ^ height(b, 10) ^ width(b, 6) ^ right(b, a)
+Then, form a rectangle with a height of 10 blocks and a width of 6 blocks to the right of the horizontal line.
+block(c) ^ location(w1) ^ block-location(c, w1) ^ left_side(b, c, 2) ^ block(d) ^ location(w2) ^ block-location(d, w2) ^ upper_right(a, d) ^ spatial-rel(east, 0, w2, w1)
+Ensure that the third row of the rectangle is adjacent to the horizontal line's right end.
+
+row(a) ^ width(a, 8)
+Build a row of size 8.
+column(b) ^ height(b, 3) ^ right(b, a)
+After that, create a vertical line with 3 blocks to the right of the row.
+block(c) ^ location(w1) ^ block-location(c, w1) ^ upper_left(b, c) ^ block(d) ^ location(w2) ^ block-location(d, w2) ^ upper_right(a, d) ^ spatial-rel(east, 0, w2, w1)
+Ensure that the vertical line's top end is next to the right end of the row.
+
+aaavf(a)
+Construct a aaavf.
+
+rectangle(a) ^ height(a, 8) ^ width(a, 4)
+Create a rectangle with a width of 4 blocks and a height of 8 blocks.
+row(b) ^ width(b, 4) ^ left(b, a)
+After that, form a row using 4 blocks to the left of the rectangle.
+block(c) ^ location(w1) ^ block-location(c, w1) ^ upper_right(b, c) ^ block(d) ^ location(w2) ^ block-location(d, w2) ^ left_side(a, d, 6) ^ spatial-rel(west, 0, w2, w1)
+Ensure that the right end of the row is adjacent to the seventh row of the rectangle.
+starting_block(1, 8)
+There is already a block at row 8 and column 1.
+
+aabah(a)
+I want you to create a aabah.
+
+rectangle(a) ^ height(a, 2) ^ width(a, 5)
+Construct a 5 by 2 rectangle.
+starting_block(2, 3) ^ starting_block(3, 2) ^ starting_block(2, 10)
+There are already blocks at row 3 and column 2, at row 2 and column 3, and at row 10 and column 2.
+
+row(a) ^ width(a, 8)
+Form a row using 8 blocks.
+rectangle(b) ^ height(b, 10) ^ width(b, 8) ^ top(b, a)
+Then, form a rectangle with a height of 10 blocks and a width of 8 blocks to the top of the row.
+block(c) ^ location(w1) ^ block-location(c, w1) ^ lower_left(b, c) ^ block(d) ^ location(w2) ^ block-location(d, w2) ^ top_side(a, d, 4) ^ spatial-rel(north, 0, w2, w1)
+Ensure that the rectangle's lower left corner is next to the fifth column of the row.
+immobile_block(8, 9) ^ immobile_block(0, 9) ^ immobile_block(1, 5)
+There are immobile blocks at row 9 and column 8, at row 9 and column 0, and at row 5 and column 1.
+
+aaazk(a)
+Construct a aaazk.
+
+aaayd(a)
+Construct a aaayd.
+
