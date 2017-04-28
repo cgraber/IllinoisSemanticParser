@@ -139,8 +139,10 @@ class Relation(object):
             # RELATIVE LOCATION
             if offset == 0 or second.bottom == first.bottom:
                 self.description += random.choice(Relation.INLINE_CHOICES) + " "
-            else:
+            elif randint(0,1):
                 self.description += random.choice(Relation.NEXT_CHOICES) + " "
+            else:
+                self.description += random.choice(["is to the left of", "is left of"]) + " "
 
             # FIRST REFERENCE
             if top:
@@ -179,8 +181,10 @@ class Relation(object):
             # RELATIVE LOCATION
             if offset == 0:
                 self.description += random.choice(Relation.INLINE_CHOICES) + " "
-            else:
+            elif random.randint(0,1):
                 self.description += random.choice(Relation.NEXT_CHOICES) + " "
+            else:
+                self.description += random.choice(random.choice(["is to the right of", "is right of"])) + " "
 
             # FIRST REFERENCE
             if top:
@@ -219,8 +223,10 @@ class Relation(object):
             # RELATIVE LOCATION
             if offset == 0:
                 self.description += random.choice(Relation.INLINE_CHOICES) + " "
-            else:
+            elif random.randint(0,1):
                 self.description += random.choice(Relation.NEXT_CHOICES) + " "
+            else:
+                self.description += random.choice(["is above", "is to the top of"]) + " "
 
             # FIRST REFERENCE
             if left:
@@ -259,8 +265,11 @@ class Relation(object):
             # RELATIVE LOCATION
             if offset == 0:
                 self.description += random.choice(Relation.INLINE_CHOICES) + " "
-            else:
+            elif random.randint(0,1):
                 self.description += random.choice(Relation.NEXT_CHOICES) + " "
+            else:
+                self.description += random.choice(["is below", "is beneath", "is to the bottom of"]) + " "
+            
 
             # FIRST REFERENCE
             if left:
