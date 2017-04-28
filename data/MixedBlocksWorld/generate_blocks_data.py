@@ -67,6 +67,7 @@ class Shape:
         self.bottom = height - 1
         self.var = getVar()
         self.ind = 0
+        self.hasSize = True
 
     def getLowerLeftDescription(self):
         return random.choice(Shape.LOWER_LEFT_CHOICES)
@@ -108,6 +109,7 @@ class Relation(object):
         self.first = first
         self.offset = offset
         self.description = "" 
+        self.isDisplayed = True
 
         # Build the description
         # Recipe: [SECOND REFERENCE] [RELATIVE LOCATION] [FIRST REFERENCE]
@@ -714,12 +716,13 @@ class CompositeShape(object):
             new_formula.append("immobile_block(%d, %d)"%(xConst, yConst))
         self.logic.append(new_formula)
         self.getDescription()
+        imm = random.choice(["immovable", "immobile"])
         if num == 1:
-            self.description.append("There is an immobile block at row %d and column %d."%(restricted[0][1], restricted[0][0]))
+            self.description.append("There is an %s block at row %d and column %d."%(imm, restricted[0][1], restricted[0][0]))
         elif num == 2:
-            self.description.append("There are immobile blocks at row %d and column %d and at row %d and column %d."%(restricted[0][1], restricted[0][0], restricted[1][1], restricted[1][0]))
+            self.description.append("There are %s blocks at row %d and column %d and at row %d and column %d."%(imm, restricted[0][1], restricted[0][0], restricted[1][1], restricted[1][0]))
         else:
-            result = "There are immobile blocks "
+            result = "There are %s blocks "%imm
             for i in xrange(num-1):
                 result += "at row %d and column %d, "%(restricted[i][1], restricted[i][0])
             result += "and at row %d and column %d."%(restricted[-1][1], restricted[-1][0])
@@ -935,25 +938,25 @@ genShape = {ROW:randRow, COL:randCol, SQUARE:randSquare, RECT:randRect}
 
 def randomObjDescription(objName):
     options = [
-        "Construct a %s.",
-        "Build a %s.",
-        "Place a %s on the table.",
-        "Put a %s on the table.",
-        "Create a %s.",
-        "You should construct a %s.",
-        "You should build a %s.",
-        "You should create a %s.",
-        "You should place a %s on the table.",
-        "You should put a %s on the table.",
-        "I want you to construct a %s.",
-        "I want you to build a %s.",
-        "I want you to create a %s.",
-        "I want you to place a %s on the table.",
-        "Please construct a %s.",
-        "Please build a %s.",
-        "Please place a %s on the table.",
-        "Please put a %s on the table.",
-        "Please create a %s.",
+        "Construct %s.",
+        "Build %s.",
+        "Place %s on the table.",
+        "Put %s on the table.",
+        "Create %s.",
+        "You should construct %s.",
+        "You should build %s.",
+        "You should create %s.",
+        "You should place %s on the table.",
+        "You should put %s on the table.",
+        "I want you to construct %s.",
+        "I want you to build %s.",
+        "I want you to create %s.",
+        "I want you to place %s on the table.",
+        "Please construct %s.",
+        "Please build %s.",
+        "Please place %s on the table.",
+        "Please put %s on the table.",
+        "Please create %s.",
     ]
     return random.choice(options)%objName
 
@@ -1001,26 +1004,47 @@ while len(shapes) < TRAIN_SIZE_SHAPES + TEST_SIZE_SHAPES:
 
 randobjs = []
 for i in xrange(TRAIN_SIZE_RANDOBJ + TEST_SIZE_RANDOBJ):
-    word = RAND_VOCAB[i]
+    option = random.randint(0,3)
+    article = random.choice(["a", "an"])
+    letter = random.choice(string.ascii_uppercase)
+    if option == 0:
+        word = "%s %s"%(article, RAND_VOCAB[i])
+        logic_form = "%s(a)"%RAND_VOCAB[i]
+    else:
+        logic_form = "%s(a)"%letter
+        if option == 1:
+            word = "the letter %s"%letter
+        elif option == 2:
+            word = "%s letter %s"%(article, letter)
+        elif option == 3:
+            word = "%s %s"%(article, letter)
     option = randint(0,3)
-    logic_form = "%s(a)"%word
     if option == 0:
         width = randint(2,9)
-        logic_form += " ^ width(%d)"%width
+        logic_form += " ^ width(a, %d)"%width
         description = randomObjDescription("%s of %s %d"%(word, random.choice(['length', 'width']),width))
     elif option == 1:
         height = randint(2,9)
-        logic_form += " ^ height(%d)"%height
+        logic_form += " ^ height(a, %d)"%height
         description = randomObjDescription("%s of height %d"%(word, height))
     elif option == 2:
         width = randint(2,9)
         height = randint(2,9)
-        if random.randint(0,1):
-            logic_form += " ^ height(%d) ^ width(%d)"%(height, width)
+        option = random.randint(0,3)
+        if option == 0:
+            logic_form += " ^ height(a, %d) ^ width(a, %d)"%(height, width)
             description = randomObjDescription("%s of height %d and %s %d"%(word, height, random.choice(['length', 'width']),width))
-        else:
-            logic_form += " ^ width(%d) ^ height(%d)"%(width, height)
+        elif option == 1:
+            logic_form += " ^ width(a, %d) ^ height(a, %d)"%(width, height)
             description = randomObjDescription("%s of %s %d and height %d"%(word, random.choice(['length', 'width']), width, height))
+        elif option == 2:
+            logic_form += " ^ width(a, %d) ^ height(a, %d)"%(width, height)
+            description = randomObjDescription("%d by %d %s"%(width, height, word))
+        elif option == 3:
+            logic_form += " ^ width(a, %d) ^ height(a, %d)"%(width, height)
+            description = randomObjDescription("%s of size %d by %d"%(word, width, height))
+
+            
     else:
         description = randomObjDescription(word)
     randobjs.append((logic_form, description))
