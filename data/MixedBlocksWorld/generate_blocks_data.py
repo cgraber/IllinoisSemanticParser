@@ -1008,41 +1008,42 @@ for i in xrange(TRAIN_SIZE_RANDOBJ + TEST_SIZE_RANDOBJ):
     article = random.choice(["a", "an"])
     letter = random.choice(string.ascii_uppercase)
     if option == 0:
-        word = "%s %s"%(article, RAND_VOCAB[i])
+        word = "%s"%(RAND_VOCAB[i])
         logic_form = "%s(a)"%RAND_VOCAB[i]
     else:
         logic_form = "%s(a)"%letter
         if option == 1:
-            word = "the letter %s"%letter
+            word = "letter %s"%letter
+            article = "the"
         elif option == 2:
-            word = "%s letter %s"%(article, letter)
+            word = "letter %s"%letter
         elif option == 3:
-            word = "%s %s"%(article, letter)
+            word = letter
     option = randint(0,3)
     if option == 0:
         width = randint(2,9)
         logic_form += " ^ width(a, %d)"%width
-        description = randomObjDescription("%s of %s %d"%(word, random.choice(['length', 'width']),width))
+        description = randomObjDescription("%s %s of %s %d"%(article, word, random.choice(['length', 'width']),width))
     elif option == 1:
         height = randint(2,9)
         logic_form += " ^ height(a, %d)"%height
-        description = randomObjDescription("%s of height %d"%(word, height))
+        description = randomObjDescription("%s %s of height %d"%(article, word, height))
     elif option == 2:
         width = randint(2,9)
         height = randint(2,9)
         option = random.randint(0,3)
         if option == 0:
             logic_form += " ^ height(a, %d) ^ width(a, %d)"%(height, width)
-            description = randomObjDescription("%s of height %d and %s %d"%(word, height, random.choice(['length', 'width']),width))
+            description = randomObjDescription("%s %s of height %d and %s %d"%(article, word, height, random.choice(['length', 'width']),width))
         elif option == 1:
             logic_form += " ^ width(a, %d) ^ height(a, %d)"%(width, height)
-            description = randomObjDescription("%s of %s %d and height %d"%(word, random.choice(['length', 'width']), width, height))
+            description = randomObjDescription("%s %s of %s %d and height %d"%(article, word, random.choice(['length', 'width']), width, height))
         elif option == 2:
             logic_form += " ^ width(a, %d) ^ height(a, %d)"%(width, height)
-            description = randomObjDescription("%d by %d %s"%(width, height, word))
+            description = randomObjDescription("%s %d by %d %s"%(article, width, height, word))
         elif option == 3:
             logic_form += " ^ width(a, %d) ^ height(a, %d)"%(width, height)
-            description = randomObjDescription("%s of size %d by %d"%(word, width, height))
+            description = randomObjDescription("%s %s of size %d by %d"%(article, word, width, height))
 
             
     else:

@@ -68,8 +68,8 @@ def _file_to_ids(filename, token_to_id):
             for k in range(len(data[i][j][1])):
                 if data[i][j][1][k] in token_to_id[1]:
                     data[i][j][1][k] = token_to_id[1][data[i][j][1][k]]
-                elif data[i][j][1][k] in data[i][j][0]:
-                    offset = data[i][j][0].index(data[i][j][1][k])
+                elif data[i][j][1][k].lower() in data[i][j][0]:
+                    offset = data[i][j][0].index(data[i][j][1][k].lower())
                     data[i][j][1][k] = len(token_to_id[1])+offset
                 else:
                     raise Exception("WORD NOT FOUND IN VOCAB OR IN SENTENCE! WORD: %s; SENTENCE: %s"%(data[i][j][1][k], 

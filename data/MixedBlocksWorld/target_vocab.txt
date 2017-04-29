@@ -64,3 +64,7 @@ top
 bottom
 left
 right
+top-end
+bottom-end
+left-end
+right-end
