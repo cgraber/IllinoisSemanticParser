@@ -780,7 +780,7 @@ class CompositeShape(object):
             else:
                 self.clarification.append([])
             description += self.shapes[0].getDescription() + "."
-            self.description.append(description)
+            self.description.append([description])
         elif len(self.shapes) >= 2:
             description = random.choice(COMMANDS) + " "
             if not self.shapes[0].hasSize:
@@ -788,8 +788,10 @@ class CompositeShape(object):
             else:
                 self.clarification.append([])
             description += self.shapes[0].getDescription() + "."
-            self.description.append(description)
+            self.description.append([description])
             for i in xrange(1, len(self.shapes)):
+                shape_description = []
+                self.description.append(shape_description)
                 description = ""
                 clarification = []
                 self.clarification.append(clarification)
@@ -801,7 +803,6 @@ class CompositeShape(object):
                         description += "%s "%random.choice(COMMANDS).lower()
                 else:
                     description += "%s "%random.choice(COMMANDS)
-                possible_coarse = description
                 '''
                 if self.relations[i-1].first.base_name == self.shapes[i].base_name and random.randint(0,1):
                     description += "another %s "%self.shapes[i].name
@@ -818,19 +819,33 @@ class CompositeShape(object):
                 else:
                 '''
                 name = "the %s"%self.relations[i-1].first.name
+                if not self.shapes[i].hasSize:
+                    needsClarification = True
+                else:
+                    needsClarification = False
+                possibleClarification = description + self.shapes[i].getDescription(True)
+                description += self.shapes[i].getDescription()
+            
                 #description += "a %s to the %s of %s."%(self.shapes[1].name, DIRECTIONS[self.relations[0].direction], name)
                 if random.randint(0,1) == 1 and self.relations[i-1].direction in [TOP, BOTTOM]:
                     if self.relations[i-1].direction == TOP:
-                        description += "%s" + " above %s."%(name)
+                        addon = " above %s."%(name)
                     else:
-                        description += "%s" + " %s %s."%(random.choice(["below", "beneath"]),name)
+                        addon =  " %s %s."%(random.choice(["below", "beneath"]),name)
                 else:
-                    description += "%s" + " to the %s of %s." %(DIRECTIONS[self.relations[i-1].direction], name)
-                if not self.shapes[i].hasSize:
-                    clarification.append(description%self.shapes[i].getDescription(True))
+                    addon = " to the %s of %s." %(DIRECTIONS[self.relations[i-1].direction], name)
+                possibleClarification += addon
+                if self.relations[i-1].coarseIsPresent:
+                    description += addon
+                else:
+                    description += "."
+                    needsClarification = True
+                if needsClarification:
+                    clarification.append(possibleClarification)
                 else:
                     clarification.append(None)
-                description = description%(self.shapes[i].getDescription())
+
+                shape_description.append(description)
                 option = random.randint(0,3)
                 if option == 0:
                     relation = "Ensure that %s."%self.relations[i-1].description
@@ -842,10 +857,10 @@ class CompositeShape(object):
                     relation = self.relations[i-1].description
                     relation = relation[0].upper()+relation[1:]
                 if self.relations[i-1].fineIsPresent:
-                    description += " " + relation
+                    description = relation
                 else:
                     clarification.append(relation)
-                self.description.append(description)
+                shape_description.append(description)
 
         return self.description, self.clarification
 
@@ -866,7 +881,7 @@ class CompositeShape(object):
         for i,description in enumerate(descriptions):
             #fout.write(' ^ '.join(self.logic[i]))
             #fout.write("\n")
-            fout.write(description)
+            fout.write(" ".join(description))
             for entry in clarifications[i]:
                 if entry != None:
                     fout.write("\n")
@@ -876,7 +891,8 @@ class CompositeShape(object):
 
     def write_train(self, fout):
         descriptions, _ = self.getDescription()
-        for description,logic in zip(descriptions, self.logic):
+        modified_descriptions = [item for sublist in descriptions for item in sublist]
+        for description,logic in zip(modified_descriptions, self.logic):
             fout.write(' ^ '.join(logic))
             fout.write("\n")
             fout.write(description)
@@ -1044,7 +1060,11 @@ def randomObjDescription(objName):
 def genConfig(numShapes, numMissing):
     resetVars()
     randomVec = [True]*(3*(numShapes-1)+1)
-    inds = np.random.choice(range(3*(numShapes-1)+1),size=numMissing, replace=False)
+    if IS_TRAIN_MODE:
+        inds = np.random.choice(range(3*(numShapes-1)+1),size=numMissing, replace=False)
+    else:
+        inds = np.random.choice(range(2*(numShapes-1)+1),size=numMissing, replace=False)
+        map(lambda x: x + x//2, inds)
     for ind in inds:
         randomVec[ind] = False
     composite = CompositeShape()
@@ -1102,8 +1122,9 @@ if IS_TRAIN_MODE:
             numMissing = randint(1,3*(numShapes - 1)+1)
         composite = genConfig(numShapes, numMissing)
         description, clarification = composite.getDescription()
-        if ''.join(description) not in descriptions and composite.normalize():
-            descriptions.add(''.join(description))
+        flat_description = [item for sublist in description for item in sublist]
+        if ''.join(flat_description) not in descriptions and composite.normalize():
+            descriptions.add(''.join(flat_description))
             shapes.append(composite)
 
     randobjs = []
