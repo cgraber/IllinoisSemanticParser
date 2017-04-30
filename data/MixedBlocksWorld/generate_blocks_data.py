@@ -1,3 +1,5 @@
+IS_TRAIN_MODE = True
+
 TRAIN_SIZE_SHAPES = 1400
 TRAIN_SIZE_RANDOBJ = 0
 TEST_SIZE_SHAPES = 600
@@ -17,8 +19,8 @@ COL = 1
 SQUARE = 2
 RECT = 3
 
-GRID_WIDTH = 15 
-GRID_HEIGHT = 15
+GRID_WIDTH = 10 
+GRID_HEIGHT = 10
 
 TOP = 0
 LEFT = 1
@@ -146,7 +148,7 @@ class Relation(object):
             elif randint(0,1):
                 self.description += random.choice(Relation.NEXT_CHOICES) + " "
             else:
-                self.description += random.choice(["is to the left of", "is left of"]) + " "
+                self.description += random.choice(["is to the left of", "is left of", "should be to the left of"]) + " "
 
             # FIRST REFERENCE
             if top:
@@ -188,7 +190,7 @@ class Relation(object):
             elif random.randint(0,1):
                 self.description += random.choice(Relation.NEXT_CHOICES) + " "
             else:
-                self.description += random.choice(["is to the right of", "is right of"]) + " "
+                self.description += random.choice(["is to the right of", "is right of", "should be to the right of"]) + " "
 
             # FIRST REFERENCE
             if top:
@@ -230,7 +232,7 @@ class Relation(object):
             elif random.randint(0,1):
                 self.description += random.choice(Relation.NEXT_CHOICES) + " "
             else:
-                self.description += random.choice(["is above", "is to the top of"]) + " "
+                self.description += random.choice(["is above", "is to the top of", "should be above", "should be to the top of"]) + " "
 
             # FIRST REFERENCE
             if left:
@@ -272,7 +274,7 @@ class Relation(object):
             elif random.randint(0,1):
                 self.description += random.choice(Relation.NEXT_CHOICES) + " "
             else:
-                self.description += random.choice(["is below", "is beneath", "is to the bottom of"]) + " "
+                self.description += random.choice(["is below", "is beneath", "is to the bottom of", "should be below", "should be beneath", "should be to the bottom of"]) + " "
             
 
             # FIRST REFERENCE
@@ -337,19 +339,28 @@ class CompositeShape(object):
                 newLogic += shape.getLogic()
             else:
                 newLogic += shape.getCondensedLogic() 
-            def getAlignmentPred(shape, pred):
-                if shape.base_name == "row":
-                    if "right" in pred:
-                        return "right-end(%s, %s)"
+            def getAlignmentPred(shape, pred, num=None):
+                if num != None:
+                    if shape.base_name == "row":
+                        return "block-col-ind(%s, %s, "+num+")"
+                    elif shape.base_name == "col":
+                        return "block-row-ind(%s, %s, "+num+")"
                     else:
-                        return "left-end(%s, %s)"
-                elif shape.base_name == "col":
-                    if "upper" in pred:
-                        return "top-end(%s, %s)"
-                    else:
-                        return "bottom-end(%s, %s)"
+                        return pred
                 else:
-                    return pred
+                    if shape.base_name == "row":
+                        if "right" in pred:
+                            return "right-end(%s, %s)"
+                        else:
+                            return "left-end(%s, %s)"
+                    elif shape.base_name == "col":
+                        if "upper" in pred:
+                            return "top-end(%s, %s)"
+                        else:
+                            return "bottom-end(%s, %s)"
+                    else:
+                        return pred
+
             if direction == LEFT:
                 old = self.shapesOnSides[LEFT]
                 #newLogic += old.getCondensedLogic()
@@ -384,7 +395,7 @@ class CompositeShape(object):
                     elif shape.top == old.bottom:
                         oldEnumLogic = getAlignmentPred(old, "lower_left(%s, %s)")
                     else:
-                        oldEnumLogic = "left_side(%s, %s, "+str(offset)+")"
+                        oldEnumLogic = getAlignmentPred(old, "left_side(%s, %s, "+str(offset)+")", str(offset))
                 elif shape.bottom > old.bottom:
                     #In this case, use the corner of the old shape
                     oldEnumVal = old.getEnum(0, 0)
@@ -394,7 +405,7 @@ class CompositeShape(object):
                     newEnumVal = shape.getEnum(-1*offset, shape.width-1)
                     newRow = -1*offset
                     newCol = shape.width-1
-                    newEnumLogic = "right_side(%s, %s, "+str(-1*offset)+")"
+                    newEnumLogic = getAlignmentPred(shape, "right_side(%s, %s, "+str(-1*offset)+")", str(-1*offset))
                 else:
                     newEnumVal = shape.getEnum(shape.height - 1, shape.width - 1)
                     newRow = shape.height-1
@@ -409,7 +420,7 @@ class CompositeShape(object):
                     elif shape.bottom == old.top:
                         oldEnumLogic = getAlignmentPred(old, "upper_left(%s, %s)")
                     else:
-                        oldEnumLogic = "left_side(%s, %s, "+str(shape.bottom-old.top) + ")"
+                        oldEnumLogic = getAlignmentPred(old, "left_side(%s, %s, "+str(shape.bottom-old.top) + ")", str(shape.bottom-old.top))
                 if fineIsPresent:
                     newLogic = []
                     self.logic.append(newLogic)
@@ -462,7 +473,7 @@ class CompositeShape(object):
                     elif shape.top == old.bottom:
                         oldEnumLogic = getAlignmentPred(old, "lower_right(%s, %s)")
                     else:
-                        oldEnumLogic = "right_side(%s, %s, "+str(offset) +")"
+                        oldEnumLogic = getAlignmentPred(old, "right_side(%s, %s, "+str(offset) +")", str(offset))
                 elif shape.bottom > old.bottom:
                     #In this case, use the corner of the old shape
                     oldEnumVal = old.getEnum(0, old.width-1)
@@ -472,7 +483,7 @@ class CompositeShape(object):
                     newEnumVal = shape.getEnum(-1*offset, 0)
                     newRow = -1*offset
                     newCol = 0
-                    newEnumLogic = "left_side(%s, %s, "+str(-1*offset)+")"
+                    newEnumLogic = getAlignmentPred(shape, "left_side(%s, %s, "+str(-1*offset)+")", str(-1*offset))
                 else:
                     newEnumVal = shape.getEnum(shape.height - 1, 0)
                     newRow = shape.height-1
@@ -486,7 +497,7 @@ class CompositeShape(object):
                     elif shape.bottom == old.top:
                         oldEnumLogic = getAlignmentPred(old, "upper_right(%s, %s)")
                     else:
-                        oldEnumLogic = "right_side(%s, %s, "+str(shape.bottom-old.top)+")"
+                        oldEnumLogic = getAlignmentPred(old, "right_side(%s, %s, "+str(shape.bottom-old.top)+")", str(shape.bottom-old.top))
                 if fineIsPresent:
                     newSpaceVar = getSpaceVar()
                     oldSpaceVar = getSpaceVar()
@@ -537,7 +548,7 @@ class CompositeShape(object):
                     elif shape.left == old.right:
                         oldEnumLogic = getAlignmentPred(old, "upper_right(%s, %s)")
                     else:
-                        oldEnumLogic = "top_side(%s, %s, "+str(offset)+")"
+                        oldEnumLogic = getAlignmentPred(old, "top_side(%s, %s, "+str(offset)+")", str(offset))
                 elif shape.right > old.right:
                     oldEnumVal = old.getEnum(0, 0)
                     oldRow = 0
@@ -546,7 +557,7 @@ class CompositeShape(object):
                     newEnumVal = shape.getEnum(shape.height-1, -1*offset)
                     newRow = shape.height-1
                     newCol = -1*offset
-                    newEnumLogic = "bottom_side(%s, %s, "+str(-1*offset)+")"
+                    newEnumLogic = getAlignmentPred(shape, "bottom_side(%s, %s, "+str(-1*offset)+")", str(-1*offset))
                 else:
                     newEnumVal = shape.getEnum(shape.height - 1, shape.width - 1)
                     newRow = shape.height-1
@@ -560,7 +571,7 @@ class CompositeShape(object):
                     elif shape.right == old.left:
                         oldEnumLogic = getAlignmentPred(old, "upper_left(%s, %s)")
                     else:
-                        oldEnumLogic = "top_side(%s, %s, "+str(shape.right - old.left)+")"
+                        oldEnumLogic = getAlignmentPred(old, "top_side(%s, %s, "+str(shape.right - old.left)+")", str(shape.right - old.left))
                 if fineIsPresent:
                     newLogic = []
                     self.logic.append(newLogic)
@@ -612,7 +623,7 @@ class CompositeShape(object):
                     elif shape.left == old.right:
                         oldEnumLogic = getAlignmentPred(old, "lower_right(%s, %s)")
                     else:
-                        oldEnumLogic = "bottom_side(%s, %s, "+str(offset)+")"
+                        oldEnumLogic = getAlignmentPred(old, "bottom_side(%s, %s, "+str(offset)+")", str(offset))
                 elif shape.right > old.right:
                     oldEnumVal = old.getEnum(old.height-1, 0)
                     oldRow = old.height-1
@@ -621,7 +632,7 @@ class CompositeShape(object):
                     newEnumVal = shape.getEnum(0, -1*offset)
                     newRow = 0
                     newCol = -1*offset
-                    newEnumLogic = "top_side(%s, %s, "+str(-1*offset)+")"
+                    newEnumLogic = getAlignmentPred(shape, "top_side(%s, %s, "+str(-1*offset)+")", str(-1*offset))
                 else:
                     newEnumVal = shape.getEnum(0, shape.width - 1)
                     newRow = 0
@@ -635,7 +646,7 @@ class CompositeShape(object):
                     elif shape.right == old.left:
                         oldEnumLogic = getAlignmentPred(old, "lower_left(%s, %s)")
                     else:
-                        oldEnumLogic = "bottom_side(%s, %s, "+str(shape.right - old.left)+")"
+                        oldEnumLogic = getAlignmentPred(old, "bottom_side(%s, %s, "+str(shape.right - old.left)+")", str(shape.right - old.left))
                 if fineIsPresent:
                     newLogic = []
                     self.logic.append(newLogic)
@@ -678,6 +689,7 @@ class CompositeShape(object):
                 result += "the space at row %d and column %d, "%(restricted[i][1], restricted[i][0])
             result += "and the space at row %d and column %d."%(restricted[-1][1], restricted[-1][0])
             self.description.append(result)
+        self.clarification.append([])
 
 
     def addStartBlocks(self):
@@ -704,6 +716,7 @@ class CompositeShape(object):
                 result += "at row %d and column %d, "%(restricted[i][1], restricted[i][0])
             result += "and at row %d and column %d."%(restricted[-1][1], restricted[-1][0])
             self.description.append(result)
+        self.clarification.append([])
 
     def addImmobileBlocks(self):
         num = randint(1,3)
@@ -730,6 +743,7 @@ class CompositeShape(object):
                 result += "at row %d and column %d, "%(restricted[i][1], restricted[i][0])
             result += "and at row %d and column %d."%(restricted[-1][1], restricted[-1][0])
             self.description.append(result)
+        self.clarification.append([])
 
     def normalize(self):
         xShift = -1 * self.minX
@@ -741,10 +755,10 @@ class CompositeShape(object):
 
         if self.maxX >= GRID_WIDTH or self.maxY >= GRID_HEIGHT:
             return False
-        if self.maxX < GRID_WIDTH - 1:
-            xShift += (GRID_WIDTH - self.maxX - 1) / 2
-        if self.maxY < GRID_HEIGHT - 1:
-            yShift += (GRID_HEIGHT - self.maxY - 1) / 2
+        #if self.maxX < GRID_WIDTH - 1:
+        #    xShift += (GRID_WIDTH - self.maxX - 1) / 2
+        #if self.maxY < GRID_HEIGHT - 1:
+        #    yShift += (GRID_HEIGHT - self.maxY - 1) / 2
 
         for shape in self.shapes:
             shape.left += xShift
@@ -755,19 +769,30 @@ class CompositeShape(object):
 
     def getDescription(self):
         if self.description:
-            return self.description
+            return self.description, self.clarification
 
         self.description = []
+        self.clarification = []
         if len(self.shapes) == 1:
             description = random.choice(COMMANDS) + " "
+            if not self.shapes[0].hasSize:
+                self.clarification.append([description + self.shapes[0].getDescription(True)+"."])
+            else:
+                self.clarification.append([])
             description += self.shapes[0].getDescription() + "."
             self.description.append(description)
         elif len(self.shapes) >= 2:
             description = random.choice(COMMANDS) + " "
+            if not self.shapes[0].hasSize:
+                self.clarification.append([description + self.shapes[0].getDescription(True)+"."])
+            else:
+                self.clarification.append([])
             description += self.shapes[0].getDescription() + "."
             self.description.append(description)
             for i in xrange(1, len(self.shapes)):
                 description = ""
+                clarification = []
+                self.clarification.append(clarification)
                 if random.randint(0,1):
                     if i == len(self.shapes) - 1 and random.randint(0,1):
                         description += "Finally, %s "%random.choice(COMMANDS).lower()
@@ -776,8 +801,9 @@ class CompositeShape(object):
                         description += "%s "%random.choice(COMMANDS).lower()
                 else:
                     description += "%s "%random.choice(COMMANDS)
+                possible_coarse = description
                 if self.relations[i-1].first.base_name == self.shapes[i].base_name and random.randint(0,1):
-                    description += "another one "
+                    description += "another %s "%self.shapes[i].name
                     if random.randint(0,1) == 1 and self.relations[i-1].direction in [TOP, BOTTOM]:
                         if self.relations[i-1].direction == TOP:
                             description += "above the first one."
@@ -786,27 +812,39 @@ class CompositeShape(object):
                     else:
                         description += "to the %s of the first one." %(DIRECTIONS[self.relations[i-1].direction])
                     #description += self.shapes[1].size_description + " to the %s of the first one." %(DIRECTIONS[self.relations[0].direction])
+                    clarification.append(None)
                 else:
                     name = "the %s"%self.relations[i-1].first.name
                     #description += "a %s to the %s of %s."%(self.shapes[1].name, DIRECTIONS[self.relations[0].direction], name)
-                    if self.relations[i-1].coarseIsPresent:
-                        if random.randint(0,1) == 1 and self.relations[i-1].direction in [TOP, BOTTOM]:
-                            if self.relations[i-1].direction == TOP:
-                                description += self.shapes[i].getDescription() + " above %s."%(name)
-                            else:
-                                description += self.shapes[i].getDescription() + " %s %s."%(random.choice(["below", "beneath"]),name)
+                    if random.randint(0,1) == 1 and self.relations[i-1].direction in [TOP, BOTTOM]:
+                        if self.relations[i-1].direction == TOP:
+                            description += "%s" + " above %s."%(name)
                         else:
-                            description += self.shapes[i].getDescription() + " to the %s of %s." %(DIRECTIONS[self.relations[i-1].direction], name)
+                            description += "%s" + " %s %s."%(random.choice(["below", "beneath"]),name)
                     else:
-                        description += self.shapes[i].getDescription() + "."
-                self.description.append(description)
+                        description += "%s" + " to the %s of %s." %(DIRECTIONS[self.relations[i-1].direction], name)
+                    if not self.shapes[i].hasSize:
+                        clarification.append(description%self.shapes[i].getDescription(True))
+                    else:
+                        clarification.append(None)
+                    description = description%(self.shapes[i].getDescription())
+                option = random.randint(0,3)
+                if option == 0:
+                    relation = "Ensure that %s."%self.relations[i-1].description
+                elif option == 1:
+                    relation = "Make sure that %s."%self.relations[i-1].description
+                elif option == 2:
+                    relation = "Check that %s."%self.relations[i-1].description
+                elif option == 3:
+                    relation = self.relations[i-1].description
+                    relation = relation[0].upper()+relation[1:]
                 if self.relations[i-1].fineIsPresent:
-                    if random.randint(0,1):
-                        self.description.append("Ensure that %s."%self.relations[i-1].description)
-                    else:
-                        self.description.append("Make sure that %s."%self.relations[i-1].description)
+                    description += " " + relation
+                else:
+                    clarification.append(relation)
+                self.description.append(description)
 
-        return self.description
+        return self.description, self.clarification
 
 
     def draw(self):
@@ -815,17 +853,30 @@ class CompositeShape(object):
             shape.fillIn(result)
         return result
 
-    def write(self, fout):
-        #result = self.draw()
-        #for row in xrange(len(result)):
-        #    fout.write(" ".join(result[row]))
-        #    fout.write("\n")
-        #fout.write("===\n")
-        description = self.getDescription()
-        for i in xrange(len(self.description)):
-            fout.write(' ^ '.join(self.logic[i]))
+    def write_experiment(self, fout):
+        result = self.draw()
+        for row in xrange(len(result)):
+            fout.write(" ".join(result[row]))
             fout.write("\n")
-            fout.write(description[i])
+        fout.write("===\n")
+        descriptions, clarifications = self.getDescription()
+        for i,description in enumerate(descriptions):
+            #fout.write(' ^ '.join(self.logic[i]))
+            #fout.write("\n")
+            fout.write(description)
+            for entry in clarifications[i]:
+                if entry != None:
+                    fout.write("\n")
+                    fout.write("C:"+entry)
+            fout.write("\n")
+        fout.write("#")
+
+    def write_train(self, fout):
+        descriptions, _ = self.getDescription()
+        for description,logic in zip(descriptions, self.logic):
+            fout.write(' ^ '.join(logic))
+            fout.write("\n")
+            fout.write(description)
             fout.write("\n")
 
     def draw_to_file(self, file_path):
@@ -859,8 +910,8 @@ class Row(Shape):
 
     def getCondensedLogic(self):
         return ['row(%s)'%self.var]
-    def getDescription(self):
-        if self.hasSize:
+    def getDescription(self, override=False):
+        if self.hasSize or override:
             return self.description
         else:
             return "a %s"%self.name
@@ -892,8 +943,8 @@ class Col(Shape):
         return ['column(%s)'%self.var, 'height(%s, %d)'%(self.var, self.height)]
     def getCondensedLogic(self):
         return ['column(%s)'%self.var]
-    def getDescription(self):
-        if self.hasSize:
+    def getDescription(self, override=False):
+        if self.hasSize or override:
             return self.description
         else:
             return "a %s"%self.name
@@ -913,8 +964,8 @@ class Square(Shape):
         return ['square(%s)'%self.var, 'size(%s, %d)'%(self.var, self.width)]
     def getCondensedLogic(self):
         return ['square(%s)'%self.var]
-    def getDescription(self):
-        if self.hasSize:
+    def getDescription(self, override=False):
+        if self.hasSize or override:
             return self.description
         else:
             return "a square"
@@ -936,8 +987,8 @@ class Rect(Shape):
         return ['rectangle(%s)'%self.var, 'height(%s, %d)'%(self.var, self.height), 'width(%s, %d)'%(self.var, self.width)]
     def getCondensedLogic(self):
         return ['rectangle(%s)'%self.var]
-    def getDescription(self):
-        if self.hasSize:
+    def getDescription(self, override=False):
+        if self.hasSize or override:
             return self.description
         else:
             return "a rectangle"
@@ -1017,6 +1068,7 @@ def genConfig(numShapes, numMissing):
             composite.addShape(newShape, direction, randomVec[3*i-1],randomVec[3*i])
         prevShape = newShape
         prevShapeNum = newShapeNum
+    '''
     constr = randint(0,3)
     if constr == 1:
         composite.addRandomConstraint()
@@ -1024,6 +1076,7 @@ def genConfig(numShapes, numMissing):
         composite.addStartBlocks()
     elif constr == 3:
         composite.addImmobileBlocks()
+    '''
     return composite
 
 
@@ -1033,83 +1086,130 @@ if len(sys.argv) != 3:
     print "Usage: python generate.py <train output name> <test output name>"
     sys.exit(1)
 
-shapes = []
-descriptions = set()
-while len(shapes) < TRAIN_SIZE_SHAPES + TEST_SIZE_SHAPES:
-    numShapes = randint(1, maxNumShapes)
-    if randint(0,1):
-        numMissing = 0
-    else:
-        numMissing = randint(1,3*(numShapes - 1)+1)
-    composite = genConfig(numShapes, numMissing)
-    if ''.join(composite.getDescription()) not in descriptions and composite.normalize():
-        descriptions.add(''.join(composite.getDescription()))
-        shapes.append(composite)
+if IS_TRAIN_MODE:
+    shapes = []
+    descriptions = set()
+    while len(shapes) < TRAIN_SIZE_SHAPES + TEST_SIZE_SHAPES:
+        numShapes = randint(1, maxNumShapes)
+        if randint(0,1):
+            numMissing = 0
+        else:
+            numMissing = randint(1,3*(numShapes - 1)+1)
+        composite = genConfig(numShapes, numMissing)
+        description, clarification = composite.getDescription()
+        if ''.join(description) not in descriptions and composite.normalize():
+            descriptions.add(''.join(description))
+            shapes.append(composite)
 
-randobjs = []
-for i in xrange(TRAIN_SIZE_RANDOBJ + TEST_SIZE_RANDOBJ):
-    option = random.randint(0,3)
-    article = random.choice(["a", "an"])
-    letter = random.choice(string.ascii_uppercase)
-    if option == 0:
-        word = "%s"%(RAND_VOCAB[i])
-        logic_form = "%s(a)"%RAND_VOCAB[i]
-    else:
-        logic_form = "%s(a)"%letter
-        if option == 1:
-            word = "letter %s"%letter
-            article = "the"
-        elif option == 2:
-            word = "letter %s"%letter
-        elif option == 3:
-            word = letter
-    option = randint(0,3)
-    if option == 0:
-        width = randint(2,9)
-        logic_form += " ^ width(a, %d)"%width
-        description = randomObjDescription("%s %s of %s %d"%(article, word, random.choice(['length', 'width']),width))
-    elif option == 1:
-        height = randint(2,9)
-        logic_form += " ^ height(a, %d)"%height
-        description = randomObjDescription("%s %s of height %d"%(article, word, height))
-    elif option == 2:
-        width = randint(2,9)
-        height = randint(2,9)
+    randobjs = []
+    for i in xrange(TRAIN_SIZE_RANDOBJ + TEST_SIZE_RANDOBJ):
         option = random.randint(0,3)
+        article = random.choice(["a", "an"])
+        letter = random.choice(string.ascii_uppercase)
         if option == 0:
-            logic_form += " ^ height(a, %d) ^ width(a, %d)"%(height, width)
-            description = randomObjDescription("%s %s of height %d and %s %d"%(article, word, height, random.choice(['length', 'width']),width))
+            word = "%s"%(RAND_VOCAB[i])
+            logic_form = "%s(a)"%RAND_VOCAB[i]
+        else:
+            logic_form = "%s(a)"%letter
+            if option == 1:
+                word = "letter %s"%letter
+                article = "the"
+            elif option == 2:
+                word = "letter %s"%letter
+            elif option == 3:
+                word = letter
+        option = randint(0,3)
+        if option == 0:
+            width = randint(2,9)
+            logic_form += " ^ width(a, %d)"%width
+            description = randomObjDescription("%s %s of %s %d"%(article, word, random.choice(['length', 'width']),width))
         elif option == 1:
-            logic_form += " ^ width(a, %d) ^ height(a, %d)"%(width, height)
-            description = randomObjDescription("%s %s of %s %d and height %d"%(article, word, random.choice(['length', 'width']), width, height))
+            height = randint(2,9)
+            logic_form += " ^ height(a, %d)"%height
+            description = randomObjDescription("%s %s of height %d"%(article, word, height))
         elif option == 2:
-            logic_form += " ^ width(a, %d) ^ height(a, %d)"%(width, height)
-            description = randomObjDescription("%s %d by %d %s"%(article, width, height, word))
-        elif option == 3:
-            logic_form += " ^ width(a, %d) ^ height(a, %d)"%(width, height)
-            description = randomObjDescription("%s %s of size %d by %d"%(article, word, width, height))
+            width = randint(2,9)
+            height = randint(2,9)
+            option = random.randint(0,3)
+            if option == 0:
+                logic_form += " ^ height(a, %d) ^ width(a, %d)"%(height, width)
+                description = randomObjDescription("%s %s of height %d and %s %d"%(article, word, height, random.choice(['length', 'width']),width))
+            elif option == 1:
+                logic_form += " ^ width(a, %d) ^ height(a, %d)"%(width, height)
+                description = randomObjDescription("%s %s of %s %d and height %d"%(article, word, random.choice(['length', 'width']), width, height))
+            elif option == 2:
+                logic_form += " ^ width(a, %d) ^ height(a, %d)"%(width, height)
+                description = randomObjDescription("%s %d by %d %s"%(article, width, height, word))
+            elif option == 3:
+                logic_form += " ^ width(a, %d) ^ height(a, %d)"%(width, height)
+                description = randomObjDescription("%s %s of size %d by %d"%(article, word, width, height))
 
-            
-    else:
-        description = randomObjDescription("%s %s"%(article, word))
-    randobjs.append((logic_form, description))
-
-train_data = shapes[:TRAIN_SIZE_SHAPES] + randobjs[:TRAIN_SIZE_RANDOBJ]
-random.shuffle(train_data)
-test_data = shapes[TRAIN_SIZE_SHAPES:] + randobjs[TRAIN_SIZE_RANDOBJ:]
-random.shuffle(test_data)
-
-with open(sys.argv[1], "w") as fout:
-    for item in train_data:
-        if isinstance(item, tuple):
-            fout.write("%s\n%s\n"%item)
+                
         else:
-            item.write(fout)
-        fout.write("\n")
-with open(sys.argv[2], "w") as fout:
-    for item in test_data:
-        if isinstance(item, tuple):
-            fout.write("%s\n%s\n"%item)
-        else:
-            item.write(fout)
-        fout.write("\n")
+            description = randomObjDescription("%s %s"%(article, word))
+        randobjs.append((logic_form, description))
+    
+    train_data = shapes[:TRAIN_SIZE_SHAPES] + randobjs[:TRAIN_SIZE_RANDOBJ]
+    random.shuffle(train_data)
+    test_data = shapes[TRAIN_SIZE_SHAPES:] + randobjs[TRAIN_SIZE_RANDOBJ:]
+    random.shuffle(test_data)
+
+    with open(sys.argv[1], "w") as fout:
+        for item in train_data:
+            if isinstance(item, tuple):
+                fout.write("%s\n%s\n"%item)
+            else:
+                item.write_train(fout)
+            fout.write("\n")
+    with open(sys.argv[2], "w") as fout:
+        for item in test_data:
+            if isinstance(item, tuple):
+                fout.write("%s\n%s\n"%item)
+            else:
+                item.write_train(fout)
+            fout.write("\n")
+    
+else:
+    shapes = []
+    descriptions = []
+    for i in xrange(25):
+        passed = False
+        while not passed:
+            composite = genConfig(1, 0)
+            description, clarification = composite.getDescription()
+            if ''.join(description) not in descriptions and composite.normalize():
+                descriptions.add(''.join(description))
+                shapes.append(composite)
+                passed = True
+    for i in xrange(25):
+        passed = False
+        while not passed:
+            composite = genConfig(2, 0)
+            description, clarification = composite.getDescription()
+            if ''.join(description) not in descriptions and composite.normalize():
+                descriptions.add(''.join(description))
+                shapes.append(composite)
+                passed = True
+    for i in xrange(25):
+        passed = False
+        while not passed:
+            composite = genConfig(3, 0)
+            description, clarification = composite.getDescription()
+            if ''.join(description) not in descriptions and composite.normalize():
+                descriptions.add(''.join(description))
+                shapes.append(composite)
+                passed = True
+    for i in xrange(25):
+        passed = False
+        while not passed:
+            composite = genConfig(4, 0)
+            description, clarification = composite.getDescription()
+            if ''.join(description) not in descriptions and composite.normalize():
+                descriptions.add(''.join(description))
+                shapes.append(composite)
+                passed = True
+    with open(sys.argv[1], "w") as fout:
+        for shape in shapes:
+            shape.write_experiment(fout)
+            fout.write("\n")
+
