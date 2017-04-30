@@ -1,11 +1,12 @@
-TRAIN_SIZE_SHAPES = 500
-TRAIN_SIZE_RANDOBJ = 500
-TEST_SIZE_SHAPES = 200
-TEST_SIZE_RANDOBJ = 200
-maxNumShapes = 3
+TRAIN_SIZE_SHAPES = 1400
+TRAIN_SIZE_RANDOBJ = 0
+TEST_SIZE_SHAPES = 600
+TEST_SIZE_RANDOBJ = 0
+maxNumShapes = 4
 
 import random, sys, os, string, itertools
 from random import randint, shuffle
+import numpy as np
 
 COMMANDS = ["Create", "Construct", "Build", "Form"]
 CONNECTORS = ["and", "with"]
@@ -103,13 +104,14 @@ class Shape:
 class Relation(object):
     INLINE_CHOICES = ["is aligned with", "is in line with", "is next to", "is adjacent to"]
     NEXT_CHOICES = ["is next to", "is adjacent to"]
-    def __init__(self, direction, second, first, offset):
+    def __init__(self, direction, second, first, offset, coarseIsPresent, fineIsPresent):
         self.direction = direction
         self.second = second
         self.first = first
         self.offset = offset
         self.description = "" 
-        self.isDisplayed = True
+        self.coarseIsPresent = coarseIsPresent
+        self.fineIsPresent = fineIsPresent
 
         # Build the description
         # Recipe: [SECOND REFERENCE] [RELATIVE LOCATION] [FIRST REFERENCE]
@@ -186,7 +188,7 @@ class Relation(object):
             elif random.randint(0,1):
                 self.description += random.choice(Relation.NEXT_CHOICES) + " "
             else:
-                self.description += random.choice(random.choice(["is to the right of", "is right of"])) + " "
+                self.description += random.choice(["is to the right of", "is right of"]) + " "
 
             # FIRST REFERENCE
             if top:
@@ -302,7 +304,7 @@ class CompositeShape(object):
         self.logic = []
         self.description = None
 
-    def addShape(self, shape, direction):
+    def addShape(self, shape, direction, coarseIsPresent, fineIsPresent):
         if not self.shapes:
             self.shapes = [shape]
             #The following keeps track of which shape is on each side.
@@ -311,7 +313,10 @@ class CompositeShape(object):
             self.minX = 0
             self.maxY = shape.bottom
             self.minY = 0
-            self.logic.append(shape.getLogic())
+            if shape.hasSize:
+                self.logic.append(shape.getLogic())
+            else:
+                self.logic.append(shape.getCondensedLogic())
         else:
             finalInd = 1
             for oldShape in self.shapes:
@@ -328,8 +333,10 @@ class CompositeShape(object):
             self.shapes.append(shape)
             newLogic = []
             self.logic.append(newLogic)
-            newLogic += shape.getLogic()
-            #newLogic += shape.getCondensedLogic() #TODO: THIS IS WHAT YOU CHANGED
+            if shape.hasSize:
+                newLogic += shape.getLogic()
+            else:
+                newLogic += shape.getCondensedLogic() 
             def getAlignmentPred(shape, pred):
                 if shape.base_name == "row":
                     if "right" in pred:
@@ -351,7 +358,7 @@ class CompositeShape(object):
                 shape.left = old.left - shape.width
                 shape.top = old.top + offset
                 shape.bottom = old.top + offset + shape.height - 1
-                self.relations.append(Relation(LEFT, shape, old, offset))
+                self.relations.append(Relation(LEFT, shape, old, offset, coarseIsPresent, fineIsPresent))
                 self.shapesOnSides[LEFT] = shape
                 if shape.left <= self.minX:
                     self.minX = shape.left
@@ -362,19 +369,14 @@ class CompositeShape(object):
                 if shape.bottom >= self.maxY:
                     self.maxY = shape.bottom
                     self.shapesOnSides[BOTTOM] = shape
-                newLogic.append("left(%s, %s)"%(shape.var, old.var))
-                newLogic = []
-                #newLogic += shape.getCondensedLogic()
-                #newLogic += old.getCondensedLogic()
-                self.logic.append(newLogic)
+                if coarseIsPresent:
+                    newLogic.append("left(%s, %s)"%(shape.var, old.var))
 
                 # Additional Logic
                 if offset >= 0:
-                    #newEnumVal = shape.getEnum(0, shape.width - 1)
                     newRow = 0
                     newCol = shape.width-1
                     newEnumLogic = getAlignmentPred(shape, "upper_right(%s, %s)")
-                    #oldEnumVal = old.getEnum(offset, 0)
                     oldRow = offset
                     oldCol = 0
                     if offset == 0:
@@ -408,19 +410,22 @@ class CompositeShape(object):
                         oldEnumLogic = getAlignmentPred(old, "upper_left(%s, %s)")
                     else:
                         oldEnumLogic = "left_side(%s, %s, "+str(shape.bottom-old.top) + ")"
-                newSpaceVar = getSpaceVar()
-                oldSpaceVar = getSpaceVar()
-                newBlockVar = getVar()
-                oldBlockVar = getVar()
-                newLogic += ["block(%s)"%newBlockVar, "location(%s)"%newSpaceVar]
-                newLogic += ["block-location(%s, %s)"%(newBlockVar, newSpaceVar)]
-                newLogic += [newEnumLogic%(shape.var, newBlockVar)]
-                #newLogic += ["row-ind(%s, %s, %d)"%(shape.var, newBlockVar, newRow), "col-ind(%s, %s, %d)"%(shape.var, newBlockVar, newCol)]
-                newLogic += ["block(%s)"%oldBlockVar, "location(%s)"%oldSpaceVar]
-                newLogic += ["block-location(%s, %s)"%(oldBlockVar, oldSpaceVar)]
-                newLogic += [oldEnumLogic%(old.var,oldBlockVar)]
-                #newLogic += ["row-ind(%s, %s, %d)"%(old.var, oldBlockVar, oldRow), "col-ind(%s, %s, %d)"%(old.var, oldBlockVar, oldCol)]
-                newLogic.append("spatial-rel(west, 0, %s, %s)"%(oldSpaceVar, newSpaceVar))
+                if fineIsPresent:
+                    newLogic = []
+                    self.logic.append(newLogic)
+                    newSpaceVar = getSpaceVar()
+                    oldSpaceVar = getSpaceVar()
+                    newBlockVar = getVar()
+                    oldBlockVar = getVar()
+                    newLogic += ["block(%s)"%newBlockVar, "location(%s)"%newSpaceVar]
+                    newLogic += ["block-location(%s, %s)"%(newBlockVar, newSpaceVar)]
+                    newLogic += [newEnumLogic%(shape.var, newBlockVar)]
+                    #newLogic += ["row-ind(%s, %s, %d)"%(shape.var, newBlockVar, newRow), "col-ind(%s, %s, %d)"%(shape.var, newBlockVar, newCol)]
+                    newLogic += ["block(%s)"%oldBlockVar, "location(%s)"%oldSpaceVar]
+                    newLogic += ["block-location(%s, %s)"%(oldBlockVar, oldSpaceVar)]
+                    newLogic += [oldEnumLogic%(old.var,oldBlockVar)]
+                    #newLogic += ["row-ind(%s, %s, %d)"%(old.var, oldBlockVar, oldRow), "col-ind(%s, %s, %d)"%(old.var, oldBlockVar, oldCol)]
+                    newLogic.append("spatial-rel(west, 0, %s, %s)"%(oldSpaceVar, newSpaceVar))
 
             elif direction == RIGHT:
                 old = self.shapesOnSides[RIGHT]
@@ -430,7 +435,7 @@ class CompositeShape(object):
                 shape.right = old.right + shape.width
                 shape.top = old.top + offset
                 shape.bottom = old.top + offset + shape.height - 1
-                self.relations.append(Relation(RIGHT, shape, old, offset))
+                self.relations.append(Relation(RIGHT, shape, old, offset, coarseIsPresent, fineIsPresent))
                 if shape.right >= self.maxX:
                     self.maxX = shape.right
                     self.shapesOnSides[RIGHT] = shape
@@ -440,11 +445,8 @@ class CompositeShape(object):
                 if shape.bottom >= self.maxY:
                     self.maxY = shape.bottom
                     self.shapesOnSides[BOTTOM] = shape
-                newLogic.append("right(%s, %s)"%(shape.var, old.var))
-                newLogic = []
-                #newLogic += shape.getCondensedLogic()
-                #newLogic += old.getCondensedLogic()
-                self.logic.append(newLogic)
+                if coarseIsPresent:
+                    newLogic.append("right(%s, %s)"%(shape.var, old.var))
 
                 # Additional Logic
                 if offset >= 0:
@@ -485,28 +487,30 @@ class CompositeShape(object):
                         oldEnumLogic = getAlignmentPred(old, "upper_right(%s, %s)")
                     else:
                         oldEnumLogic = "right_side(%s, %s, "+str(shape.bottom-old.top)+")"
-                newSpaceVar = getSpaceVar()
-                oldSpaceVar = getSpaceVar()
-                newBlockVar = getVar()
-                oldBlockVar = getVar()
-                newLogic += ["block(%s)"%newBlockVar, "location(%s)"%newSpaceVar]
-                newLogic += ["block-location(%s, %s)"%(newBlockVar, newSpaceVar)]
-                newLogic += [newEnumLogic%(shape.var, newBlockVar)]
-                #newLogic += ["row-ind(%s, %s, %d)"%(shape.var, newBlockVar, newRow), "col-ind(%s, %s, %d)"%(shape.var, newBlockVar, newCol)]
-                newLogic += ["block(%s)"%oldBlockVar, "location(%s)"%oldSpaceVar]
-                newLogic += ["block-location(%s, %s)"%(oldBlockVar, oldSpaceVar)]
-                newLogic += [oldEnumLogic%(old.var,oldBlockVar)]
-                #newLogic += ["row-ind(%s, %s, %d)"%(old.var, oldBlockVar, oldRow), "col-ind(%s, %s, %d)"%(old.var, oldBlockVar, oldCol)]
-                newLogic.append("spatial-rel(east, 0, %s, %s)"%(oldSpaceVar, newSpaceVar))
+                if fineIsPresent:
+                    newSpaceVar = getSpaceVar()
+                    oldSpaceVar = getSpaceVar()
+                    newBlockVar = getVar()
+                    oldBlockVar = getVar()
+                    newLogic = []
+                    self.logic.append(newLogic)
+                    newLogic += ["block(%s)"%newBlockVar, "location(%s)"%newSpaceVar]
+                    newLogic += ["block-location(%s, %s)"%(newBlockVar, newSpaceVar)]
+                    newLogic += [newEnumLogic%(shape.var, newBlockVar)]
+                    #newLogic += ["row-ind(%s, %s, %d)"%(shape.var, newBlockVar, newRow), "col-ind(%s, %s, %d)"%(shape.var, newBlockVar, newCol)]
+                    newLogic += ["block(%s)"%oldBlockVar, "location(%s)"%oldSpaceVar]
+                    newLogic += ["block-location(%s, %s)"%(oldBlockVar, oldSpaceVar)]
+                    newLogic += [oldEnumLogic%(old.var,oldBlockVar)]
+                    #newLogic += ["row-ind(%s, %s, %d)"%(old.var, oldBlockVar, oldRow), "col-ind(%s, %s, %d)"%(old.var, oldBlockVar, oldCol)]
+                    newLogic.append("spatial-rel(east, 0, %s, %s)"%(oldSpaceVar, newSpaceVar))
             elif direction == TOP:
                 old = self.shapesOnSides[TOP]
-                #newLogic += old.getCondensedLogic()
                 offset = randint(-1*(shape.width-1), old.width - 1)
                 shape.bottom = old.top - 1
                 shape.top = old.top - shape.height
                 shape.left = old.left + offset
                 shape.right = old.left + offset + shape.width - 1
-                self.relations.append(Relation(TOP, shape, old, offset))
+                self.relations.append(Relation(TOP, shape, old, offset, coarseIsPresent, fineIsPresent))
                 if shape.left <= self.minX:
                     self.minX = shape.left
                     self.shapesOnSides[LEFT] = shape
@@ -516,11 +520,8 @@ class CompositeShape(object):
                 if shape.top <= self.minY:
                     self.minY = shape.top
                     self.shapesOnSides[TOP] = shape
-                newLogic.append("top(%s, %s)"%(shape.var, old.var))
-                newLogic = []
-                #newLogic += shape.getCondensedLogic()
-                #newLogic += old.getCondensedLogic()
-                self.logic.append(newLogic)
+                if coarseIsPresent:
+                    newLogic.append("top(%s, %s)"%(shape.var, old.var))
 
                 # Additional Logic
                 if offset >= 0:
@@ -560,28 +561,30 @@ class CompositeShape(object):
                         oldEnumLogic = getAlignmentPred(old, "upper_left(%s, %s)")
                     else:
                         oldEnumLogic = "top_side(%s, %s, "+str(shape.right - old.left)+")"
-                newSpaceVar = getSpaceVar()
-                oldSpaceVar = getSpaceVar()
-                newBlockVar = getVar()
-                oldBlockVar = getVar()
-                newLogic += ["block(%s)"%newBlockVar, "location(%s)"%newSpaceVar]
-                newLogic += ["block-location(%s, %s)"%(newBlockVar, newSpaceVar)]
-                newLogic += [newEnumLogic%(shape.var, newBlockVar)]
-                #newLogic += ["row-ind(%s, %s, %d)"%(shape.var, newBlockVar, newRow), "col-ind(%s, %s, %d)"%(shape.var, newBlockVar, newCol)]
-                newLogic += ["block(%s)"%oldBlockVar, "location(%s)"%oldSpaceVar]
-                newLogic += ["block-location(%s, %s)"%(oldBlockVar, oldSpaceVar)]
-                newLogic += [oldEnumLogic%(old.var,oldBlockVar)]
-                #newLogic += ["row-ind(%s, %s, %d)"%(old.var, oldBlockVar, oldRow), "col-ind(%s, %s, %d)"%(old.var, oldBlockVar, oldCol)]
-                newLogic.append("spatial-rel(north, 0, %s, %s)"%(oldSpaceVar, newSpaceVar))
+                if fineIsPresent:
+                    newLogic = []
+                    self.logic.append(newLogic)
+                    newSpaceVar = getSpaceVar()
+                    oldSpaceVar = getSpaceVar()
+                    newBlockVar = getVar()
+                    oldBlockVar = getVar()
+                    newLogic += ["block(%s)"%newBlockVar, "location(%s)"%newSpaceVar]
+                    newLogic += ["block-location(%s, %s)"%(newBlockVar, newSpaceVar)]
+                    newLogic += [newEnumLogic%(shape.var, newBlockVar)]
+                    #newLogic += ["row-ind(%s, %s, %d)"%(shape.var, newBlockVar, newRow), "col-ind(%s, %s, %d)"%(shape.var, newBlockVar, newCol)]
+                    newLogic += ["block(%s)"%oldBlockVar, "location(%s)"%oldSpaceVar]
+                    newLogic += ["block-location(%s, %s)"%(oldBlockVar, oldSpaceVar)]
+                    newLogic += [oldEnumLogic%(old.var,oldBlockVar)]
+                    #newLogic += ["row-ind(%s, %s, %d)"%(old.var, oldBlockVar, oldRow), "col-ind(%s, %s, %d)"%(old.var, oldBlockVar, oldCol)]
+                    newLogic.append("spatial-rel(north, 0, %s, %s)"%(oldSpaceVar, newSpaceVar))
             elif direction == BOTTOM:
                 old = self.shapesOnSides[BOTTOM]
-                #newLogic += old.getCondensedLogic()
                 offset = randint(-1*(shape.width-1), old.width - 1)
                 shape.top = old.bottom + 1
                 shape.bottom = old.bottom + shape.height
                 shape.left = old.left + offset
                 shape.right = old.left + offset + shape.width - 1
-                self.relations.append(Relation(BOTTOM, shape, old, offset))
+                self.relations.append(Relation(BOTTOM, shape, old, offset, coarseIsPresent, fineIsPresent))
                 if shape.left <= self.minX:
                     self.minX = shape.left
                     self.shapesOnSides[LEFT] = shape
@@ -592,11 +595,8 @@ class CompositeShape(object):
                     self.maxY = shape.bottom
                     self.shapesOnSides[BOTTOM] = shape
 
-                newLogic.append("bottom(%s, %s)"%(shape.var, old.var))
-                newLogic = []
-                #newLogic += shape.getCondensedLogic()
-                #newLogic += old.getCondensedLogic()
-                self.logic.append(newLogic)
+                if coarseIsPresent:
+                    newLogic.append("bottom(%s, %s)"%(shape.var, old.var))
 
                 # Additional Logic
                 if offset >= 0:
@@ -636,19 +636,22 @@ class CompositeShape(object):
                         oldEnumLogic = getAlignmentPred(old, "lower_left(%s, %s)")
                     else:
                         oldEnumLogic = "bottom_side(%s, %s, "+str(shape.right - old.left)+")"
-                newSpaceVar = getSpaceVar()
-                oldSpaceVar = getSpaceVar()
-                newBlockVar = getVar()
-                oldBlockVar = getVar()
-                newLogic += ["block(%s)"%newBlockVar, "location(%s)"%newSpaceVar]
-                newLogic += ["block-location(%s, %s)"%(newBlockVar, newSpaceVar)]
-                newLogic += [newEnumLogic%(shape.var, newBlockVar)]
-                #newLogic += ["row-ind(%s, %s, %d)"%(shape.var, newBlockVar, newRow), "col-ind(%s, %s, %d)"%(shape.var, newBlockVar, newCol)]
-                newLogic += ["block(%s)"%oldBlockVar, "location(%s)"%oldSpaceVar]
-                newLogic += ["block-location(%s, %s)"%(oldBlockVar, oldSpaceVar)]
-                newLogic += [oldEnumLogic%(old.var,oldBlockVar)]
-                #newLogic += ["row-ind(%s, %s, %d)"%(old.var, oldBlockVar, oldRow), "col-ind(%s, %s, %d)"%(old.var, oldBlockVar, oldCol)]
-                newLogic.append("spatial-rel(south, 0, %s, %s)"%(oldSpaceVar, newSpaceVar))
+                if fineIsPresent:
+                    newLogic = []
+                    self.logic.append(newLogic)
+                    newSpaceVar = getSpaceVar()
+                    oldSpaceVar = getSpaceVar()
+                    newBlockVar = getVar()
+                    oldBlockVar = getVar()
+                    newLogic += ["block(%s)"%newBlockVar, "location(%s)"%newSpaceVar]
+                    newLogic += ["block-location(%s, %s)"%(newBlockVar, newSpaceVar)]
+                    newLogic += [newEnumLogic%(shape.var, newBlockVar)]
+                    #newLogic += ["row-ind(%s, %s, %d)"%(shape.var, newBlockVar, newRow), "col-ind(%s, %s, %d)"%(shape.var, newBlockVar, newCol)]
+                    newLogic += ["block(%s)"%oldBlockVar, "location(%s)"%oldSpaceVar]
+                    newLogic += ["block-location(%s, %s)"%(oldBlockVar, oldSpaceVar)]
+                    newLogic += [oldEnumLogic%(old.var,oldBlockVar)]
+                    #newLogic += ["row-ind(%s, %s, %d)"%(old.var, oldBlockVar, oldRow), "col-ind(%s, %s, %d)"%(old.var, oldBlockVar, oldCol)]
+                    newLogic.append("spatial-rel(south, 0, %s, %s)"%(oldSpaceVar, newSpaceVar))
 
     def addRandomConstraint(self):
         num = randint(1,3)
@@ -757,11 +760,11 @@ class CompositeShape(object):
         self.description = []
         if len(self.shapes) == 1:
             description = random.choice(COMMANDS) + " "
-            description += self.shapes[0].description + "."
+            description += self.shapes[0].getDescription() + "."
             self.description.append(description)
         elif len(self.shapes) >= 2:
             description = random.choice(COMMANDS) + " "
-            description += self.shapes[0].description + "."
+            description += self.shapes[0].getDescription() + "."
             self.description.append(description)
             for i in xrange(1, len(self.shapes)):
                 description = ""
@@ -786,18 +789,22 @@ class CompositeShape(object):
                 else:
                     name = "the %s"%self.relations[i-1].first.name
                     #description += "a %s to the %s of %s."%(self.shapes[1].name, DIRECTIONS[self.relations[0].direction], name)
-                    if random.randint(0,1) == 1 and self.relations[i-1].direction in [TOP, BOTTOM]:
-                        if self.relations[i-1].direction == TOP:
-                            description += self.shapes[i].description + " above %s."%(name)
+                    if self.relations[i-1].coarseIsPresent:
+                        if random.randint(0,1) == 1 and self.relations[i-1].direction in [TOP, BOTTOM]:
+                            if self.relations[i-1].direction == TOP:
+                                description += self.shapes[i].getDescription() + " above %s."%(name)
+                            else:
+                                description += self.shapes[i].getDescription() + " %s %s."%(random.choice(["below", "beneath"]),name)
                         else:
-                            description += self.shapes[i].description + " %s %s."%(random.choice(["below", "beneath"]),name)
+                            description += self.shapes[i].getDescription() + " to the %s of %s." %(DIRECTIONS[self.relations[i-1].direction], name)
                     else:
-                        description += self.shapes[i].description + " to the %s of %s." %(DIRECTIONS[self.relations[i-1].direction], name)
+                        description += self.shapes[i].getDescription() + "."
                 self.description.append(description)
-                if random.randint(0,1):
-                    self.description.append("Ensure that %s."%self.relations[i-1].description)
-                else:
-                    self.description.append("Make sure that %s."%self.relations[i-1].description)
+                if self.relations[i-1].fineIsPresent:
+                    if random.randint(0,1):
+                        self.description.append("Ensure that %s."%self.relations[i-1].description)
+                    else:
+                        self.description.append("Make sure that %s."%self.relations[i-1].description)
 
         return self.description
 
@@ -852,6 +859,11 @@ class Row(Shape):
 
     def getCondensedLogic(self):
         return ['row(%s)'%self.var]
+    def getDescription(self):
+        if self.hasSize:
+            return self.description
+        else:
+            return "a %s"%self.name
 
 
 class Col(Shape):
@@ -880,6 +892,11 @@ class Col(Shape):
         return ['column(%s)'%self.var, 'height(%s, %d)'%(self.var, self.height)]
     def getCondensedLogic(self):
         return ['column(%s)'%self.var]
+    def getDescription(self):
+        if self.hasSize:
+            return self.description
+        else:
+            return "a %s"%self.name
 
 class Square(Shape):
     def __init__(self, dim):
@@ -896,6 +913,11 @@ class Square(Shape):
         return ['square(%s)'%self.var, 'size(%s, %d)'%(self.var, self.width)]
     def getCondensedLogic(self):
         return ['square(%s)'%self.var]
+    def getDescription(self):
+        if self.hasSize:
+            return self.description
+        else:
+            return "a square"
 
 class Rect(Shape):
     def __init__(self, width, height):
@@ -914,6 +936,11 @@ class Rect(Shape):
         return ['rectangle(%s)'%self.var, 'height(%s, %d)'%(self.var, self.height), 'width(%s, %d)'%(self.var, self.width)]
     def getCondensedLogic(self):
         return ['rectangle(%s)'%self.var]
+    def getDescription(self):
+        if self.hasSize:
+            return self.description
+        else:
+            return "a rectangle"
 
 def randRow():
     length = randint(3,9)
@@ -928,10 +955,10 @@ def randSquare():
     return Square(dim)
 
 def randRect():
-    length = randint(2,9)
+    length = randint(1,9)
     height = length
     while height == length:
-        height = randint(2,9)
+        height = randint(1,9)
     return Rect(length, height)
 
 genShape = {ROW:randRow, COL:randCol, SQUARE:randSquare, RECT:randRect}
@@ -960,23 +987,17 @@ def randomObjDescription(objName):
     ]
     return random.choice(options)%objName
 
-configs = []
-descriptions = []
-if len(sys.argv) != 3:
-    print "Usage: python generate.py <train output name> <test output name>"
-    sys.exit(1)
-
-shapes = []
-descriptions = set()
-while len(shapes) < TRAIN_SIZE_SHAPES + TEST_SIZE_SHAPES:
+def genConfig(numShapes, numMissing):
     resetVars()
-    numShapes = randint(1, maxNumShapes)
+    randomVec = [True]*(3*(numShapes-1)+1)
+    inds = np.random.choice(range(3*(numShapes-1)+1),size=numMissing, replace=False)
+    for ind in inds:
+        randomVec[ind] = False
     composite = CompositeShape()
     prevShapeNum = None
-    for j in xrange(numShapes):
+    for i in xrange(numShapes):
         newShapeNum = randint(0,3)
         if newShapeNum == prevShapeNum:
-            # We want the other shape to have the same size
             if newShapeNum == ROW:
                 newShape = Row(prevShape.width)
             elif newShapeNum == COL:
@@ -988,9 +1009,14 @@ while len(shapes) < TRAIN_SIZE_SHAPES + TEST_SIZE_SHAPES:
         else:
             newShape = genShape[newShapeNum]()
         direction = randint(0,3)
-        composite.addShape(newShape, direction)
-        prevShapeNum = newShapeNum
+        if i == 0:
+            newShape.hasSize = randomVec[i]
+            composite.addShape(newShape, direction, None, None)
+        else:
+            newShape.hasSize = randomVec[3*(i-1)+1]
+            composite.addShape(newShape, direction, randomVec[3*i-1],randomVec[3*i])
         prevShape = newShape
+        prevShapeNum = newShapeNum
     constr = randint(0,3)
     if constr == 1:
         composite.addRandomConstraint()
@@ -998,6 +1024,24 @@ while len(shapes) < TRAIN_SIZE_SHAPES + TEST_SIZE_SHAPES:
         composite.addStartBlocks()
     elif constr == 3:
         composite.addImmobileBlocks()
+    return composite
+
+
+configs = []
+descriptions = []
+if len(sys.argv) != 3:
+    print "Usage: python generate.py <train output name> <test output name>"
+    sys.exit(1)
+
+shapes = []
+descriptions = set()
+while len(shapes) < TRAIN_SIZE_SHAPES + TEST_SIZE_SHAPES:
+    numShapes = randint(1, maxNumShapes)
+    if randint(0,1):
+        numMissing = 0
+    else:
+        numMissing = randint(1,3*(numShapes - 1)+1)
+    composite = genConfig(numShapes, numMissing)
     if ''.join(composite.getDescription()) not in descriptions and composite.normalize():
         descriptions.add(''.join(composite.getDescription()))
         shapes.append(composite)
