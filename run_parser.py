@@ -31,6 +31,8 @@ parser.add_argument('-nf', '--num_folds', type=int, default=10,
 parser.add_argument('-ls', '--layer_size', type=int, default=None)
 parser.add_argument('mode', choices=['train', 'test'],
                     help='Way to run the app')
+parser.add_argument('model_type', choices=['standard', 'pointer'],
+                    help='Parser model to use')
 FLAGS = parser.parse_args()
 
 
@@ -50,7 +52,12 @@ def load_data():
 
 def create_model(session, conf, train_data):
     """Create model and initialize or load parameters in session."""
-    model = pointer_parser_model.MultiSentPointerParseModel(conf, train_data)
+    if FLAGS.model_type == "standard":
+        print("BUILDING STANDARD MODEL")
+        model = parser_model.MultiSentParseModel(conf, train_data)
+    else:
+        print("BUILDING POINTER MODEL")
+        model = pointer_parser_model.MultiSentPointerParseModel(conf, train_data)
     print("Created model with fresh parameters.")
     session.run(tf.initialize_all_variables())
     return model

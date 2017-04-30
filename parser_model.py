@@ -56,19 +56,22 @@ class BaseParseModel(object):
         targets = [self.decoder_inputs[i + 1]
                    for i in range(len(self.decoder_inputs) - 1)]
 
-        self.outputs, self.encoder_initial_state, self.encoder_final_state, decoder_states = embedding_attention_seq2seq_states(
+        outputs, self.encoder_initial_state, self.encoder_final_state, decoder_states = embedding_attention_seq2seq_states(
             self.encoder_inputs, self.decoder_inputs, cell, self.source_vocab_size, self.target_vocab_size, 
             config.layer_size, feed_previous=self.is_test)
         self.train_decoder_states = decoder_states[1]
         self.test_decoder_states = decoder_states[0]
+        self.train_outputs = outputs[1]
+        self.test_outputs = outputs[0]
 
-        self.loss = tf.nn.seq2seq.sequence_loss(self.outputs[:-1], targets, self.target_weights[:-1])
+        self.train_loss = tf.nn.seq2seq.sequence_loss(self.train_outputs[:-1], targets, self.target_weights[:-1])
+        self.test_loss = tf.nn.seq2seq.sequence_loss(self.test_outputs[:-1], targets, self.target_weights[:-1])
 
         params = tf.trainable_variables()
         opt = tf.train.AdagradOptimizer(self.learning_rate) 
 
         print("\tCreating gradients")
-        gradients = tf.gradients(self.loss, params)
+        gradients = tf.gradients(self.train_loss, params)
         clipped_gradients, self.gradient_norm = tf.clip_by_global_norm(gradients, config.max_gradient)
         self.update = opt.apply_gradients(zip(clipped_gradients, params))
         self.saver = tf.train.Saver(tf.all_variables())
@@ -102,7 +105,7 @@ class BaseParseModel(object):
                 self.batch_ind = 0
                 random.shuffle(self.train_data)
                 self.complete_epoch = True
-        print("\tbatch_ind %d out of %d"%(self.batch_ind, len(self.train_data)))
+        #print("\tbatch_ind %d out of %d"%(self.batch_ind, len(self.train_data)))
         num_sentences = max(map(len, batch))
         encoder_inputs, decoder_inputs = [], []
         for i in range(num_sentences):
@@ -191,7 +194,7 @@ class BaseParseModel(object):
             sentences[sent_ind].insert(0, '<s>')
             sentences[sent_ind][-1] = '</s>'
             for word_ind in range(len(sentences[sent_ind])):
-                stemmed = stemmer.stem(sentences[sent_ind][word_ind])
+                stemmed = stemmer.stem(sentences[sent_ind][word_ind].lower())
                 if stemmed not in self.words_to_id:
                     bad_list.append(sentences[sent_ind][word_ind])
                 else:
@@ -295,19 +298,19 @@ class MultiSentParseModel(BaseParseModel):
             if prev_encoder_state != None:
                 input_feed[self.encoder_initial_state] = prev_encoder_state
             else:
-                input_feed[self.encoder_initial_state] = tf.zeros([len(encoder_inputs[sent_ind][0]), self.cell.state_size]).eval()
+                input_feed[self.encoder_initial_state] = np.zeros([len(encoder_inputs[sent_ind][0]), self.cell.state_size])
             if is_test:
                 output_feed = [self.encoder_final_state, 
-                               self.loss]   #Loss for this batch
+                               self.test_loss]   #Loss for this batch
                 for l in range(self.decoder_size):  # Output logits
-                    output_feed.append(self.outputs[l])
+                    output_feed.append(self.test_outputs[l])
                 input_feed[self.keep_prob_input] = 1.0
 
             else: 
                 output_feed = [self.encoder_final_state,
                                self.update,  #Update Op that does RMSProp
                                self.gradient_norm,   # Gradient norm
-                               self.loss]   #Loss for this batch
+                               self.train_loss]   #Loss for this batch
                 input_feed[self.keep_prob_input] = self.keep_prob
             outputs.append(session.run(output_feed, input_feed))
             prev_encoder_state = outputs[-1][0]
@@ -393,10 +396,7 @@ def embedding_attention_seq2seq_states(encoder_inputs,
                 return outputs, decoder_state
         true_outputs, true_decoder_state = decoder(True)
         false_outputs, false_decoder_state = decoder(False)
-        outputs = tf.cond(feed_previous,
-                                        lambda: true_outputs,
-                                        lambda: false_outputs)
-        return outputs, encoder_initial_state, encoder_state, (true_decoder_state, false_decoder_state)
+        return (true_outputs, false_outputs), encoder_initial_state, encoder_state, (true_decoder_state, false_decoder_state)
 
 def embedding_attention_pointer_seq2seq_states(encoder_inputs,
                                        decoder_inputs,
