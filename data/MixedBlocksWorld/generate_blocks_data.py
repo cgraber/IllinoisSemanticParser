@@ -1047,7 +1047,7 @@ for i in xrange(TRAIN_SIZE_RANDOBJ + TEST_SIZE_RANDOBJ):
 
             
     else:
-        description = randomObjDescription(word)
+        description = randomObjDescription("%s %s"%(article, word))
     randobjs.append((logic_form, description))
 
 train_data = shapes[:TRAIN_SIZE_SHAPES] + randobjs[:TRAIN_SIZE_RANDOBJ]

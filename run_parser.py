@@ -28,6 +28,7 @@ parser.add_argument('-esp', '--early_stopping_patience', type=int, default=5,
                     help='How many epochs to wait until early stopping is enforced.')
 parser.add_argument('-nf', '--num_folds', type=int, default=10,
                     help='Number of folds for cross-validation')
+parser.add_argument('-ls', '--layer_size', type=int, default=None)
 parser.add_argument('mode', choices=['train', 'test'],
                     help='Way to run the app')
 FLAGS = parser.parse_args()
@@ -177,9 +178,10 @@ def evaluate_logits(output_logits, test_data, source_max_len, dump_results=False
                 print("\tCorrect: "+''.join(data_utils.ids_to_logics(test_data[entry_ind][sent_ind][1][1:-1],
                             test_data[entry_ind][sent_ind][0], source_max_len,
                             False)))
-                print("\tFound: "+''.join(data_utils.ids_to_logics(total_outputs[entry_ind][sent_ind],
+                print("\tFound:   "+''.join(data_utils.ids_to_logics(total_outputs[entry_ind][sent_ind],
                             test_data[entry_ind][sent_ind][0], source_max_len,
                             False)))
+            print("")
     return total_correct/num_entries, sentence_correct/num_sentences
 
 
@@ -218,6 +220,8 @@ def main_train():
     validation_data = folds[-1]
     #conf = parameter_tuning(folds, source_vocab_size, target_vocab_size)
     conf = list(config.config_beam_search(source_vocab_size, target_vocab_size, FLAGS.num_layers, FLAGS.batch_size, FLAGS.learning_rate, FLAGS.learning_rate_decay_factor, source_max_len, target_max_len, data_utils.words_to_id, data_utils.logic_to_id, data_utils.id_to_words, data_utils.id_to_logic))[0]
+    if FLAGS.layer_size != None:
+        conf.layer_size = FLAGS.layer_size
 
     #First, train with held-out data to find number of iterations
     with tf.Session() as sess:
