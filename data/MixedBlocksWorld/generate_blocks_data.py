@@ -802,6 +802,7 @@ class CompositeShape(object):
                 else:
                     description += "%s "%random.choice(COMMANDS)
                 possible_coarse = description
+                '''
                 if self.relations[i-1].first.base_name == self.shapes[i].base_name and random.randint(0,1):
                     description += "another %s "%self.shapes[i].name
                     if random.randint(0,1) == 1 and self.relations[i-1].direction in [TOP, BOTTOM]:
@@ -813,21 +814,23 @@ class CompositeShape(object):
                         description += "to the %s of the first one." %(DIRECTIONS[self.relations[i-1].direction])
                     #description += self.shapes[1].size_description + " to the %s of the first one." %(DIRECTIONS[self.relations[0].direction])
                     clarification.append(None)
+                
                 else:
-                    name = "the %s"%self.relations[i-1].first.name
-                    #description += "a %s to the %s of %s."%(self.shapes[1].name, DIRECTIONS[self.relations[0].direction], name)
-                    if random.randint(0,1) == 1 and self.relations[i-1].direction in [TOP, BOTTOM]:
-                        if self.relations[i-1].direction == TOP:
-                            description += "%s" + " above %s."%(name)
-                        else:
-                            description += "%s" + " %s %s."%(random.choice(["below", "beneath"]),name)
+                '''
+                name = "the %s"%self.relations[i-1].first.name
+                #description += "a %s to the %s of %s."%(self.shapes[1].name, DIRECTIONS[self.relations[0].direction], name)
+                if random.randint(0,1) == 1 and self.relations[i-1].direction in [TOP, BOTTOM]:
+                    if self.relations[i-1].direction == TOP:
+                        description += "%s" + " above %s."%(name)
                     else:
-                        description += "%s" + " to the %s of %s." %(DIRECTIONS[self.relations[i-1].direction], name)
-                    if not self.shapes[i].hasSize:
-                        clarification.append(description%self.shapes[i].getDescription(True))
-                    else:
-                        clarification.append(None)
-                    description = description%(self.shapes[i].getDescription())
+                        description += "%s" + " %s %s."%(random.choice(["below", "beneath"]),name)
+                else:
+                    description += "%s" + " to the %s of %s." %(DIRECTIONS[self.relations[i-1].direction], name)
+                if not self.shapes[i].hasSize:
+                    clarification.append(description%self.shapes[i].getDescription(True))
+                else:
+                    clarification.append(None)
+                description = description%(self.shapes[i].getDescription())
                 option = random.randint(0,3)
                 if option == 0:
                     relation = "Ensure that %s."%self.relations[i-1].description
@@ -1048,6 +1051,7 @@ def genConfig(numShapes, numMissing):
     prevShapeNum = None
     for i in xrange(numShapes):
         newShapeNum = randint(0,3)
+        '''
         if newShapeNum == prevShapeNum:
             if newShapeNum == ROW:
                 newShape = Row(prevShape.width)
@@ -1058,7 +1062,8 @@ def genConfig(numShapes, numMissing):
             else:
                 newShape = Rect(prevShape.width, prevShape.height)
         else:
-            newShape = genShape[newShapeNum]()
+        '''
+        newShape = genShape[newShapeNum]()
         direction = randint(0,3)
         if i == 0:
             newShape.hasSize = randomVec[i]
