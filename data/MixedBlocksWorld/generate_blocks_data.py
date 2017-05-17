@@ -4,7 +4,7 @@ TRAIN_SIZE_SHAPES = 1400
 TRAIN_SIZE_RANDOBJ = 0
 TEST_SIZE_SHAPES = 600
 TEST_SIZE_RANDOBJ = 0
-maxNumShapes = 4
+maxNumShapes = 3
 
 import random, sys, os, string, itertools
 from random import randint, shuffle
@@ -19,8 +19,12 @@ COL = 1
 SQUARE = 2
 RECT = 3
 
-GRID_WIDTH = 10 
-GRID_HEIGHT = 10
+if IS_TRAIN_MODE:
+    GRID_WIDTH = 100
+    GRID_HEIGHT = 100
+else:
+    GRID_WIDTH = 10 
+    GRID_HEIGHT = 10
 
 TOP = 0
 LEFT = 1
@@ -361,6 +365,10 @@ class CompositeShape(object):
                     else:
                         return pred
 
+            #isFlipped = random.randint(0,1)
+            isFlipped = False
+
+
             if direction == LEFT:
                 old = self.shapesOnSides[LEFT]
                 #newLogic += old.getCondensedLogic()
@@ -382,7 +390,85 @@ class CompositeShape(object):
                     self.shapesOnSides[BOTTOM] = shape
                 if coarseIsPresent:
                     newLogic.append("left(%s, %s)"%(shape.var, old.var))
+                
+            elif direction == RIGHT:
+                old = self.shapesOnSides[RIGHT]
+                #newLogic += old.getCondensedLogic()
+                offset = randint(-1*(shape.height - 1), old.height - 1)
+                shape.left = old.right + 1
+                shape.right = old.right + shape.width
+                shape.top = old.top + offset
+                shape.bottom = old.top + offset + shape.height - 1
+                self.relations.append(Relation(RIGHT, shape, old, offset, coarseIsPresent, fineIsPresent, isFlipped))
+                if shape.right >= self.maxX:
+                    self.maxX = shape.right
+                    self.shapesOnSides[RIGHT] = shape
+                if shape.top <= self.minY:
+                    self.minY = shape.top
+                    self.shapesOnSides[TOP] = shape
+                if shape.bottom >= self.maxY:
+                    self.maxY = shape.bottom
+                    self.shapesOnSides[BOTTOM] = shape
+                if coarseIsPresent:
+                    newLogic.append("right(%s, %s)"%(shape.var, old.var))
 
+            elif direction == TOP:
+                old = self.shapesOnSides[TOP]
+                offset = randint(-1*(shape.width-1), old.width - 1)
+                shape.bottom = old.top - 1
+                shape.top = old.top - shape.height
+                shape.left = old.left + offset
+                shape.right = old.left + offset + shape.width - 1
+                self.relations.append(Relation(TOP, shape, old, offset, coarseIsPresent, fineIsPresent, isFlipped))
+                if shape.left <= self.minX:
+                    self.minX = shape.left
+                    self.shapesOnSides[LEFT] = shape
+                if shape.right >= self.maxX:
+                    self.maxX = shape.right
+                    self.shapesOnSides[RIGHT] = shape
+                if shape.top <= self.minY:
+                    self.minY = shape.top
+                    self.shapesOnSides[TOP] = shape
+                if coarseIsPresent:
+                    newLogic.append("top(%s, %s)"%(shape.var, old.var))
+
+            elif direction == BOTTOM:
+                old = self.shapesOnSides[BOTTOM]
+                offset = randint(-1*(shape.width-1), old.width - 1)
+                shape.top = old.bottom + 1
+                shape.bottom = old.bottom + shape.height
+                shape.left = old.left + offset
+                shape.right = old.left + offset + shape.width - 1
+                self.relations.append(Relation(BOTTOM, shape, old, offset, coarseIsPresent, fineIsPresent, isFlipped))
+                if shape.left <= self.minX:
+                    self.minX = shape.left
+                    self.shapesOnSides[LEFT] = shape
+                if shape.right >= self.maxX:
+                    self.maxX = shape.right
+                    self.shapesOnSides[RIGHT] = shape
+                if shape.bottom >= self.maxY:
+                    self.maxY = shape.bottom
+                    self.shapesOnSides[BOTTOM] = shape
+
+                if coarseIsPresent:
+                    newLogic.append("bottom(%s, %s)"%(shape.var, old.var))
+
+                
+            if isFlipped:
+                temp = shape
+                shape = old
+                old = temp
+                if direction == TOP:
+                    direction = BOTTOM
+                elif direction == BOTTOM:
+                    direction = TOP
+                elif direction == LEFT:
+                    direction = RIGHT
+                elif direction == RIGHT:
+                    direction = LEFT
+                offset *= -1
+
+            if direction == LEFT:
                 # Additional Logic
                 if offset >= 0:
                     newRow = 0
@@ -430,35 +516,22 @@ class CompositeShape(object):
                     oldBlockVar = getVar()
                     newLogic += ["block(%s)"%newBlockVar, "location(%s)"%newSpaceVar]
                     newLogic += ["block-location(%s, %s)"%(newBlockVar, newSpaceVar)]
+                    #if isFlipped:
+                    #    newLogic += [oldEnumLogic%(old.var, newBlockVar)]
+                    #else:
                     newLogic += [newEnumLogic%(shape.var, newBlockVar)]
                     #newLogic += ["row-ind(%s, %s, %d)"%(shape.var, newBlockVar, newRow), "col-ind(%s, %s, %d)"%(shape.var, newBlockVar, newCol)]
                     newLogic += ["block(%s)"%oldBlockVar, "location(%s)"%oldSpaceVar]
                     newLogic += ["block-location(%s, %s)"%(oldBlockVar, oldSpaceVar)]
+                    #if isFlipped:
+                    #    newLogic += [newEnumLogic%(shape.var,oldBlockVar)]
+                    #    newLogic.append("spatial-rel(east, 0, %s, %s)"%(newSpaceVar, oldSpaceVar))
+                    #else:
                     newLogic += [oldEnumLogic%(old.var,oldBlockVar)]
-                    #newLogic += ["row-ind(%s, %s, %d)"%(old.var, oldBlockVar, oldRow), "col-ind(%s, %s, %d)"%(old.var, oldBlockVar, oldCol)]
-                    newLogic.append("spatial-rel(west, 0, %s, %s)"%(oldSpaceVar, newSpaceVar))
+                    newLogic.append("spatial-rel(west, 0, %s, %s)"%(newSpaceVar, oldSpaceVar))
 
+            
             elif direction == RIGHT:
-                old = self.shapesOnSides[RIGHT]
-                #newLogic += old.getCondensedLogic()
-                offset = randint(-1*(shape.height - 1), old.height - 1)
-                shape.left = old.right + 1
-                shape.right = old.right + shape.width
-                shape.top = old.top + offset
-                shape.bottom = old.top + offset + shape.height - 1
-                self.relations.append(Relation(RIGHT, shape, old, offset, coarseIsPresent, fineIsPresent))
-                if shape.right >= self.maxX:
-                    self.maxX = shape.right
-                    self.shapesOnSides[RIGHT] = shape
-                if shape.top <= self.minY:
-                    self.minY = shape.top
-                    self.shapesOnSides[TOP] = shape
-                if shape.bottom >= self.maxY:
-                    self.maxY = shape.bottom
-                    self.shapesOnSides[BOTTOM] = shape
-                if coarseIsPresent:
-                    newLogic.append("right(%s, %s)"%(shape.var, old.var))
-
                 # Additional Logic
                 if offset >= 0:
                     newEnumVal = shape.getEnum(0, 0)
@@ -507,33 +580,21 @@ class CompositeShape(object):
                     self.logic.append(newLogic)
                     newLogic += ["block(%s)"%newBlockVar, "location(%s)"%newSpaceVar]
                     newLogic += ["block-location(%s, %s)"%(newBlockVar, newSpaceVar)]
+                    #if isFlipped:
+                    #    newLogic += [oldEnumLogic%(old.var, newBlockVar)]
+                    #else:
                     newLogic += [newEnumLogic%(shape.var, newBlockVar)]
                     #newLogic += ["row-ind(%s, %s, %d)"%(shape.var, newBlockVar, newRow), "col-ind(%s, %s, %d)"%(shape.var, newBlockVar, newCol)]
                     newLogic += ["block(%s)"%oldBlockVar, "location(%s)"%oldSpaceVar]
                     newLogic += ["block-location(%s, %s)"%(oldBlockVar, oldSpaceVar)]
+                    #if isFlipped:
+                    #    newLogic += [newEnumLogic%(shape.var, oldBlockVar)]
+                    #    newLogic.append("spatial-rel(west, 0, %s, %s)"%(newSpaceVar, oldSpaceVar))
+                    #else:
                     newLogic += [oldEnumLogic%(old.var,oldBlockVar)]
-                    #newLogic += ["row-ind(%s, %s, %d)"%(old.var, oldBlockVar, oldRow), "col-ind(%s, %s, %d)"%(old.var, oldBlockVar, oldCol)]
-                    newLogic.append("spatial-rel(east, 0, %s, %s)"%(oldSpaceVar, newSpaceVar))
+                    newLogic.append("spatial-rel(east, 0, %s, %s)"%(newSpaceVar, oldSpaceVar))
+            
             elif direction == TOP:
-                old = self.shapesOnSides[TOP]
-                offset = randint(-1*(shape.width-1), old.width - 1)
-                shape.bottom = old.top - 1
-                shape.top = old.top - shape.height
-                shape.left = old.left + offset
-                shape.right = old.left + offset + shape.width - 1
-                self.relations.append(Relation(TOP, shape, old, offset, coarseIsPresent, fineIsPresent))
-                if shape.left <= self.minX:
-                    self.minX = shape.left
-                    self.shapesOnSides[LEFT] = shape
-                if shape.right >= self.maxX:
-                    self.maxX = shape.right
-                    self.shapesOnSides[RIGHT] = shape
-                if shape.top <= self.minY:
-                    self.minY = shape.top
-                    self.shapesOnSides[TOP] = shape
-                if coarseIsPresent:
-                    newLogic.append("top(%s, %s)"%(shape.var, old.var))
-
                 # Additional Logic
                 if offset >= 0:
                     newEnumVal = shape.getEnum(shape.height - 1, 0)
@@ -581,34 +642,20 @@ class CompositeShape(object):
                     oldBlockVar = getVar()
                     newLogic += ["block(%s)"%newBlockVar, "location(%s)"%newSpaceVar]
                     newLogic += ["block-location(%s, %s)"%(newBlockVar, newSpaceVar)]
+                    #if isFlipped:
+                    #newLogic += [oldEnumLogic%(old.var, newBlockVar)]
+                    #else:
                     newLogic += [newEnumLogic%(shape.var, newBlockVar)]
-                    #newLogic += ["row-ind(%s, %s, %d)"%(shape.var, newBlockVar, newRow), "col-ind(%s, %s, %d)"%(shape.var, newBlockVar, newCol)]
                     newLogic += ["block(%s)"%oldBlockVar, "location(%s)"%oldSpaceVar]
                     newLogic += ["block-location(%s, %s)"%(oldBlockVar, oldSpaceVar)]
+                    #if isFlipped:
+                    #    newLogic += [newEnumLogic%(shape.var,oldBlockVar)]
+                    #    newLogic.append("spatial-rel(south, 0, %s, %s)"%(newSpaceVar, oldSpaceVar))
+                    #else:
                     newLogic += [oldEnumLogic%(old.var,oldBlockVar)]
-                    #newLogic += ["row-ind(%s, %s, %d)"%(old.var, oldBlockVar, oldRow), "col-ind(%s, %s, %d)"%(old.var, oldBlockVar, oldCol)]
-                    newLogic.append("spatial-rel(north, 0, %s, %s)"%(oldSpaceVar, newSpaceVar))
+                    newLogic.append("spatial-rel(north, 0, %s, %s)"%(newSpaceVar, oldSpaceVar))
+            
             elif direction == BOTTOM:
-                old = self.shapesOnSides[BOTTOM]
-                offset = randint(-1*(shape.width-1), old.width - 1)
-                shape.top = old.bottom + 1
-                shape.bottom = old.bottom + shape.height
-                shape.left = old.left + offset
-                shape.right = old.left + offset + shape.width - 1
-                self.relations.append(Relation(BOTTOM, shape, old, offset, coarseIsPresent, fineIsPresent))
-                if shape.left <= self.minX:
-                    self.minX = shape.left
-                    self.shapesOnSides[LEFT] = shape
-                if shape.right >= self.maxX:
-                    self.maxX = shape.right
-                    self.shapesOnSides[RIGHT] = shape
-                if shape.bottom >= self.maxY:
-                    self.maxY = shape.bottom
-                    self.shapesOnSides[BOTTOM] = shape
-
-                if coarseIsPresent:
-                    newLogic.append("bottom(%s, %s)"%(shape.var, old.var))
-
                 # Additional Logic
                 if offset >= 0:
                     newEnumVal = shape.getEnum(0, 0)
@@ -656,13 +703,18 @@ class CompositeShape(object):
                     oldBlockVar = getVar()
                     newLogic += ["block(%s)"%newBlockVar, "location(%s)"%newSpaceVar]
                     newLogic += ["block-location(%s, %s)"%(newBlockVar, newSpaceVar)]
+                    #if isFlipped:
+                    #    newLogic += [oldEnumLogic%(old.var, newBlockVar)]
+                    #else:
                     newLogic += [newEnumLogic%(shape.var, newBlockVar)]
-                    #newLogic += ["row-ind(%s, %s, %d)"%(shape.var, newBlockVar, newRow), "col-ind(%s, %s, %d)"%(shape.var, newBlockVar, newCol)]
                     newLogic += ["block(%s)"%oldBlockVar, "location(%s)"%oldSpaceVar]
                     newLogic += ["block-location(%s, %s)"%(oldBlockVar, oldSpaceVar)]
+                    #if isFlipped:
+                    #    newLogic += [newEnumLogic%(shape.var, oldBlockVar)]
+                    #    newLogic.append("spatial-rel(north, 0, %s, %s)"%(newSpaceVar, oldSpaceVar))
+                    #else:
                     newLogic += [oldEnumLogic%(old.var,oldBlockVar)]
-                    #newLogic += ["row-ind(%s, %s, %d)"%(old.var, oldBlockVar, oldRow), "col-ind(%s, %s, %d)"%(old.var, oldBlockVar, oldCol)]
-                    newLogic.append("spatial-rel(south, 0, %s, %s)"%(oldSpaceVar, newSpaceVar))
+                    newLogic.append("spatial-rel(south, 0, %s, %s)"%(newSpaceVar, oldSpaceVar))
 
     def addRandomConstraint(self):
         num = randint(1,3)
@@ -797,12 +849,14 @@ class CompositeShape(object):
                 self.clarification.append(clarification)
                 if random.randint(0,1):
                     if i == len(self.shapes) - 1 and random.randint(0,1):
-                        description += "Finally, %s "%random.choice(COMMANDS).lower()
+                        #description += "Finally, %s "%random.choice(COMMANDS).lower()
+                        start = "Finally, "
                     else:
-                        description = "%s, "%random.choice(NEXT)
-                        description += "%s "%random.choice(COMMANDS).lower()
+                        start = "%s, "%random.choice(NEXT)
+                        #description += "%s "%random.choice(COMMANDS).lower()
                 else:
-                    description += "%s "%random.choice(COMMANDS)
+                    start = ""
+                command = random.choice(COMMANDS)
                 '''
                 if self.relations[i-1].first.base_name == self.shapes[i].base_name and random.randint(0,1):
                     description += "another %s "%self.shapes[i].name
@@ -823,28 +877,45 @@ class CompositeShape(object):
                     needsClarification = True
                 else:
                     needsClarification = False
-                possibleClarification = description + self.shapes[i].getDescription(True)
-                description += self.shapes[i].getDescription()
             
-                #description += "a %s to the %s of %s."%(self.shapes[1].name, DIRECTIONS[self.relations[0].direction], name)
                 if random.randint(0,1) == 1 and self.relations[i-1].direction in [TOP, BOTTOM]:
                     if self.relations[i-1].direction == TOP:
-                        addon = " above %s."%(name)
+                        addon = "above %s"%(name)
                     else:
-                        addon =  " %s %s."%(random.choice(["below", "beneath"]),name)
+                        addon =  "%s %s"%(random.choice(["below", "beneath"]),name)
                 else:
-                    addon = " to the %s of %s." %(DIRECTIONS[self.relations[i-1].direction], name)
-                possibleClarification += addon
-                if self.relations[i-1].coarseIsPresent:
-                    description += addon
-                else:
+                    addon = "to the %s of %s" %(DIRECTIONS[self.relations[i-1].direction], name)
+                if random.randint(0,1):
+                    if start != "":
+                        command = command[0].lower() + command[1:]
+                        start = start[0].upper() + start[1:]
+                    description = start + command + " "+self.shapes[i].getDescription()
+                    if self.relations[i-1].coarseIsPresent:
+                        description += " " + addon
+                        needsClarification = True
                     description += "."
-                    needsClarification = True
-                if needsClarification:
-                    clarification.append(possibleClarification)
+                    if needsClarification:
+                        clarification.append(start + command + " "+self.shapes[i].getDescription(True) + " " + addon + ".")
+                    else:
+                        clarification.append(None)
                 else:
-                    clarification.append(None)
-
+                    if self.relations[i-1].coarseIsPresent:
+                        command = command[0].lower() + command[1:]
+                        if start == "":
+                            addon = addon[0].upper() + addon[1:]
+                        else:
+                            start = start[0].upper() + start[1:]
+                        description = start + addon + ", "+ command + " " + self.shapes[i].getDescription() + "."
+                    else:
+                        if start != "":
+                            start = start[0].upper() + start[1:]
+                            command = command[0].lower() + command[1:]
+                        description = start + command + " " + self.shapes[i].getDescription() + "."
+                        needsClarification=True
+                    if needsClarification:
+                        clarification.append(start + addon + ", " + command + " " + self.shapes[i].getDescription(True) + ".")
+                    else:
+                        clarification.append(None)
                 shape_description.append(description)
                 option = random.randint(0,3)
                 if option == 0:
@@ -857,10 +928,10 @@ class CompositeShape(object):
                     relation = self.relations[i-1].description
                     relation = relation[0].upper()+relation[1:]
                 if self.relations[i-1].fineIsPresent:
-                    description = relation
+                    shape_description.append(relation)
                 else:
                     clarification.append(relation)
-                shape_description.append(description)
+                #shape_description.append(description)
 
         return self.description, self.clarification
 
@@ -891,6 +962,9 @@ class CompositeShape(object):
 
     def write_train(self, fout):
         descriptions, _ = self.getDescription()
+        print descriptions
+        print self.logic
+        print ""
         modified_descriptions = [item for sublist in descriptions for item in sublist]
         for description,logic in zip(modified_descriptions, self.logic):
             fout.write(' ^ '.join(logic))
@@ -1013,22 +1087,20 @@ class Rect(Shape):
             return "a rectangle"
 
 def randRow():
-    length = randint(3,9)
+    length = randint(2,10)
     return Row(length)
 
 def randCol():
-    height = randint(3,9)
+    height = randint(2,10)
     return Col(height)
 
 def randSquare():
-    dim = randint(2,9)
+    dim = randint(1,10)
     return Square(dim)
 
 def randRect():
-    length = randint(1,9)
-    height = length
-    while height == length:
-        height = randint(1,9)
+    length = randint(1,10)
+    height = randint(1,10)
     return Rect(length, height)
 
 genShape = {ROW:randRow, COL:randCol, SQUARE:randSquare, RECT:randRect}
@@ -1146,16 +1218,16 @@ if IS_TRAIN_MODE:
                 word = letter
         option = randint(0,3)
         if option == 0:
-            width = randint(2,9)
+            width = randint(2,10)
             logic_form += " ^ width(a, %d)"%width
             description = randomObjDescription("%s %s of %s %d"%(article, word, random.choice(['length', 'width']),width))
         elif option == 1:
-            height = randint(2,9)
+            height = randint(2,10)
             logic_form += " ^ height(a, %d)"%height
             description = randomObjDescription("%s %s of height %d"%(article, word, height))
         elif option == 2:
-            width = randint(2,9)
-            height = randint(2,9)
+            width = randint(2,10)
+            height = randint(2,10)
             option = random.randint(0,3)
             if option == 0:
                 logic_form += " ^ height(a, %d) ^ width(a, %d)"%(height, width)
