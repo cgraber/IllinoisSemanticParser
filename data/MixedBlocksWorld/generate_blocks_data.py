@@ -106,7 +106,7 @@ class Shape:
 class Relation(object):
     INLINE_CHOICES = ["is aligned with", "is in line with", "is next to", "is adjacent to"]
     NEXT_CHOICES = ["is next to", "is adjacent to"]
-    def __init__(self, direction, second, first, offset, coarseIsPresent, fineIsPresent, isFlipped):
+    def __init__(self, direction, second, first, offset, coarseIsPresent, fineIsPresent):
         self.direction = direction
         self.second = second
         self.first = first
@@ -114,40 +114,19 @@ class Relation(object):
         self.description = "" 
         self.coarseIsPresent = coarseIsPresent
         self.fineIsPresent = fineIsPresent
-        self.isFlipped = isFlipped
 
-        
-        if isFlipped:
-            temp = first
-            first = second
-            second = temp
-            if direction == TOP:
-                direction = BOTTOM
-            elif direction == BOTTOM:
-                direction = TOP
-            elif direction == LEFT:
-                direction = RIGHT
-            elif direction == RIGHT:
-                direction = LEFT
-            offset *= -1
         # Build the description
         # Recipe: [SECOND REFERENCE] [RELATIVE LOCATION] [FIRST REFERENCE]
         # note: for now, it is assumed that the second shape was just mentioned.
         if first.ind != 0:
-            if isFlipped:
-                firstName = "%s %s"%(random.choice(["this", "the new"]), first.name)
-            else:
-                firstName = "the %s %s"%(ORDINALS[first.ind], first.name)
+            firstName = "the %s %s"%(ORDINALS[first.ind], first.name)
         else:
             firstName = "the %s"%first.name
         if second.ind != 0:
-            if isFlipped:
-                secondName = "the %s %s"%(ORDINALS[second.ind], second.name)
-            else:
-                secondName = "%s %s"%(random.choice(["this", "the new"]), second.name)
+            secondName = "%s %s"%(random.choice(["this", "the new"]), second.name)
         else:
             secondName = "the %s"%second.name
-        if direction == LEFT:
+        if self.direction == LEFT:
             # SECOND REFERENCE
             if offset >= 0:
                 self.description += second.getUpperRightDescription()%secondName + " "
@@ -189,7 +168,7 @@ class Relation(object):
                 else:
                     self.description += first.getEdgeDescription(LEFT, offset+second.height-1, firstName)
 
-        elif direction == RIGHT:
+        elif self.direction == RIGHT:
             # SECOND REFERENCE
             if offset >= 0:
                 self.description += second.getUpperLeftDescription()%secondName + " "
@@ -225,7 +204,7 @@ class Relation(object):
                 self.description += first.getUpperRightDescription()%firstName
             else:
                 if second.bottom == first.top:
-                    self.description += first.getUpperRightDescription()%firstName
+                    self.description += self.first.getUpperRightDescription()%firstName
                 elif second.bottom == first.bottom:
                     self.description += first.getLowerRightDescription()%firstName
                 else:
@@ -264,7 +243,7 @@ class Relation(object):
                 else:
                     self.description += first.getEdgeDescription(TOP, offset, firstName)
             elif middle:
-                self.description += first.getUpperLeftDescription()%firstName
+                self.description += self.first.getUpperLeftDescription()%firstName
             else:
                 if second.right == first.left:
                     self.description += first.getUpperLeftDescription()%firstName
@@ -307,7 +286,7 @@ class Relation(object):
                 else:
                     self.description += first.getEdgeDescription(TOP, offset, firstName)
             elif middle:
-                self.description += first.getLowerLeftDescription()%firstName
+                self.description += self.first.getLowerLeftDescription()%firstName
             else:
                 if second.right == first.left:
                     self.description += first.getLowerLeftDescription()%firstName
@@ -382,7 +361,6 @@ class CompositeShape(object):
                     else:
                         return pred
 
-            isFlipped = random.randint(0,1)
             if direction == LEFT:
                 old = self.shapesOnSides[LEFT]
                 #newLogic += old.getCondensedLogic()
@@ -391,8 +369,7 @@ class CompositeShape(object):
                 shape.left = old.left - shape.width
                 shape.top = old.top + offset
                 shape.bottom = old.top + offset + shape.height - 1
-                
-                self.relations.append(Relation(LEFT, shape, old, offset, coarseIsPresent, fineIsPresent, isFlipped))
+                self.relations.append(Relation(LEFT, shape, old, offset, coarseIsPresent, fineIsPresent))
                 self.shapesOnSides[LEFT] = shape
                 if shape.left <= self.minX:
                     self.minX = shape.left
@@ -453,19 +430,13 @@ class CompositeShape(object):
                     oldBlockVar = getVar()
                     newLogic += ["block(%s)"%newBlockVar, "location(%s)"%newSpaceVar]
                     newLogic += ["block-location(%s, %s)"%(newBlockVar, newSpaceVar)]
-                    if isFlipped:
-                        newLogic += [oldEnumLogic%(old.var, newBlockVar)]
-                    else:
-                        newLogic += [newEnumLogic%(shape.var, newBlockVar)]
+                    newLogic += [newEnumLogic%(shape.var, newBlockVar)]
                     #newLogic += ["row-ind(%s, %s, %d)"%(shape.var, newBlockVar, newRow), "col-ind(%s, %s, %d)"%(shape.var, newBlockVar, newCol)]
                     newLogic += ["block(%s)"%oldBlockVar, "location(%s)"%oldSpaceVar]
                     newLogic += ["block-location(%s, %s)"%(oldBlockVar, oldSpaceVar)]
-                    if isFlipped:
-                        newLogic += [newEnumLogic%(shape.var,oldBlockVar)]
-                        newLogic.append("spatial-rel(east, 0, %s, %s)"%(newSpaceVar, oldSpaceVar))
-                    else:
-                        newLogic += [oldEnumLogic%(old.var,oldBlockVar)]
-                        newLogic.append("spatial-rel(west, 0, %s, %s)"%(newSpaceVar, oldSpaceVar))
+                    newLogic += [oldEnumLogic%(old.var,oldBlockVar)]
+                    #newLogic += ["row-ind(%s, %s, %d)"%(old.var, oldBlockVar, oldRow), "col-ind(%s, %s, %d)"%(old.var, oldBlockVar, oldCol)]
+                    newLogic.append("spatial-rel(west, 0, %s, %s)"%(oldSpaceVar, newSpaceVar))
 
             elif direction == RIGHT:
                 old = self.shapesOnSides[RIGHT]
@@ -475,7 +446,7 @@ class CompositeShape(object):
                 shape.right = old.right + shape.width
                 shape.top = old.top + offset
                 shape.bottom = old.top + offset + shape.height - 1
-                self.relations.append(Relation(RIGHT, shape, old, offset, coarseIsPresent, fineIsPresent, isFlipped))
+                self.relations.append(Relation(RIGHT, shape, old, offset, coarseIsPresent, fineIsPresent))
                 if shape.right >= self.maxX:
                     self.maxX = shape.right
                     self.shapesOnSides[RIGHT] = shape
@@ -536,19 +507,13 @@ class CompositeShape(object):
                     self.logic.append(newLogic)
                     newLogic += ["block(%s)"%newBlockVar, "location(%s)"%newSpaceVar]
                     newLogic += ["block-location(%s, %s)"%(newBlockVar, newSpaceVar)]
-                    if isFlipped:
-                        newLogic += [oldEnumLogic%(old.var, newBlockVar)]
-                    else:
-                        newLogic += [newEnumLogic%(shape.var, newBlockVar)]
+                    newLogic += [newEnumLogic%(shape.var, newBlockVar)]
                     #newLogic += ["row-ind(%s, %s, %d)"%(shape.var, newBlockVar, newRow), "col-ind(%s, %s, %d)"%(shape.var, newBlockVar, newCol)]
                     newLogic += ["block(%s)"%oldBlockVar, "location(%s)"%oldSpaceVar]
                     newLogic += ["block-location(%s, %s)"%(oldBlockVar, oldSpaceVar)]
-                    if isFlipped:
-                        newLogic += [newEnumLogic%(shape.var, oldBlockVar)]
-                        newLogic.append("spatial-rel(west, 0, %s, %s)"%(newSpaceVar, oldSpaceVar))
-                    else:
-                        newLogic += [oldEnumLogic%(old.var,oldBlockVar)]
-                        newLogic.append("spatial-rel(east, 0, %s, %s)"%(newSpaceVar, oldSpaceVar))
+                    newLogic += [oldEnumLogic%(old.var,oldBlockVar)]
+                    #newLogic += ["row-ind(%s, %s, %d)"%(old.var, oldBlockVar, oldRow), "col-ind(%s, %s, %d)"%(old.var, oldBlockVar, oldCol)]
+                    newLogic.append("spatial-rel(east, 0, %s, %s)"%(oldSpaceVar, newSpaceVar))
             elif direction == TOP:
                 old = self.shapesOnSides[TOP]
                 offset = randint(-1*(shape.width-1), old.width - 1)
@@ -556,7 +521,7 @@ class CompositeShape(object):
                 shape.top = old.top - shape.height
                 shape.left = old.left + offset
                 shape.right = old.left + offset + shape.width - 1
-                self.relations.append(Relation(TOP, shape, old, offset, coarseIsPresent, fineIsPresent, isFlipped))
+                self.relations.append(Relation(TOP, shape, old, offset, coarseIsPresent, fineIsPresent))
                 if shape.left <= self.minX:
                     self.minX = shape.left
                     self.shapesOnSides[LEFT] = shape
@@ -616,18 +581,13 @@ class CompositeShape(object):
                     oldBlockVar = getVar()
                     newLogic += ["block(%s)"%newBlockVar, "location(%s)"%newSpaceVar]
                     newLogic += ["block-location(%s, %s)"%(newBlockVar, newSpaceVar)]
-                    if isFlipped:
-                        newLogic += [oldEnumLogic%(old.var, newBlockVar)]
-                    else:
-                        newLogic += [newEnumLogic%(shape.var, newBlockVar)]
+                    newLogic += [newEnumLogic%(shape.var, newBlockVar)]
+                    #newLogic += ["row-ind(%s, %s, %d)"%(shape.var, newBlockVar, newRow), "col-ind(%s, %s, %d)"%(shape.var, newBlockVar, newCol)]
                     newLogic += ["block(%s)"%oldBlockVar, "location(%s)"%oldSpaceVar]
                     newLogic += ["block-location(%s, %s)"%(oldBlockVar, oldSpaceVar)]
-                    if isFlipped:
-                        newLogic += [newEnumLogic%(shape.var,oldBlockVar)]
-                        newLogic.append("spatial-rel(south, 0, %s, %s)"%(newSpaceVar, oldSpaceVar))
-                    else:
-                        newLogic += [oldEnumLogic%(old.var,oldBlockVar)]
-                        newLogic.append("spatial-rel(north, 0, %s, %s)"%(newSpaceVar, oldSpaceVar))
+                    newLogic += [oldEnumLogic%(old.var,oldBlockVar)]
+                    #newLogic += ["row-ind(%s, %s, %d)"%(old.var, oldBlockVar, oldRow), "col-ind(%s, %s, %d)"%(old.var, oldBlockVar, oldCol)]
+                    newLogic.append("spatial-rel(north, 0, %s, %s)"%(oldSpaceVar, newSpaceVar))
             elif direction == BOTTOM:
                 old = self.shapesOnSides[BOTTOM]
                 offset = randint(-1*(shape.width-1), old.width - 1)
@@ -635,7 +595,7 @@ class CompositeShape(object):
                 shape.bottom = old.bottom + shape.height
                 shape.left = old.left + offset
                 shape.right = old.left + offset + shape.width - 1
-                self.relations.append(Relation(BOTTOM, shape, old, offset, coarseIsPresent, fineIsPresent, isFlipped))
+                self.relations.append(Relation(BOTTOM, shape, old, offset, coarseIsPresent, fineIsPresent))
                 if shape.left <= self.minX:
                     self.minX = shape.left
                     self.shapesOnSides[LEFT] = shape
@@ -696,18 +656,13 @@ class CompositeShape(object):
                     oldBlockVar = getVar()
                     newLogic += ["block(%s)"%newBlockVar, "location(%s)"%newSpaceVar]
                     newLogic += ["block-location(%s, %s)"%(newBlockVar, newSpaceVar)]
-                    if isFlipped:
-                        newLogic += [oldEnumLogic%(old.var, newBlockVar)]
-                    else:
-                        newLogic += [newEnumLogic%(shape.var, newBlockVar)]
+                    newLogic += [newEnumLogic%(shape.var, newBlockVar)]
+                    #newLogic += ["row-ind(%s, %s, %d)"%(shape.var, newBlockVar, newRow), "col-ind(%s, %s, %d)"%(shape.var, newBlockVar, newCol)]
                     newLogic += ["block(%s)"%oldBlockVar, "location(%s)"%oldSpaceVar]
                     newLogic += ["block-location(%s, %s)"%(oldBlockVar, oldSpaceVar)]
-                    if isFlipped:
-                        newLogic += [newEnumLogic%(shape.var, oldBlockVar)]
-                        newLogic.append("spatial-re(north, 0, %s, %s)"%(newSpaceVar, oldSpaceVar))
-                    else:
-                        newLogic += [oldEnumLogic%(old.var,oldBlockVar)]
-                        newLogic.append("spatial-rel(south, 0, %s, %s)"%(newSpaceVar, oldSpaceVar))
+                    newLogic += [oldEnumLogic%(old.var,oldBlockVar)]
+                    #newLogic += ["row-ind(%s, %s, %d)"%(old.var, oldBlockVar, oldRow), "col-ind(%s, %s, %d)"%(old.var, oldBlockVar, oldCol)]
+                    newLogic.append("spatial-rel(south, 0, %s, %s)"%(oldSpaceVar, newSpaceVar))
 
     def addRandomConstraint(self):
         num = randint(1,3)
@@ -899,7 +854,7 @@ class CompositeShape(object):
                 elif option == 2:
                     relation = "Check that %s."%self.relations[i-1].description
                 elif option == 3:
-                    relation = self.relations[i-1].description + "."
+                    relation = self.relations[i-1].description
                     relation = relation[0].upper()+relation[1:]
                 if self.relations[i-1].fineIsPresent:
                     description = relation
